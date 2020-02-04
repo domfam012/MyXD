@@ -6,6 +6,9 @@ import { loadDB } from '../lib/js/db';
 
 import { createContext, useContext, useEffect, useState } from 'react';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faThumbsUp } from '@fortawesome/free-solid-svg-icons'
+
 const Index = props => {
     const [ num, setNum ] = useState(0);
 
@@ -39,6 +42,9 @@ const Index = props => {
                 <title>MyXD - Index</title>
             </Head>
             <h1>This is Main Page</h1>
+
+            <FontAwesomeIcon icon={faThumbsUp} />
+
             <button className={"btn btn-warning disabled text-white"} onClick={refresh}>refresh</button>
             <ul>
                 {props.data.map((item, idx) => (
