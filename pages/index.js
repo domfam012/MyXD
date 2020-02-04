@@ -41,7 +41,7 @@ const Index = props => {
             <Head>
                 <title>MyXD - Index</title>
             </Head>
-            <h1>This is Main Page</h1>
+            <h1 className="example">This is Main Page</h1>
 
             <FontAwesomeIcon icon={faThumbsUp} />
 
