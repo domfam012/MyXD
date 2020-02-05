@@ -7,7 +7,6 @@ config.autoAddCss = false; // Tell Font Awesome to skip adding the CSS automatic
 // library.add(faBars, faUser, faTwitter, faFacebook);
 
 import '../lib/css/style.css'
-// import '../lib/css/style2.css'   
 
 function MyApp({ Component, pageProps }) {
     return <Component {...pageProps} />;
