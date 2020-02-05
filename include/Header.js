@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faThumbsUp } from '@fortawesome/free-solid-svg-icons'
+import { faBars } from '@fortawesome/free-solid-svg-icons'
 
 const linkStyle = {
     marginRight: 15
@@ -23,7 +23,7 @@ const Header = () => {
                 <a className="navbar-brand" href="#"> <span className="pink">MyXD</span> logo</a>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
                         aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon"><FontAwesomeIcon icon={faThumbsUp} style={"color:#fff"}/></span>
+                    <span className="navbar-toggler-icon"><FontAwesomeIcon icon={faBars}/></span>
                 </button>
                 <div className="collapse navbar-collapse" id="navbarText">
                     <ul className="navbar-nav mr-auto">
@@ -82,8 +82,14 @@ const Header = () => {
                     padding: 0 30px;
                     min-width: 768px;
                   }
+                .navbar-brand {
+                  padding: 0;
+                }
                 .navbar-toggler-icon {
                     color: #fff;
+                }
+                .navbar-toggler:hover, .navbar-toggler:focus {
+                  outline: none;
                 }
               }
               @media (max-width: 768px) {

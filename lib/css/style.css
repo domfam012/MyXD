@@ -56,6 +56,7 @@ body {
 html, body {
     width: 100%;
     height: 100%;
+    font-family: 'NanumGothic';
 }
 iframe{
     width: 100%;
@@ -339,9 +340,6 @@ summary {
     cursor: pointer;
 }
 
-html, body {
-    font-family: 'NanumGothic';
-}
 template {
     display: none;
 }
