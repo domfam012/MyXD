@@ -1,5 +1,5 @@
 import Head from "next/head";
-import Layout from '../components/Layout';
+import Layout from '../include/Layout';
 
 const List = props => {
     return (
