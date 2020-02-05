@@ -1,14 +1,14 @@
 import Head from "next/head";
-import Layout from '../components/Layout';
+import Layout from '../../../components/Layout';
 
-const Index = props => {
+const List = props => {
     return (
         <Layout>
             <Head>
-                <title>MyXD - Index</title>
+                <title>Admin - Update</title>
             </Head>
 
-            <h1>Main Page</h1>
+            <h1>Admin Update Page</h1>
 
             <style jsx>{`
                 h1 {
@@ -20,4 +20,4 @@ const Index = props => {
     );
 };
 
-export default Index;
+export default List;
