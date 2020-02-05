@@ -8,6 +8,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faThumbsUp } from '@fortawesome/free-solid-svg-icons'
 import Link from "next/link";
 
+const linkStyle = {
+    marginRight: 15
+};
+
 const Test = props => {
     const [ num, setNum ] = useState(0);
 
