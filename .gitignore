@@ -1,10 +1,7 @@
-.idea
-
 node_modules/
-
+.idea
 .next
 .env
 .env.build
 
 .gitattributes
-
