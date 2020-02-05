@@ -11,10 +11,10 @@
     font-family: 'NanumGothic';
     font-style: normal;
     font-weight: 400;
-    /*src: url(../../fonts/NanumGothic/NanumGothic.eot);*/
-    /*src: local('NanumGothic'),*/
-    /*url(../../fonts/NanumGothic/NanumGothic.eot?#iefix) format('embedded-opentype'),*/
-    /*url(../../fonts/NanumGothic/NanumGothic.woff) format('woff')*/
+    src: url(/public/fonts/NanumGothic/NanumGothic.eot),
+    local('NanumGothic'),
+    url(/public/fonts/NanumGothic/NanumGothic.eot?#iefix) format('embedded-opentype'),
+    url(/public/fonts/NanumGothic/NanumGothic.woff) format('woff');
 }
 /*
  font color 설정
@@ -339,6 +339,9 @@ summary {
     cursor: pointer;
 }
 
+html, body {
+    font-family: 'NanumGothic';
+}
 template {
     display: none;
 }
