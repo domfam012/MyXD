@@ -1,5 +1,5 @@
 import Head from "next/head";
-import Layout from '../components/Layout';
+import Layout from '../include/Layout';
 import { loadDB } from '../lib/js/db';
 
 import { createContext, useContext, useEffect, useState } from 'react';
@@ -104,7 +104,7 @@ const Test = props => {
             </ul>
 
             <span>{num}</span>
-            <button onClick={() => setNum(num + 1)} className="btn btn-default">add</button>
+            <button onClick={() => setNum(num + 1)} className="btn btn-secondary">add</button>
 
             <style jsx>{`
                 h1 {
