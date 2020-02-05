@@ -2,8 +2,6 @@ import Head from 'next/head';
 import Header from './Header';
 import Aside from './Aside';
 import Footer from './Footer';
-import "../lib/css/bootstrap.css"
-import "../lib/css/style.css"
 
 const Layout = props => (
     <>
