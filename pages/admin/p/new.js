@@ -8,11 +8,21 @@ const List = props => {
                 <title>Admin - New</title>
             </Head>
 
-            <h1>Admin New Page</h1>
+            <div className={"content"}>
+
+                <div className={"row box"}>
+                    <div className={"col col-sm-12"}>
+                        <h1 className={"header"}>XD 올리기</h1>
+                    </div>
+                </div>
+
+            </div>
 
             <style jsx>{`
-                h1 {
-                    font-color: #333;
+                .box {
+                    margin: 70px auto;
+                    border: 0 solid transparent;
+                    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
                 }
             `}</style>
 
