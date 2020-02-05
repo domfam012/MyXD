@@ -17,6 +17,16 @@ const Footer = () => (
             line-height: 60px;
             padding-left: 170px;
           }
+          @media (max-width: 1200px) {
+              .footer span {
+                padding-left: 30px;
+              }
+          }
+              @media (max-width: 768px) {
+              .footer span {
+                padding-left: 20px;
+              }
+              }
         `}</style>
     </footer>
 
