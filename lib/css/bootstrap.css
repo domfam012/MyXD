@@ -584,6 +584,11 @@ pre code {
     padding: 0 170px;
 }
 
+.container-xl {
+    width: 1160px;
+    margin: 0 auto;
+}
+
 .row {
     display: -ms-flexbox;
     display: flex;
