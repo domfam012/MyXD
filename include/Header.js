@@ -57,6 +57,7 @@ const Header = () => {
                 padding: 0 0 0 170px;
                 background: #2e001f;
                 color: #fff;
+                margin-bottom: 70px;
               }
               .navbar-brand {
                 font-size: 20px;
