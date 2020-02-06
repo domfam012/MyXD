@@ -6,10 +6,10 @@
     font-family: 'NanumGothic';
     font-style: normal;
     font-weight: 400;
-    src: url(/public/fonts/NanumGothic/NanumGothic.eot),
+    src: url(/fonts/NanumGothic/NanumGothic.eot),
     local('NanumGothic'),
-    url(/public/fonts/NanumGothic/NanumGothic.eot?#iefix) format('embedded-opentype'),
-    url(/public/fonts/NanumGothic/NanumGothic.woff) format('woff');
+    url(/fonts/NanumGothic/NanumGothic.eot?#iefix) format('embedded-opentype'),
+    url(/fonts/NanumGothic/NanumGothic.woff) format('woff');
 }
 /*
  font color 설정
