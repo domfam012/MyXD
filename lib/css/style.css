@@ -38,6 +38,11 @@
     height: 16px;
     background: url("/img/common/chevron-right.png") no-repeat;
 }
+.icon.icon-bar {
+    width: 14px;
+    height: 16px;
+    background: url("/img/common/bars.png") no-repeat;
+}
 /*
  container
 */
@@ -48,7 +53,9 @@
 }
 @media (max-width: 1200px) {
     .container {
-        min-width: 708px;
+        width: 768px;
+        min-width: 576px;
+        padding: 0 30px;
     }
 }
 

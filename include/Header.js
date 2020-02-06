@@ -22,7 +22,7 @@ const Header = () => {
                 <a className="navbar-brand" href="#"> <span className="pink">MyXD</span> logo</a>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
                         aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon"><FontAwesomeIcon icon={faBars}/></span>
+                    <span className="navbar-toggler-icon"><i className={"icon icon-bar"}></i></span>
                 </button>
                 <div className="collapse navbar-collapse menu" id="navbarText">
                     <ul className="navbar-nav mr-auto">
@@ -60,6 +60,7 @@ const Header = () => {
             <style jsx>{`
               .navbar {
                 width: 100%;
+                min-width: 1080px;
                 height: 70px;
                 padding: 0 0 0 170px;
                 background: #2e001f;
@@ -95,17 +96,11 @@ const Header = () => {
               .navbar-icon .navbar-nav .nav-item:nth-child(3) {
                 margin-right: 78px;
               }
-              
-              
-              
-              
-              
-              
-              
-              
+
               @media (max-width: 1200px) {
                 .navbar {
                     padding: 0 30px;
+                    min-width: 564px;
                   }
                 .navbar-brand {
                   padding: 0;
