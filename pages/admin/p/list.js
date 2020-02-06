@@ -46,6 +46,9 @@ const List = props => {
                                             <button className={"btn-sm btn-primary"}>편집</button>
                                         </div>
                                     </div>
+
+                                    <hr className={"box-bottom-line"}/>
+
                                 </div>
 
                                 <div className={"box-list"}>
@@ -73,6 +76,9 @@ const List = props => {
                                             <button className={"btn-sm btn-primary"}>편집</button>
                                         </div>
                                     </div>
+
+                                    <hr className={"box-bottom-line"}/>
+
                                 </div>
 
                                 <div className={"box-list"}>
@@ -100,6 +106,9 @@ const List = props => {
                                             <button className={"btn-sm btn-primary"}>편집</button>
                                         </div>
                                     </div>
+
+                                    <hr className={"box-bottom-line"}/>
+
                                 </div>
 
                                 <div className={"box-list"}>
@@ -127,6 +136,9 @@ const List = props => {
                                             <button className={"btn-sm btn-primary"}>편집</button>
                                         </div>
                                     </div>
+
+                                    <hr className={"box-bottom-line"}/>
+
                                 </div>
 
                                 <div className={"box-list"}>
@@ -154,14 +166,12 @@ const List = props => {
                                             <button className={"btn-sm btn-primary"}>편집</button>
                                         </div>
                                     </div>
+
+                                    <hr className={"box-bottom-line"}/>
+
                                 </div>
 
                             </div>
-                        </div>
-
-
-                        <div>
-                            <hr className={"bottom-line"}></hr>
                         </div>
 
                         <div className={"bottom-btn-area"}>
@@ -204,7 +214,8 @@ const List = props => {
                  
                 .item-box-2{
                     width:579px;
-                    padding-left:1px;                  
+                    padding-left:1px;
+                    padding-top: 1px;               
                 }
                  
                 .item-box-3{
@@ -231,7 +242,7 @@ const List = props => {
                 }
                 
                 .list-content{
-                    margin-top:23px;
+                    margin-top: 22px;
                     width: 432px;
                     height: 98px;
                     font-family: NanumGothic;
@@ -249,7 +260,7 @@ const List = props => {
                 }
                 
                 .box-list {                    
-                    padding-top: 40px;
+                    padding-top: 39px;
                     padding-bottom: 39px;
                     height: 238px;
                     border: 0 solid transparent;
@@ -260,11 +271,12 @@ const List = props => {
                     width: 244px;
                     height: 162px;
                 }
-                
-                .bottom-line{
-                    width: 1060px;
-                    background-color: #fcfcfc;
-                    margin-top:-12px;
+                               
+                 
+                 .box-bottom-line{
+                    margin-top: 41px;
+                    width:1060px;
+                    color:#fcfcfc;
                  }  
                  
                  .bottom-btn-area{
@@ -274,7 +286,7 @@ const List = props => {
                  }
                  
                 .paging{
-                    margin-left: 461px;
+                    margin-left: 466px;
                     margin-right: 465px;
                     margin-top: 32px;
                     margin-bottom: 31px;
@@ -286,6 +298,11 @@ const List = props => {
                     font-weight: bold;
                     line-height: 1;
                     border-bottom: 3px solid #96959A;
+                }
+                
+               .box-list:hover {
+                    box-shadow: 3px 3px 12px 0 rgba(0, 0, 0, 0.24);
+                    background-color: var(--white);
                 }
 
             `}</style>
