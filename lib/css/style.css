@@ -2,11 +2,6 @@
     --some-color: red;
 }
 
-.example {
-    /* red */
-    color: var(--some-color);
-}
-
 @font-face {
     font-family: 'NanumGothic';
     font-style: normal;
@@ -19,8 +14,18 @@
 /*
  font color 설정
 */
+/*
+ container
+*/
+.container {
+    width: 1440px;
+    margin: 0 auto;
+}
 .pink {
     color: var(--pink);
+}
+.secondary {
+    color: var(--secondary);
 }
 /*
  reset.css
