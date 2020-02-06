@@ -26,7 +26,7 @@ const Layout = props => {
                 <script src="/js/bootstrap.min.js"/>
             </Head>
             <Header/>
-            <img src="/img/@tmp/test_admin_list.png" alt="test" style={{"width": "1440px", "opacity":"0.5", "position":"absolute", "top":"0", "left":"0"}}/>
+            
 
             <div className={isAdmin ? "container-xl" : "container"}>
                 {props.children}
