@@ -1,7 +1,24 @@
 import Head from "next/head";
 import Layout from '../../../include/Layout';
 
+import { useState } from 'react';
+import FilePreview from 'react-preview-file';
+
 const List = props => {
+    const onFileUpload = e => {
+
+        console.log(e);
+
+        const { currentTarget: { file } } = e;
+
+        setFile(file[0]);
+
+        console.log(file);
+    };
+
+
+    const [ file, setFile ] = useState({});
+
     return (
         <Layout>
             <Head>
@@ -28,7 +45,7 @@ const List = props => {
                                     </div>
                                     <div className={"form-group"}>
                                         <div className={"label-area"}>
-                                            <label className="col-form-label" style={{"line-height":"20.4"}}>내용</label>
+                                            <label className="col-form-label" style={{"lineHeight":"20.4"}}>내용</label>
                                         </div>
                                         <div className={"input-area"}>
                                             <textarea className="form-control" placeholder={"내용을 입력하세요."}/>
@@ -36,19 +53,22 @@ const List = props => {
                                     </div>
                                     <div className={"form-group"}>
                                         <div className={"label-area"}>
-                                            <label className="col-form-label" style={{"line-height":"9.4"}}>이미지 업로드</label>
+                                            <label className="col-form-label" style={{"lineHeight":"9.4"}}>이미지 업로드</label>
                                         </div>
                                         <div className={" input-group input-area"}>
                                             <div className="file-label">
                                                 <a href="#">
-                                                    <label className={"add text-center"}>+<br/>이미지</label>
+                                                    <label htmlFor={"fileUploader"} className={"add text-center"}>+<br/>이미지</label>
                                                 </a>
                                                 <div className={"added"}>
-                                                    <img src="/img/@tmp/upload-img.png" alt="업로드 이미지"/>
+                                                    {/*<img src="/img/@tmp/upload-img.png" alt="업로드 이미지"/>*/}
+                                                    {/*<FilePreview file={file}>*/}
+                                                    {/*    {(preview) => <img src={preview} />}*/}
+                                                    {/*</FilePreview>*/}
                                                     <a href="#" className="btn-close"></a>
                                                 </div>
                                             </div>
-                                            <input type="file" className="form-control-file"/>
+                                            <input type="file" id="fileUploader" className="form-control-file" onChange={e => onFileUpload(e)}/>
                                         </div>
                                     </div>
                                     <div className={"form-group"}>
