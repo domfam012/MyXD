@@ -92,7 +92,7 @@ const Index = props => {
                 </div>
                 <Aside/>
             </div>
-            <style jsx global>{`
+            <style jsx>{`
                 .box-left {
                     float: left;
                 }
