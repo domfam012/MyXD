@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Layout from '../include/Layout';
 import Aside from '../include/Aside';
+import Pagination from "../components/Pagination";
 
 
 const Card = props => {
@@ -75,6 +76,7 @@ const Index = props => {
                         </div>
                     </div>
                     <Card/>
+                    <Pagination/>
                 </div>
                 <Aside/>
             </div>
@@ -111,6 +113,10 @@ const Index = props => {
                     color: #666666;
                     margin: 23px 0 40px;
                 }
+                .nav {
+                    float: left;
+                }
+               
             `}</style>
         </Layout>
     );
