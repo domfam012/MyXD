@@ -10,19 +10,11 @@ const List = props => {
 
     const onFileUpload = e => {
         const preview = URL.createObjectURL(e.target.files[0]);
-        console.log(preview);
         setFile(preview);
     };
 
-    // oninputChange = e => {
-    //     setFile(e[0]);
-    //
-    // }
-
     useEffect(() => {
-        console.log('use');
-        console.log(file);
-        console.log(file.type);
+
     });
 
     return (
