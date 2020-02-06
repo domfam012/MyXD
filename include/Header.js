@@ -7,7 +7,6 @@ const linkStyle = {
 };
 
 const Header = () => {
-
     /**
      * @type {{id: string}[]}
      *
@@ -25,7 +24,7 @@ const Header = () => {
                         aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"><FontAwesomeIcon icon={faBars}/></span>
                 </button>
-                <div className="collapse navbar-collapse" id="navbarText">
+                <div className="collapse navbar-collapse menu" id="navbarText">
                     <ul className="navbar-nav mr-auto">
                         <li className="nav-item active">
                             <a className="nav-link" href="#">UI KITS</a>
@@ -41,14 +40,22 @@ const Header = () => {
                         </li>
                     </ul>
                 </div>
-                {/*<ul className="">*/}
-                {/*    <li className="nav-item active">*/}
-                {/*        <a className="nav-link" href="#">UI KITS</a>*/}
-                {/*    </li>*/}
-                {/*    <li className="nav-item">*/}
-                {/*        <a className="nav-link" href="#">Website</a>*/}
-                {/*    </li>*/}
-                {/*</ul>*/}
+                <div className={"collapse navbar-collapse navbar-icon"}>
+                    <ul className="navbar-nav">
+                        <li className="nav-item">
+                            <a className="nav-link" href="#"><img src="/img/common/instargram.png" alt="instargram"/></a>
+                        </li>
+                        <li className="nav-item">
+                            <a className="nav-link" href="#"><img src="/img/common/twitter.png" alt="twitter"/></a>
+                        </li>
+                        <li className="nav-item">
+                            <a className="nav-link" href="#"><img src="/img/common/facebook.png" alt="facebook"/></a>
+                        </li>
+                        <li className="nav-item">
+                            <a className="nav-link" href="#"><img src="/img/common/login.png" alt="login"/></a>
+                        </li>
+                    </ul>
+                </div>
             </nav>
             <style jsx>{`
               .navbar {
@@ -68,9 +75,10 @@ const Header = () => {
               .nav-link {
                 padding: 1.9rem 1rem;
               }
-              .nav-item.active {
+              .menu .nav-item.active, .menu .nav-item:hover {
                 border-bottom: 1px solid var(--pink);
                 color: var(--pink);
+                transition: .2s;
               }
               .nav-item {
                 margin-right: 80px;
@@ -78,10 +86,26 @@ const Header = () => {
               .nav-item:last-child {
                 margin-right: 0;
               }
+              .navbar-icon .navbar-nav {
+              
+              }
+               .navbar-icon .navbar-nav .nav-item {
+                margin-right: 30px;
+              }
+              .navbar-icon .navbar-nav .nav-item:nth-child(3) {
+                margin-right: 78px;
+              }
+              
+              
+              
+              
+              
+              
+              
+              
               @media (max-width: 1200px) {
                 .navbar {
                     padding: 0 30px;
-                    min-width: 768px;
                   }
                 .navbar-brand {
                   padding: 0;
@@ -96,7 +120,6 @@ const Header = () => {
               @media (max-width: 768px) {
                 .navbar {
                     padding: 0 20px;
-                    min-width: 350px;
                   }
               }
             `}</style>

@@ -12,15 +12,46 @@
     url(/fonts/NanumGothic/NanumGothic.woff) format('woff');
 }
 /*
- font color 설정
+ icon
 */
+.icon {
+    display: block;
+    vertical-align: middle;
+}
+.icon.icon-double-left {
+    width: 12px;
+    height: 16px;
+    background: url("/img/common/chevron-double-left.png") no-repeat;
+}
+.icon.icon-double-right {
+    width: 12px;
+    height: 16px;
+    background: url("/img/common/chevron-double-right.png") no-repeat;
+}
+.icon.icon-left {
+    width: 8px;
+    height: 16px;
+    background: url("/img/common/chevron-left.png") no-repeat;
+}
+.icon.icon-right {
+    width: 8px;
+    height: 16px;
+    background: url("/img/common/chevron-right.png") no-repeat;
+}
 /*
  container
 */
 .container {
-    width: 1440px;
+    width: 1460px;
+    min-width: 1440px;
     margin: 0 auto;
 }
+@media (max-width: 1200px) {
+    .container {
+        min-width: 708px;
+    }
+}
+
 .pink {
     color: var(--pink);
 }
