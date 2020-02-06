@@ -88,6 +88,13 @@ const Header = () => {
               .nav-item:last-child {
                 margin-right: 0;
               }
+              .navbar-icon {
+                position: relative;
+              }
+              .navbar-icon .navbar-nav {
+                position: absolute;
+                right: 70px;
+              }
                .navbar-icon .navbar-nav .nav-item {
                 margin-right: 30px;
               }

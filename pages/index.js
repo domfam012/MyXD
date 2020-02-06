@@ -55,7 +55,6 @@ const Card = props => {
                 }
                 .nav {
                     float: left;
-                    margin-bottom: 70px;
                 }
                 @media (max-width: 1200px) {
                 .main_card {
@@ -103,6 +102,10 @@ const Index = props => {
                     background-color: #ffffff;
                     margin-bottom: 50px;
                 }
+                // ?? last-child 왜 안먹는지....
+                .main_card:nth-child(2) {
+                  margin-bottom: 0;
+                }
                 .main_card .img {
                     width: 100%;
                 }
@@ -125,7 +128,6 @@ const Index = props => {
                 }
                 .nav {
                     float: left;
-                    margin-bottom: 70px;
                 }
             @media (max-width: 1200px) {
                 .main_card {

@@ -1,6 +1,5 @@
 import Head from 'next/head';
 import Header from './Header';
-import Aside from './Aside';
 import Footer from './Footer';
 
 import {useRouter} from "next/router";

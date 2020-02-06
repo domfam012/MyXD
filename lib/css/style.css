@@ -71,6 +71,9 @@
 .secondary {
     color: var(--secondary);
 }
+.mt-0 {
+    margin-top: 0;
+}
 /*
  reset.css
 */
