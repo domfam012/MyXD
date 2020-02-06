@@ -8,11 +8,19 @@ const List = props => {
                 <title>Admin - Login</title>
             </Head>
 
-            <h1>Admin Login Page</h1>
+            <div className={"login-box"}>
+                Login
+            </div>
 
             <style jsx>{`
-                h1 {
-                    font-color: #333;
+                .login-box {
+                    position: absolute;
+                    width: 360px;
+                    height: 385px;
+                    top: calc((35px + 50vh - 30px - 192.5px) * 0.96);
+                    left: calc(50vw - 180px);
+                    background-color: #fff;
+                    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
                 }
             `}</style>
 
