@@ -7,7 +7,6 @@ const linkStyle = {
 };
 
 const Header = () => {
-
     /**
      * @type {{id: string}[]}
      *

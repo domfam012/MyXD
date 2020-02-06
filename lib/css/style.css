@@ -18,9 +18,15 @@
  container
 */
 .container {
-    width: 1440px;
+    min-width: 1440px;
     margin: 0 auto;
 }
+@media (max-width: 1200px) {
+    .container {
+        min-width: 708px;
+    }
+}
+
 .pink {
     color: var(--pink);
 }
