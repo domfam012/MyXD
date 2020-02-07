@@ -26,7 +26,7 @@ const Layout = props => {
                 <script src="/js/bootstrap.min.js"/>
             </Head>
             <Header/>
-            
+
 
             <div className={isAdmin ? "container-xl" : "container"}>
                 {props.children}
