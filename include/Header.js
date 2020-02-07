@@ -1,6 +1,6 @@
 import Link from 'next/link';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBars } from '@fortawesome/free-solid-svg-icons'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faBars} from '@fortawesome/free-solid-svg-icons'
 
 const linkStyle = {
     marginRight: 15
@@ -18,7 +18,7 @@ const Header = () => {
     ];
     return (
         <header>
-            <nav className="navbar navbar-expand-lg">
+            <nav className="navbar navbar-expand-xl">
                 <a className="navbar-brand" href="#"> <span className="pink">MyXD</span> logo</a>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
                         aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -43,7 +43,8 @@ const Header = () => {
                 <div className={"collapse navbar-collapse navbar-icon"}>
                     <ul className="navbar-nav">
                         <li className="nav-item">
-                            <a className="nav-link" href="#"><img src="/img/common/instargram.png" alt="instargram"/></a>
+                            <a className="nav-link" href="#"><img src="/img/common/instargram.png"
+                                                                  alt="instargram"/></a>
                         </li>
                         <li className="nav-item">
                             <a className="nav-link" href="#"><img src="/img/common/twitter.png" alt="twitter"/></a>
@@ -87,8 +88,12 @@ const Header = () => {
               .nav-item:last-child {
                 margin-right: 0;
               }
+              .navbar-icon {
+                position: relative;
+              }
               .navbar-icon .navbar-nav {
-              
+                position: absolute;
+                right: 70px;
               }
                .navbar-icon .navbar-nav .nav-item {
                 margin-right: 30px;
@@ -96,25 +101,70 @@ const Header = () => {
               .navbar-icon .navbar-nav .nav-item:nth-child(3) {
                 margin-right: 78px;
               }
+             
 
               @media (max-width: 1200px) {
                 .navbar {
-                    padding: 0 30px;
+                    padding: 0;
                     min-width: 564px;
+                    margin-bottom: 30px;
                   }
+                  .navbar-nav {
+                  background: #ffffff;
+                  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+                  border: solid 1px var(--white);
+                  }
+                .menu .nav-item.active, .menu .nav-item:hover {
+                  border: 0;
+                }
                 .navbar-brand {
                   padding: 0;
+                  padding-left: 30px;
+                }
+                .navbar-toggler {
+                    position: relative;
+                    padding-right: 48px;
+                    margin-right: 30px;
+                }
+                .nav-item {
+                margin: 0;
+                }
+                .nav-item:last-child .nav-link {
+                  border-bottom: none;
+                }
+                .nav-link {
+                padding: 7px 0;
+                text-align: center;
+                color:#676767;
+                border-bottom: 1px solid #E2E2E2;
+                font-weight: bold;
+                }
+                .nav-link:active {
+                background: #aaaaaa;
+                color: #ffffff;
+                }
+
+                .navbar-toggler:after {
+                    content: 'MENU';
+                    position: absolute;
+                    color: #ffffff;
+                    font-size: 16px;
                 }
                 .navbar-toggler-icon {
                     color: #fff;
+                    width: 18px;
+                    height: 20px;
+                    
                 }
                 .navbar-toggler:hover, .navbar-toggler:focus {
                   outline: none;
                 }
               }
-              @media (max-width: 768px) {
-                .navbar {
-                    padding: 0 20px;
+              @media (max-width: 760px) {
+                 .navbar {
+                    padding: 0;
+                    min-width: 320px;
+                    margin-bottom: 20px;
                   }
               }
             `}</style>

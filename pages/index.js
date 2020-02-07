@@ -17,7 +17,7 @@ const Card = props => {
                         웹사이트 버전과 모바일 버전으로 나뉘어서 작업 할 수 있습니다.
                     </div>
                     <div>
-                        <button className={"btn btn-primary "}>더 보기</button>
+                        <button className={"btn btn-primary"}>더 보기</button>
                     </div>
                 </div>
             </div>
@@ -34,11 +34,9 @@ const Card = props => {
                 }
                 .main_card .img {
                     width: 100%;
-                    height: 434px;
                 }
                 .main_card .img img {
                     width: 100%;
-                    height: 100%;
                 }
                 .box_text {
                     padding: 33px 0 30px 30px;
@@ -47,6 +45,7 @@ const Card = props => {
                     font-size: 30px;
                     line-height: 40px;
                     letter-spacing: -1.5px;
+                    font-weight: bold;
                 }
                 .box_text .text{
                     font-size: 16px;
@@ -56,7 +55,6 @@ const Card = props => {
                 }
                 .nav {
                     float: left;
-                    margin-bottom: 70px;
                 }
                 @media (max-width: 1200px) {
                 .main_card {
@@ -93,7 +91,7 @@ const Index = props => {
                 </div>
                 <Aside/>
             </div>
-            <style jsx global>{`
+            <style jsx>{`
                 .box-left {
                     float: left;
                 }
@@ -104,13 +102,15 @@ const Index = props => {
                     background-color: #ffffff;
                     margin-bottom: 50px;
                 }
+                // ?? last-child 왜 안먹는지....
+                .main_card:nth-child(2) {
+                  margin-bottom: 0;
+                }
                 .main_card .img {
                     width: 100%;
-                    height: 434px;
                 }
                 .main_card .img img {
                     width: 100%;
-                    height: 100%;
                 }
                 .box_text {
                     padding: 33px 0 30px 30px;
@@ -128,12 +128,33 @@ const Index = props => {
                 }
                 .nav {
                     float: left;
-                    margin-bottom: 70px;
                 }
-                @media (max-width: 1200px) {
+            @media (max-width: 1200px) {
                 .main_card {
-                    width: 708px;
+                    width: 100%;
                     margin-right: 0;
+                }
+            }
+            @media (max-width: 760px) {
+                .main_card {
+                    width: 100%;
+                    margin-right: 0;
+                }
+                .box_text {
+                    padding: 30px 40px;
+                }
+                .box_text .title{
+                    line-height: 48px;
+                    letter-spacing: -0.5px;
+                }
+                .box_text .text{
+                    font-size: 16px;
+                    line-height: 25px;
+                    letter-spacing: -0.5px;
+                    margin: 10px 0 40px;
+                }
+                .btn {
+                  width: 100%;
                 }
             }
                
