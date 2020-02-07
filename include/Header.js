@@ -21,7 +21,7 @@ const Header = () => {
             <nav className="navbar navbar-expand-xl">
                 <a className="navbar-brand" href="#"> <span className="pink">MyXD</span> logo</a>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
-                        aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                        aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation" onClick={navToggler}>
                     <span className="navbar-toggler-icon"><i className={"icon icon-bar"}></i></span>
                 </button>
                 <div className="collapse navbar-collapse menu" id="navbarText">
@@ -66,7 +66,6 @@ const Header = () => {
                 padding: 0 0 0 170px;
                 background: #2e001f;
                 color: #fff;
-                margin-bottom: 70px;
               }
               .navbar-brand {
                 font-size: 20px;
@@ -107,7 +106,6 @@ const Header = () => {
                 .navbar {
                     padding: 0;
                     min-width: 564px;
-                    margin-bottom: 30px;
                   }
                   .navbar-nav {
                   background: #ffffff;
@@ -164,50 +162,17 @@ const Header = () => {
                  .navbar {
                     padding: 0;
                     min-width: 320px;
-                    margin-bottom: 20px;
                   }
               }
             `}</style>
         </header>
-
-
-//         <>
-//         <Link href="/">
-//         <a style={linkStyle}>Home</a>
-// </Link>
-// <Link href="/test">
-// <a style={linkStyle}>Test</a>
-// </Link>
-// <Link href="/list">
-// <a style={linkStyle}>List</a>
-// </Link>
-// <ul>
-// {
-// post.map(item => (
-// <li key={`${item.id}`}>
-// <Link href="/p/[id]" as={`/p/${item.id}`}>
-// <a style={linkStyle}>post</a>
-// </Link>
-// </li>
-// ))
-// }
-// </ul>
-// <Link href="/admin/login" as={`/admin`}>
-// <a style={linkStyle}>admin</a>
-// </Link>
-// <Link href="/admin/p/list" as={`/admin/p/list`}>
-// <a style={linkStyle}>admin-list</a>
-// </Link>
-// <Link href="/admin/p/new" as={`/admin/p/new`}>
-// <a style={linkStyle}>admin-new</a>
-// </Link>
-// <Link href="/admin/p/update" as={`/admin/p/update`}>
-// <a style={linkStyle}>admin-update</a>
-// </Link>
-// </>
-
-
     );
 };
-
+function navToggler() {
+    function handleClick(e) {
+        e.preventDefault();
+        console.log('CLICK SUCCESS!');
+    }
+    handleClick();
+}
 export default Header;

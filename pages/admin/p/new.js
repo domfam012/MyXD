@@ -1,7 +1,22 @@
 import Head from "next/head";
 import Layout from '../../../include/Layout';
+import Imput from 'react'
+
+import { useState, useEffect } from 'react';
+// import FilePreview from 'react-preview-file';
 
 const List = props => {
+    const [ file, setFile ] = useState('');
+
+    const onFileUpload = e => {
+        const preview = URL.createObjectURL(e.target.files[0]);
+        setFile(preview);
+    };
+
+    useEffect(() => {
+
+    });
+
     return (
         <Layout>
             <Head>
@@ -28,7 +43,7 @@ const List = props => {
                                     </div>
                                     <div className={"form-group"}>
                                         <div className={"label-area"}>
-                                            <label className="col-form-label" style={{"line-height":"20.4"}}>내용</label>
+                                            <label className="col-form-label" style={{"lineHeight":"20.4"}}>내용</label>
                                         </div>
                                         <div className={"input-area"}>
                                             <textarea className="form-control" placeholder={"내용을 입력하세요."}/>
@@ -36,19 +51,26 @@ const List = props => {
                                     </div>
                                     <div className={"form-group"}>
                                         <div className={"label-area"}>
-                                            <label className="col-form-label" style={{"line-height":"9.4"}}>이미지 업로드</label>
+                                            <label className="col-form-label" style={{"lineHeight":"9.4"}}>이미지 업로드</label>
                                         </div>
                                         <div className={" input-group input-area"}>
                                             <div className="file-label">
-                                                <a href="#">
-                                                    <label className={"add text-center"}>+<br/>이미지</label>
-                                                </a>
-                                                <div className={"added"}>
-                                                    <img src="/img/@tmp/upload-img.png" alt="업로드 이미지"/>
-                                                    <a href="#" className="btn-close"></a>
-                                                </div>
+                                                { file === ''
+                                                    ? (
+                                                        <a href="#">
+                                                            <label onClick={() => {console.log('clicked')}} htmlFor={"fileUploader"} className={"add text-center"}>+<br/>이미지</label>
+                                                        </a>
+                                                    )
+                                                    : (
+                                                        <div className={"added"}>
+                                                            <img src={file} alt="업로드 이미지"/>
+                                                            <a href="#" className="btn-close"></a>
+                                                        </div>
+                                                    )
+                                                }
                                             </div>
-                                            <input type="file" className="form-control-file"/>
+                                            <input type="file" id="fileUploader" className="form-control-file" onChange={e => onFileUpload(e)}/>
+                                            {/*<input type="file" id="fileUploader" className="form-control-file" onChange={this.onChange}/>*/}
                                         </div>
                                     </div>
                                     <div className={"form-group"}>
@@ -79,6 +101,7 @@ const List = props => {
                     margin: 70px auto;
                     border: 0 solid transparent;
                     box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+                    background-color: #fff;
                 }
                 .header {
                     margin: 33px 35px 0;
@@ -125,9 +148,12 @@ const List = props => {
                     color: #96959a;
                 }
                 .file-label .added {
-                    display: none;
-                    //display: block;
                     width: 100%;
+                    margin: auto;
+                }
+                .file-label .added img {
+                    width: 100%;
+                    height: 100%;
                 }
                 .file-label .added .btn-close {
                     position: absolute;
