@@ -6,7 +6,7 @@ const linkStyle = {
     marginRight: 15
 };
 
-const Header = () => {
+const Header = props => {
     /**
      * @type {{id: string}[]}
      *
@@ -18,7 +18,11 @@ const Header = () => {
     ];
     return (
         <header>
-            <nav className="navbar navbar-expand-xl">
+            <nav className=
+                     { props.isResponsive
+                         ? "navbar navbar-expand-xl"
+                         : "navbar navbar-expand-xl navbar-xl"
+                     }>
                 <a className="navbar-brand" href="#"> <span className="pink">MyXD</span> logo</a>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
                         aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -67,6 +71,9 @@ const Header = () => {
                 background: #2e001f;
                 color: #fff;
               }
+              .navbar-xl {
+                min-width: 1200px;
+              }
               .navbar-brand {
                 font-size: 20px;
                 line-height: 70px;
@@ -105,6 +112,9 @@ const Header = () => {
                 .navbar {
                     padding: 0;
                     min-width: 564px;
+                  }
+                  .navbar-xl {
+                    min-width: 1200px;
                   }
                   .navbar-nav {
                   background: #ffffff;
@@ -156,11 +166,18 @@ const Header = () => {
                 .navbar-toggler:hover, .navbar-toggler:focus {
                   outline: none;
                 }
+                
+                .navbar-xl > .navbar-toggler {
+                
+                }
               }
               @media (max-width: 760px) {
                  .navbar {
                     padding: 0;
                     min-width: 320px;
+                  }
+                  .navbar-xl {
+                    min-width: 1200px;
                   }
               }
             `}</style>
