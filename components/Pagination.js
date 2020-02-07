@@ -32,6 +32,8 @@ const Pagination = props => (
             <style jsx>{`
                .nav {
                     width: 100%;
+                    margin-top: 30px;
+                    margin-bottom: 70px;
                 }
                .pagination {
                     margin: 0 auto;

@@ -21,13 +21,11 @@ const Card = props => {
                     </div>
                 </div>
             </div>
-            <style jsx global>{`
-                .box-left {
-                    float: left;
-                }
+            <style jsx>{`
                 .main_card {
                     width: 862px;
                     margin-right: 30px;
+                    float: left;
                     box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
                     background-color: #ffffff;
                     margin-bottom: 50px;
@@ -56,7 +54,6 @@ const Card = props => {
                 }
                 .nav {
                     float: left;
-                    margin-bottom: 70px;
                 }
                 @media (max-width: 1200px) {
                 .main_card {
@@ -128,12 +125,33 @@ const Index = props => {
                 }
                 .nav {
                     float: left;
-                    margin-bottom: 70px;
                 }
-                @media (max-width: 1200px) {
+            @media (max-width: 1200px) {
                 .main_card {
-                    width: 708px;
+                    width: 100%;
                     margin-right: 0;
+                }
+            }
+            @media (max-width: 760px) {
+                .main_card {
+                    width: 100%;
+                    margin-right: 0;
+                }
+                .box_text {
+                    padding: 30px 40px;
+                }
+                .box_text .title{
+                    line-height: 48px;
+                    letter-spacing: -0.5px;
+                }
+                .box_text .text{
+                    font-size: 16px;
+                    line-height: 25px;
+                    letter-spacing: -0.5px;
+                    margin: 10px 0 40px;
+                }
+                .btn {
+                  width: 100%;
                 }
             }
                
