@@ -18,16 +18,10 @@ const Layout = props => {
     console.log(isResponsive);
 
     const { page } = props;
-    let containerClass;
 
-    if(page === 'index') {
-        console.log();
-    }
-
-    switch(page){
-        case 'list' :
-            return console.log(page);
-    }
+    let containerClass = '';
+    containerClass = page === 'list' ? 'list-container' : '';
+    containerClass += isResponsive ? " container" : " container-xl";
 
     return (
         <>
@@ -46,9 +40,10 @@ const Layout = props => {
                 <script src="/js/common.js"/>
             </Head>
             <Header isResponsive={isResponsive}/>
-            <div className={isResponsive ? "container" : "container-xl"}>
+            <div className={containerClass}>
                 {props.children}
             </div>
+
             <Footer isResponsive={isResponsive}/>
         </>
     )
