@@ -16,8 +16,8 @@ const List = props => {
                     </div>
 
                     <form>
-                        <input type="text" placeholder={"아이디를 입력해주세요."}/>
-                        <input type="password" placeholder={"비밀번호를 입력해주세요."}/>
+                        <input type="text" placeholder={"아이디를 입력해주세요."} maxLength="20"/>
+                        <input type="password" placeholder={"비밀번호를 입력해주세요."} maxLength="24"/>
                     </form>
 
                     <div className="text-center">

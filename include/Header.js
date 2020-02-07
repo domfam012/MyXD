@@ -2,10 +2,6 @@ import Link from 'next/link';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faBars} from '@fortawesome/free-solid-svg-icons'
 
-const linkStyle = {
-    marginRight: 15
-};
-
 const Header = props => {
     /**
      * @type {{id: string}[]}
@@ -13,9 +9,7 @@ const Header = props => {
      * post list 에서 연결되어야 하며
      * id 값은 firestore 통해서 넣도록 수정
      */
-    const post = [
-        {id: 'post1'}
-    ];
+
     return (
         <header>
             <nav className=

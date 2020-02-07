@@ -22,8 +22,9 @@ app.prepare().then(() => {
 
         if (pathname === '/a') {
             app.render(req, res, '/a', query);
-        } else if (pathname === '/b') {
-            app.render(req, res, '/b', query);
+        } else if (pathname === '/admin') {
+            res.writeHead(302, { Location: '/admin/login' });
+            res.end();
         } else {
             handle(req, res, parsedUrl);
         }
