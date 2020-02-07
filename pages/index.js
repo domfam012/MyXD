@@ -69,7 +69,7 @@ const Card = props => {
 };
 const Index = props => {
     return (
-        <Layout>
+        <Layout page={"index"}>
             <div className={"clearfix"}>
                 <div className={"box-left"}>
                     <div className={"main_card"}>
