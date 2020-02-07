@@ -30,7 +30,7 @@ const List = props => {
                 .content {
                     height: calc(100vh - 270px);
                     min-height: 420px;
-                    margin: 0 0 53px;
+                    margin: 0 0 70px;
                     position: relative;
                 }
                 .login-box {
@@ -86,6 +86,13 @@ const List = props => {
                 }
                 
                 @media (max-width: 768px) {
+                    .content {
+                        height: calc(100vh - 197px);
+                        margin: 0 0 20px;
+                    }
+                }
+                
+                @media (max-width: 760px) {
                     .content {
                         height: calc(100vh - 170px);
                         margin: 0 0 20px;

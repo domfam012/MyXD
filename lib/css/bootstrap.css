@@ -3198,13 +3198,6 @@ fieldset:disabled a.btn {
     height: 45px;
 }
 
-@media (max-width: 768px) {
-    .btn-sm, .btn-group-sm > .btn {
-        width: 240px;
-        height: 45px;
-    }
-}
-
 .btn-block {
     display: block;
     width: 100%;
