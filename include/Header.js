@@ -96,13 +96,6 @@ const Header = () => {
                 margin-right: 78px;
               }
               
-              
-              
-              
-              
-              
-              
-              
               @media (max-width: 1200px) {
                 .navbar {
                     padding: 0;
@@ -134,7 +127,6 @@ const Header = () => {
               }
             `}</style>
         </header>
-
 
 //         <>
 //         <Link href="/">
@@ -173,6 +165,10 @@ const Header = () => {
 
 
     );
+};
+
+const navToggler = () => {
+    return;
 };
 
 export default Header;
