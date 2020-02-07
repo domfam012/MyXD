@@ -8,9 +8,24 @@ import {useRouter} from "next/router";
 const Layout = props => {
     // 관리자 페이지 접속인지 확인
     const router = useRouter();
-    const isAdmin = router.pathname.split('/')[1] === 'admin';
-    //const { page } = props;
+    const path = router.pathname.split('/');
+    const isAdmin = path[1] === 'admin';
+    let isAdminLogin = false;
+    if(isAdmin){
+        isAdminLogin =  path[2] === 'login' || path[2] === '';
+    }
 
+    const { page } = props;
+    let containerClass;
+
+    if(page == 'index') {
+        console.log()
+    }
+
+    switch(page){
+        case 'list' :
+            return console.log(page);
+    }
 
     return (
         <>
@@ -29,7 +44,8 @@ const Layout = props => {
                 <script src="/js/common.js"/>
             </Head>
             <Header/>
-            <div className={isAdmin ? "container-xl" : "container"}>
+            {/*<img src="/img/@tmp/test-admin-new.png" alt="업로드 이미지" style={{"width":"1440px","opacity":"0.5","position":"absolute","top":"0","left":"0"}}/>*/}
+            <div className={isAdminLogin ? "container-sm" : isAdmin ? "container-xl" : "container"}>
                 {props.children}
             </div>
             <Footer/>
