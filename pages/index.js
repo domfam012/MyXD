@@ -152,6 +152,7 @@ const Index = props => {
                     width: 100%;
                 }
             }
+            
             @media (max-width: 760px) {
                 .main_card {
                     width: 100%;
