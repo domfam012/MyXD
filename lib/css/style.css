@@ -11,6 +11,11 @@
     url(/fonts/NanumGothic/NanumGothic.eot?#iefix) format('embedded-opentype'),
     url(/fonts/NanumGothic/NanumGothic.woff) format('woff');
 }
+
+a:focus, a:active, button:focus, button:active, input:focus, input:active {
+    outline: none;
+}
+
 /*
  icon
 */

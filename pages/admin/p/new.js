@@ -101,6 +101,7 @@ const List = props => {
                     margin: 70px auto;
                     border: 0 solid transparent;
                     box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+                    background-color: #fff;
                 }
                 .header {
                     margin: 33px 35px 0;

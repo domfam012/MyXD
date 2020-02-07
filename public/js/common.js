@@ -3,7 +3,6 @@ $(function(){
         e.preventDefault();
     });
 
-
     // api test
 
     // $.get("https://firestore.googleapis.com/v1/projects/myxd-247f4/databases/(default)/documents/P-Test", function(data){
