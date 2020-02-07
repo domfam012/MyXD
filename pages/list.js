@@ -132,6 +132,7 @@ const Index = props => {
             </div>
             <Pagination/>
             <style jsx>{`
+              
               .list li {
                 margin-top: 30px;
                 margin-left: 0;

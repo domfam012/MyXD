@@ -131,8 +131,12 @@ const Index = props => {
                 }
             @media (max-width: 1200px) {
                 .main_card {
-                    width: 100%;
+                    width: 708px;
                     margin-right: 0;
+                }
+                .box-left {
+                    float: unset;
+                    width: 100%;
                 }
             }
             @media (max-width: 760px) {
