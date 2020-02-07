@@ -9,18 +9,8 @@ const Layout = props => {
     // 관리자 페이지 접속인지 확인
     const router = useRouter();
     const isAdmin = router.pathname.split('/')[1] === 'admin';
+    //const { page } = props;
 
-    const { page } = props;
-    let containerClass;
-
-    if(page == index) {
-        console.log()
-    }
-
-    switch(page){
-        case 'list' :
-            return console.log(page);
-    }
 
     return (
         <>

@@ -66,7 +66,6 @@ const Header = () => {
                 padding: 0 0 0 170px;
                 background: #2e001f;
                 color: #fff;
-                margin-bottom: 70px;
               }
               .navbar-brand {
                 font-size: 20px;
@@ -107,7 +106,6 @@ const Header = () => {
                 .navbar {
                     padding: 0;
                     min-width: 564px;
-                    margin-bottom: 30px;
                   }
                   .navbar-nav {
                   background: #ffffff;
@@ -164,7 +162,6 @@ const Header = () => {
                  .navbar {
                     padding: 0;
                     min-width: 320px;
-                    margin-bottom: 20px;
                   }
               }
             `}</style>
