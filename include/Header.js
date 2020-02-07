@@ -21,7 +21,7 @@ const Header = () => {
             <nav className="navbar navbar-expand-xl">
                 <a className="navbar-brand" href="#"> <span className="pink">MyXD</span> logo</a>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
-                        aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation" onClick={navToggler}>
+                        aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"><i className={"icon icon-bar"}></i></span>
                 </button>
                 <div className="collapse navbar-collapse menu" id="navbarText">
@@ -101,8 +101,7 @@ const Header = () => {
                 margin-right: 78px;
               }
              
-
-              @media (max-width: 1200px) {
+              @media (max-width: 1199px) {
                 .navbar {
                     padding: 0;
                     min-width: 564px;
@@ -168,11 +167,11 @@ const Header = () => {
         </header>
     );
 };
-function navToggler() {
-    function handleClick(e) {
-        e.preventDefault();
-        console.log('CLICK SUCCESS!');
-    }
-    handleClick();
-}
+// function navToggler() {
+//     function handleClick(e) {
+//         e.preventDefault();
+//         console.log('CLICK SUCCESS!');
+//     }
+//     handleClick();
+// }
 export default Header;
