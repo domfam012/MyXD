@@ -44,8 +44,7 @@ const Layout = props => {
                 <script src="/js/common.js"/>
             </Head>
             <Header/>
-            {/*<img src="/img/@tmp/test-admin-new.png" alt="업로드 이미지" style={{"width":"1440px","opacity":"0.5","position":"absolute","top":"0","left":"0"}}/>*/}
-            <div className={isAdminLogin ? "container-sm" : isAdmin ? "container-xl" : "container"}>
+            <div className={isAdmin ? "container-xl" : "container"}>
                 {props.children}
             </div>
             <Footer/>

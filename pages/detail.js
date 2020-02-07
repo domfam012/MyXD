@@ -110,11 +110,12 @@ const Index = props => {
             //You may also like
                 .detail_title {
                     position: relative;
-                    text-align:center;
+                    width: 160px;
+                    height: 23px;
                     color: #666666;
                     font-size: 20px;
                     font-weight: bold;
-                    margin-bottom: 30px;
+                    margin: 0 auto 18px;
                 }
                 .detail_title:after {
                     position: absolute;
@@ -122,8 +123,8 @@ const Index = props => {
                     width: 100px;
                     height: 1px;
                     border-bottom: 1px solid #96959a;
-                    bottom: -10px;
-                    left: 380px;
+                    bottom: -17px;
+                    left: 32px;
                 }
                 
                 
@@ -165,10 +166,6 @@ const Index = props => {
                     width: 100%;
                     margin-right: 0;
                 }
-                .detail_title:after {
-                    bottom: -20px;
-                    left: 305px;
-                }
                 .list li {
                     margin-top: 20px;
                     margin-left: 0;
@@ -202,16 +199,12 @@ const Index = props => {
                     margin: 10px 0 40px;
                 }
                 .btn {
-                  width: 100%;
-                }
-                .detail_title:after {
-                    bottom: -20px;
-                    left: 235px;
+                    width: 100%;
                 }
                 .list li {
                     width: 100%;
                   }
-                  .li-img img{
+                .li-img img{
                     width: 100%;
                 }
             }
