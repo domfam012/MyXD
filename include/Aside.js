@@ -2,9 +2,11 @@ const Aside = props => (
     <aside>
         <div className="clearfix">
             <div className="aside">
-                <div className={"ad_area"}>
-                    <span className={"text"}>Google AD</span>
-                </div>
+                <a href="#">
+                    <div className={"ad_area"}>
+                        <span className={"text"}>Google AD</span>
+                    </div>
+                </a>
                 <div className={"box_temp"}>
                     <div className={"title"}>인기 템플릿</div>
                     <div className={"temp"}>
