@@ -44,7 +44,7 @@ const Layout = props => {
                 <script src="/js/common.js"/>
             </Head>
             <Header/>
-            <div className={isAdmin ? "container-xl" : "container"}>
+            <div className={isAdminLogin ? "container": isAdmin ? "container-xl" : "container"}>
                 {props.children}
             </div>
             <Footer/>
