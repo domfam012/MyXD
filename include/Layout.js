@@ -14,12 +14,14 @@ const Layout = props => {
     if(isAdmin){
         isAdminLogin =  path[2] === 'login' || path[2] === '';
     }
+    const isResponsive = (isAdmin && !isAdminLogin) ? false : true;
+    console.log(isResponsive);
 
     const { page } = props;
     let containerClass;
 
-    if(page == 'index') {
-        console.log()
+    if(page === 'index') {
+        console.log();
     }
 
     switch(page){
@@ -43,11 +45,11 @@ const Layout = props => {
                 <script src="/js/bootstrap.min.js"/>
                 <script src="/js/common.js"/>
             </Head>
-            <Header/>
-            <div className={isAdminLogin ? "container": isAdmin ? "container-xl" : "container"}>
+            <Header isResponsive={isResponsive}/>
+            <div className={isResponsive ? "container" : "container-xl"}>
                 {props.children}
             </div>
-            <Footer/>
+            <Footer isResponsive={isResponsive}/>
         </>
     )
 };
