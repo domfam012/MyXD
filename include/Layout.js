@@ -10,6 +10,18 @@ const Layout = props => {
     const router = useRouter();
     const isAdmin = router.pathname.split('/')[1] === 'admin';
 
+    const { page } = props;
+    let containerClass;
+
+    if(page == index) {
+        console.log()
+    }
+
+    switch(page){
+        case 'list' :
+            return console.log(page);
+    }
+
     return (
         <>
             <Head>
