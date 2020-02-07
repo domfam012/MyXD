@@ -6,11 +6,15 @@ $(function(){
 
     // api test
 
-    $.get("../board/list", function(data){
-        console.log(data);
-    });
+    // $.get("../board/list", function(data){
+    //     console.log(data);
+    // });
 
     // $.ajax("url",
 
+    $.post("https://firestore.googleapis.com/v1/projects/myxd-247f4/databases/(default)/documents/P-Test", function(data){
+        console.log('posted');
+        console.log(data);
+    })
 
 });

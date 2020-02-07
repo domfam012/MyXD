@@ -1,6 +1,5 @@
 import Head from 'next/head';
 import Header from './Header';
-import Aside from './Aside';
 import Footer from './Footer';
 
 import {useRouter} from "next/router";
@@ -16,7 +15,7 @@ const Layout = props => {
                 <title>MyXD</title>
                 <meta name="viewport" content="initial-scale=1.0, width=device-width" key="viewport"/>
                 <meta name="Referrer" content="origin"/>
-                <meta httpEquiv="X-UA-Compatible" content="IE=Edge"/>
+                <meta lhttpEquiv="X-UA-Compatible" content="IE=Edge"/>
                 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
                 <meta name="apple-mobile-web-app-title" content="MyXD"/>
                 <meta name="robots" content="index,nofollow"/>
@@ -27,7 +26,7 @@ const Layout = props => {
                 <script src="/js/common.js"/>
             </Head>
             <Header/>
-            {/*<img src="/img/@tmp/test-admin-new.png" alt="업로드 이미지" style={{"width":"1440px","opacity":"0.5","position":"absolute","top":"0","left":"0"}}/>*/}
+
             <div className={isAdmin ? "container-xl" : "container"}>
                 {props.children}
             </div>

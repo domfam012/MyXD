@@ -32,20 +32,23 @@ const Pagination = props => (
             <style jsx>{`
                .nav {
                     width: 100%;
+                    margin-top: 30px;
+                    margin-bottom: 70px;
                 }
                .pagination {
                     margin: 0 auto;
                }
                .page-link {
                     border: none;
-                    font-weight: bold;
                     background-color: transparent;
                     color: #b7b7b7;
                     line-height: 15px;
                     outline: none;
+                    padding: 0.5rem 6px;
                }
                .page-link.first {
                     padding-right: 0;
+                    margin-right: 3px;
                }
                .page-link.prev {
                     margin-right: 11px;
@@ -55,11 +58,13 @@ const Pagination = props => (
                }
                .page-link.last {
                     padding-left: 0;
+                    margin-left: 3px;
                }
                .page-link.first, .page-link.prev, .page-link.next,.page-link.last {
                }
                .page-link:hover, .page-link:focus {
                     color: var(--primary);
+                    font-weight: bold;
                 }
                .page-link:active, .page-link:focus {
                     outline: 0;

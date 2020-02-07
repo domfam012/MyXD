@@ -73,7 +73,6 @@ const Aside = props => (
           }
           .aside .temp .img img {
                 width: 100%;
-                height: 100%;
           }
           .aside .temp .title {
                 font-size: 14px;
@@ -86,7 +85,7 @@ const Aside = props => (
                 display: none;
               }
           }
-              @media (max-width: 768px) {
+          @media (max-width: 768px) {
               .aside {
                 display: none;
               }
