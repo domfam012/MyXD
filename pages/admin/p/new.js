@@ -38,7 +38,7 @@ const List = props => {
                                             <label className="col-form-label">제목</label>
                                         </div>
                                         <div className={"input-area"}>
-                                            <input type="text" className="form-control" placeholder={"제목을 입력하세요."}/>
+                                            <input type="text" className="form-control" placeholder={"제목을 입력하세요."} maxLength="50"/>
                                         </div>
                                     </div>
                                     <div className={"form-group"}>
@@ -46,7 +46,7 @@ const List = props => {
                                             <label className="col-form-label" style={{"lineHeight":"20.4"}}>내용</label>
                                         </div>
                                         <div className={"input-area"}>
-                                            <textarea className="form-control" placeholder={"내용을 입력하세요."}/>
+                                            <textarea className="form-control" placeholder={"내용을 입력하세요."} maxLength={"1000"}/>
                                         </div>
                                     </div>
                                     <div className={"form-group"}>
@@ -78,7 +78,7 @@ const List = props => {
                                             <label className="col-form-label">링크</label>
                                         </div>
                                         <div className={"input-area"}>
-                                            <input type="text" className="form-control" placeholder={"링크를 입력하세요."}/>
+                                            <input type="text" className="form-control" placeholder={"링크를 입력하세요."} maxLength="250"/>
                                         </div>
                                     </div>
                                 </form>
@@ -101,6 +101,7 @@ const List = props => {
                     margin: 70px auto;
                     border: 0 solid transparent;
                     box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+                    background-color: #fff;
                 }
                 .header {
                     margin: 33px 35px 0;
@@ -135,7 +136,7 @@ const List = props => {
                 }
                 .file-label {
                     position: relative;
-                    width: 280px;
+                    width: 321px;
                     height: 182px;
                     border: 1px solid #eaeaea;
                 }
