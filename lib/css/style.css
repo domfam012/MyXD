@@ -57,6 +57,9 @@ a:focus, a:active, button:focus, button:active, input:focus, input:active {
     margin: 0 auto;
     padding: 70px 20px 0;
 }
+.list-container {
+    padding: 70px 6px 0;
+}
 @media (max-width: 1200px) {
     .container {
         width: 768px;

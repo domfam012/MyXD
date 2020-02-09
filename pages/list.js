@@ -5,7 +5,7 @@ import Pagination from "../components/Pagination";
 
 const Index = props => {
     return (
-        <Layout>
+        <Layout page={"list"}>
             <div id="_list">
                 <ul className="list img-list">
                         <li className={"mt-0"}>
