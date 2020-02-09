@@ -20,15 +20,6 @@ app.prepare().then(() => {
         const parsedUrl = parse(req.url, true);
         const { pathname, query } = parsedUrl;
 
-        if (pathname === '/a') {
-            app.render(req, res, '/a', query);
-        } else if (pathname === '/admin') {
-            res.writeHead(302, { Location: '/admin/login' });
-            res.end();
-        } else {
-            handle(req, res, parsedUrl);
-        }
-
         express.set('trust proxy', 1);
         express.use(
             helmet(),
@@ -36,6 +27,21 @@ app.prepare().then(() => {
             bodyParser.urlencoded({extended: true}),
             bodyParser.json()
         );
+
+        // api -> set.. -> next
+
+        // const apiRegTest = /^\/api((\/[^\s/\/]+)*)?$/;
+        // if (apiRegTest.test(pathname)) {
+        //     // return res.json({a:1});
+        //     // require('./api.js')(req, res);
+        //     console.log('here?');
+        // } else
+        if (pathname === '/admin') {
+            res.writeHead(302, { Location: '/admin/login' });
+            res.end();
+        } else {
+            handle(req, res, parsedUrl);
+        }
 
     }).listen(3000, err => {
         if (err) throw err;
