@@ -15,7 +15,6 @@ const Layout = props => {
         isAdminLogin =  path[2] === 'login' || path[2] === '';
     }
     const isResponsive = (isAdmin && !isAdminLogin) ? false : true;
-    console.log(isResponsive);
 
     const { page } = props;
 
