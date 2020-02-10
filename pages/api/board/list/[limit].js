@@ -13,7 +13,7 @@ export default async (req, res) => {
 
     if (req.method === 'GET') {
         const { query: { limit } } = req;
-        const ref = await collection.limit(parseInt(limit)).get();
+        const ref = await collection.orderBy('created', 'desc').limit(parseInt(limit)).get();
         const data = [];
         ref.forEach(doc => {
             data.push(doc.data());
@@ -26,6 +26,6 @@ export default async (req, res) => {
 
     } else {
         //
-        res.json( { status: 404, msg: '' } )
+        res.json( { status: 404, msg: '' } );
     }
 }
