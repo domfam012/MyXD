@@ -33,7 +33,7 @@ export default async (req, res) => {
             imgPath: imgPath,
             imgSaveName: imgSaveName,
             link: link,
-            index: ,
+            index: 1,
             title: title,
             viewCount: 0,
             created: ''
