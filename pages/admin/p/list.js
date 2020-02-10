@@ -19,7 +19,7 @@ const List = props => {
                         <div className={"damper"}></div>
 
                         <div className={"row pl-0 pr-0"}>
-                            <div className={"col"}>
+                            <div className={"col pl-0 pr-0"}>
 
                                 <div className={"box-list"}>
                                     <div className={"item row"}>
@@ -209,7 +209,7 @@ const List = props => {
                 
                 .item-box-1{
                     width:271px;
-                    padding-left:49px;
+                    padding-left:64px;
                     padding-right:10px;                                        
                 }
                  
@@ -221,7 +221,7 @@ const List = props => {
                  
                 .item-box-3{
                     width:260px;
-                    padding-right:50px;
+                    padding-right:65px;
                     text-align:right;
                 }
                  
@@ -239,7 +239,8 @@ const List = props => {
                     color: #333333;     
                     overflow:hidden;
                     text-overflow:ellipsis;
-                    white-space:nowrap;            
+                    white-space:nowrap;       
+                    padding-left: 38px;     
                 }
                 
                 .list-content{
@@ -258,6 +259,7 @@ const List = props => {
                     overflow:hidden;
                     text-overflow:ellipsis;
                     white-space:nowrap;
+                    padding-left: 38px;
                 }
                 
                 .box-list {                    
@@ -269,7 +271,7 @@ const List = props => {
                  }
                  
                 .img-list{
-                    width: 244px;
+                    width: 278px;
                     height: 162px;
                 }
                                
@@ -281,7 +283,7 @@ const List = props => {
                  }  
                  
                  .bottom-btn-area{
-                    margin-top:20px;
+                    margin-top:42px;
                     margin-right:35px;
                     text-align: right;  
                  }
