@@ -14,7 +14,7 @@ export default async (req, res) => {
     console.log(loadDB);
 
     const db = await loadDB();
-    const ref = await db.collection('P-Test').get();
+    const ref = await db.collection('Posts').get();
 
     // console.log('a');
     // console.log(typeof ref);
@@ -22,7 +22,7 @@ export default async (req, res) => {
     //     console.log(doc.data());
     // });
 
-    const ref2 = await db.collection('P-Test').doc('3MIkzOj7BaaMo5cru4Sj').get();
+    const ref2 = await db.collection('Posts').doc('JIzl0xqK1IFyXZ3nRfFf').get();
     console.log('b');
     console.log(ref2.data());
     // ref2.forEach(doc => {
