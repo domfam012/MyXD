@@ -223,4 +223,17 @@ const Index = props => {
     );
 };
 
+//API설정
+// Index.getInitialProps = async function () {
+//     const pid = router.query.pid;
+//     const res = await fetch(`http://localhost:3000/p/${pid}`);
+//     const result = await res.json();
+//
+//     console.log(res);
+//
+// }
+
+
+
+
 export default Index;
