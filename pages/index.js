@@ -3,6 +3,9 @@ import Layout from '../include/Layout';
 import Aside from '../include/Aside';
 import Pagination from "../components/Pagination";
 import Link from "next/link";
+import fetch from 'isomorphic-unfetch';
+
+
 
 const data = [{
     pid: "JIzl0xqK1IFyXZ3nRfFf",
@@ -247,19 +250,17 @@ const Index = props => {
 };
 
 Index.getInitialProps = async function() {
-    const res = await fetch('http://localhost:3000/api/board/list');
-    const data = await res.json();
+    const res = await fetch("http://localhost:3000/api/board/list");
+    const result = await res.json();
 
-    // data.typeOf()
-    console.log(data);
-    console.log(typeof data);
-
-    console.log(`Show data fetched. Count: ${data.length}`);
+    console.log(typeof result);
+    console.log(result.data);
+    console.log(`Show data fetched. Count: ${result.data.length}`);
 
     return {
         // shows: data.map(entry => entry.show)
         shows: 1
     }
-}
+};
 
 export default Index;
