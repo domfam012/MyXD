@@ -1,9 +1,6 @@
 import Head from "next/head";
 import Layout from '../../../include/Layout';
-import Imput from 'react'
-
 import { useState, useEffect } from 'react';
-// import FilePreview from 'react-preview-file';
 
 const List = props => {
     const [ file, setFile ] = useState('');
