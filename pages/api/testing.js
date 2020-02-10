@@ -16,11 +16,11 @@ export default async (req, res) => {
     const db = await loadDB();
     const ref = await db.collection('P-Test').get();
 
-    console.log('a');
-    console.log(typeof ref);
-    ref.forEach(doc => {
-        console.log(doc.data());
-    });
+    // console.log('a');
+    // console.log(typeof ref);
+    // ref.forEach(doc => {
+    //     console.log(doc.data());
+    // });
 
     const ref2 = await db.collection('P-Test').doc('3MIkzOj7BaaMo5cru4Sj').get();
     console.log('b');
