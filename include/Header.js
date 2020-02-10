@@ -1,28 +1,26 @@
-import Link from 'next/link';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {faBars} from '@fortawesome/free-solid-svg-icons'
+import React, { useState } from 'react';
 
-const linkStyle = {
-    marginRight: 15
-};
-
-const Header = () => {
+const Header = props => {
     /**
      * @type {{id: string}[]}
      *
      * post list 에서 연결되어야 하며
      * id 값은 firestore 통해서 넣도록 수정
      */
-    const post = [
-        {id: 'post1'}
-    ];
+    const [ menuActive, setMenuState ] = useState(false);
+
     return (
         <header>
-            <nav className="navbar navbar-expand-xl">
+            <nav className= { props.isResponsive ? "navbar navbar-expand-xl" : "navbar navbar-expand-xl navbar-xl"}>
                 <a className="navbar-brand" href="#"> <span className="pink">MyXD</span> logo</a>
-                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
-                        aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon"><i className={"icon icon-bar"}></i></span>
+                <button className={`navbar-toggle ${menuActive ? 'active' : ''}`} type="button" data-toggle="collapse" data-target="#navbarText"
+                        aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation"
+                        onClick={() => setMenuState(!menuActive)}>
+                    <div className="navbar-toggler-icon">
+                        <span className={"bar1"}></span>
+                        <span className={"bar2"}></span>
+                        <span className={"bar3"}></span>
+                    </div>
                 </button>
                 <div className="collapse navbar-collapse menu" id="navbarText">
                     <ul className="navbar-nav mr-auto">
@@ -61,12 +59,14 @@ const Header = () => {
             <style jsx>{`
               .navbar {
                 width: 100%;
-                min-width: 1080px;
+                min-width: 1301px;
                 height: 70px;
-                padding: 0 0 0 170px;
+                padding: 0 170px;
                 background: #2e001f;
                 color: #fff;
-                margin-bottom: 70px;
+              }
+              .navbar-xl {
+                min-width: 1200px;
               }
               .navbar-brand {
                 font-size: 20px;
@@ -86,14 +86,14 @@ const Header = () => {
                 margin-right: 80px;
               }
               .nav-item:last-child {
-                margin-right: 0;
+                margin-right: 0 !important;
               }
               .navbar-icon {
                 position: relative;
               }
               .navbar-icon .navbar-nav {
-                position: absolute;
-                right: 70px;
+               position: absolute;
+               right: 0;
               }
                .navbar-icon .navbar-nav .nav-item {
                 margin-right: 30px;
@@ -101,13 +101,17 @@ const Header = () => {
               .navbar-icon .navbar-nav .nav-item:nth-child(3) {
                 margin-right: 78px;
               }
-             
+              .navbar-toggler-icon {
+                display: none;
+              }
 
-              @media (max-width: 1200px) {
+              @media (max-width: 1199px) {
                 .navbar {
                     padding: 0;
                     min-width: 564px;
-                    margin-bottom: 30px;
+                  }
+                  .navbar-xl {
+                    min-width: 1200px;
                   }
                   .navbar-nav {
                   background: #ffffff;
@@ -118,8 +122,7 @@ const Header = () => {
                   border: 0;
                 }
                 .navbar-brand {
-                  padding: 0;
-                  padding-left: 30px;
+                  padding: 0 0 0 30px;
                 }
                 .navbar-toggler {
                     position: relative;
@@ -143,19 +146,59 @@ const Header = () => {
                 background: #aaaaaa;
                 color: #ffffff;
                 }
-
-                .navbar-toggler:after {
+                .navbar-toggle {
+                  background: none;
+                  padding-right: 60px;
+                  margin-right: 30px;
+                }
+                .navbar-toggle:focus {
+                  outline: none;
+                }
+                .navbar-toggler-icon:after {
                     content: 'MENU';
                     position: absolute;
                     color: #ffffff;
                     font-size: 16px;
+                    top: -4px;
+                    right: -52px;
                 }
                 .navbar-toggler-icon {
+                    position: relative;
+                    display: inline-block;
                     color: #fff;
-                    width: 18px;
-                    height: 20px;
-                    
+                    width: 14px;
+                    height: 16px;
+                    cursor: pointer;
                 }
+                .navbar-toggler-icon .bar1,
+                .navbar-toggler-icon .bar2,
+                .navbar-toggler-icon .bar3 {
+                    display: block;
+                    width: 14px;
+                    height: 2px;
+                    border-radius: 4px;
+                    background: #ffffff;
+                    transition: .3s;
+                }
+                .navbar-toggler-icon .bar2 {
+                    margin: 3px 0;
+                }
+                .navbar-toggle.active .bar1 {
+                    -webkit-transform: rotate(-45deg) translate(-9px, 6px) ;
+                    transform: rotate(-45deg) translate(-1.5px,4.5px);
+                }
+
+                /* Fade out the second bar */
+                .navbar-toggle.active .bar2 {
+                    -webkit-transform: rotate(45deg) translate(-8px, -8px) ;
+                    transform: rotate(45deg) translate(1px,-2px);
+                }
+
+                /* Rotate last bar */
+                .navbar-toggle.active .bar3 {
+                    opacity: 0;
+                }
+
                 .navbar-toggler:hover, .navbar-toggler:focus {
                   outline: none;
                 }
@@ -164,49 +207,13 @@ const Header = () => {
                  .navbar {
                     padding: 0;
                     min-width: 320px;
-                    margin-bottom: 20px;
+                  }
+                  .navbar-xl {
+                    min-width: 1200px;
                   }
               }
             `}</style>
         </header>
-
-
-//         <>
-//         <Link href="/">
-//         <a style={linkStyle}>Home</a>
-// </Link>
-// <Link href="/test">
-// <a style={linkStyle}>Test</a>
-// </Link>
-// <Link href="/list">
-// <a style={linkStyle}>List</a>
-// </Link>
-// <ul>
-// {
-// post.map(item => (
-// <li key={`${item.id}`}>
-// <Link href="/p/[id]" as={`/p/${item.id}`}>
-// <a style={linkStyle}>post</a>
-// </Link>
-// </li>
-// ))
-// }
-// </ul>
-// <Link href="/admin/login" as={`/admin`}>
-// <a style={linkStyle}>admin</a>
-// </Link>
-// <Link href="/admin/p/list" as={`/admin/p/list`}>
-// <a style={linkStyle}>admin-list</a>
-// </Link>
-// <Link href="/admin/p/new" as={`/admin/p/new`}>
-// <a style={linkStyle}>admin-new</a>
-// </Link>
-// <Link href="/admin/p/update" as={`/admin/p/update`}>
-// <a style={linkStyle}>admin-update</a>
-// </Link>
-// </>
-
-
     );
 };
 

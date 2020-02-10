@@ -11,6 +11,11 @@
     url(/fonts/NanumGothic/NanumGothic.eot?#iefix) format('embedded-opentype'),
     url(/fonts/NanumGothic/NanumGothic.woff) format('woff');
 }
+
+a:focus, a:active, button:focus, button:active, input:focus, input:active {
+    outline: none;
+}
+
 /*
  icon
 */
@@ -47,22 +52,32 @@
  container
 */
 .container {
-    width: 1460px;
-    min-width: 1440px;
+    width: 1200px;
+    min-width: 1000px;
     margin: 0 auto;
+    padding: 70px 20px 0;
+}
+.list-container {
+    padding: 70px 6px 0;
 }
 @media (max-width: 1200px) {
     .container {
         width: 768px;
         min-width: 576px;
-        padding: 0 30px;
+        padding: 30px 30px 0;
+    }
+}
+@media (min-width: 760px) and (max-width: 768px)  {
+    .container {
+        width: 708px;
+        padding: 30px 0 0;
     }
 }
 @media (max-width: 760px) {
     .container {
         width: 100%;
         min-width: 320px;
-        padding: 0 20px;
+        padding:20px 20px 0;
     }
 }
 .pink {
@@ -103,7 +118,7 @@ body {
     line-height: 22px;
     color: var(--color-text-default);
     text-align: left;
-    background-color: #fff;
+    background-color: #F6F6F6;
 }
 html, body {
     width: 100%;

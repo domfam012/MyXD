@@ -12,6 +12,8 @@ const linkStyle = {
     marginRight: 15
 };
 
+console.log(loadDB);
+
 const Test = props => {
     const [ num, setNum ] = useState(0);
 
