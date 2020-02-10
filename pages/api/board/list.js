@@ -13,7 +13,7 @@ export default async (req, res) => {
 
         const data = [];
         ref.forEach(doc => {
-            data.push(doc.data());
+            data.push({pid: doc.id, ...doc.data()});
         });
 
         res.status(200).json({ status: 200, data: data });
