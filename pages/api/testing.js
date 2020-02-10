@@ -7,20 +7,14 @@ export default async (req, res) => {
     res.setHeader('Access-Control-Allow-Headers', 'content-type');
     res.setHeader('Content-Type', 'application/json');
 
-
-
-    console.log(`req.method : ${req.method}`);
-
-    console.log(loadDB);
-
     const db = await loadDB();
     const ref = await db.collection('Posts').get();
 
-    console.log('a');
-    console.log(typeof ref);
-    ref.forEach(doc => {
-        console.log(doc.data());
-    });
+    // console.log('a');
+    // console.log(typeof ref);
+    // ref.forEach(doc => {
+    //     console.log(doc.data());
+    // });
 
     const ref2 = await db.collection('Posts').doc('JIzl0xqK1IFyXZ3nRfFf').get();
     console.log('b');
