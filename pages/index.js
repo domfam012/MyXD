@@ -2,30 +2,33 @@ import Layout from '../include/Layout';
 import Aside from '../include/Aside';
 import Pagination from "../components/Pagination";
 import Link from "next/link";
+import React from "react";
 
 // card 컴포넌트
 const Card = props => {
     return (
-        <div className={"main_card"}>
-            <div className={"img"}><img src="/img/main/main_01.png" alt=""/></div>
-            <div className={"box_text"}>
-                <div className={"title"}>{props.title}</div>
-                <div className={"text"}>
-                    {props.content}
+        <Link href={"/p/pid.js"}>
+            <div className={"main_card"}>
+                <div className={"img"}><img src="/img/main/main_01.png" alt=""/></div>
+                <div className={"box_text"}>
+                    <div className={"title"}>{props.title}</div>
+                    <div className={"text"}>
+                        {props.content}
+                    </div>
+                    <div>
+                        <Link href={"http://localhost:3000/p/pid.js"}>
+                            <a className={"btn btn-primary"}>더 보기</a>
+                        </Link>
+                    </div>
                 </div>
-                <div>
-                    <Link href="/detail">
-                        <a className={"btn btn-primary"}>더 보기</a>
-                    </Link>
-                </div>
-            </div>
-            <style jsx>{`
+                <style jsx>{`
                 .main_card {
                     width: 862px;
                     margin-right: 30px;
                     box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
                     background-color: #ffffff;
                     margin-bottom: 50px;
+                    cursor: pointer;
                 }
                 .main_card:last-child {
                   margin-bottom: 0;
@@ -95,13 +98,14 @@ const Card = props => {
                 }
             }
             `}</style>
-        </div>
+            </div>
+        </Link>
     )
 };
 
 // 메인 페이지
 const Index = props => {
-    // console.log(props.data)
+    console.log(props.data)
     return (
         <Layout page={"index"}>
             <div className={"clearfix"}>
