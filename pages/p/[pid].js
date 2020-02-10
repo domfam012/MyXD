@@ -1,18 +1,20 @@
 import Head from "next/head";
-import Layout from '../include/Layout';
-import Aside from '../include/Aside';
-import Pagination from "../components/Pagination";
-
-
-
-
-
-
+import Layout from '../../include/Layout';
+import Aside from '../../include/Aside';
+import Pagination from "../../components/Pagination";
+import { useRouter } from "next/router";
 
 
 
 
 const Index = props => {
+
+    const router = useRouter();
+    const { pid } = router.query;
+
+    console.log(router);
+    console.log(pid);
+
     return (
         <Layout>
             <div className={"clearfix"}>
