@@ -62,7 +62,7 @@ const Pagination = props => (
                }
                .page-link.first, .page-link.prev, .page-link.next,.page-link.last {
                }
-               .page-link:hover, .page-link:focus {
+               .page-link:hover, .page-link:active {
                     color: var(--primary);
                     font-weight: bold;
                 }
