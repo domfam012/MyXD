@@ -11,16 +11,14 @@ export default async (req, res) => {
         const db = await loadDB();
         // const ref = await db.collection('Posts').post();
 
-        const category = 'asdfasdfe';
+        const category = '';
         const content = 'sdfjkhasdlkfh';
-        // const created = 'sdfasdkjlf';
+        // const created = 'sdfasdkjlf'; // -> 현재시각
         const imgOriginName = 'sadfadsf';
         const imgPath = 'asdfasdf';
         const imgSaveName = 'asdfasdfg434';
         const link = 0;
-        const index = 0;
         const title='aaaaaa';
-        // const updated =  '0';
         const viewCount = 0;
 
         const data = {
@@ -30,12 +28,14 @@ export default async (req, res) => {
             imgPath: imgPath,
             imgSaveName: imgSaveName,
             link: link,
-            index: index,
+            index: 0,
             title: title
         };
 
+        console.log(data);
+
         const collection = db.collection('Posts');
-        collection.add(data);
+        await collection.add(data);
         // return collection.add(data);
 
 
