@@ -9,15 +9,23 @@ export default async (req, res) => {
     console.log(`req.method : ${req.method}`);
 
     const db = await loadDB();
-    const docList = await db.collection('Posts').doc();
+    const collection = await db.collection('Posts');
 
     if (req.method === 'GET') {
-        const ref = await docList.get();
+        const ref = await collection.get();
         const data = [];
         ref.forEach(doc => {
             data.push({pid: doc.id, ...doc.data()});
         });
-        res.status(200).json({ status: 200, msg: 'success', data: data });
+        // res.status(200).json({ status: 200, msg: 'success', data: data });
+
+        const resData = JSON.stringify({
+            status: 200, msg: 'success', data: data
+        });
+
+        // console.log(typeof resData);
+
+        res.status(200).send(resData);
     } else {
         //
         res.json( { status: 405, msg: '' } )

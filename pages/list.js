@@ -158,6 +158,9 @@ const Index = props => {
                 width: auto;
                 padding: 0;
               }
+              .li-img img {
+                width: 366px;
+              }
               .li-text {
                 height: 84px;
                 line-height: 82px;
