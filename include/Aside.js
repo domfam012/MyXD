@@ -46,7 +46,6 @@ const Aside = props => (
           .aside {
             float: right;
             width: 268px;
-            height: 1468px;
             box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
             background-color: #ffffff;
             margin-bottom: 130px;
@@ -75,10 +74,8 @@ const Aside = props => (
             font-weight: bold;
             padding : 20px 0;
           }
-          .aside .temp {}
           .aside .temp .img {
                 width: 248px;
-                height: 124px;
           }
           .aside .temp .img img {
                 width: 100%;
