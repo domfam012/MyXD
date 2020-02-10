@@ -1,12 +1,12 @@
-import Head from "next/head";
 import Layout from '../include/Layout';
 import Aside from '../include/Aside';
 import Pagination from "../components/Pagination";
 import Link from "next/link";
 
+// card 컴포넌트
 const Card = props => {
     return (
-        <div className={"main_card"} >
+        <div className={"main_card"}>
             <div className={"img"}><img src="/img/main/main_01.png" alt=""/></div>
             <div className={"box_text"}>
                 <div className={"title"}>{props.title}</div>
@@ -14,7 +14,9 @@ const Card = props => {
                     {props.content}
                 </div>
                 <div>
-                    <a className={"btn btn-primary"}>더 보기</a>
+                    <Link href="/detail">
+                        <a className={"btn btn-primary"}>더 보기</a>
+                    </Link>
                 </div>
             </div>
             <style jsx>{`
@@ -25,7 +27,6 @@ const Card = props => {
                     background-color: #ffffff;
                     margin-bottom: 50px;
                 }
-                // ?? last-child 왜 안먹는지....
                 .main_card:last-child {
                   margin-bottom: 0;
                 }
@@ -54,6 +55,10 @@ const Card = props => {
                 }
                 .btn {
                   color: #ffffff;
+                  line-height: 32px;
+                }
+                .btn:hover {
+                  background: #585858;
                   line-height: 32px;
                 }
             @media (max-width: 1200px) {
@@ -95,6 +100,7 @@ const Card = props => {
     )
 };
 
+// 메인 페이지
 const Index = props => {
     // console.log(props.data)
     return (
@@ -103,7 +109,7 @@ const Index = props => {
                 <div className={"box-left"}>
                     {
                         props.data.map(item => (
-                            <Card key={item.pid} title = {item.title} content= {item.content}/>
+                            <Card key={item.pid} title={item.title} content={item.content}/>
                         ))
                     }
                     <Pagination/>
@@ -118,16 +124,15 @@ const Index = props => {
         </Layout>
     );
 };
-
-Index.getInitialProps = async function() {
-    const res = await fetch('http://localhost:3000/api/board/list');
+// API설정
+Index.getInitialProps = async function () {
+    const res = await fetch('http://localhost:3000/api/board/list/15');
     const result = await res.json();
 
     // data.typeOf()
     // console.log(result);
     // console.log(typeof result);
-
-    console.log(`Show data fetched. Count: ${result.data.length}`);
+    // console.log(`Show data fetched. Count: ${result.data.length}`);
 
     return {
         data: result.data
