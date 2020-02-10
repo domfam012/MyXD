@@ -16,16 +16,16 @@ export default async (req, res) => {
         const ref = await collection.orderBy('created', 'desc').limit(parseInt(limit)).get();
         const data = [];
         ref.forEach(doc => {
-            data.push(doc.data());
+            data.push({pid: doc.id, ...doc.data()});
         });
 
         const resData = JSON.stringify({
-            status: 200, data: data
+            status: 200, msg: 'success', data: data
         });
         res.status(200).json(resData);
 
     } else {
         //
-        res.json( { status: 404, msg: '' } );
+        res.json( { status: 405, msg: '' } );
     }
 }
