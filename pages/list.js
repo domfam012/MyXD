@@ -2,132 +2,31 @@ import Head from "next/head";
 import Layout from '../include/Layout';
 import Pagination from "../components/Pagination";
 
+const List = props => {
+    return (
+        <li>
+            <a href="#" className="inner">
+                <div className="li-img">
+                    <img src="/img/list/list_sample_01.png" alt="sample"/>
+                </div>
+                <div className="li-text">
+                    <p className="title">{props.title}</p>
+                </div>
+            </a>
+        </li>
+    );
+};
 
 const Index = props => {
     return (
         <Layout page={"list"}>
             <div id="_list">
                 <ul className="list img-list">
-                        <li className={"mt-0"}>
-                            <a href="#" className="inner">
-                                <div className="li-img">
-                                    <img src="/img/list/list_sample_01.png" alt="sample"/>
-                                </div>
-                                <div className="li-text">
-                                    <p className="title">Property dashboard XD template</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li className={"mt-0"}>
-                            <a href="#" className="inner">
-                                <div className="li-img">
-                                    <img src="/img/list/list_sample_02.png" alt="sample"/>
-                                </div>
-                                <div className="li-text">
-                                    <p className="title">Property dashboard XD template</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li className={"mt-0"}>
-                            <a href="#" className="inner">
-                                <div className="li-img">
-                                    <img src="/img/list/list_sample_03.png" alt="sample"/>
-                                </div>
-                                <div className="li-text">
-                                    <p className="title">Property dashboard XD template</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" className="inner">
-                                <div className="li-img">
-                                    <img src="/img/list/list_sample_04.png" alt="sample"/>
-                                </div>
-                                <div className="li-text">
-                                    <p className="title">Property dashboard XD template</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" className="inner">
-                                <div className="li-img">
-                                    <img src="/img/list/list_sample_05.png" alt="sample"/>
-                                </div>
-                                <div className="li-text">
-                                    <p className="title">Property dashboard XD template</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" className="inner">
-                                <div className="li-img">
-                                    <img src="/img/list/list_sample_06.png" alt="sample"/>
-                                </div>
-                                <div className="li-text">
-                                    <p className="title">Property dashboard XD template</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" className="inner">
-                                <div className="li-img">
-                                    <img src="/img/list/list_sample_07.png" alt="sample"/>
-                                </div>
-                                <div className="li-text">
-                                    <p className="title">Property dashboard XD template</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" className="inner">
-                                <div className="li-img">
-                                    <img src="/img/list/list_sample_08.png" alt="sample"/>
-                                </div>
-                                <div className="li-text">
-                                    <p className="title">Property dashboard XD template</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" className="inner">
-                                <div className="li-img">
-                                    <img src="/img/list/list_sample_09.png" alt="sample"/>
-                                </div>
-                                <div className="li-text">
-                                    <p className="title">Property dashboard XD template</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" className="inner">
-                                <div className="li-img">
-                                    <img src="/img/list/list_sample_10.png" alt="sample"/>
-                                </div>
-                                <div className="li-text">
-                                    <p className="title">Property dashboard XD template</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" className="inner">
-                                <div className="li-img">
-                                    <img src="/img/list/list_sample_11.png" alt="sample"/>
-                                </div>
-                                <div className="li-text">
-                                    <p className="title">Property dashboard XD template</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" className="inner">
-                                <div className="li-img">
-                                    <img src="/img/list/list_sample_12.png" alt="sample"/>
-                                </div>
-                                <div className="li-text">
-                                    <p className="title">Property dashboard XD template</p>
-                                </div>
-                            </a>
-                        </li>
+                    {
+                        data.map(item => (
+                            <List key={item.pid} title = {item.title}/>
+                        ))
+                    }
                 </ul>
             </div>
             <Pagination/>
@@ -229,5 +128,18 @@ const Index = props => {
                         </Layout>
                     );
                 };
+Index.getInitialProps = async function() {
+    const res = await fetch('http://localhost:3000/api/board/list');
+    const result = await res.json();
 
+    // data.typeOf()
+    // console.log(result);
+    // console.log(typeof result);
+
+    console.log(`Show data fetched. Count: ${result.data.length}`);
+
+    return {
+        data: result.data
+    }
+};
 export default Index;
