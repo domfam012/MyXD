@@ -11,14 +11,16 @@ export default async (req, res) => {
         const db = await loadDB();
         // const ref = await db.collection('Posts').post();
 
-        const category = 'asdfasdfe';
-        const content = 'sdfjkhasdlkfh';
+        console.log('here');
+
+        const category = 'TEST';
+        const content = 'TEST';
         // const created = 'sdfasdkjlf';
-        const imgOriginName = 'sadfadsf';
-        const imgPath = 'asdfasdf';
-        const imgSaveName = 'asdfasdfg434';
-        const link = 0;
-        const index = 0;
+        const imgOriginName = 'TEST';
+        const imgPath = 'TEST';
+        const imgSaveName = 'TEST';
+        // const link = 0;
+        // const index = 0;
         const title='aaaaaa';
         // const updated =  '0';
         const viewCount = 0;
@@ -29,8 +31,7 @@ export default async (req, res) => {
             imgOriginName: imgOriginName,
             imgPath: imgPath,
             imgSaveName: imgSaveName,
-            link: link,
-            index: index,
+            index: 0,
             title: title
         };
 

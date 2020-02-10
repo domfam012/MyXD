@@ -14,6 +14,8 @@ export default async (req, res) => {
     if (req.method === 'GET') {
         const db = await loadDB();
         const ref = await db.collection('Posts').doc(pid).get();
+        const id = await db.collection('Posts').doc(pid).id;
+        console.log(id);
 
         const data = [];
 
