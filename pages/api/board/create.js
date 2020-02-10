@@ -12,6 +12,8 @@ export default async (req, res) => {
     console.log(req.body);
     if (req.method === 'POST') {
         const db = await loadDB();
+
+
         // const ref = await db.collection('Posts').post();
 
         const category = req.body.category;
@@ -21,7 +23,7 @@ export default async (req, res) => {
         const imgSaveName = req.body.imgSaveName;
         const link = req.body.link;
         const title= req.body.title;
-
+        const created = '';
 
         // 받아온 값 타입 && null 체크
         //
@@ -33,7 +35,7 @@ export default async (req, res) => {
             imgPath: imgPath,
             imgSaveName: imgSaveName,
             link: link,
-            index: ,
+            index: 1,
             title: title,
             viewCount: 0,
             created: ''
