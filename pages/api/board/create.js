@@ -17,15 +17,11 @@ export default async (req, res) => {
         const category = req.body.category;
         const content = req.body.content;
         const imgOriginName = req.body.imgOriginName;
-        const imgPath = 'c://///';
-        const imgSaveName = 'myXD-'+ imgOriginName;
+        const imgPath = req.body.imgPath;
+        const imgSaveName = req.body.imgSaveName;
         const link = req.body.link;
         const title= req.body.title;
 
-        const index = await db.collection('Posts').length+1;
-
-
-        console.log(category);
 
         // 받아온 값 타입 && null 체크
         //
@@ -37,7 +33,7 @@ export default async (req, res) => {
             imgPath: imgPath,
             imgSaveName: imgSaveName,
             link: link,
-            index: index,
+            index: ,
             title: title,
             viewCount: 0,
             created: ''
