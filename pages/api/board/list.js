@@ -7,19 +7,20 @@ export default async (req, res) => {
     res.setHeader('Content-Type', 'application/json');
 
     console.log(`req.method : ${req.method}`);
-    if (req.method === 'GET') {
-        const db = await loadDB();
-        const ref = await db.collection('Posts').get();
 
+    const db = await loadDB();
+    const docList = await db.collection('Posts').doc();
+
+    if (req.method === 'GET') {
+        const ref = await docList.get();
         const data = [];
         ref.forEach(doc => {
             data.push({pid: doc.id, ...doc.data()});
         });
-
-        res.status(200).json({ status: 200, data: data });
+        res.status(200).json({ status: 200, msg: 'success', data: data });
     } else {
         //
-        res.json( { status: 404, msg: '' } )
+        res.json( { status: 405, msg: '' } )
     }
 
 
