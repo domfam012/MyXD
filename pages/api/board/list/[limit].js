@@ -1,4 +1,4 @@
-import { loadDB } from './../../../lib/js/db';
+import { loadDB } from './../../../../lib/js/db';
 
 export default async (req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -12,23 +12,20 @@ export default async (req, res) => {
     const collection = await db.collection('Posts');
 
     if (req.method === 'GET') {
-        const ref = await collection.get();
+        const { query: { limit } } = req;
+        const ref = await collection.limit(parseInt(limit)).get();
         const data = [];
         ref.forEach(doc => {
-            data.push({pid: doc.id, ...doc.data()});
+            data.push(doc.data());
         });
-        // res.status(200).json({ status: 200, msg: 'success', data: data });
 
         const resData = JSON.stringify({
-            status: 200, msg: 'success', data: data
+            status: 200, data: data
         });
-        // console.log(typeof resData);
+        res.status(200).json(resData);
 
-        res.status(200).send(resData);
     } else {
         //
-        res.json( { status: 405, msg: '' } )
+        res.json( { status: 404, msg: '' } )
     }
-
-
 }

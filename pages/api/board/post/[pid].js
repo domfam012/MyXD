@@ -11,19 +11,39 @@ export default async (req, res) => {
     const { query: { pid } } = req;
     console.log(pid);
 
-    if (req.method === 'GET') {
-        const db = await loadDB();
-        const ref = await db.collection('Posts').doc(pid).get();
-        const id = await db.collection('Posts').doc(pid).id;
-        console.log(id);
+    const db = await loadDB();
+    const doc = await db.collection('Posts').doc(pid);
+    const id = await doc.id;
 
-        const data = [];
+    let resData;
+    switch ( req.method) {
+        case "GET" :
+            const ref = await doc.get();
+            resData = JSON.stringify({
+                status: 200, msg: 'success', data: ref.data()
+            });
+            res.status(200).json(resData);
+            break;
 
-        res.status(200).json({ status: 200, data: ref.data() });
+        case "PUT" :
+            // Update
 
-    } else {
-        //
-        res.json( { status: 404, msg: '' } )
+            break;
+
+        case "DELETE" :
+            doc.delete();
+            resData = JSON.stringify({
+                status: 200, msg: 'success'
+            });
+            res.status(200).json(resData);
+            break;
+
+        default:
+            resData = JSON.stringify({
+                status: 405, msg: ''
+            });
+            res.json(resData);
+            break;
     }
 
 

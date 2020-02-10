@@ -1,4 +1,6 @@
 import { loadDB } from './../../../lib/js/db';
+import {now} from "moment";
+import index from "next/dist/export";
 
 export default async (req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -7,23 +9,22 @@ export default async (req, res) => {
     res.setHeader('Content-Type', 'application/json');
 
     console.log(`req.method : ${req.method}`);
+    console.log(req.body);
     if (req.method === 'POST') {
         const db = await loadDB();
         // const ref = await db.collection('Posts').post();
 
-        console.log('here');
+        const category = req.body.category;
+        const content = req.body.content;
+        const imgOriginName = req.body.imgOriginName;
+        const imgPath = req.body.imgPath;
+        const imgSaveName = req.body.imgSaveName;
+        const link = req.body.link;
+        const title= req.body.title;
 
-        const category = 'TEST';
-        const content = 'TEST';
-        // const created = 'sdfasdkjlf';
-        const imgOriginName = 'TEST';
-        const imgPath = 'TEST';
-        const imgSaveName = 'TEST';
-        // const link = 0;
-        // const index = 0;
-        const title='aaaaaa';
-        // const updated =  '0';
-        const viewCount = 0;
+
+        // 받아온 값 타입 && null 체크
+        //
 
         const data = {
             category: category,
@@ -31,16 +32,21 @@ export default async (req, res) => {
             imgOriginName: imgOriginName,
             imgPath: imgPath,
             imgSaveName: imgSaveName,
-            index: 0,
-            title: title
+            link: link,
+            index: ,
+            title: title,
+            viewCount: 0,
+            created: ''
         };
 
+        // console.log(data);
+
         const collection = db.collection('Posts');
-        collection.add(data);
+        await collection.add(data);
         // return collection.add(data);
 
 
-        console.log(data);
+
 
         res.status(200).json({ status: 200, data: data });
 
