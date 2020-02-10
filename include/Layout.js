@@ -38,6 +38,10 @@ const Layout = props => {
                 <script src="/js/bootstrap.min.js"/>
                 <script src="/js/common.js"/>
             </Head>
+
+
+
+
             <Header isResponsive={isResponsive}/>
             <div className={containerClass}>
                 {props.children}
