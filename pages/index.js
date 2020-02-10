@@ -57,9 +57,10 @@ const Card = props => {
                   color: #ffffff;
                   line-height: 32px;
                 }
-                .btn:hover {
+                .btn:hover, .btn:active{
                   background: #585858;
                   line-height: 32px;
+                  border-color: #585858;
                 }
             @media (max-width: 1200px) {
                 .main_card {
@@ -71,7 +72,6 @@ const Card = props => {
                     width: 100%;
                 }
             }
-            
             @media (max-width: 760px) {
                 .main_card {
                     width: 100%;
@@ -94,7 +94,6 @@ const Card = props => {
                   width: 100%;
                 }
             }
-               
             `}</style>
         </div>
     )
