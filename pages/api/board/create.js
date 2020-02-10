@@ -1,6 +1,6 @@
 import { loadDB } from './../../../lib/js/db';
-import {now} from "moment";
 import index from "next/dist/export";
+import moment from 'moment';
 
 export default async (req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -8,10 +8,11 @@ export default async (req, res) => {
     res.setHeader('Access-Control-Allow-Headers', 'content-type');
     res.setHeader('Content-Type', 'application/json');
 
-    console.log(`req.method : ${req.method}`);
-    console.log(req.body);
+    let resData;
+
     if (req.method === 'POST') {
         const db = await loadDB();
+
         // const ref = await db.collection('Posts').post();
 
         const category = req.body.category;
@@ -21,10 +22,9 @@ export default async (req, res) => {
         const imgSaveName = req.body.imgSaveName;
         const link = req.body.link;
         const title= req.body.title;
-
+        const created = '';
 
         // 받아온 값 타입 && null 체크
-        //
 
         const data = {
             category: category,
@@ -39,20 +39,21 @@ export default async (req, res) => {
             created: ''
         };
 
-        // console.log(data);
-
         const collection = db.collection('Posts');
         await collection.add(data);
-        // return collection.add(data);
 
+        resData = JSON.stringify({
+            status: 200, data: data
+        });
 
-
-
-        res.status(200).json({ status: 200, data: data });
+        res.status(200).json(resData);
 
     } else {
         //
-        res.json( { status: 404, msg: '' } )
+        resData = JSON.stringify({
+            status: 404, msg: ''
+        });
+        res.json(resData);
     }
 
 

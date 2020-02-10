@@ -13,7 +13,6 @@ export default async (req, res) => {
 
     const db = await loadDB();
     const doc = await db.collection('Posts').doc(pid);
-    const id = await doc.id;
 
     let resData;
     switch ( req.method) {
@@ -25,8 +24,37 @@ export default async (req, res) => {
             res.status(200).json(resData);
             break;
 
-        case "PUT" :
+        case "PATCH" :
             // Update
+            const category = req.body.category;
+            const content = req.body.content;
+            const imgOriginName = req.body.imgOriginName;
+            const imgPath = req.body.imgPath;
+            const imgSaveName = req.body.imgSaveName;
+            const link = req.body.link;
+            const title= req.body.title;
+            const updated = '';
+
+
+            const updata = {
+                category: category,
+                content: content,
+                imgOriginName: imgOriginName,
+                imgPath: imgPath,
+                imgSaveName: imgSaveName,
+                link: link,
+                index: 1,
+                title: title,
+                viewCount: 0,
+                updated: ''
+            };
+
+            await doc.update(updata);
+
+            resData = JSON.stringify({
+                status: 200, msg: 'success'
+            });
+            res.status(200).json(resData);
 
             break;
 

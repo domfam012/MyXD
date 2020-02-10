@@ -1,4 +1,5 @@
 import { loadDB } from './../../../../lib/js/db';
+import moment from 'moment';
 
 export default async (req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
