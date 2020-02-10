@@ -1,14 +1,20 @@
 import Head from "next/head";
 import Layout from '../../include/Layout';
 
-const List = props => {
+import { useRouter } from "next/router";
+
+
+const Post = props => {
+    const router = useRouter();
+    const { pid } = router.query;
+
     return (
         <Layout>
             <Head>
-                <title>MyXD - List</title>
+                <title>MyXD - Post-detail</title>
             </Head>
 
-            <h1>List Page</h1>
+            <h1>Post(detail) Page</h1>
 
             <style jsx>{`
                 h1 {
@@ -20,4 +26,4 @@ const List = props => {
     );
 };
 
-export default List;
+export default Post;
