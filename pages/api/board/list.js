@@ -22,7 +22,6 @@ export default async (req, res) => {
         const resData = JSON.stringify({
             status: 200, msg: 'success', data: data
         });
-
         // console.log(typeof resData);
 
         res.status(200).send(resData);

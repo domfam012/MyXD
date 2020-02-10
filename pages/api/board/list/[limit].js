@@ -7,22 +7,22 @@ export default async (req, res) => {
     res.setHeader('Content-Type', 'application/json');
 
     console.log(`req.method : ${req.method}`);
+
+    const db = await loadDB();
+    const collection = await db.collection('Posts');
+
     if (req.method === 'GET') {
-
-
         const { query: { limit } } = req;
-        console.log(limit);
-
-        const db = await loadDB();
-        const ref = await db.collection('Posts').limit(parseInt(limit)).get();
-
-
+        const ref = await collection.limit(parseInt(limit)).get();
         const data = [];
         ref.forEach(doc => {
             data.push(doc.data());
         });
 
-        res.status(200).json({ status: 200, data: data });
+        const resData = JSON.stringify({
+            status: 200, data: data
+        });
+        res.status(200).json(resData);
 
     } else {
         //

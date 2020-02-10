@@ -15,10 +15,14 @@ export default async (req, res) => {
     const doc = await db.collection('Posts').doc(pid);
     const id = await doc.id;
 
+    let resData;
     switch ( req.method) {
         case "GET" :
             const ref = await doc.get();
-            res.status(200).json({ status: 200, msg: 'success', data: ref.data() });
+            resData = JSON.stringify({
+                status: 200, msg: 'success', data: ref.data()
+            });
+            res.status(200).json(resData);
             break;
 
         case "PUT" :
@@ -28,11 +32,17 @@ export default async (req, res) => {
 
         case "DELETE" :
             doc.delete();
-            res.status(200).json({ status: 200, msg: 'success' });
+            resData = JSON.stringify({
+                status: 200, msg: 'success'
+            });
+            res.status(200).json(resData);
             break;
 
         default:
-            res.json( { status: 405, msg: '' } );
+            resData = JSON.stringify({
+                status: 405, msg: ''
+            });
+            res.json(resData);
             break;
     }
 
