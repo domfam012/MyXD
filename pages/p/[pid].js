@@ -5,14 +5,27 @@ import Pagination from "../../components/Pagination";
 import { useRouter } from "next/router";
 
 
-
-
 const Index = props => {
 
     const router = useRouter();
     const { pid } = router.query;
 
-    console.log(router);
+    async function getLink() {
+        const res = await fetch(`http://localhost:3000/api/board/post/${pid}`);
+        const result = await res.json();
+
+        console.log(result);
+
+        return {
+            data: result.data
+        }
+    }
+
+    getLink();
+
+    // console.log(getLink());
+
+    console.log(router.query.pid);
     console.log(pid);
 
     return (
@@ -223,15 +236,12 @@ const Index = props => {
     );
 };
 
-//API설정
+// API설정
 // Index.getInitialProps = async function () {
-//     const pid = router.query.pid;
-//     const res = await fetch(`http://localhost:3000/p/${pid}`);
-//     const result = await res.json();
 //
-//     console.log(res);
 //
-// }
+// };
+
 
 
 
