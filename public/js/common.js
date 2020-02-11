@@ -14,11 +14,9 @@ $(function(){
     //     console.log(data);
     // });
 
-    $.post("https://firestore.googleapis.com/v1/projects/myxd-247f4/databases/(default)/documents/P-Test/documentId=abcdefg\n", function(data){
-        console.log(data);
-    });
-
-
+    // $.post("https://firestore.googleapis.com/v1/projects/myxd-247f4/databases/(default)/documents/P-Test/documentId=abcdefg\n", function(data){
+    //     console.log(data);
+    // });
 
     // var reqData = {a:1, b:2}
 

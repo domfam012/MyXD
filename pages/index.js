@@ -105,7 +105,7 @@ const Card = props => {
 
 // 메인 페이지
 const Index = props => {
-    console.log(props.data)
+    // console.log(props.data);
     return (
         <Layout page={"index"}>
             <div className={"clearfix"}>
@@ -128,9 +128,12 @@ const Index = props => {
     );
 };
 // API설정
-Index.getInitialProps = async function () {
+Index.getInitialProps = async function (ctx) {
     const res = await fetch('http://localhost:3000/api/board/list/15');
     const result = await res.json();
+
+    // console.log(ctx.router);
+    console.log(ctx.query.page);
 
     // data.typeOf()
     // console.log(result);
