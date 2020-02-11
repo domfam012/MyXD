@@ -1,10 +1,14 @@
 import Head from "next/head";
 import Layout from '../../../include/Layout';
 import { useState, useRef  } from 'react';
+import { useRouter } from 'next/router';
+import fetch from 'isomorphic-unfetch';
 
 const New = props => {
     const [ file, setFile ] = useState('');
     const inputFileEl = useRef(null);
+    const formEl = useRef(null);
+    const router = useRouter();
 
     const onFileUpload = e => {
         const preview = URL.createObjectURL(e.target.files[0]);
@@ -16,6 +20,20 @@ const New = props => {
         e.preventDefault();
         setFile('');
         inputFileEl.current.value = null;
+    };
+
+    const cancelCreate = () => {
+        const check = confirm('작성을 취소하시겠습니까?');
+        if (check) {
+            router.push('/admin/p/list');
+        }
+    };
+
+    const handleCreate = () => {
+        const check = confirm('등록하시겠습니까?');
+        if (check) {
+            fetch('http://localhost:3000/')
+        }
     };
 
     return (
@@ -32,7 +50,7 @@ const New = props => {
 
                         <div className={"row"}>
                             <div className={"col col-sm-12"}>
-                                <form>
+                                <form encType={"multipart/form-data"} ref={formEl}>
 
                                     <div className={"form-group"}>
                                         <div className={"label-area"}>
@@ -88,8 +106,8 @@ const New = props => {
 
                         <div className={"row form-btn"}>
                             <div className={"col col-sm-12 text-center"}>
-                                <a href="#" className={"btn btn-lg btn-outline-lightgray"}>취소</a>
-                                <a href="#" className={"btn btn-lg btn-primary ml-3"}>저장</a>
+                                <a href="#" className={"btn btn-lg btn-outline-lightgray"} onClick={cancelCreate}>취소</a>
+                                <a href="#" className={"btn btn-lg btn-primary ml-3"} onClick={handleCreate}>저장</a>
                             </div>
                         </div>
 

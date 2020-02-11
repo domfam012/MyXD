@@ -1,10 +1,12 @@
 import Head from "next/head";
 import Layout from '../../../include/Layout';
-import Pagination from "../../../components/Pagination";
 import Link from 'next/link';
 import { useRouter } from "next/router";
 import { useState } from "react";
 import fetch from "isomorphic-unfetch";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faChevronDoubleRight} from "@fortawesome/pro-solid-svg-icons";
+import Pagination from "react-js-pagination";
 
 const BoxList = props => {
     const { router, item, onDelete } = props;
@@ -156,6 +158,10 @@ const BoxList = props => {
 const List = props => {
     const router = useRouter();
     const [ box, setBox ] = useState(props.data);
+    const [ activePage, setActivePage ] = useState(false);
+    const handlePageChange = (pageNumber) => {
+        router.push(`/admin/p/list?page=${pageNumber}`)
+    };
 
     const handleRemove = pid => {
         console.log('handling remove..')
@@ -199,7 +205,22 @@ const List = props => {
                         </div>
 
                         <div className={"paging"}>
-                            <Pagination/>
+                            <Pagination
+                                activePage={activePage}
+                                itemsCountPerPage={10}
+                                totalItemsCount={450}
+                                pageRangeDisplayed={5}
+                                onChange={handlePageChange}
+                                linkClass="page-link"
+                                innerClass="pagination text-center"
+                                itemClass="page-item"
+                                activeClass="current"
+                                linkClassLast="last"
+                                linkClassNext="next"
+                                linkClassPrev="prev"
+                                linkClassFirst="first"
+                                lastPageText={<FontAwesomeIcon icon={faChevronDoubleRight} />}
+                            />
                         </div>
 
                     </div>
@@ -238,15 +259,21 @@ const List = props => {
                     margin-top: 32px;
                     margin-bottom: 31px;
                 }
+                
+                
+                
             `}</style>
 
         </Layout>
     );
 };
 
-List.getInitialProps = async function() {
-    const res = await fetch("http://localhost:3000/api/board/list/5");
+List.getInitialProps = async (ctx) => {
+    const page = ctx.query.page || '1';
+    const res = await fetch(`http://localhost:3000/api/board/list/5?page=${page}`);
     const result = await res.json();
+
+    console.log(result);
 
     return {
         data: result.data
