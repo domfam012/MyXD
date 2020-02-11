@@ -14,7 +14,7 @@ export default async (req, res) => {
         const db = await loadDB();
 
         // const ref = await db.collection('Posts').post();
-
+console.log(req.body)
         const category = req.body.category;
         const content = req.body.content;
         const imgOriginName = req.body.imgOriginName;
@@ -22,8 +22,8 @@ export default async (req, res) => {
         const imgSaveName = req.body.imgSaveName;
         const link = req.body.link;
         const title= req.body.title;
-        // 받아온 값 타입 && null 체크
 
+        // 받아온 값 타입 && null 체크
         const data = {
             category: category,
             content: content,
@@ -34,9 +34,9 @@ export default async (req, res) => {
             index: 1,
             title: title,
             viewCount: 0,
-            created: firestore.ServerValue.TIMESTAMP
+            created: firestore.FieldValue.serverTimestamp()
         };
-
+        console.log(data);
         const collection = db.collection('Posts');
         await collection.add(data);
 

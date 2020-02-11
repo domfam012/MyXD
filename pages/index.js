@@ -105,7 +105,7 @@ const Card = props => {
 
 // 메인 페이지
 const Index = props => {
-    console.log(props.data)
+    // console.log(props.data)
     return (
         <Layout page={"index"}>
             <div className={"clearfix"}>
@@ -128,10 +128,11 @@ const Index = props => {
     );
 };
 // API설정
-Index.getInitialProps = async function () {
-    const res = await fetch('http://localhost:3000/api/board/list/15');
+Index.getInitialProps = async function (ctx) {
+    const res = await fetch('http://localhost:3000/api/board/list/15?page=1');
     const result = await res.json();
-
+    console.log(ctx.query);
+    // if(ctx.query == ctx.query={page:'1'}) {}
     // data.typeOf()
     // console.log(result);
     // console.log(typeof result);
