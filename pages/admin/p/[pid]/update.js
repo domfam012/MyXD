@@ -1,5 +1,5 @@
 import Head from "next/head";
-import Layout from '../../../include/Layout';
+import Layout from '../../../../include/Layout';
 import { useState, useEffect } from 'react';
 
 const List = props => {
@@ -54,9 +54,7 @@ const List = props => {
                                             <div className="file-label">
                                                 { file === ''
                                                     ? (
-                                                        <a href="#">
-                                                            <label onClick={() => {console.log('clicked')}} htmlFor={"fileUploader"} className={"add text-center"}>+<br/>이미지</label>
-                                                        </a>
+                                                        <label onClick={() => {console.log('clicked')}} htmlFor={"fileUploader"} className={"add text-center"}>+<br/>이미지</label>
                                                     )
                                                     : (
                                                         <div className={"added"}>
