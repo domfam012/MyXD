@@ -14,16 +14,16 @@ export default async (req, res) => {
         const db = await loadDB();
 
         // const ref = await db.collection('Posts').post();
-console.log(req.body)
-        const category = req.body.category;
+
+        const category = 'default';
         const content = req.body.content;
         const imgOriginName = req.body.imgOriginName;
         const imgPath = req.body.imgPath;
         const imgSaveName = req.body.imgSaveName;
         const link = req.body.link;
         const title= req.body.title;
-
         // 받아온 값 타입 && null 체크
+
         const data = {
             category: category,
             content: content,
@@ -36,7 +36,7 @@ console.log(req.body)
             viewCount: 0,
             created: firestore.FieldValue.serverTimestamp()
         };
-        console.log(data);
+
         const collection = db.collection('Posts');
         await collection.add(data);
 
@@ -49,7 +49,7 @@ console.log(req.body)
     } else {
         //
         resData = JSON.stringify({
-            status: 404, msg: ''
+            status: 405, msg: ''
         });
         res.json(resData);
     }
