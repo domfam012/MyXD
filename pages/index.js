@@ -129,12 +129,10 @@ const Index = props => {
 };
 // API설정
 Index.getInitialProps = async function (ctx) {
-    const res = await fetch('http://localhost:3000/api/board/list/15');
+    const res = await fetch('http://localhost:3000/api/board/list/15?page=1');
     const result = await res.json();
-
-    // console.log(ctx.router);
-    console.log(ctx.query.page);
-
+    console.log(ctx.query);
+    // if(ctx.query == ctx.query={page:'1'}) {}
     // data.typeOf()
     // console.log(result);
     // console.log(typeof result);
