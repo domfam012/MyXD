@@ -7,6 +7,7 @@ export default async (req, res) => {
     res.setHeader('Content-Type', 'application/json');
 
     console.log(`req.method : ${req.method}`);
+    console.log(`req.query : ${req.query}`);
 
     const db = await loadDB();
     const collection = await db.collection('Posts');

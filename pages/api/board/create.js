@@ -1,4 +1,4 @@
-import { loadDB } from './../../../lib/js/db';
+import { loadDB, firestore } from './../../../lib/js/db';
 import index from "next/dist/export";
 import moment from 'moment';
 
@@ -15,15 +15,13 @@ export default async (req, res) => {
 
         // const ref = await db.collection('Posts').post();
 
-        const category = req.body.category;
+        const category = 'default';
         const content = req.body.content;
         const imgOriginName = req.body.imgOriginName;
         const imgPath = req.body.imgPath;
         const imgSaveName = req.body.imgSaveName;
         const link = req.body.link;
         const title= req.body.title;
-        const created = moment().format('YYYYMMDDHHmmss');
-
         // 받아온 값 타입 && null 체크
 
         const data = {
@@ -36,7 +34,7 @@ export default async (req, res) => {
             index: 1,
             title: title,
             viewCount: 0,
-            created: ''
+            created: firestore.FieldValue.serverTimestamp()
         };
 
         const collection = db.collection('Posts');
@@ -51,7 +49,7 @@ export default async (req, res) => {
     } else {
         //
         resData = JSON.stringify({
-            status: 404, msg: ''
+            status: 405, msg: ''
         });
         res.json(resData);
     }

@@ -3,13 +3,17 @@ import Layout from '../../../include/Layout';
 import Pagination from "../../../components/Pagination";
 import Link from 'next/link';
 import { useRouter } from "next/router";
+import { useState } from "react";
 import fetch from "isomorphic-unfetch";
 
 const BoxList = props => {
+    const { router, item, onDelete } = props;
+    const pid = item.pid;
+
     const deleteItem = () => {
         const check = confirm('해당 글을 삭제하시겠습니까?');
         if (check) {
-            fetch(`http://localhost:3000/api/board/post/${props.pid}`, {
+            fetch(`http://localhost:3000/api/board/post/${pid}`, {
                 method: 'DELETE',
                 headers: {
                     'Accept': 'application/json',
@@ -17,10 +21,16 @@ const BoxList = props => {
                     'Content-Type': 'application/json'
                 }
             }).then(function (json) {
-                // 일단 db 제대로 값 지워지는지만 확인함
-                alert('good')
+                alert('삭제 되었습니다.');
+                onDelete(pid);
 
-                // /admin/p/list 로 이동이 아니라.. 현재 페이지에서 해당 박스리스트만 삭제 되도록!(state 로 관리)
+                /**
+                 *  삭제시 아이템이 줄어들기만함..
+                 *  (화면 내에 아이템 개수 줄어드는 상태)
+                 *  페이지 리로드로 해야될듯..?
+                 *
+                 */
+
             }).catch(function(err){
                 console.log(err);
             });
@@ -30,22 +40,7 @@ const BoxList = props => {
     const updateItem = () => {
         const check = confirm('해당 글을 수정하시겠습니까?');
         if (check) {
-            fetch('localhost:3000/api/board/post/${pid}', {
-                method: 'UPDATE',
-                headers: {
-                    // 없이 되는지 테스트!!!
-                    // 'Accept': 'application/json',
-                    // 'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    email: email,
-                    password: password
-                })
-            }).then(function (json) {
-                props.router.push(`/admin/p/update/${props.pid}`);
-            }).catch(function(err){
-                console.log(err);
-            });
+            router.push(`/admin/p/${pid}/update`);
         }
     };
 
@@ -53,21 +48,21 @@ const BoxList = props => {
         <div className={"box-list"}>
             <div className={"item row"}>
                 <div className={"col item-box-1"}>
-                    <img className={"img-list"} src={"/img/main/main_02.png"}/>
+                    <img className={"img-list"} src={ item.imgPath }/>
                 </div>
                 <div className={"col item-box-2"}>
                     <div className={"list-title"}>
-                        { props.title }
+                        { item.title }
                     </div>
 
                     <p className={"list-content"}>
-                        { props.content }
+                        { item.content }
                     </p>
 
                 </div>
                 <div className={"col item-box-3"}>
-                    <button className={"btn-sm btn-gray-7 mr-3"} onClick={() => deleteItem()}>삭제</button>
-                    <button className={"btn-sm btn-primary"} onClick={() => updateItem}>편집</button>
+                    <button className={"btn-sm btn-gray-7 mr-3"} onClick={deleteItem}>삭제</button>
+                    <button className={"btn-sm btn-primary"} onClick={updateItem}>편집</button>
                 </div>
             </div>
 
@@ -160,7 +155,13 @@ const BoxList = props => {
 
 const List = props => {
     const router = useRouter();
-    console.log(router);
+    const [ box, setBox ] = useState(props.data);
+
+    const handleRemove = pid => {
+        console.log('handling remove..')
+        const newBox = box.filter(item => item.pid !== pid);
+        setBox(newBox);
+    };
 
     return (
         <Layout>
@@ -178,13 +179,12 @@ const List = props => {
                             <div className={"col pl-0 pr-0"}>
 
                                 {
-                                    props.data.map(item => (
+                                    box.map(item => (
                                         <BoxList
                                             key={item.pid}
-                                            pid={item.pid}
-                                            title={item.title}
-                                            content={item.content}
                                             router={router}
+                                            item={item}
+                                            onDelete={handleRemove}
                                         />
                                     ))
                                 }

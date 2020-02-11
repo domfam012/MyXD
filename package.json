@@ -13,6 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@fortawesome/fontawesome-pro": "^5.12.1",
     "@fortawesome/fontawesome-svg-core": "^1.2.26",
     "@fortawesome/free-solid-svg-icons": "^5.12.0",
     "@fortawesome/react-fontawesome": "^0.1.8",
@@ -29,7 +30,7 @@
     "next": "^9.2.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "react-hamburger-menu": "^1.1.1",
+    "react-js-pagination": "^3.0.2",
     "react-preview-file": "^0.1.3"
   }
 }

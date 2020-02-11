@@ -1,18 +1,22 @@
 import Head from "next/head";
 import Layout from '../../../include/Layout';
-import { useState, useEffect } from 'react';
+import { useState, useRef  } from 'react';
 
-const List = props => {
+const New = props => {
     const [ file, setFile ] = useState('');
+    const inputFileEl = useRef(null);
 
     const onFileUpload = e => {
         const preview = URL.createObjectURL(e.target.files[0]);
         setFile(preview);
+        inputFileEl.current.focus();
     };
 
-    useEffect(() => {
-
-    });
+    const fileRemove = e => {
+        e.preventDefault();
+        setFile('');
+        inputFileEl.current.value = null;
+    };
 
     return (
         <Layout>
@@ -54,19 +58,19 @@ const List = props => {
                                             <div className="file-label">
                                                 { file === ''
                                                     ? (
-                                                        <a href="#">
-                                                            <label onClick={() => {console.log('clicked')}} htmlFor={"fileUploader"} className={"add text-center"}>+<br/>이미지</label>
-                                                        </a>
+                                                        <label htmlFor={"fileUploader"} className={"add text-center"}>+<br/>이미지</label>
                                                     )
                                                     : (
                                                         <div className={"added"}>
                                                             <img src={file} alt="업로드 이미지"/>
-                                                            <a href="#" className="btn-close"></a>
+                                                            <a href="#" className="btn-close" onClick={e => fileRemove(e)}></a>
                                                         </div>
                                                     )
                                                 }
                                             </div>
-                                            <input type="file" id="fileUploader" className="form-control-file" onChange={e => onFileUpload(e)}/>
+                                            <input type="file" id="fileUploader" className="form-control-file"
+                                                   ref={inputFileEl}
+                                                   onChange={e => onFileUpload(e)}/>
                                             {/*<input type="file" id="fileUploader" className="form-control-file" onChange={this.onChange}/>*/}
                                         </div>
                                     </div>
@@ -177,4 +181,4 @@ const List = props => {
     );
 };
 
-export default List;
+export default New;

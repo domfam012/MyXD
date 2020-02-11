@@ -116,7 +116,7 @@ Index.getInitialProps = async function () {
     // console.log(result);
     // console.log(typeof result);
 
-    console.log(`Show data fetched. Count: ${result.data.length}`);
+    // console.log(`Show data fetched. Count: ${result.data.length}`);
 
     return {
         data: result.data
