@@ -6,6 +6,7 @@ import { createContext, useContext, useEffect, useState } from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faThumbsUp } from '@fortawesome/free-solid-svg-icons'
+import { faChevronDoubleRight } from '@fortawesome/pro-solid-svg-icons'
 import Link from "next/link";
 
 const linkStyle = {
@@ -95,6 +96,7 @@ const Test = props => {
             <h1 className="example">Test Page</h1>
 
             <FontAwesomeIcon icon={faThumbsUp} />
+            <FontAwesomeIcon icon={faChevronDoubleRight} />
 
             <button className={"btn btn-warning disabled text-white"} onClick={refresh}>refresh</button>
             <ul>
