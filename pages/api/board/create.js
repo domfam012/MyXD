@@ -1,4 +1,4 @@
-import { loadDB } from './../../../lib/js/db';
+import { loadDB, firestore } from './../../../lib/js/db';
 import index from "next/dist/export";
 import moment from 'moment';
 
@@ -22,8 +22,6 @@ export default async (req, res) => {
         const imgSaveName = req.body.imgSaveName;
         const link = req.body.link;
         const title= req.body.title;
-        const created = moment().format('YYYYMMDDHHmmss');
-
         // 받아온 값 타입 && null 체크
 
         const data = {
@@ -36,7 +34,7 @@ export default async (req, res) => {
             index: 1,
             title: title,
             viewCount: 0,
-            created: ''
+            created: firestore.ServerValue.TIMESTAMP
         };
 
         const collection = db.collection('Posts');

@@ -48,10 +48,8 @@ export default async (req, res) => {
                 imgPath: imgPath,
                 imgSaveName: imgSaveName,
                 link: link,
-                index: 1,
                 title: title,
-                viewCount: 0,
-                updated: ''
+                updated: updated
             };
 
             await doc.update(newData);
