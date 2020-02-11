@@ -3,36 +3,63 @@ import Layout from '../../../include/Layout';
 import { useState, useRef  } from 'react';
 import { useRouter } from 'next/router';
 import fetch from 'isomorphic-unfetch';
+import serialize from 'form-serialize';
 
 const New = props => {
+    const [ title, setTitle ] = useState('');
+    const [ content, setContent ] = useState('');
     const [ file, setFile ] = useState('');
+    const [ link, setLink ] = useState('');
     const inputFileEl = useRef(null);
-    const formEl = useRef(null);
     const router = useRouter();
 
+    const titleChange = e => {
+        setTitle(e.target.value);
+    };
+    const contentChange = e => {
+        setContent(e.target.value);
+    };
     const onFileUpload = e => {
         const preview = URL.createObjectURL(e.target.files[0]);
         setFile(preview);
         inputFileEl.current.focus();
     };
-
     const fileRemove = e => {
         e.preventDefault();
         setFile('');
         inputFileEl.current.value = null;
     };
-
-    const cancelCreate = () => {
+    const linkChange = e => {
+        setLink(e.target.value);
+    };
+    const cancelSubmit = () => {
         const check = confirm('작성을 취소하시겠습니까?');
         if (check) {
             router.push('/admin/p/list');
         }
     };
+    const handleSubmit = (e) => {
+        e.preventDefault();
 
-    const handleCreate = () => {
+        /**
+         *  data check here
+         */
+
         const check = confirm('등록하시겠습니까?');
         if (check) {
-            fetch('http://localhost:3000/')
+            fetch('http://localhost:3000/api/board/create', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Headers': 'content-type',
+                    'Content-Type': 'application/json'
+                },
+                body : JSON.stringify({ title, content, link })
+            }).then(json => {
+                alert('done');
+            }).catch(err => {
+                console.log(err);
+            })
         }
     };
 
@@ -50,14 +77,16 @@ const New = props => {
 
                         <div className={"row"}>
                             <div className={"col col-sm-12"}>
-                                <form encType={"multipart/form-data"} ref={formEl}>
+                                <form encType={"multipart/form-data"} onSubmit={e => handleSubmit(e)}>
 
                                     <div className={"form-group"}>
                                         <div className={"label-area"}>
                                             <label className="col-form-label">제목</label>
                                         </div>
                                         <div className={"input-area"}>
-                                            <input type="text" className="form-control" placeholder={"제목을 입력하세요."} maxLength="50"/>
+                                            <input type="text" className="form-control" placeholder={"제목을 입력하세요."} maxLength="50"
+                                                   onChange={titleChange}
+                                            />
                                         </div>
                                     </div>
                                     <div className={"form-group"}>
@@ -65,7 +94,9 @@ const New = props => {
                                             <label className="col-form-label" style={{"lineHeight":"20.4"}}>내용</label>
                                         </div>
                                         <div className={"input-area"}>
-                                            <textarea className="form-control" placeholder={"내용을 입력하세요."} maxLength={"1000"}/>
+                                            <textarea className="form-control" placeholder={"내용을 입력하세요."} maxLength={"1000"}
+                                                      onChange={contentChange}
+                                            />
                                         </div>
                                     </div>
                                     <div className={"form-group"}>
@@ -81,14 +112,14 @@ const New = props => {
                                                     : (
                                                         <div className={"added"}>
                                                             <img src={file} alt="업로드 이미지"/>
-                                                            <a href="#" className="btn-close" onClick={e => fileRemove(e)}></a>
+                                                            <a href="#" className="btn-close" onClick={fileRemove}></a>
                                                         </div>
                                                     )
                                                 }
                                             </div>
                                             <input type="file" id="fileUploader" className="form-control-file"
                                                    ref={inputFileEl}
-                                                   onChange={e => onFileUpload(e)}/>
+                                                   onChange={onFileUpload}/>
                                             {/*<input type="file" id="fileUploader" className="form-control-file" onChange={this.onChange}/>*/}
                                         </div>
                                     </div>
@@ -97,19 +128,23 @@ const New = props => {
                                             <label className="col-form-label">링크</label>
                                         </div>
                                         <div className={"input-area"}>
-                                            <input type="text" className="form-control" placeholder={"링크를 입력하세요."} maxLength="250"/>
+                                            <input type="text" className="form-control" placeholder={"링크를 입력하세요."} maxLength="250"
+                                                   onChange={linkChange}
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <div className={"row form-btn"}>
+                                        <div className={"col col-sm-12 text-center"}>
+                                            <button href="#" className={"btn btn-lg btn-outline-lightgray"} onClick={cancelSubmit}>취소</button>
+                                            <button href="#" type={"submit"} className={"btn btn-lg btn-primary ml-3"}>저장</button>
                                         </div>
                                     </div>
                                 </form>
                             </div>
                         </div>
 
-                        <div className={"row form-btn"}>
-                            <div className={"col col-sm-12 text-center"}>
-                                <a href="#" className={"btn btn-lg btn-outline-lightgray"} onClick={cancelCreate}>취소</a>
-                                <a href="#" className={"btn btn-lg btn-primary ml-3"} onClick={handleCreate}>저장</a>
-                            </div>
-                        </div>
+
 
                     </div>
                 </div>

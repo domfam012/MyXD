@@ -1,15 +1,21 @@
 import Head from "next/head";
 import Layout from '../../include/Layout';
 import Aside from '../../include/Aside';
-import Pagination from "../../components/Pagination";
 import { useRouter } from "next/router";
 import fetch from 'isomorphic-unfetch'
 import Link from "next/link";
 import React from "react";
-
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faChevronDoubleRight} from "@fortawesome/pro-solid-svg-icons";
+import Pagination from "react-js-pagination";
+import { useState } from "react";
 
 //상세페이지
 const Detail = props => {
+    const [ activePage, setActivePage ] = useState(false);
+    const handlePageChange = (pageNumber) => {
+        router.push(`/admin/p/list?page=${pageNumber}`)
+    };
 
     console.log(props.data);
 
@@ -71,7 +77,24 @@ const Detail = props => {
                             </div>
                         </div>
                     </div>
-                    <Pagination/>
+                    <div className={"paging"}>
+                        <Pagination
+                            activePage={activePage}
+                            itemsCountPerPage={10}
+                            totalItemsCount={450}
+                            pageRangeDisplayed={5}
+                            onChange={handlePageChange}
+                            linkClass="page-link"
+                            innerClass="pagination text-center"
+                            itemClass="page-item"
+                            activeClass="current"
+                            linkClassLast="last"
+                            linkClassNext="next"
+                            linkClassPrev="prev"
+                            linkClassFirst="first"
+                            lastPageText={<FontAwesomeIcon icon={faChevronDoubleRight} />}
+                        />
+                    </div>
                 </div>
                 <Aside/>
             </div>
@@ -229,9 +252,14 @@ Detail.getInitialProps = async ctx => {
     const res = await fetch(`http://localhost:3000/api/board/post/${pid}`);
     const result = await res.json();
 
-    console.log("API연결 결과"+ JSON.stringify(result));
+    switch(result.status){
+        case 404 :
+            console.log('not found');
+            break;
+    }
 
     return{
+
         data: result.data
     }
 };

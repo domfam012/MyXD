@@ -23,6 +23,7 @@ const BoxList = props => {
                     'Content-Type': 'application/json'
                 }
             }).then(function (json) {
+
                 alert('삭제 되었습니다.');
                 onDelete(pid);
 
