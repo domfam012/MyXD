@@ -1,15 +1,21 @@
 import Layout from '../include/Layout';
 import Aside from '../include/Aside';
-import Pagination from "../components/Pagination";
+import { useState } from 'react';
+// import Pagination from "../components/Pagination";
 import Link from "next/link";
-import React from "react";
+import { useRouter } from "next/router";
+import Pagination from "react-js-pagination";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+// import { faChevronLeft} from '@fortawesome/pro-solid-svg-icons'
+// import { faChevronRight } from '@fortawesome/pro-solid-svg-icons'
+// import { chevronDoubleleft } from '@fortawesome/pro-solid-svg-icons'
 
 // card 컴포넌트
 const Card = props => {
     return (
         <Link href={"/p/pid.js"}>
             <div className={"main_card"}>
-                <div className={"img"}><img src="/img/main/main_01.png" alt=""/></div>
+                <div className={"img"}><img src={props.imgPath} alt="temp"/></div>
                 <div className={"box_text"}>
                     <div className={"title"}>{props.title}</div>
                     <div className={"text"}>
@@ -105,17 +111,41 @@ const Card = props => {
 
 // 메인 페이지
 const Index = props => {
-    // console.log(props.data);
+    // console.log(props.data)
+    const [ activePage, setActivePage ] = useState(false);
+
+    const router = useRouter();
+
+    const handlePageChange = (pageNumber) => {
+        router.push(`/?page=${pageNumber}`)
+    };
+
     return (
         <Layout page={"index"}>
             <div className={"clearfix"}>
                 <div className={"box-left"}>
                     {
                         props.data.map(item => (
-                            <Card key={item.pid} title={item.title} content={item.content}/>
+                            <Card key={item.pid} title={item.title} content={item.content} imgPath={item.imgPath}/>
                         ))
                     }
-                    <Pagination/>
+                    <div className={"nav"}>
+                        <Pagination
+                            activePage={activePage}
+                            itemsCountPerPage={10}
+                            totalItemsCount={450}
+                            pageRangeDisplayed={5}
+                            onChange={handlePageChange}
+                            linkClass="page-link"
+                            innerClass="pagination text-center"
+                            itemClass="page-item"
+                            activeClass="current"
+                            linkClassLast="last"
+                            linkClassNext="next"
+                            linkClassPrev="prev"
+                            linkClassFirst="first"
+                        />
+                    </div>
                 </div>
                 <Aside/>
             </div>
@@ -123,19 +153,23 @@ const Index = props => {
                 .box-left {
                     float: left;
                 }
+                .nav {
+                    width: 100%;
+                    margin-top: 30px;
+                    margin-bottom: 70px;
+                }
             `}</style>
         </Layout>
     );
 };
+
+
+
 // API설정
 Index.getInitialProps = async function (ctx) {
     const res = await fetch('http://localhost:3000/api/board/list/15?page=1');
     const result = await res.json();
 
-    // console.log(ctx.query);
-    console.log(result);
-
-    // if(ctx.query == ctx.query={page:'1'}) {}
     // data.typeOf()
     // console.log(result);
     // console.log(typeof result);
