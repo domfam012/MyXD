@@ -1,19 +1,24 @@
 import Head from "next/head";
 import Layout from '../../../../include/Layout';
-import { useState, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import Index from "../../../index";
 
 const Update = props => {
-    const [ file, setFile ] = useState('');
+    const [ data, setData ] = useState(props.data);
+    const [ file, setFile ] = useState(props.data.imgPath); // data 에서 받아와야됨
+    const inputFileEl = useRef(null);
 
     const onFileUpload = e => {
         const preview = URL.createObjectURL(e.target.files[0]);
         setFile(preview);
+        inputFileEl.current.focus();
     };
 
-    useEffect(() => {
-
-    });
+    const fileRemove = e => {
+        e.preventDefault();
+        setFile('');
+        inputFileEl.current.value = null;
+    };
 
     return (
         <Layout>
@@ -36,7 +41,9 @@ const Update = props => {
                                             <label className="col-form-label">제목</label>
                                         </div>
                                         <div className={"input-area"}>
-                                            <input type="text" className="form-control" placeholder={"제목을 입력하세요."} maxLength="50"/>
+                                            <input type="text" className="form-control" placeholder={"제목을 입력하세요."} maxLength="50"
+                                                   value={data.title}
+                                            />
                                         </div>
                                     </div>
                                     <div className={"form-group"}>
@@ -44,7 +51,9 @@ const Update = props => {
                                             <label className="col-form-label" style={{"lineHeight":"20.4"}}>내용</label>
                                         </div>
                                         <div className={"input-area"}>
-                                            <textarea className="form-control" placeholder={"내용을 입력하세요."} maxLength={"1000"}/>
+                                            <textarea className="form-control" placeholder={"내용을 입력하세요."} maxLength={"1000"}
+                                                      value={data.content}
+                                            />
                                         </div>
                                     </div>
                                     <div className={"form-group"}>
@@ -55,17 +64,19 @@ const Update = props => {
                                             <div className="file-label">
                                                 { file === ''
                                                     ? (
-                                                        <label onClick={() => {console.log('clicked')}} htmlFor={"fileUploader"} className={"add text-center"}>+<br/>이미지</label>
+                                                        <label htmlFor={"fileUploader"} className={"add text-center"}>+<br/>이미지</label>
                                                     )
                                                     : (
                                                         <div className={"added"}>
                                                             <img src={file} alt="업로드 이미지"/>
-                                                            <a href="#" className="btn-close"></a>
+                                                            <a href="#" className="btn-close" onClick={e => fileRemove(e)}></a>
                                                         </div>
                                                     )
                                                 }
                                             </div>
-                                            <input type="file" id="fileUploader" className="form-control-file" onChange={e => onFileUpload(e)}/>
+                                            <input type="file" id="fileUploader" className="form-control-file"
+                                                   ref={inputFileEl}
+                                                   onChange={e => onFileUpload(e)}/>
                                             {/*<input type="file" id="fileUploader" className="form-control-file" onChange={this.onChange}/>*/}
                                         </div>
                                     </div>
@@ -74,7 +85,9 @@ const Update = props => {
                                             <label className="col-form-label">링크</label>
                                         </div>
                                         <div className={"input-area"}>
-                                            <input type="text" className="form-control" placeholder={"링크를 입력하세요."} maxLength="250"/>
+                                            <input type="text" className="form-control" placeholder={"링크를 입력하세요."} maxLength="250"
+                                                   value={data.link}
+                                            />
                                         </div>
                                     </div>
                                 </form>
@@ -144,12 +157,19 @@ const Update = props => {
                     color: #96959a;
                 }
                 .file-label .added {
-                    width: 100%;
-                    margin: auto;
+                    position: relative;
+                    width: 319px;
+                    height: 180px;
+                    overflow: hidden;
                 }
                 .file-label .added img {
-                    width: 100%;
-                    height: 100%;
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    max-width: 100%;
+                    max-height: 100%;
+                    width: auto;
+                    height: auto;
                 }
                 .file-label .added .btn-close {
                     position: absolute;
@@ -177,7 +197,8 @@ const Update = props => {
 };
 
 Update.getInitialProps = async function (ctx) {
-    const res = await fetch('http://localhost:3000/api/board/list/15');
+    const pid = ctx.query.pid;
+    const res = await fetch(`http://localhost:3000/api/board/post/${pid}`);
     const result = await res.json();
 
     // data.typeOf()
