@@ -31,13 +31,29 @@ const Login  = props => {
         if(!chkEmail(email)){
             alert('정확한 Email을 입력하세요')
         }
-
-        if(chkEmail() === true){
+        else{
             fetch(`http://localhost:3000/api/user/login`, {
-                email: email,
-                password: password
-            })
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Headers': 'content-type',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    // Validation data coming from a form usually
+                    email: email,
+                    password: password
+                })
+            }).then(function (res) {
+
+                console.log(res);
+
+
+            }).catch(function(err){
+                console.log(err);
+            });
         }
+
 
 
     }
