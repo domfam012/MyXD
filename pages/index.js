@@ -1,14 +1,16 @@
 import Layout from '../include/Layout';
 import Aside from '../include/Aside';
-import { useState } from 'react';
+import React, { useState } from 'react';
 // import Pagination from "../components/Pagination";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Pagination from "react-js-pagination";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChevronDoubleRight } from '@fortawesome/pro-solid-svg-icons'
-// import { faChevronDoubleRight } from '@fortawesome/pro-solid-svg-icons'
-// import { chevronDoubleleft } from '@fortawesome/pro-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronDoubleRight } from '@fortawesome/pro-solid-svg-icons';
+import { faChevronDoubleLeft } from '@fortawesome/pro-solid-svg-icons';
+import { faChevronLeft } from '@fortawesome/pro-solid-svg-icons';
+import { faChevronRight } from '@fortawesome/pro-solid-svg-icons';
+
 
 // card 컴포넌트
 const Card = props => {
@@ -144,6 +146,9 @@ const Index = props => {
                             linkClassNext="next"
                             linkClassPrev="prev"
                             linkClassFirst="first"
+                            firstPageText={<FontAwesomeIcon icon={faChevronDoubleLeft} />}
+                            prevPageText={<FontAwesomeIcon icon={faChevronLeft} />}
+                            nextPageText={<FontAwesomeIcon icon={faChevronRight} />}
                             lastPageText={<FontAwesomeIcon icon={faChevronDoubleRight} />}
                         />
                     </div>
