@@ -90,7 +90,67 @@ a:focus, a:active, button:focus, button:active, input:focus, input:active {
     margin-top: 0;
 }
 /*
- reset.css
+pagination
+*/
+.pagination {
+    margin: 0 auto;
+}
+.page-link {
+    border: none;
+    background-color: transparent;
+    color: #b7b7b7;
+    line-height: 15px;
+    outline: none;
+    padding: 0.5rem 6px;
+}
+.page-link.first {
+    padding-right: 0;
+    margin-right: 3px;
+}
+.page-link.prev {
+    margin-right: 11px;
+}
+.page-link.next {
+    margin-left: 11px;
+}
+.page-link.last {
+    padding-left: 0;
+    margin-left: 3px;
+}
+.page-link.first{
+    display: block;
+    width: 12px;
+    height: 16px;
+    background: url("/img/common/chevron-double-left.btn") no-repeat;
+}
+.page-link.prev{
+
+}
+.page-link.next{
+
+}
+.page-link.last {
+
+}
+.page-link:hover, .page-link:active {
+    color: var(--primary);
+    font-weight: bold;
+}
+.page-link:active, .page-link:focus {
+    outline: 0;
+    box-shadow: unset;
+}
+.page-item.disabled .page-link {
+    background: transparent;
+    color: #bebebe;
+    border-color: transparent;
+}
+.page-link:hover, .page-link:active {
+    background: transparent;
+    border-color: transparent;
+}
+/*
+ reset
 */
 *,
 *::before,

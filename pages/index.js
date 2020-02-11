@@ -5,6 +5,10 @@ import { useState } from 'react';
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Pagination from "react-js-pagination";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faChevronLeft} from '@fortawesome/pro-solid-svg-icons'
+import { faChevronRight } from '@fortawesome/pro-solid-svg-icons'
+import { chevronDoubleleft } from '@fortawesome/pro-solid-svg-icons'
 
 // card 컴포넌트
 const Card = props => {
@@ -125,19 +129,34 @@ const Index = props => {
                             <Card key={item.pid} title={item.title} content={item.content} imgPath={item.imgPath}/>
                         ))
                     }
-                   <Pagination
-                       activePage={activePage}
-                       itemsCountPerPage={10}
-                       totalItemsCount={450}
-                       pageRangeDisplayed={5}
-                       onChange={handlePageChange}
-                   />
+                    <div className={"nav"}>
+                        <Pagination
+                            activePage={activePage}
+                            itemsCountPerPage={10}
+                            totalItemsCount={450}
+                            pageRangeDisplayed={5}
+                            onChange={handlePageChange}
+                            linkClass="page-link"
+                            innerClass="pagination text-center"
+                            itemClass="page-item"
+                            activeClass="current"
+                            linkClassLast="last"
+                            linkClassNext="next"
+                            linkClassPrev="prev"
+                            linkClassFirst="first"
+                        />
+                    </div>
                 </div>
                 <Aside/>
             </div>
             <style jsx>{`
                 .box-left {
                     float: left;
+                }
+                .nav {
+                    width: 100%;
+                    margin-top: 30px;
+                    margin-bottom: 70px;
                 }
             `}</style>
         </Layout>

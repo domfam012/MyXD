@@ -7,10 +7,9 @@ export default async (req, res) => {
     res.setHeader('Access-Control-Allow-Headers', 'content-type');
     res.setHeader('Content-Type', 'application/json');
 
-    console.log(`req.method : ${req.method}`);
-
     const { query: { pid } } = req;
     console.log(pid);
+    console.log(req.query);
 
     const db = await loadDB();
     const doc = await db.collection('Posts').doc(pid);

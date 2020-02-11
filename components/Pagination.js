@@ -3,11 +3,13 @@ const Pagination = props => (
         <div>
             <nav className={"nav"} aria-label="Page navigation example">
                 <ul className="pagination">
-                    <li className="page-item" id={"first"}>
-                        <a className="page-link first" href="#" aria-label="Previous">
-                            <span aria-hidden="true"><i className={"icon icon-double-left"}></i></span>
-                        </a>
-                    </li>
+                    <Link href={"/?page=1"}>
+                        <li className="page-item">
+                            <a className="page-link first" href="#" aria-label="Previous">
+                                <span aria-hidden="true"><i className={"icon icon-double-left"}></i></span>
+                            </a>
+                        </li>
+                    </Link>
                     <li className="page-item" id={"prev"}>
                         <a className="page-link prev" href="#" aria-label="Previous">
                             <span aria-hidden="true"><i className={"icon icon-left"}></i></span>
@@ -30,11 +32,7 @@ const Pagination = props => (
                 </ul>
             </nav>
             <style jsx>{`
-               .nav {
-                    width: 100%;
-                    margin-top: 30px;
-                    margin-bottom: 70px;
-                }
+               
                .pagination {
                     margin: 0 auto;
                }
