@@ -159,7 +159,16 @@ const Header = props => {
               .navbar-toggler-icon {
                 display: none;
               }
-
+               @media (max-width: 1350px) {
+                .navbar{
+                    width: 100%;
+                    min-width: 576px;
+                    height: 70px;
+                    padding: 0 124px;
+                    background: #2e001f;
+                    color: #fff;
+                }
+              }
               @media (max-width: 1199px) {
                 .navbar {
                     padding: 0;
@@ -340,6 +349,7 @@ const Header = props => {
                   outline: none;
                 }
               }
+             
               @media (max-width: 760px) {
                  .navbar {
                     padding: 0;
