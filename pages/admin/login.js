@@ -2,7 +2,22 @@ import Head from "next/head";
 import Layout from '../../include/Layout';
 import React from "react";
 
-const Login = props => {
+const Login  = props => {
+
+    handleEmailChange(e){
+        this.setState({email:e.target.value})
+    }
+    handlePasswordChange(e){
+        this.setState({password:e.target.value})
+    }
+
+    //API 요청
+    //function() req(email, password) to api
+    const reqLogin = (email,password) => {
+        const email =
+    }
+
+
     return (
         <Layout>
             <Head>
@@ -16,9 +31,9 @@ const Login = props => {
                         <span className="underline"></span>
                     </div>
 
-                    <form>
-                        <input type="text" placeholder={"아이디를 입력해주세요."} maxLength="20"/>
-                        <input type="password" placeholder={"비밀번호를 입력해주세요."} maxLength="24"/>
+                    <form name={"login-form"}>
+                        <input name={"login-email"} onChange={this.handleEmailChange} type="text" placeholder={"E-mail를 입력해주세요."} maxLength="20"/>
+                        <input name={"login-password"} onChange={this.handlePasswordChange} type="password" placeholder={"비밀번호를 입력해주세요."} maxLength="24"/>
                     </form>
 
                     <div className="text-center">
@@ -105,9 +120,6 @@ const Login = props => {
     );
 };
 
-//API 요청
-//function() req(email, password) to api
-//
 
 
 export default Login;
