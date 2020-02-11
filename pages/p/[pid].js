@@ -27,4 +27,16 @@ const Post = props => {
     );
 };
 
+Post.getInitialProps = async (ctx) => {
+    console.log(`ctx.pathname: ${ctx.pathname}`)
+    const q = ctx.query
+
+    console.log(`ctx.query: ${JSON.stringify(q)}`)
+    console.log(`ctx.asPath: ${ctx.asPath}`)
+    console.log(`ctx.err: ${ctx.err}`)
+
+    return {a:1}
+
+}
+
 export default Post;

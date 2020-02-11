@@ -2,6 +2,7 @@ import Layout from '../include/Layout';
 import Aside from '../include/Aside';
 import Pagination from "../components/Pagination";
 import Link from "next/link";
+import fetch from "isomorphic-unfetch";
 
 // card 컴포넌트
 const Card = props => {
