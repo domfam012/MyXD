@@ -5,7 +5,7 @@ const Pagination = props => (
         <div>
             <nav className={"nav"} aria-label="Page navigation example">
                 <ul className="pagination">
-                    <li className="page-item">
+                    <li className="page-item" onClick={""}>
                         <a className="page-link first" href="#" aria-label="Previous">
                             <span aria-hidden="true"><i className={"icon icon-double-left"}></i></span>
                         </a>
