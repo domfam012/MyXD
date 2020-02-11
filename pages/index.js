@@ -6,9 +6,9 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import Pagination from "react-js-pagination";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import { faChevronLeft} from '@fortawesome/pro-solid-svg-icons'
-// import { faChevronRight } from '@fortawesome/pro-solid-svg-icons'
-// import { chevronDoubleleft } from '@fortawesome/pro-solid-svg-icons'
+import { faChevronLeft} from '@fortawesome/pro-solid-svg-icons'
+import { faChevronRight } from '@fortawesome/pro-solid-svg-icons'
+import { chevronDoubleleft } from '@fortawesome/pro-solid-svg-icons'
 
 // card 컴포넌트
 const Card = props => {
