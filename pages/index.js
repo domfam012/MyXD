@@ -131,7 +131,10 @@ const Index = props => {
 Index.getInitialProps = async function (ctx) {
     const res = await fetch('http://localhost:3000/api/board/list/15?page=1');
     const result = await res.json();
-    console.log(ctx.query);
+
+    // console.log(ctx.query);
+    console.log(result);
+
     // if(ctx.query == ctx.query={page:'1'}) {}
     // data.typeOf()
     // console.log(result);
