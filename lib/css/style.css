@@ -60,6 +60,14 @@ a:focus, a:active, button:focus, button:active, input:focus, input:active {
 .list-container {
     padding: 70px 6px 0;
 }
+@media (max-width: 1350px) {
+    .container {
+        width: 1184px;
+        min-width: 980px;
+        margin: 0 auto;
+        padding: 70px 12px 0;
+    }
+}
 @media (max-width: 1200px) {
     .container {
         width: 768px;
@@ -67,6 +75,7 @@ a:focus, a:active, button:focus, button:active, input:focus, input:active {
         padding: 30px 30px 0;
     }
 }
+
 @media (min-width: 760px) and (max-width: 768px)  {
     .container {
         width: 708px;

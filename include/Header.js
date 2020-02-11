@@ -340,6 +340,16 @@ const Header = props => {
                   outline: none;
                 }
               }
+              @media (max-width: 1350px) {
+                .navbar{
+                    width: 100%;
+                    min-width: 1000px;
+                    height: 70px;
+                    padding: 0 124px;
+                    background: #2e001f;
+                    color: #fff;
+                }
+              }
               @media (max-width: 760px) {
                  .navbar {
                     padding: 0;
