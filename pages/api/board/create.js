@@ -15,7 +15,7 @@ export default async (req, res) => {
 
         // const ref = await db.collection('Posts').post();
 
-        const category = req.body.category;
+        const category = 'default';
         const content = req.body.content;
         const imgOriginName = req.body.imgOriginName;
         const imgPath = req.body.imgPath;
@@ -34,7 +34,7 @@ export default async (req, res) => {
             index: 1,
             title: title,
             viewCount: 0,
-            created: firestore.ServerValue.TIMESTAMP
+            created: firestore.FieldValue.serverTimestamp()
         };
 
         const collection = db.collection('Posts');
@@ -49,7 +49,7 @@ export default async (req, res) => {
     } else {
         //
         resData = JSON.stringify({
-            status: 404, msg: ''
+            status: 405, msg: ''
         });
         res.json(resData);
     }

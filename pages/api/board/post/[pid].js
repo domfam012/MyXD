@@ -32,14 +32,13 @@ export default async (req, res) => {
 
         case "PATCH" :
             // Update
-            const category = req.body.category;
+            const category = 'default';
             const content = req.body.content;
             const imgOriginName = req.body.imgOriginName;
             const imgPath = req.body.imgPath;
             const imgSaveName = req.body.imgSaveName;
             const link = req.body.link;
             const title= req.body.title;
-            const updated = moment().format('YYYYMMDDHHmmss');
 
             const newData = {
                 category: category,
@@ -49,7 +48,7 @@ export default async (req, res) => {
                 imgSaveName: imgSaveName,
                 link: link,
                 title: title,
-                updated: updated
+                updated: firestore.FieldValue.serverTimestamp()
             };
 
             await doc.update(newData);
