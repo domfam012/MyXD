@@ -1,7 +1,8 @@
 import Head from "next/head";
 import Layout from '../../include/Layout';
+import React from "react";
 
-const List = props => {
+const Login = props => {
     return (
         <Layout>
             <Head>
@@ -104,4 +105,9 @@ const List = props => {
     );
 };
 
-export default List;
+//API 요청
+//function() req(email, password) to api
+//
+
+
+export default Login;
