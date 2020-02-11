@@ -3157,6 +3157,14 @@ fieldset:disabled a.btn {
     border: 2px solid #d5d5d5;
 }
 
+.btn-gray-7:hover {
+    background-color: #6a6969;
+}
+
+.btn-gray-7:focus, .btn-gray-7:active, .btn-gray-7:not(:disabled):not(.disabled):active {
+    background-color: #575757;
+}
+
 .btn-link {
     font-weight: 400;
     color: #116edd;

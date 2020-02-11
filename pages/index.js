@@ -127,7 +127,7 @@ const Index = props => {
         </Layout>
     );
 };
-// API설정
+
 Index.getInitialProps = async function (ctx) {
     const res = await fetch('http://localhost:3000/api/board/list/15');
     const result = await res.json();

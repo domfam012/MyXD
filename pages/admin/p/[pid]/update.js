@@ -1,8 +1,9 @@
 import Head from "next/head";
 import Layout from '../../../../include/Layout';
 import { useState, useEffect } from 'react';
+import Index from "../../../index";
 
-const List = props => {
+const Update = props => {
     const [ file, setFile ] = useState('');
 
     const onFileUpload = e => {
@@ -175,4 +176,18 @@ const List = props => {
     );
 };
 
-export default List;
+Update.getInitialProps = async function (ctx) {
+    const res = await fetch('http://localhost:3000/api/board/list/15');
+    const result = await res.json();
+
+    // data.typeOf()
+    // console.log(result);
+    // console.log(typeof result);
+    // console.log(`Show data fetched. Count: ${result.data.length}`);
+
+    return {
+        data: result.data
+    }
+};
+
+export default Update;
