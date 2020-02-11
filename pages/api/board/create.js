@@ -22,7 +22,7 @@ export default async (req, res) => {
         const imgSaveName = req.body.imgSaveName;
         const link = req.body.link;
         const title= req.body.title;
-        const created = '';
+        const created = moment().format('YYYYMMDDHHmmss');
 
         // 받아온 값 타입 && null 체크
 

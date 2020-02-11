@@ -1,4 +1,5 @@
-import { loadDB } from '../../../../lib/js/db';
+import { loadDB, firestore } from '../../../../lib/js/db';
+import moment from 'moment';
 
 export default async (req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -21,6 +22,11 @@ export default async (req, res) => {
             resData = JSON.stringify({
                 status: 200, msg: 'success', data: ref.data()
             });
+
+            // add view count +1
+            const increment = firestore.FieldValue.increment(1);
+            await doc.update({ viewCount: increment });
+
             res.status(200).json(resData);
             break;
 
@@ -33,10 +39,9 @@ export default async (req, res) => {
             const imgSaveName = req.body.imgSaveName;
             const link = req.body.link;
             const title= req.body.title;
-            const updated = '';
+            const updated = moment().format('YYYYMMDDHHmmss');
 
-
-            const updata = {
+            const newData = {
                 category: category,
                 content: content,
                 imgOriginName: imgOriginName,
@@ -49,7 +54,7 @@ export default async (req, res) => {
                 updated: ''
             };
 
-            await doc.update(updata);
+            await doc.update(newData);
 
             resData = JSON.stringify({
                 status: 200, msg: 'success'

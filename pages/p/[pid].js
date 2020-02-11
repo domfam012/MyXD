@@ -18,7 +18,8 @@ const Post = props => {
 
             <style jsx>{`
                 h1 {
-                    font-color: #333;
+                    color: #333;
+                    font-size: 23px;
                 }
             `}</style>
 

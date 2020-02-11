@@ -27,7 +27,7 @@ export default async (req, res) => {
         res.status(200).send(resData);
     } else {
         //
-        res.json( { status: 405, msg: '' } )
+        res.json( { status: 405, msg: '' } );
     }
 
 
