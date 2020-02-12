@@ -28,15 +28,11 @@ const BoxList = props => {
             }).then(function (json) {
 
                 alert('삭제 되었습니다.');
-                onDelete(pid);
+                // onDelete(pid);
 
-                /**
-                 *  삭제시 아이템이 줄어들기만함..
-                 *  (화면 내에 아이템 개수 줄어드는 상태)
-                 *  페이지 리로드로 해야될듯..?
-                 *
-                 */
-
+                location.reload();
+                // router.push('/admin/p/list');
+                // router.push('/admin/p/list', null, true);
             }).catch(function(err){
                 console.log(err);
             });
