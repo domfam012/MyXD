@@ -1,5 +1,42 @@
+import Link from "next/link";
+
+const Card = props => {
+    return(
+        <Link href={`/p/${props.pid}`}>
+            <a>
+                <div className={"temp"}>
+                    <div className={"img"}>
+                        <img src={props.imgPath} alt="template image"/>
+                    </div>
+                    <div className={"title"}>
+                        <span>{props.title}</span>
+                    </div>
+                    <style jsx>{`
+                    .temp .img {
+                        width: 248px;
+                    }
+                    .temp .img img {
+                        width: 100%;
+                    }
+                    .temp .title {
+                        font-size: 14px;
+                        color: #707070;
+                        padding: 10px 0;
+                    }
+                    `}</style>
+                </div>
+            </a>
+        </Link>
+    )
+};
+
+
+
 const Aside = props => (
     <aside>
+        {
+            console.log(props.asideData)
+        }
         <div className="clearfix">
             <div className="aside">
                 <a href="#">
@@ -9,7 +46,14 @@ const Aside = props => (
                 </a>
                 <div className={"box_temp"}>
                     <div className={"title"}>인기 템플릿</div>
-                    <a href="#">
+
+                    {
+                        props.asideData.map(item => (
+                            <Card key={item.pid} title={item.title} pid={item.pid} imgPath={item.imgPath}/>
+                        ))
+                    }
+
+                    {/*<a href="#">
                         <div className={"temp"}>
                             <div className={"img"}>
                                 <img src="/img/aside/temp_01.png" alt="template image"/>
@@ -38,7 +82,8 @@ const Aside = props => (
                                 <span>Hooked: free UI kit for Adobe XD</span>
                             </div>
                         </div>
-                    </a>
+                    </a>*/}
+
                 </div>
             </div>
         </div>
@@ -74,18 +119,8 @@ const Aside = props => (
             font-weight: bold;
             padding : 20px 0;
           }
-          .aside .temp .img {
-                width: 248px;
-          }
-          .aside .temp .img img {
-                width: 100%;
-          }
-          .aside .temp .title {
-                font-size: 14px;
-                color: #707070;  
-                padding: 10px 0;
-          }
-          
+
+
           @media (max-width: 1200px) {
               .aside {
                 display: none;
@@ -99,5 +134,6 @@ const Aside = props => (
         `}</style>
     </aside>
 );
+
 
 export default Aside;

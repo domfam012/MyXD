@@ -1,14 +1,15 @@
 import Layout from '../include/Layout';
 import Aside from '../include/Aside';
-import { useState } from 'react';
-// import Pagination from "../components/Pagination";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Pagination from "react-js-pagination";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChevronDoubleRight } from '@fortawesome/pro-solid-svg-icons'
-// import { faChevronDoubleRight } from '@fortawesome/pro-solid-svg-icons'
-// import { chevronDoubleleft } from '@fortawesome/pro-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronDoubleRight } from '@fortawesome/pro-light-svg-icons';
+import { faChevronDoubleLeft } from '@fortawesome/pro-light-svg-icons';
+import { faChevronLeft } from '@fortawesome/pro-light-svg-icons';
+import { faChevronRight } from '@fortawesome/pro-light-svg-icons';
+import fetch from "isomorphic-unfetch";
+
 
 // card 컴포넌트
 const Card = props => {
@@ -111,49 +112,56 @@ const Card = props => {
 
 // 메인 페이지
 const Index = props => {
-    // console.log(props.data)
-    const [ activePage, setActivePage ] = useState(15);
-
+    let activePage = props.activePage;
+    // console.log(activePage);
     const router = useRouter();
 
     const handlePageChange = (pageNumber) => {
+        // console.log(`active page is ${pageNumber}`);
         router.push(`/?page=${pageNumber}`)
     };
 
     return (
+
         <Layout page={"index"}>
+            {
+                console.log(activePage)
+            }
             <div className={"clearfix"}>
-                <div className={"box-left"}>
+                <div className={"float-left"}>
                     {
                         props.data.map(item => (
+                            //Card 컴포넌트
                             <Card key={item.pid} title={item.title} content={item.content} imgPath={item.imgPath}/>
                         ))
                     }
                     <div className={"nav"}>
+                        {/*pagination 컴포넌트*/}
                         <Pagination
                             activePage={activePage}
                             itemsCountPerPage={10}
-                            totalItemsCount={450}
-                            pageRangeDisplayed={5}
+                            totalItemsCount={300}
+                            pageRangeDisplayed={4}
                             onChange={handlePageChange}
                             linkClass="page-link"
                             innerClass="pagination text-center"
                             itemClass="page-item"
-                            activeClass="current"
+                            activeClass="active"
                             linkClassLast="last"
                             linkClassNext="next"
                             linkClassPrev="prev"
                             linkClassFirst="first"
+                            firstPageText={<FontAwesomeIcon icon={faChevronDoubleLeft} />}
+                            prevPageText={<FontAwesomeIcon icon={faChevronLeft} />}
+                            nextPageText={<FontAwesomeIcon icon={faChevronRight} />}
                             lastPageText={<FontAwesomeIcon icon={faChevronDoubleRight} />}
                         />
                     </div>
                 </div>
-                <Aside/>
+                {/*aside 컴포넌트*/}
+                <Aside asideData={ props.asideData }/>
             </div>
             <style jsx>{`
-                .box-left {
-                    float: left;
-                }
                 .nav {
                     width: 100%;
                     margin-top: 30px;
@@ -172,13 +180,18 @@ Index.getInitialProps = async function (ctx) {
     const res = await fetch(`http://localhost:3000/api/board/list/15?page=${page}`);
     const result = await res.json();
 
+    const asideRes = await fetch('http://localhost:3000/api/board/interest');
+    const asideResult = await asideRes.json();
+
     // data.typeOf()
     // console.log(result);
     // console.log(typeof result);
     // console.log(`Show data fetched. Count: ${result.data.length}`);
 
     return {
-        data: result.data
+        data: result.data,
+        activePage : Number(page),
+        asideData: asideResult.data,
     }
 };
 

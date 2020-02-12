@@ -73,7 +73,6 @@ const Temp = props => {
                     }
               }
          `}</style>
-
         </>
     );
 };

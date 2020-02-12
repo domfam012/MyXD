@@ -5,10 +5,66 @@ import { useRouter } from "next/router";
 import fetch from 'isomorphic-unfetch'
 import Link from "next/link";
 import React from "react";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faChevronDoubleRight} from "@fortawesome/pro-solid-svg-icons";
-import Pagination from "react-js-pagination";
 import { useState } from "react";
+
+
+const Card = props => {
+
+
+
+    return (
+        <>
+            <li>
+                <Link href={`/p/${props.pid}`}>
+                    <a href="#" className="inner">
+                        <div className="li-img">
+                            <img src={props.imgPath} alt="sample"/>
+                        </div>
+                        <div className="li-text">
+                            <p className="title">{props.title}</p>
+                            <p className="sub-title">{props.category}</p>
+                        </div>
+                    </a>
+                </Link>
+            </li>
+            <style jsx>{`
+                        li {
+                            margin-top: 30px;
+                            margin-left: 0;
+                            padding: 0 20px;
+                            display: block;
+                            width: 254px;
+                            float: left;
+                            margin-right: 20px;
+                        }
+                        li img {
+                            width: 254px;
+                        }
+                        .inner {
+                            display: block;
+                        }
+                        .li-img, .li-text, .inner {
+                            display: block;
+                            width: auto;
+                        }
+                        .li-text {
+                            padding: 20px 0 40px;
+                            color: #666666;
+                        }
+                        .li-text .title {
+                            font-size: 20px;
+                            white-space: nowrap;
+                        }
+                        .sub-title {
+                            font-size: 20px;
+                            padding-top: 10px;
+                        }
+                    `}</style>
+        </>
+    )
+}
+
+
 
 //상세페이지
 const Detail = props => {
@@ -40,17 +96,27 @@ const Detail = props => {
                             </div>
                             <div className={"box-list"}>
                                 <ul className="list img-list">
-                                    <li>
-                                        <a href="#" className="inner">
-                                            <div className="li-img">
-                                                <img src="/img/detail/detail_sample_01.png" alt="sample"/>
-                                            </div>
-                                            <div className="li-text">
-                                                <p className="title">Fast food XD</p>
-                                                <p className="sub-title">website template</p>
-                                            </div>
-                                        </a>
+
+                                    {
+                                        props.asideData.map(item => (
+                                            <Card key={item.pid} title={item.title} category={item.category} pid={item.pid} imgPath={item.imgPath}/>
+                                        ))
+                                    }
+
+                                    {/*<li>
+                                        <Link href={``}>
+                                            <a href="#" className="inner">
+                                                <div className="li-img">
+                                                    <img src="/img/detail/detail_sample_01.png" alt="sample"/>
+                                                </div>
+                                                <div className="li-text">
+                                                    <p className="title">Fast food XD</p>
+                                                    <p className="sub-title">website template</p>
+                                                </div>
+                                            </a>
+                                        </Link>
                                     </li>
+
                                     <li>
                                         <a href="#" className="inner">
                                             <div className="li-img">
@@ -62,6 +128,7 @@ const Detail = props => {
                                             </div>
                                         </a>
                                     </li>
+
                                     <li>
                                         <a href="#" className="inner">
                                             <div className="li-img">
@@ -72,31 +139,14 @@ const Detail = props => {
                                                 <p className="sub-title">landing page</p>
                                             </div>
                                         </a>
-                                    </li>
+                                    </li>*/}
+
                                 </ul>
                             </div>
                         </div>
                     </div>
-                    <div className={"paging"}>
-                        <Pagination
-                            activePage={activePage}
-                            itemsCountPerPage={10}
-                            totalItemsCount={450}
-                            pageRangeDisplayed={5}
-                            onChange={handlePageChange}
-                            linkClass="page-link"
-                            innerClass="pagination text-center"
-                            itemClass="page-item"
-                            activeClass="current"
-                            linkClassLast="last"
-                            linkClassNext="next"
-                            linkClassPrev="prev"
-                            linkClassFirst="first"
-                            lastPageText={<FontAwesomeIcon icon={faChevronDoubleRight} />}
-                        />
-                    </div>
                 </div>
-                <Aside/>
+                <Aside asideData={ props.asideData }/>
             </div>
             <style jsx global>{`
                 .box-left {
@@ -109,7 +159,6 @@ const Detail = props => {
                     background-color: #ffffff;
                     margin-bottom: 50px;
                 }
-                // ?? last-child 왜 안먹는지....
                 .main_card:nth-child(2) {
                   margin-bottom: 0;
                 }
@@ -170,25 +219,7 @@ const Detail = props => {
                     float: left;
                     margin-right: 20px;
                   }
-                  .inner {
-                    display: block;
-                  }
-                  .li-img, .li-text, .inner {
-                    display: block;
-                    width: auto;
-                  }
-                  .li-text {
-                    padding: 20px 0 40px;
-                    color: #666666;
-                  }
-                  .li-text .title {
-                    font-size: 20px;
-                    white-space: nowrap;
-                  }
-                  .sub-title {
-                    font-size: 20px;
-                    padding-top: 10px;
-                  }
+                  
             //탭      
             @media (max-width: 1200px) {
                 .main_card {
@@ -252,6 +283,11 @@ Detail.getInitialProps = async ctx => {
     const res = await fetch(`http://localhost:3000/api/board/post/${pid}`);
     const result = await res.json();
 
+    const asideRes = await fetch('http://localhost:3000/api/board/interest');
+    const asideResult = await asideRes.json();
+
+    console.log('Aside!!!!'+asideRes);
+
     switch(result.status){
         case 404 :
             console.log('not found');
@@ -259,9 +295,11 @@ Detail.getInitialProps = async ctx => {
     }
 
     return{
-
-        data: result.data
+        data: result.data,
+        asideData: asideResult.data,
     }
+
+
 };
 
 export default Detail;
