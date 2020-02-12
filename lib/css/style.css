@@ -61,6 +61,10 @@ a:focus, a:active, button:focus, button:active, input:focus, input:active {
     padding: 70px 6px 0;
 }
 @media (max-width: 1350px) {
+    .list-container {
+        width: 1154px !important;
+        padding: 70px 1px 0 !important;
+    }
     .container {
         width: 1184px;
         min-width: 980px;
@@ -69,6 +73,10 @@ a:focus, a:active, button:focus, button:active, input:focus, input:active {
     }
 }
 @media (max-width: 1200px) {
+    .list-container {
+        width: 768px !important;
+        padding: 30px 30px 0 !important;
+    }
     .container {
         width: 768px;
         min-width: 576px;
@@ -77,18 +85,29 @@ a:focus, a:active, button:focus, button:active, input:focus, input:active {
 }
 
 @media (min-width: 760px) and (max-width: 768px)  {
+    .list-container {
+        width: 708px !important;
+        padding: 30px 0 0 !important;
+    }
     .container {
         width: 708px;
         padding: 30px 0 0;
     }
 }
 @media (max-width: 760px) {
+    .list-container {
+        width: 100% !important;
+        padding: 20px 20px 0 !important;
+    }
     .container {
         width: 100%;
         min-width: 320px;
-        padding:20px 20px 0;
+        padding: 20px 20px 0;
     }
 }
+/*
+color
+*/
 .pink {
     color: var(--pink);
 }
@@ -103,6 +122,11 @@ pagination
 */
 .pagination {
     margin: 0 auto;
+}
+.page-item.active .page-link {
+    color: var(--primary);
+    font-weight: bold;
+    background: transparent;
 }
 .page-link {
     border: none;
