@@ -1,9 +1,6 @@
 import Head from "next/head";
 import Layout from '../include/Layout';
 import Aside from '../include/Aside';
-import Pagination from "../components/Pagination";
-
-
 
 
 const Index = props => {
@@ -21,13 +18,16 @@ const Index = props => {
                                 웹사이트 버전과 모바일 버전으로 나뉘어서 작업 할 수 있습니다.
                             </div>
                             <div>
-                                <button className={"btn btn-primary "}>더 보기</button>
+                                <button className={"btn btn-primary "}>구매하기</button>
                             </div>
                         </div>
+
+
                         <div>
                             <div className={"detail_title"}>
                                 <span>You may also like</span>
                             </div>
+
                             <div className={"box-list"}>
                                 <ul className="list img-list">
                                     <li>
@@ -66,8 +66,8 @@ const Index = props => {
                                 </ul>
                             </div>
                         </div>
+
                     </div>
-                    <Pagination/>
                 </div>
                 <Aside/>
             </div>
@@ -214,5 +214,7 @@ const Index = props => {
         </Layout>
     );
 };
+
+
 
 export default Index;

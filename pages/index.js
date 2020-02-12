@@ -9,6 +9,7 @@ import { faChevronDoubleRight } from '@fortawesome/pro-light-svg-icons';
 import { faChevronDoubleLeft } from '@fortawesome/pro-light-svg-icons';
 import { faChevronLeft } from '@fortawesome/pro-light-svg-icons';
 import { faChevronRight } from '@fortawesome/pro-light-svg-icons';
+import fetch from "isomorphic-unfetch";
 
 
 // card 컴포넌트
@@ -156,7 +157,7 @@ const Index = props => {
                     </div>
                 </div>
                 {/*aside 컴포넌트*/}
-                <Aside/>
+                <Aside asideData={ props.asideData }/>
             </div>
             <style jsx>{`
                 .nav {
@@ -178,13 +179,18 @@ Index.getInitialProps = async function (ctx) {
     const res = await fetch(`http://localhost:3000/api/board/list/15?page=${page}`);
     const result = await res.json();
 
+    const asideRes = await fetch('http://localhost:3000/api/board/interest');
+    const asideResult = await asideRes.json();
+
+    // data.typeOf()
     // console.log(result);
     // console.log(typeof result);
     // console.log(`Show data fetched. Count: ${result.data.length}`);
 
     return {
         data: result.data,
-        activePage : Number(page)
+        activePage : Number(page),
+        asideData: asideResult.data,
     }
 };
 
