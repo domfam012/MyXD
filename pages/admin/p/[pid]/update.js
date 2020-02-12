@@ -30,7 +30,7 @@ const Update = props => {
                 <div className={"row box"}>
                     <div className={"col col-sm-12"}>
 
-                        <h1 className={"header"}>XD 수정하기</h1>
+                        <h1 className={"header"}>XD 편집</h1>
 
                         <div className={"row"}>
                             <div className={"col col-sm-12"}>

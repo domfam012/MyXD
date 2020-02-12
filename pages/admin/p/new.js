@@ -3,12 +3,13 @@ import Layout from '../../../include/Layout';
 import { useState, useRef  } from 'react';
 import { useRouter } from 'next/router';
 import fetch from 'isomorphic-unfetch';
-import serialize from 'form-serialize';
+// import fetch from 'isomorphic-fetch';
+import axios from 'axios';
 
 const New = props => {
     const [ title, setTitle ] = useState('');
     const [ content, setContent ] = useState('');
-    const [ file, setFile ] = useState('');
+    const [ img, setImg ] = useState('');
     const [ link, setLink ] = useState('');
     const inputFileEl = useRef(null);
     const router = useRouter();
@@ -21,12 +22,12 @@ const New = props => {
     };
     const onFileUpload = e => {
         const preview = URL.createObjectURL(e.target.files[0]);
-        setFile(preview);
+        setImg(preview);
         inputFileEl.current.focus();
     };
     const fileRemove = e => {
         e.preventDefault();
-        setFile('');
+        setImg('');
         inputFileEl.current.value = null;
     };
     const linkChange = e => {
@@ -38,28 +39,42 @@ const New = props => {
             router.push('/admin/p/list');
         }
     };
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         /**
          *  data check here
          */
-
         const check = confirm('등록하시겠습니까?');
         if (check) {
-            fetch('http://localhost:3000/api/board/create', {
+
+            const res = await fetch('http://localhost:3000/api/board/create', {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
                     'Headers': 'content-type',
                     'Content-Type': 'application/json'
                 },
-                body : JSON.stringify({ title, content, link })
-            }).then(json => {
-                alert('done');
-            }).catch(err => {
-                console.log(err);
-            })
+                body : JSON.stringify({ title, content, img, link })
+            });
+            const result = await res.json();
+            const pid = result.pid;
+
+            const data = new FormData();
+            data.set("pid", pid);
+            data.append("img", inputFileEl.current.files[0]);
+
+            const uploadRes = await axios({
+                url: 'http://localhost:3000/api/board/upload',
+                method: 'post',
+                headers: {'Content-Type': 'multipart/form-data' },
+                data
+            });
+
+            if (uploadRes.status === 200) {
+                router.push('/admin/p/list');
+            }
+
         }
     };
 
@@ -73,7 +88,7 @@ const New = props => {
                 <div className={"row box"}>
                     <div className={"col col-sm-12"}>
 
-                        <h1 className={"header"}>XD 올리기</h1>
+                        <h1 className={"header"}>XD 글쓰기</h1>
 
                         <div className={"row"}>
                             <div className={"col col-sm-12"}>
@@ -84,7 +99,7 @@ const New = props => {
                                             <label className="col-form-label">제목</label>
                                         </div>
                                         <div className={"input-area"}>
-                                            <input type="text" className="form-control" placeholder={"제목을 입력하세요."} maxLength="50"
+                                            <input type="text" name={"title"} className="form-control" placeholder={"제목을 입력하세요."} maxLength="50"
                                                    onChange={titleChange}
                                             />
                                         </div>
@@ -94,7 +109,7 @@ const New = props => {
                                             <label className="col-form-label" style={{"lineHeight":"20.4"}}>내용</label>
                                         </div>
                                         <div className={"input-area"}>
-                                            <textarea className="form-control" placeholder={"내용을 입력하세요."} maxLength={"1000"}
+                                            <textarea className="form-control" name={"content"} placeholder={"내용을 입력하세요."} maxLength={"1000"}
                                                       onChange={contentChange}
                                             />
                                         </div>
@@ -105,19 +120,19 @@ const New = props => {
                                         </div>
                                         <div className={" input-group input-area"}>
                                             <div className="file-label">
-                                                { file === ''
+                                                { img === ''
                                                     ? (
                                                         <label htmlFor={"fileUploader"} className={"add text-center"}>+<br/>이미지</label>
                                                     )
                                                     : (
                                                         <div className={"added"}>
-                                                            <img src={file} alt="업로드 이미지"/>
+                                                            <img src={img} alt="업로드 이미지"/>
                                                             <a href="#" className="btn-close" onClick={fileRemove}></a>
                                                         </div>
                                                     )
                                                 }
                                             </div>
-                                            <input type="file" id="fileUploader" className="form-control-file"
+                                            <input type="file" id="fileUploader" name={"img"} className="form-control-file"
                                                    ref={inputFileEl}
                                                    onChange={onFileUpload}/>
                                             {/*<input type="file" id="fileUploader" className="form-control-file" onChange={this.onChange}/>*/}
@@ -128,7 +143,7 @@ const New = props => {
                                             <label className="col-form-label">링크</label>
                                         </div>
                                         <div className={"input-area"}>
-                                            <input type="text" className="form-control" placeholder={"링크를 입력하세요."} maxLength="250"
+                                            <input type="text" name={"link"} className="form-control" placeholder={"링크를 입력하세요."} maxLength="250"
                                                    onChange={linkChange}
                                             />
                                         </div>

@@ -1,4 +1,7 @@
 import { loadDB, firestore } from './../../../lib/js/db';
+// import {  }
+import index from "next/dist/export";
+import moment from 'moment';
 
 export default async (req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -18,14 +21,14 @@ export default async (req, res) => {
         // console.log('replace!!!!!!!!!!!!!!!!!!!!!!!!!!!');
         // console.log(req.body.content.replace(/<br\s?\/?>/g,"\n"));
 
-        // 받아온 값 타입 && null 체크
         const category = 'default';
-        const content = req.body.content || '';
+        const content = req.body.content;
         const imgOriginName = 'req.body.imgOriginName';
         const imgSaveName = 'sample1.png';
         const imgPath = '/img/upload/' + imgSaveName;
-        const link = req.body.link || '';
-        const title= req.body.title || '';
+        const link = req.body.link;
+        const title= req.body.title;
+        // 받아온 값 타입 && null 체크
 
         const data = {
             category: category,
@@ -40,24 +43,24 @@ export default async (req, res) => {
             created: firestore.FieldValue.serverTimestamp()
         };
 
-        const collection = db.collection('Posts');
-        const pid = await collection.add(data)
-            .then(function(docRef) {
-                // console.log("Document written with ID: ", docRef.id);
-                return docRef.id;
-            })
-            .catch(function(error) {
-                console.error("Error adding document: ", error);
-            });
+        console.log(`data inserted:::`);
+        console.log(JSON.stringify(data));
 
-        return res.status(200).json({ pid: pid });
+        const collection = db.collection('Posts');
+        await collection.add(data);
+
+        resData = JSON.stringify({
+            status: 200, data: data
+        });
+
+        res.status(200).json(resData);
 
     } else {
         //
         resData = JSON.stringify({
             status: 405, msg: ''
         });
-        return res.json(resData);
+        res.json(resData);
     }
 
 }
