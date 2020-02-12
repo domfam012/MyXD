@@ -1,4 +1,5 @@
 import { loadDB, firestore } from './../../../lib/js/db';
+// import {  }
 import index from "next/dist/export";
 import moment from 'moment';
 
@@ -15,11 +16,16 @@ export default async (req, res) => {
 
         // const ref = await db.collection('Posts').post();
 
+        // console.log('content!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+        // console.log(req.body.content);
+        // console.log('replace!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+        // console.log(req.body.content.replace(/<br\s?\/?>/g,"\n"));
+
         const category = 'default';
         const content = req.body.content;
-        const imgOriginName = req.body.imgOriginName;
-        const imgPath = req.body.imgPath;
-        const imgSaveName = req.body.imgSaveName;
+        const imgOriginName = 'req.body.imgOriginName';
+        const imgSaveName = 'sample1.png';
+        const imgPath = '/img/upload/' + imgSaveName;
         const link = req.body.link;
         const title= req.body.title;
         // 받아온 값 타입 && null 체크
@@ -37,6 +43,9 @@ export default async (req, res) => {
             created: firestore.FieldValue.serverTimestamp()
         };
 
+        console.log(`data inserted:::`);
+        console.log(JSON.stringify(data));
+
         const collection = db.collection('Posts');
         await collection.add(data);
 
@@ -53,7 +62,6 @@ export default async (req, res) => {
         });
         res.json(resData);
     }
-
 
 }
 

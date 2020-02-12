@@ -8,16 +8,28 @@ export default async (req, res) => {
     res.setHeader('Content-Type', 'application/json');
 
     const { query: { pid } } = req;
-    console.log(pid);
-    console.log(req.query);
+    // console.log(pid);
+    // console.log(req.query);
 
     const db = await loadDB();
     const doc = await db.collection('Posts').doc(pid);
+
+    // let test = await doc.get();
+    // console.log(test._document);
+    // test._document === null 이면 없음
 
     let resData;
     switch ( req.method) {
         case "GET" :
             const ref = await doc.get();
+
+            if (ref._document === null) {
+                resData = JSON.stringify({
+                    status: 404, msg: 'not found'
+                });
+                return res.status(404).json(resData);
+            }
+
             resData = JSON.stringify({
                 status: 200, msg: 'success', data: ref.data()
             });

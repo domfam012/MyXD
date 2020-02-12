@@ -1,7 +1,64 @@
 import Head from "next/head";
 import Layout from '../../include/Layout';
+import React from "react";
+import { useState } from 'react';
+import fetch from "isomorphic-unfetch";
 
-const List = props => {
+const Login  = props => {
+
+    //API 요청
+    //function() req(email, password) to api
+    const handleEmailChange = (e) => {
+        setEmail(e.target.value)
+    }
+    const handlePasswordChange = (e) => {
+        setPassword(e.target.value)
+    }
+
+    //이메일 검증 함수
+    const chkEmail = () => {
+        const emailrule = /^(([^<>()\[\].,;:\s@"]+(\.[^<>()\[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
+        return emailrule.test(email);
+    }
+
+    const [ email, setEmail ] = useState('');
+    const [ password, setPassword ] = useState('');
+
+    const reqLogin = () => {
+        console.log('E-mail :'+email);
+        console.log('PWD :'+password);
+
+        if(!chkEmail(email)){
+            alert('정확한 Email을 입력하세요')
+        }
+        else{
+            fetch(`http://localhost:3000/api/user/login`, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Headers': 'content-type',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    // Validation data coming from a form usually
+                    email: email,
+                    password: password
+                })
+            }).then(function (res) {
+
+                console.log(res);
+
+
+            }).catch(function(err){
+                console.log(err);
+            });
+        }
+
+
+
+    }
+
+
     return (
         <Layout>
             <Head>
@@ -15,13 +72,13 @@ const List = props => {
                         <span className="underline"></span>
                     </div>
 
-                    <form>
-                        <input type="text" placeholder={"아이디를 입력해주세요."} maxLength="20"/>
-                        <input type="password" placeholder={"비밀번호를 입력해주세요."} maxLength="24"/>
+                    <form name={"login-form"}>
+                        <input name={"login-email"} onChange={handleEmailChange} type="text" placeholder={"E-mail를 입력해주세요."} maxLength="20"/>
+                        <input name={"login-password"} onChange={handlePasswordChange} type="password" placeholder={"비밀번호를 입력해주세요."} maxLength="24"/>
                     </form>
 
                     <div className="text-center">
-                        <a href="#" className={"btn btn-primary"}>로그인</a>
+                        <a href="#" onClick={reqLogin} className={"btn btn-primary"}>로그인</a>
                     </div>
                 </div>
             </div>
@@ -104,4 +161,6 @@ const List = props => {
     );
 };
 
-export default List;
+
+
+export default Login;

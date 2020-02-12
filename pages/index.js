@@ -1,16 +1,14 @@
 import Layout from '../include/Layout';
 import Aside from '../include/Aside';
-import React, { useState } from 'react';
+import { useState } from 'react';
 // import Pagination from "../components/Pagination";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Pagination from "react-js-pagination";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDoubleRight } from '@fortawesome/pro-solid-svg-icons';
-import { faChevronDoubleLeft } from '@fortawesome/pro-solid-svg-icons';
-import { faChevronLeft } from '@fortawesome/pro-solid-svg-icons';
-import { faChevronRight } from '@fortawesome/pro-solid-svg-icons';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faChevronDoubleRight } from '@fortawesome/pro-solid-svg-icons'
+// import { faChevronDoubleRight } from '@fortawesome/pro-solid-svg-icons'
+// import { chevronDoubleleft } from '@fortawesome/pro-solid-svg-icons'
 
 // card 컴포넌트
 const Card = props => {
@@ -146,9 +144,6 @@ const Index = props => {
                             linkClassNext="next"
                             linkClassPrev="prev"
                             linkClassFirst="first"
-                            firstPageText={<FontAwesomeIcon icon={faChevronDoubleLeft} />}
-                            prevPageText={<FontAwesomeIcon icon={faChevronLeft} />}
-                            nextPageText={<FontAwesomeIcon icon={faChevronRight} />}
                             lastPageText={<FontAwesomeIcon icon={faChevronDoubleRight} />}
                         />
                     </div>
@@ -173,7 +168,8 @@ const Index = props => {
 
 // API설정
 Index.getInitialProps = async function (ctx) {
-    const res = await fetch('http://localhost:3000/api/board/list/15?page=1');
+    const page = ctx.query.page || '1';
+    const res = await fetch(`http://localhost:3000/api/board/list/15?page=${page}`);
     const result = await res.json();
 
     // data.typeOf()

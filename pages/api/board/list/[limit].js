@@ -19,6 +19,13 @@ export default async (req, res) => {
         const lastVisible = prev.docs[prev.docs.length-1];
         const ref = await collection.orderBy("created", "desc").startAfter(lastVisible).limit(parseInt(limit)).get();
 
+        /*
+            length 도 보내줘야됨
+
+
+         */
+
+
         const data = [];
         ref.forEach(doc => {
             data.push({pid: doc.id, ...doc.data()});
