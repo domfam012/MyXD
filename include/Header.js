@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import Link from "next/link";
 
 const Header = props => {
     /**
@@ -12,7 +13,10 @@ const Header = props => {
     return (
         <header>
             <nav className={props.isResponsive ? "navbar navbar-expand-xl" : "navbar admin"}>
-                <a className="navbar-brand" href="#"> <span className="pink">MyXD</span> logo</a>
+                <Link href="/">
+                    <a className="navbar-brand"><span className="pink">MyXD</span> logo</a>
+                </Link>
+                {/* tab,mobile 메뉴 버튼 */}
                 <button className={`navbar-toggle ${menuActive ? 'active' : ''}`} type="button" data-toggle="collapse"
                         data-target="#navbarText"
                         aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation"
@@ -26,16 +30,24 @@ const Header = props => {
                 <div className="collapse navbar-collapse menu" id="navbarText">
                     <ul className="navbar-nav mr-auto">
                         <li className="nav-item active">
-                            <a className="nav-link" href="#">UI KITS</a>
+                            <Link href="/">
+                                <a className="nav-link" href="/">UI KITS</a>
+                            </Link>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">Website</a>
+                            <Link href="/list">
+                                <a className="nav-link" href="/list">Website</a>
+                            </Link>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">Mobile</a>
+                            <Link href="/detail">
+                                <a className="nav-link" href="/detail">Mobile</a>
+                            </Link>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">Plug-in</a>
+                            <Link href="/api/user/login" href="/detail">
+                                <a className="nav-link">Plug-in</a>
+                            </Link>
                         </li>
                     </ul>
                 </div>
@@ -52,7 +64,9 @@ const Header = props => {
                             <a className="nav-link" href="#"><img src="/img/common/facebook.png" alt="facebook"/></a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#"><img src="/img/common/login.png" alt="login"/></a>
+                            <Link href="/admin/login">
+                                <a className="nav-link" href="#"><img src="/img/common/login.png" alt="login"/></a>
+                            </Link>
                         </li>
                     </ul>
                 </div>
@@ -66,63 +80,6 @@ const Header = props => {
                 background: #2e001f;
                 color: #fff;
               }
-              //admin===============
-                .admin {
-                  min-width: 1200px;
-                  }
-                .admin .menu {
-                  display: none !important;
-                }
-                .admin .navbar-brand {
-                  font-size: 20px;
-                  line-height: 66px;
-                  color: #fff;
-                  margin-right: 95px;
-                }
-                .admin .nav-link {
-                  padding: 1.9rem 1rem;
-                }
-                .admin .navbar-icon {
-                  position: absolute;
-                  display: block;
-                  top: 0;
-                  right: 170px;
-                }
-                .admin .navbar-icon .navbar-nav {
-                }
-                .admin .navbar-icon .navbar-nav .nav-item {
-                  margin-right: 30px;
-                }
-                .admin .navbar-icon .navbar-nav .nav-item:nth-child(1),
-                .admin .navbar-icon .navbar-nav .nav-item:nth-child(2),
-                .admin .navbar-icon .navbar-nav .nav-item:nth-child(3) {
-                  display: none;
-                }
-                .admin .navbar-toggler-icon {
-                  display: none;
-                }
-                 @media (max-width: 1199px) {
-                  .admin.navbar {
-                    min-width: 1200px;
-                  }
-                  .admin .navbar-nav {
-                    background: none;
-                    box-shadow: none;
-                    border: none;
-                  }
-                  .admin .navbar-brand {
-                    padding: 0 170px;
-                  } 
-                 }
-                 @media (max-width: 760px) {
-                  .admin.navbar {
-                    min-width: 1200px;
-                  }
-                  .admin .navbar-brand {
-                    padding: 0 170px;
-                  } 
-                 }   
-              //====================
               .navbar-brand {
                 font-size: 20px;
                 line-height: 66px;
@@ -159,7 +116,7 @@ const Header = props => {
               .navbar-toggler-icon {
                 display: none;
               }
-               @media (max-width: 1350px) {
+              @media (max-width: 1350px) {
                 .navbar{
                     width: 100%;
                     min-width: 576px;
@@ -244,13 +201,11 @@ const Header = props => {
                     transform: rotate(-45deg) translate(-1.5px,4.5px);
                 }
 
-                /* Fade out the second bar */
                 .navbar-toggle.active .bar2 {
                     -webkit-transform: rotate(45deg) translate(-8px, -8px) ;
                     transform: rotate(45deg) translate(1px,-2px);
                 }
 
-                /* Rotate last bar */
                 .navbar-toggle.active .bar3 {
                     opacity: 0;
                 }
@@ -258,7 +213,6 @@ const Header = props => {
                 .navbar-toggler:hover, .navbar-toggler:focus {
                   outline: none;
                 }
-                //====================
                 .navbar-nav {
                   background: #ffffff;
                   box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
@@ -334,13 +288,11 @@ const Header = props => {
                     transform: rotate(-45deg) translate(-1.5px,4.5px);
                 }
 
-                /* Fade out the second bar */
                 .navbar-toggle.active .bar2 {
                     -webkit-transform: rotate(45deg) translate(-8px, -8px) ;
                     transform: rotate(45deg) translate(1px,-2px);
                 }
 
-                /* Rotate last bar */
                 .navbar-toggle.active .bar3 {
                     opacity: 0;
                 }
@@ -349,7 +301,6 @@ const Header = props => {
                   outline: none;
                 }
               }
-             
               @media (max-width: 760px) {
                  .navbar {
                     padding: 0;
@@ -359,6 +310,64 @@ const Header = props => {
                     min-width: 1200px;
                   }
               }
+              
+            //  admin
+            //admin===============
+                .admin {
+                  min-width: 1200px;
+                  }
+                .admin .menu {
+                  display: none !important;
+                }
+                .admin .navbar-brand {
+                  font-size: 20px;
+                  line-height: 66px;
+                  color: #fff;
+                  margin-right: 95px;
+                }
+                .admin .nav-link {
+                  padding: 1.9rem 1rem;
+                }
+                .admin .navbar-icon {
+                  position: absolute;
+                  display: block;
+                  top: 0;
+                  right: 170px;
+                }
+                .admin .navbar-icon .navbar-nav {
+                }
+                .admin .navbar-icon .navbar-nav .nav-item {
+                  margin-right: 30px;
+                }
+                .admin .navbar-icon .navbar-nav .nav-item:nth-child(1),
+                .admin .navbar-icon .navbar-nav .nav-item:nth-child(2),
+                .admin .navbar-icon .navbar-nav .nav-item:nth-child(3) {
+                  display: none;
+                }
+                .admin .navbar-toggler-icon {
+                  display: none;
+                }
+                 @media (max-width: 1199px) {
+                  .admin.navbar {
+                    min-width: 1200px;
+                  }
+                  .admin .navbar-nav {
+                    background: none;
+                    box-shadow: none;
+                    border: none;
+                  }
+                  .admin .navbar-brand {
+                    padding: 0 170px;
+                  } 
+                 }
+                 @media (max-width: 760px) {
+                  .admin.navbar {
+                    min-width: 1200px;
+                  }
+                  .admin .navbar-brand {
+                    padding: 0 170px;
+                  } 
+                 }
             `}</style>
         </header>
     );

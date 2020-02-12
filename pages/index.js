@@ -1,15 +1,13 @@
 import Layout from '../include/Layout';
 import Aside from '../include/Aside';
-import React, { useState } from 'react';
-// import Pagination from "../components/Pagination";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Pagination from "react-js-pagination";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDoubleRight } from '@fortawesome/pro-solid-svg-icons';
-import { faChevronDoubleLeft } from '@fortawesome/pro-solid-svg-icons';
-import { faChevronLeft } from '@fortawesome/pro-solid-svg-icons';
-import { faChevronRight } from '@fortawesome/pro-solid-svg-icons';
+import { faChevronDoubleRight } from '@fortawesome/pro-light-svg-icons';
+import { faChevronDoubleLeft } from '@fortawesome/pro-light-svg-icons';
+import { faChevronLeft } from '@fortawesome/pro-light-svg-icons';
+import { faChevronRight } from '@fortawesome/pro-light-svg-icons';
 
 
 // card 컴포넌트
@@ -113,35 +111,41 @@ const Card = props => {
 
 // 메인 페이지
 const Index = props => {
-    // console.log(props.data)
-    const [ activePage, setActivePage ] = useState(false);
-
+    let activePage = props.activePage;
+    // console.log(activePage);
     const router = useRouter();
 
     const handlePageChange = (pageNumber) => {
+        // console.log(`active page is ${pageNumber}`);
         router.push(`/?page=${pageNumber}`)
     };
 
     return (
+
         <Layout page={"index"}>
+            {
+                console.log(activePage)
+            }
             <div className={"clearfix"}>
-                <div className={"box-left"}>
+                <div className={"float-left"}>
                     {
                         props.data.map(item => (
+                            //Card 컴포넌트
                             <Card key={item.pid} title={item.title} content={item.content} imgPath={item.imgPath}/>
                         ))
                     }
                     <div className={"nav"}>
+                        {/*pagination 컴포넌트*/}
                         <Pagination
                             activePage={activePage}
                             itemsCountPerPage={10}
-                            totalItemsCount={450}
-                            pageRangeDisplayed={5}
+                            totalItemsCount={300}
+                            pageRangeDisplayed={4}
                             onChange={handlePageChange}
                             linkClass="page-link"
                             innerClass="pagination text-center"
                             itemClass="page-item"
-                            activeClass="current"
+                            activeClass="active"
                             linkClassLast="last"
                             linkClassNext="next"
                             linkClassPrev="prev"
@@ -153,12 +157,10 @@ const Index = props => {
                         />
                     </div>
                 </div>
+                {/*aside 컴포넌트*/}
                 <Aside/>
             </div>
             <style jsx>{`
-                .box-left {
-                    float: left;
-                }
                 .nav {
                     width: 100%;
                     margin-top: 30px;
@@ -183,7 +185,8 @@ Index.getInitialProps = async function (ctx) {
     // console.log(`Show data fetched. Count: ${result.data.length}`);
 
     return {
-        data: result.data
+        data: result.data,
+        activePage : Number(page)
     }
 };
 

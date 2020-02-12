@@ -89,6 +89,9 @@ a:focus, a:active, button:focus, button:active, input:focus, input:active {
         padding:20px 20px 0;
     }
 }
+/*
+color
+*/
 .pink {
     color: var(--pink);
 }
@@ -104,6 +107,11 @@ pagination
 .pagination {
     margin: 0 auto;
 }
+.page-item.active .page-link {
+    color: var(--primary);
+    font-weight: bold;
+    background: transparent;
+}
 .page-link {
     border: none;
     background-color: transparent;
@@ -112,37 +120,34 @@ pagination
     outline: none;
     padding: 0.5rem 6px;
 }
+.page-link.first:hover, .page-link.prev:hover, .page-link.next:hover, .page-link.last:hover {
+    color: #666666;
+}
 .page-link.first {
     padding-right: 0;
     margin-right: 3px;
+    color:#666666;
 }
 .page-link.prev {
     margin-right: 11px;
+    color:#666666;
 }
 .page-link.next {
     margin-left: 11px;
+    color:#666666;
 }
 .page-link.last {
     padding-left: 0;
     margin-left: 3px;
+    color:#666666;
 }
-.page-link.first{
-    display: block;
-    width: 12px;
-    height: 16px;
-    background: url("/img/common/chevron-double-left.btn") no-repeat;
+.page-link:hover {
+    color: #70b1ff;
 }
-.page-link.prev{
-
-}
-.page-link.next{
-
-}
-.page-link.last {
-
+.page-link:active {
+    color: #11519c;
 }
 .page-link:hover, .page-link:active {
-    color: var(--primary);
     font-weight: bold;
 }
 .page-link:active, .page-link:focus {
