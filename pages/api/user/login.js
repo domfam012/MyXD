@@ -10,8 +10,8 @@ export default async (req,res) => {
     res.setHeader('Access-Control-Allow-Headers', 'content-type');
     res.setHeader('Content-Type', 'application/json');
 
-    console.log(req.body.email);
-    console.log(req.body.password);
+    // console.log(req.body.email);
+    // console.log(req.body.password);
 
     if (req.method === 'POST'){
         const db = await loadDB();
@@ -19,10 +19,13 @@ export default async (req,res) => {
         firebase.auth().signInWithEmailAndPassword(req.body.email, req.body.password)
             .then(cred => {
 
-                console.log(cred.user.email);
+                // console.log(cred.user.email);
 
                 //로그인이 성공한 경우
                 if(cred.user.email){
+                    // console.log('#1');
+                    // req.session.user = req.body.email;
+                    // console.log('#2');
                     res.status(200).json({
                         msg:"succsss",
                     });

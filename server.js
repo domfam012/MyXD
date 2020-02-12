@@ -23,7 +23,7 @@ app.prepare().then(() => {
         // Be sure to pass `true` as the second argument to `url.parse`.
         // This tells it to parse the query portion of the URL.
         const parsedUrl = parse(req.url, true);
-        const { pathname, query } = parsedUrl;
+        const {pathname, query} = parsedUrl;
 
         express.set('trust proxy', 1);
         express.use(
@@ -33,7 +33,7 @@ app.prepare().then(() => {
             bodyParser.json()
         );
 
-        express.use(multer({dest:'./public/uploads/'}).any());
+        express.use(multer({dest: './public/uploads/'}).any());
 
         // api -> set.. -> next
 
@@ -62,7 +62,10 @@ app.prepare().then(() => {
         //     console.log('#2')
         // }
 
-        if (pathname === '/admin') {
+        if (pathname === '/admin/:slug') {
+            console.log('here');
+        } else if (pathname === '/admin') {
+            // console.log(JSON.stringify(`req.session: ${req.session}`));
             res.writeHead(302, { Location: '/admin/login' });
             res.end();
         } else {

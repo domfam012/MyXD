@@ -59,7 +59,7 @@ export default async (req, res) => {
             .catch(function(error) {
                 console.error("Error adding document: ", error);
             });
-
+        // req.cookies.pid = pid;
         return res.status(200).json({ pid: pid });
 
     } else {
