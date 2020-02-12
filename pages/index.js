@@ -1,3 +1,4 @@
+import React from "react";
 import Layout from '../include/Layout';
 import Aside from '../include/Aside';
 import Link from "next/link";
@@ -13,7 +14,7 @@ import { faChevronRight } from '@fortawesome/pro-light-svg-icons';
 // card 컴포넌트
 const Card = props => {
     return (
-        <Link href={"/p/pid.js"}>
+        <Link href={`/p/${props.pid}`}>
             <div className={"main_card"}>
                 <div className={"img"}><img src={props.imgPath} alt="temp"/></div>
                 <div className={"box_text"}>
@@ -22,7 +23,7 @@ const Card = props => {
                         {props.content}
                     </div>
                     <div>
-                        <Link href={"http://localhost:3000/p/pid.js"}>
+                        <Link href={`/p/${props.pid}`}>
                             <a className={"btn btn-primary"}>더 보기</a>
                         </Link>
                     </div>
@@ -123,15 +124,12 @@ const Index = props => {
     return (
 
         <Layout page={"index"}>
-            {
-                console.log(activePage)
-            }
             <div className={"clearfix"}>
                 <div className={"float-left"}>
                     {
                         props.data.map(item => (
                             //Card 컴포넌트
-                            <Card key={item.pid} title={item.title} content={item.content} imgPath={item.imgPath}/>
+                            <Card key={item.pid} title={item.title} content={item.content} imgPath={item.imgPath} href={item.pid}/>
                         ))
                     }
                     <div className={"nav"}>
@@ -173,13 +171,13 @@ const Index = props => {
 
 
 
-// API설정
+// API 설정
 Index.getInitialProps = async function (ctx) {
+
     const page = ctx.query.page || '1';
     const res = await fetch(`http://localhost:3000/api/board/list/15?page=${page}`);
     const result = await res.json();
 
-    // data.typeOf()
     // console.log(result);
     // console.log(typeof result);
     // console.log(`Show data fetched. Count: ${result.data.length}`);

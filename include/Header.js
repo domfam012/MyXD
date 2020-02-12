@@ -87,15 +87,15 @@ const Header = props => {
                 margin-right: 95px;
               }
               .nav-link {
-                padding: 1.9rem 1rem;
+                padding: 17px 10px;
               }
               .menu .nav-item.active, .menu .nav-item:hover {
-                border-bottom: 1px solid var(--pink);
+                border-bottom: 2px solid var(--pink);
                 color: var(--pink);
-                transition: .2s;
               }
               .nav-item {
                 margin-right: 80px;
+                border-color: var(--pink);
               }
               .nav-item:last-child {
                 margin-right: 0 !important;
