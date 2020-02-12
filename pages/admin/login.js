@@ -54,7 +54,6 @@ const Login  = props => {
 
                 //로그인 성공시 관리자 리스트 화면으로 이동
                 if(res.status === 200){
-                    console.log('here');
                     router.push(`/admin/p/list`);
                 }
 

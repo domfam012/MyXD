@@ -3,12 +3,17 @@ import 'firebase/auth';
 import 'firebase/database';
 import * as firebase from "firebase";
 import {error} from "next/dist/build/output/log";
+import { useSession } from 'next-session';
 
 export default async (req,res) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
     res.setHeader('Access-Control-Allow-Headers', 'content-type');
     res.setHeader('Content-Type', 'application/json');
+
+    const sessions = await useSession(req, res);
+    // req.session.destroy(); // logout
+
 
     // console.log(req.body.email);
     // console.log(req.body.password);
@@ -23,9 +28,9 @@ export default async (req,res) => {
 
                 //로그인이 성공한 경우
                 if(cred.user.email){
-                    // console.log('#1');
-                    // req.session.user = req.body.email;
-                    // console.log('#2');
+
+                    sessions.user = req.body.email;
+
                     res.status(200).json({
                         msg:"succsss",
                     });
@@ -48,6 +53,8 @@ export default async (req,res) => {
                         msg:'비밀번호를 정확하게 입력하세요.',
                     })
                 }
+
+                return res.end();
 
             });
     }

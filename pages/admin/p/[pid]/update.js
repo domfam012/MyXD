@@ -11,6 +11,7 @@ const Update = props => {
     const [ content, setContent ] = useState(data.content);
     const [ img, setImg ] = useState(data.imgPath);
     const [ imgName, setImgName ] = useState('');
+    const [ imgChanged, setImgChanged ] = useState(false);
     const [ link, setLink ] = useState(data.link);
     const inputFileEl = useRef(null);
     const router = useRouter();
@@ -26,11 +27,13 @@ const Update = props => {
         const preview = URL.createObjectURL(e.target.files[0]);
         setImg(preview);
         setImgName(e.target.files[0].name);
+        setImgChanged(true);
         inputFileEl.current.focus();
     };
     const fileRemove = e => {
         e.preventDefault();
         setImg('');
+        setImgName('');
         inputFileEl.current.value = null;
     };
     const linkChange = e => {
@@ -51,6 +54,10 @@ const Update = props => {
          */
         const check = confirm('등록하시겠습니까?');
         if (check) {
+            let reqData = { title, content, link };
+            if (imgChanged) {
+                reqData = { ...reqData, img, imgName };
+            }
 
             const res = await fetch(`http://localhost:3000/api/board/post/${pid}`, {
                 method: 'PATCH',
@@ -59,7 +66,7 @@ const Update = props => {
                     'Headers': 'content-type',
                     'Content-Type': 'application/json'
                 },
-                body : JSON.stringify({ title, content, img, imgName, link })
+                body : JSON.stringify(reqData)
             });
             const result = await res.json();
             const pid = result.pid;

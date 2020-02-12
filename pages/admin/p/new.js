@@ -29,6 +29,7 @@ const New = props => {
     const fileRemove = e => {
         e.preventDefault();
         setImg('');
+        setImgName('');
         inputFileEl.current.value = null;
     };
     const linkChange = e => {

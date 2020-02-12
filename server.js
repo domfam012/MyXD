@@ -14,6 +14,7 @@ const config = require('./config.js');
 const cookieSession = require('cookie-session');
 
 const multer = require('multer');
+const { useSession } = require('next-session');
 
 // console.log('__dirname');
 // console.log(__dirname);
@@ -44,30 +45,38 @@ app.prepare().then(() => {
         //     console.log('here?');
         // } else
 
-        // express.post('/upload/board/create', (req, res, next) => {
-        //     console.log('#1');
-        //     console.log(req.body)
-        // });
-
-        // const mdw = () => {
-        //
-        // };
-        // express.use(mdw);
-
-        // console.log(pathname);
-        // if (pathname === '/upload/board/create') {
-        //     /**
-        //      *  nextjs req
-        //      */
-        //     console.log('#2')
+        // const adminRegTest = /^\/admin((\/[^\s/\/]+)*)?$/;
+        // if (adminRegTest.test(pathname)) {
+        //     // return res.json({a:1});
+        //     console.log('here?');
+        //     const authCheck = async () => {
+        //         const sessions = await useSession(req, res);
+        //         if (!req.session.user) {
+        //             console.log('none');
+        //             res.writeHead(302, { Location: '/admin/login' });
+        //             res.end();
+        //         } else {
+        //             console.log('user');
+        //             res.writeHead(302, { Location: '/admin/p/list' });
+        //             res.end();
+        //         }
+        //     };
+        //     authCheck();
+        // } else {
+        //     handle(req, res, parsedUrl);
         // }
 
-        if (pathname === '/admin/:slug') {
-            console.log('here');
-        } else if (pathname === '/admin') {
-            // console.log(JSON.stringify(`req.session: ${req.session}`));
-            res.writeHead(302, { Location: '/admin/login' });
-            res.end();
+        if (pathname === '/admin') {
+            // res.writeHead(302, { Location: '/admin/login' });
+            // res.end();
+
+            const authCheck = async () => {
+                const sessions = await useSession(req, res);
+                if (!sessions.user) {
+                    res.writeHead(302, { Location: '/admin/login' });
+                    res.end();
+                }
+            }
         } else {
             handle(req, res, parsedUrl);
         }

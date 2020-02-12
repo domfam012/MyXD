@@ -45,22 +45,28 @@ export default async (req, res) => {
             // Update
             const category = 'default';
             const content = req.body.content || '';
-            const imgOriginName = req.body.img;
-            const imgPath = req.body.imgPath;
-            const imgSaveName = req.body.imgSaveName;
             const link = req.body.link;
             const title= req.body.title;
 
-            const newData = {
+            let newData = {
                 category: category,
                 content: content,
-                imgOriginName: imgOriginName,
-                imgPath: imgPath,
-                imgSaveName: imgSaveName,
                 link: link,
                 title: title,
                 updated: firestore.FieldValue.serverTimestamp()
             };
+
+            if (req.body.imgName) {
+                const fileExtension = req.body.imgName.split('.')[req.body.imgName.split('.').length - 1];
+                const imgName = pid + "-" + moment().format('YYYYMMDDHHmmss') + "." + fileExtension;
+
+                const imgData = {
+                    imgOriginName: req.body.imgName,
+                    imgPath: '/img/upload/' + imgName,
+                    imgSaveName: imgName
+                }
+                newData = { ...newData, imgData };
+            }
 
             await doc.update(newData);
 
