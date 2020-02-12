@@ -11,7 +11,7 @@ import { useState } from "react";
 const Card = props => {
 
 
-    
+
     return (
         <>
             <li>
