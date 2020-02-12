@@ -15,9 +15,15 @@ export default async (req, res) => {
 
     if (req.method === 'GET') {
         const { query: { limit, page } } = req;
-        const prev = await collection.orderBy('created', 'desc').limit(parseInt(limit)*parseInt(page)).get();
-        const lastVisible = prev.docs[prev.docs.length-1];
-        const ref = await collection.orderBy("created", "desc").startAfter(lastVisible).limit(parseInt(limit)).get();
+        let ref;
+        if(Number(page) === 1){
+            ref = await collection.orderBy("created", "desc").limit(parseInt(limit)).get();
+        }
+        else {
+            const prev = await collection.orderBy('created', 'desc').limit(parseInt(limit)*(parseInt(page)-1)).get();
+            const lastVisible = prev.docs[prev.docs.length-1];
+            ref = await collection.orderBy("created", "desc").startAfter(lastVisible).limit(parseInt(limit)).get();
+        }
 
         /*
             length 도 보내줘야됨

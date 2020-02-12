@@ -5,7 +5,10 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import fetch from "isomorphic-unfetch";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faChevronDoubleRight} from "@fortawesome/pro-solid-svg-icons";
+import { faChevronDoubleRight } from "@fortawesome/pro-solid-svg-icons";
+import { faChevronDoubleLeft } from '@fortawesome/pro-light-svg-icons';
+import { faChevronLeft } from '@fortawesome/pro-light-svg-icons';
+import { faChevronRight } from '@fortawesome/pro-light-svg-icons';
 import Pagination from "react-js-pagination";
 
 const BoxList = props => {
@@ -216,11 +219,14 @@ const List = props => {
                                 linkClass="page-link"
                                 innerClass="pagination text-center"
                                 itemClass="page-item"
-                                activeClass="current"
+                                activeClass="active"
                                 linkClassLast="last"
                                 linkClassNext="next"
                                 linkClassPrev="prev"
                                 linkClassFirst="first"
+                                firstPageText={<FontAwesomeIcon icon={faChevronDoubleLeft} />}
+                                prevPageText={<FontAwesomeIcon icon={faChevronLeft} />}
+                                nextPageText={<FontAwesomeIcon icon={faChevronRight} />}
                                 lastPageText={<FontAwesomeIcon icon={faChevronDoubleRight} />}
                             />
                         </div>

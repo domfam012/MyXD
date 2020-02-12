@@ -44,8 +44,8 @@ export default async (req, res) => {
         case "PATCH" :
             // Update
             const category = 'default';
-            const content = req.body.content;
-            const imgOriginName = req.body.imgOriginName;
+            const content = req.body.content || '';
+            const imgOriginName = req.body.img;
             const imgPath = req.body.imgPath;
             const imgSaveName = req.body.imgSaveName;
             const link = req.body.link;

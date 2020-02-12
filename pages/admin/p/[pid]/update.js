@@ -1,23 +1,85 @@
 import Head from "next/head";
 import Layout from '../../../../include/Layout';
 import { useState, useRef } from 'react';
-import Index from "../../../index";
+import { useRouter } from 'next/router';
+import fetch from 'isomorphic-unfetch';
+import axios from 'axios';
 
 const Update = props => {
     const [ data, setData ] = useState(props.data);
-    const [ file, setFile ] = useState(props.data.imgPath); // data 에서 받아와야됨
+    const [ title, setTitle ] = useState(data.title);
+    const [ content, setContent ] = useState(data.content);
+    const [ img, setImg ] = useState(data.imgPath);
+    const [ imgName, setImgName ] = useState('');
+    const [ link, setLink ] = useState(data.link);
     const inputFileEl = useRef(null);
+    const router = useRouter();
+    const pid = router.query.pid;
 
+    const titleChange = e => {
+        setTitle(e.target.value);
+    };
+    const contentChange = e => {
+        setContent(e.target.value);
+    };
     const onFileUpload = e => {
         const preview = URL.createObjectURL(e.target.files[0]);
-        setFile(preview);
+        setImg(preview);
+        setImgName(e.target.files[0].name);
         inputFileEl.current.focus();
     };
-
     const fileRemove = e => {
         e.preventDefault();
-        setFile('');
+        setImg('');
         inputFileEl.current.value = null;
+    };
+    const linkChange = e => {
+        setLink(e.target.value);
+    };
+
+    const cancelSubmit = () => {
+        const check = confirm('작성을 취소하시겠습니까?');
+        if (check) {
+            router.push('/admin/p/list');
+        }
+    };
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        /**
+         *  data check here
+         */
+        const check = confirm('등록하시겠습니까?');
+        if (check) {
+
+            const res = await fetch(`http://localhost:3000/api/board/post/${pid}`, {
+                method: 'PATCH',
+                headers: {
+                    'Accept': 'application/json',
+                    'Headers': 'content-type',
+                    'Content-Type': 'application/json'
+                },
+                body : JSON.stringify({ title, content, img, imgName, link })
+            });
+            const result = await res.json();
+            const pid = result.pid;
+
+            const data = new FormData();
+            data.set("pid", pid);
+            data.append("img", inputFileEl.current.files[0]);
+
+            const uploadRes = await axios({
+                url: `http://localhost:3000/api/board/upload`,
+                method: 'post',
+                headers: {'Content-Type': 'multipart/form-data' },
+                data
+            });
+
+            if (uploadRes.status === 200) {
+                router.push('/admin/p/list');
+            }
+
+        }
     };
 
     return (
@@ -34,7 +96,7 @@ const Update = props => {
 
                         <div className={"row"}>
                             <div className={"col col-sm-12"}>
-                                <form>
+                                <form encType={"multipart/form-data"} onSubmit={handleSubmit}>
 
                                     <div className={"form-group"}>
                                         <div className={"label-area"}>
@@ -42,7 +104,8 @@ const Update = props => {
                                         </div>
                                         <div className={"input-area"}>
                                             <input type="text" className="form-control" placeholder={"제목을 입력하세요."} maxLength="50"
-                                                   value={data.title}
+                                                   value={title}
+                                                   onChange={titleChange}
                                             />
                                         </div>
                                     </div>
@@ -52,7 +115,8 @@ const Update = props => {
                                         </div>
                                         <div className={"input-area"}>
                                             <textarea className="form-control" placeholder={"내용을 입력하세요."} maxLength={"1000"}
-                                                      value={data.content}
+                                                      value={content}
+                                                      onChange={contentChange}
                                             />
                                         </div>
                                     </div>
@@ -62,21 +126,21 @@ const Update = props => {
                                         </div>
                                         <div className={" input-group input-area"}>
                                             <div className="file-label">
-                                                { file === ''
+                                                { img === ''
                                                     ? (
                                                         <label htmlFor={"fileUploader"} className={"add text-center"}>+<br/>이미지</label>
                                                     )
                                                     : (
                                                         <div className={"added"}>
-                                                            <img src={file} alt="업로드 이미지"/>
-                                                            <a href="#" className="btn-close" onClick={e => fileRemove(e)}></a>
+                                                            <img src={img} alt="업로드 이미지"/>
+                                                            <a href="#" className="btn-close" onClick={fileRemove}></a>
                                                         </div>
                                                     )
                                                 }
                                             </div>
                                             <input type="file" id="fileUploader" className="form-control-file"
                                                    ref={inputFileEl}
-                                                   onChange={e => onFileUpload(e)}/>
+                                                   onChange={onFileUpload}/>
                                             {/*<input type="file" id="fileUploader" className="form-control-file" onChange={this.onChange}/>*/}
                                         </div>
                                     </div>
@@ -86,18 +150,19 @@ const Update = props => {
                                         </div>
                                         <div className={"input-area"}>
                                             <input type="text" className="form-control" placeholder={"링크를 입력하세요."} maxLength="250"
-                                                   value={data.link}
+                                                   value={link}
+                                                   onChange={linkChange}
                                             />
                                         </div>
                                     </div>
-                                </form>
-                            </div>
-                        </div>
 
-                        <div className={"row form-btn"}>
-                            <div className={"col col-sm-12 text-center"}>
-                                <a href="#" className={"btn btn-lg btn-outline-lightgray"}>취소</a>
-                                <a href="#" className={"btn btn-lg btn-primary ml-3"}>저장</a>
+                                    <div className={"row form-btn"}>
+                                        <div className={"col col-sm-12 text-center"}>
+                                            <a href="#" className={"btn btn-lg btn-outline-lightgray"} onClick={cancelSubmit}>취소</a>
+                                            <a href="#" type={"submit"} className={"btn btn-lg btn-primary ml-3"}>저장</a>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
 

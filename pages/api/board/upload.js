@@ -1,5 +1,6 @@
 import formidable from "formidable";
 import fs from "fs";
+import moment from "moment";
 
 export default async (req, res) => {
     const form = new formidable.IncomingForm();
@@ -7,26 +8,35 @@ export default async (req, res) => {
     form.uploadDir = "./public/img/upload";
     form.keepExtensions = true;
 
+    let pid = "";
     form.parse(req, function(err, fields, files) {
-        console.log(`fields: ${JSON.stringify(fields)}`);
-        console.log(`files: ${JSON.stringify(files)}`);
+        pid = fields.pid;
+
+        console.log(`fields: ${JSON.stringify(fields)}`)
     });
+
+    console.log(`req.body: ${req.body}`);
 
     form.on('file', function (name, file) {
         console.log(`file: ${JSON.stringify(file)}`);
         console.log(`file.name: ${file.name}`);
 
-        // 변경하는 이름 -> moment()+'-'+pid+file.name
+        // imgSaveName = pid + "-" + moment.format('YYYYMMDDHHmmss')
+        // imgPath = "/img/upload/" + imgSaveName
 
-        fs.rename(file.path, form.uploadDir + "/" + file.name,function (err) {
+        console.log(`pid: ${pid}`);
+
+        const fileExtension = file.name.split('.')[file.name.split('.').length - 1];
+        const imgName = pid + "-" + moment().format('YYYYMMDDHHmmss') + "." + fileExtension;
+
+        fs.rename(file.path, form.uploadDir + "/" + imgName,function (err) {
             if (err) {
-                fs.unlink(form.uploadDir + "/" + file.name);
+                fs.unlink(form.uploadDir + "/" + imgName);
             }
         });
     });
 
     res.status(200).end();
-
 };
 
 export const config = {

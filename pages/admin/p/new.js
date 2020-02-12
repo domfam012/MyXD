@@ -3,13 +3,13 @@ import Layout from '../../../include/Layout';
 import { useState, useRef  } from 'react';
 import { useRouter } from 'next/router';
 import fetch from 'isomorphic-unfetch';
-// import fetch from 'isomorphic-fetch';
 import axios from 'axios';
 
 const New = props => {
     const [ title, setTitle ] = useState('');
     const [ content, setContent ] = useState('');
     const [ img, setImg ] = useState('');
+    const [ imgName, setImgName ] = useState('');
     const [ link, setLink ] = useState('');
     const inputFileEl = useRef(null);
     const router = useRouter();
@@ -23,6 +23,7 @@ const New = props => {
     const onFileUpload = e => {
         const preview = URL.createObjectURL(e.target.files[0]);
         setImg(preview);
+        setImgName(e.target.files[0].name);
         inputFileEl.current.focus();
     };
     const fileRemove = e => {
@@ -33,6 +34,7 @@ const New = props => {
     const linkChange = e => {
         setLink(e.target.value);
     };
+
     const cancelSubmit = () => {
         const check = confirm('작성을 취소하시겠습니까?');
         if (check) {
@@ -55,24 +57,28 @@ const New = props => {
                     'Headers': 'content-type',
                     'Content-Type': 'application/json'
                 },
-                body : JSON.stringify({ title, content, img, link })
+                body : JSON.stringify({ title, content, img, imgName, link })
             });
+
             const result = await res.json();
             const pid = result.pid;
+
+            console.log(`result: ${JSON.stringify(result)}`)
+            console.log(`pid: ${pid}`)
 
             const data = new FormData();
             data.set("pid", pid);
             data.append("img", inputFileEl.current.files[0]);
 
             const uploadRes = await axios({
-                url: 'http://localhost:3000/api/board/upload',
+                url: `http://localhost:3000/api/board/upload`,
                 method: 'post',
                 headers: {'Content-Type': 'multipart/form-data' },
                 data
             });
 
             if (uploadRes.status === 200) {
-                router.push('/admin/p/list');
+                // router.push('/admin/p/list');
             }
 
         }
@@ -92,7 +98,7 @@ const New = props => {
 
                         <div className={"row"}>
                             <div className={"col col-sm-12"}>
-                                <form encType={"multipart/form-data"} onSubmit={e => handleSubmit(e)}>
+                                <form encType={"multipart/form-data"} onSubmit={handleSubmit}>
 
                                     <div className={"form-group"}>
                                         <div className={"label-area"}>
