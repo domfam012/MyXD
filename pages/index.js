@@ -173,7 +173,8 @@ const Index = props => {
 
 // API설정
 Index.getInitialProps = async function (ctx) {
-    const res = await fetch('http://localhost:3000/api/board/list/15?page=1');
+    const page = ctx.query.page || '1';
+    const res = await fetch(`http://localhost:3000/api/board/list/15?page=${page}`);
     const result = await res.json();
 
     // data.typeOf()

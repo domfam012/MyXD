@@ -1,32 +1,23 @@
 import Head from "next/head";
 import Layout from '../../include/Layout';
 import Aside from '../../include/Aside';
-import Pagination from "../../components/Pagination";
 import { useRouter } from "next/router";
+import fetch from 'isomorphic-unfetch'
+import Link from "next/link";
+import React from "react";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faChevronDoubleRight} from "@fortawesome/pro-solid-svg-icons";
+import Pagination from "react-js-pagination";
+import { useState } from "react";
 
+//상세페이지
+const Detail = props => {
+    const [ activePage, setActivePage ] = useState(false);
+    const handlePageChange = (pageNumber) => {
+        router.push(`/admin/p/list?page=${pageNumber}`)
+    };
 
-const Index = props => {
-
-    const router = useRouter();
-    const { pid } = router.query;
-
-    async function getLink() {
-        const res = await fetch(`http://localhost:3000/api/board/post/${pid}`);
-        const result = await res.json();
-
-        console.log(result);
-
-        return {
-            data: result.data
-        }
-    }
-
-    getLink();
-
-    // console.log(getLink());
-
-    console.log(router.query.pid);
-    console.log(pid);
+    console.log(props.data);
 
     return (
         <Layout>
@@ -35,14 +26,12 @@ const Index = props => {
                     <div className={"main_card"}>
                         <div className={"img"}><img src="/img/main/main_01.png" alt=""/></div>
                         <div className={"box_text"}>
-                            <div className={"title"}>Wires, free wireframe kits for Adobe XD</div>
+                            <div className={"title"}>{props.data.title}</div>
                             <div className={"text"}>
-                                <span className={"secondary"}>Adobe</span>사에서 제공하는 무료 UI Kit <br/>
-                                종류별로 사이트를 관리하기에 좋은 디자인입니다. <br/>
-                                웹사이트 버전과 모바일 버전으로 나뉘어서 작업 할 수 있습니다.
+                                {props.data.content}
                             </div>
                             <div>
-                                <button className={"btn btn-primary "}>더 보기</button>
+                                <a href={props.data.link} className={"btn btn-primary"}>더 보기</a>
                             </div>
                         </div>
                         <div>
@@ -88,7 +77,24 @@ const Index = props => {
                             </div>
                         </div>
                     </div>
-                    <Pagination/>
+                    <div className={"paging"}>
+                        <Pagination
+                            activePage={activePage}
+                            itemsCountPerPage={10}
+                            totalItemsCount={450}
+                            pageRangeDisplayed={5}
+                            onChange={handlePageChange}
+                            linkClass="page-link"
+                            innerClass="pagination text-center"
+                            itemClass="page-item"
+                            activeClass="current"
+                            linkClassLast="last"
+                            linkClassNext="next"
+                            linkClassPrev="prev"
+                            linkClassFirst="first"
+                            lastPageText={<FontAwesomeIcon icon={faChevronDoubleRight} />}
+                        />
+                    </div>
                 </div>
                 <Aside/>
             </div>
@@ -114,7 +120,7 @@ const Index = props => {
                     width: 100%;
                 }
                 .box_text {
-                    padding: 33px 0 30px 30px;
+                    padding: 33px 30px 30px 30px;
                 }
                 .box_text .title{
                     font-size: 30px;
@@ -237,13 +243,25 @@ const Index = props => {
 };
 
 // API설정
-// Index.getInitialProps = async function () {
-//
-//
-// };
+Detail.getInitialProps = async ctx => {
 
+    const { pid } = ctx.query;
 
+    console.log("API연결 pid" + pid);
 
+    const res = await fetch(`http://localhost:3000/api/board/post/${pid}`);
+    const result = await res.json();
 
+    switch(result.status){
+        case 404 :
+            console.log('not found');
+            break;
+    }
 
-export default Index;
+    return{
+
+        data: result.data
+    }
+};
+
+export default Detail;
