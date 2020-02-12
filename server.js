@@ -13,6 +13,11 @@ const bodyParser = require('body-parser');
 const config = require('./config.js');
 const cookieSession = require('cookie-session');
 
+const multer = require('multer');
+
+// console.log('__dirname');
+// console.log(__dirname);
+
 app.prepare().then(() => {
     createServer((req, res) => {
         // Be sure to pass `true` as the second argument to `url.parse`.
@@ -28,6 +33,8 @@ app.prepare().then(() => {
             bodyParser.json()
         );
 
+        express.use(multer({dest:'./public/uploads/'}).any());
+
         // api -> set.. -> next
 
         // const apiRegTest = /^\/api((\/[^\s/\/]+)*)?$/;
@@ -36,6 +43,25 @@ app.prepare().then(() => {
         //     // require('./api.js')(req, res);
         //     console.log('here?');
         // } else
+
+        // express.post('/upload/board/create', (req, res, next) => {
+        //     console.log('#1');
+        //     console.log(req.body)
+        // });
+
+        // const mdw = () => {
+        //
+        // };
+        // express.use(mdw);
+
+        // console.log(pathname);
+        // if (pathname === '/upload/board/create') {
+        //     /**
+        //      *  nextjs req
+        //      */
+        //     console.log('#2')
+        // }
+
         if (pathname === '/admin') {
             res.writeHead(302, { Location: '/admin/login' });
             res.end();

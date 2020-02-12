@@ -159,7 +159,6 @@ const BoxList = props => {
 const List = props => {
     const router = useRouter();
     const [ box, setBox ] = useState(props.data);
-    const [ activePage, setActivePage ] = useState(false);
     const handlePageChange = (pageNumber) => {
         router.push(`/admin/p/list?page=${pageNumber}`)
     };
@@ -169,6 +168,8 @@ const List = props => {
         const newBox = box.filter(item => item.pid !== pid);
         setBox(newBox);
     };
+
+    console.log(props.page);
 
     return (
         <Layout>
@@ -207,8 +208,8 @@ const List = props => {
 
                         <div className={"paging"}>
                             <Pagination
-                                activePage={activePage}
-                                itemsCountPerPage={10}
+                                activePage={props.page}
+                                itemsCountPerPage={5}
                                 totalItemsCount={450}
                                 pageRangeDisplayed={5}
                                 onChange={handlePageChange}
@@ -277,7 +278,8 @@ List.getInitialProps = async (ctx) => {
     console.log(result);
 
     return {
-        data: result.data
+        data: result.data,
+        page: Number(page)
     };
 };
 

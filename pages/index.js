@@ -112,7 +112,7 @@ const Card = props => {
 // 메인 페이지
 const Index = props => {
     // console.log(props.data)
-    const [ activePage, setActivePage ] = useState(false);
+    const [ activePage, setActivePage ] = useState(15);
 
     const router = useRouter();
 
