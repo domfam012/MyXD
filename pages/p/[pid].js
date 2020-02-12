@@ -8,10 +8,7 @@ import React from "react";
 import { useState } from "react";
 
 
-const Card = props => {
-
-
-    
+const Template = props => {
     return (
         <>
             <li>
@@ -22,72 +19,101 @@ const Card = props => {
                         </div>
                         <div className="li-text">
                             <p className="title">{props.title}</p>
-                            <p className="sub-title">{props.category}</p>
                         </div>
                     </a>
                 </Link>
             </li>
             <style jsx>{`
-                        li {
-                            margin-top: 30px;
-                            margin-left: 0;
-                            padding: 0 20px;
-                            display: block;
-                            width: 254px;
-                            float: left;
-                            margin-right: 20px;
-                        }
-                        li img {
-                            width: 254px;
-                        }
-                        .inner {
-                            display: block;
-                        }
-                        .li-img, .li-text, .inner {
-                            display: block;
-                            width: auto;
-                        }
-                        .li-text {
-                            padding: 20px 0 40px;
-                            color: #666666;
-                        }
-                        .li-text .title {
-                            font-size: 20px;
-                            white-space: nowrap;
-                        }
-                        .sub-title {
-                            font-size: 20px;
-                            padding-top: 10px;
-                        }
-                    `}</style>
+                li {
+                    margin-top: 30px;
+                    margin-left: 0;
+                    display: block;
+                    width: 254px;
+                    float: left;
+                    margin-right: 20px;
+                }
+                li:first-child {
+                    margin-left: 30px;
+                }
+                li:last-child {
+                    margin-right: 30px;
+                }
+                li img {
+                    width: 100%;
+                }
+                .inner {
+                    display: block;
+                }
+                .li-img, .li-text, .inner {
+                    display: block;
+                    width: auto;
+                }
+                .li-text {
+                    padding: 20px 0 40px;
+                    color: #666666;
+                }
+                .li-text .title {
+                    font-size: 20px;
+                }
+                .sub-title {
+                    font-size: 20px;
+                    padding-top: 10px;
+                }
+                
+                @media (max-width: 1200px) {
+                li {
+                    margin-top: 20px;
+                    margin-left: 0;
+                    width: 314px;
+                    float: left;
+                    margin-right: 20px;
+                  }
+                li:nth-child(2n){
+                  }
+                .li-img img{
+                    width: 314px;
+                }
+            }
+            //모바일
+            @media (max-width: 760px) {
+                 .title{
+                    line-height: 48px;
+                    letter-spacing: -0.5px;
+                 }
+                 .text{
+                    font-size: 16px;
+                    line-height: 25px;
+                    letter-spacing: -0.5px;
+                    margin: 10px 0 40px;
+                }
+                 li {
+                    width: 100%;
+                  }
+                .li-img img{
+                    width: 100%;
+                }
+            }
+           `}</style>
         </>
     )
-}
-
-
+};
 
 //상세페이지
 const Detail = props => {
-    const [ activePage, setActivePage ] = useState(false);
-    const handlePageChange = (pageNumber) => {
-        router.push(`/admin/p/list?page=${pageNumber}`)
-    };
-
-    console.log(props.data);
 
     return (
         <Layout>
             <div className={"clearfix"}>
-                <div className={"box-left"}>
+                <div className={"float-left"}>
                     <div className={"main_card"}>
-                        <div className={"img"}><img src="/img/main/main_01.png" alt=""/></div>
+                        <div className={"img"}><img src={props.data.imgPath} alt=""/></div>
                         <div className={"box_text"}>
                             <div className={"title"}>{props.data.title}</div>
                             <div className={"text"}>
                                 {props.data.content}
                             </div>
                             <div>
-                                <a href={props.data.link} className={"btn btn-primary"}>더 보기</a>
+                                <a href={props.data.link} className={"btn btn-primary"}>다운로드</a>
                             </div>
                         </div>
                         <div>
@@ -99,7 +125,7 @@ const Detail = props => {
 
                                     {
                                         props.asideData.map(item => (
-                                            <Card key={item.pid} title={item.title} category={item.category} pid={item.pid} imgPath={item.imgPath}/>
+                                            <Template key={item.pid} title={item.title} category={item.category} pid={item.pid} imgPath={item.imgPath}/>
                                         ))
                                     }
 
@@ -185,7 +211,21 @@ const Detail = props => {
                 .nav {
                     float: left;
                 }
-            //You may also like
+                .btn {
+                  color: #ffffff;
+                  line-height: 33px;
+                }
+                .btn:hover {
+                  background: #6A6969;
+                  line-height: 33px;
+                  border-color: #6A6969;
+                }
+                .btn:active{
+                  background: #585858 !important;
+                  line-height: 33px;
+                  border-color: #585858 !important;
+                }
+             //You may also like
                 .detail_title {
                     position: relative;
                     width: 160px;
@@ -204,22 +244,10 @@ const Detail = props => {
                     bottom: -17px;
                     left: 32px;
                 }
-                
-                
             // 더보기
                   .list {
                     overflow: hidden;
                   }
-                  .list li {
-                    margin-top: 30px;
-                    margin-left: 0;
-                    padding: 0 20px;
-                    display: block;
-                    width: 254px;
-                    float: left;
-                    margin-right: 20px;
-                  }
-                  
             //탭      
             @media (max-width: 1200px) {
                 .main_card {
@@ -231,9 +259,10 @@ const Detail = props => {
                     margin-left: 0;
                     width: 314px;
                     float: left;
-                    margin-right: 20px;
+                    margin-right: 25px;
                   }
-                .list li:nth-child(2n){
+                .list li:nth-child(3){
+                    margin-left: 30px;
                   }
                 .li-img img{
                     width: 314px;
@@ -261,12 +290,22 @@ const Detail = props => {
                 .btn {
                     width: 100%;
                 }
+                .list {
+                padding : 0 40px;
+                }
                 .list li {
                     width: 100%;
+                    margin: 0;
                   }
+                .list li:first-child {
+                    margin: 0;
+                 }
                 .li-img img{
                     width: 100%;
                 }
+                .list li:nth-child(3){
+                    margin-left: 0;
+                 }
             }
             `}</style>
         </Layout>

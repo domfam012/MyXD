@@ -14,7 +14,7 @@ const Temp = props => {
     return (
         <>
             <li>
-                <Link href={"/p/pid.js"}>
+                <Link href={`/p/${props.pid}`}>
                     <a href="#" className="inner">
                         <div className="li-img">
                             <img src={props.imgPath} alt="temp"/>
@@ -120,7 +120,7 @@ const Index = props => {
                 <ul className="list img-list">
                     {
                         props.data.map(item => (
-                            <Temp key={item.pid} title={item.title} imgPath={item.imgPath} href={item.pid}/>
+                            <Temp key={item.pid} title={item.title} imgPath={item.imgPath} pid={item.pid}/>
                         ))
                     }
                 </ul>
@@ -158,6 +158,7 @@ const Index = props => {
                     margin-top: 30px;
                     margin-bottom: 70px;
                 }
+              
               @media (max-width: 1200px) {
                   .list {
                     margin: 0 auto;

@@ -29,8 +29,8 @@ const Header = props => {
                 </button>
                 <div className="collapse navbar-collapse menu" id="navbarText">
                     <ul className="navbar-nav mr-auto">
-                        <li className="nav-item active">
-                            <Link href="/">
+                        <li className="nav-item">
+                            <Link href="/list">
                                 <a className="nav-link" href="/">UI KITS</a>
                             </Link>
                         </li>
@@ -87,7 +87,7 @@ const Header = props => {
                 margin-right: 95px;
               }
               .nav-link {
-                padding: 17px 10px;
+                padding: 17px 10px !important;
               }
               .menu .nav-item.active, .menu .nav-item:hover {
                 border-bottom: 2px solid var(--pink);
@@ -96,6 +96,7 @@ const Header = props => {
               .nav-item {
                 margin-right: 80px;
                 border-color: var(--pink);
+                border-bottom: 2px solid transparent;
               }
               .nav-item:last-child {
                 margin-right: 0 !important;
@@ -116,14 +117,12 @@ const Header = props => {
               .navbar-toggler-icon {
                 display: none;
               }
+              
               @media (max-width: 1350px) {
                 .navbar{
                     width: 100%;
                     min-width: 576px;
-                    height: 70px;
-                    padding: 0 124px;
-                    background: #2e001f;
-                    color: #fff;
+                    padding: 0 80px;
                 }
               }
               @media (max-width: 1199px) {

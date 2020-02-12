@@ -66,12 +66,17 @@ const Card = props => {
                 }
                 .btn {
                   color: #ffffff;
-                  line-height: 32px;
+                  line-height: 33px;
                 }
-                .btn:hover, .btn:active{
-                  background: #585858;
-                  line-height: 32px;
-                  border-color: #585858;
+                .btn:hover {
+                  background: #6A6969;
+                  line-height: 33px;
+                  border-color: #6A6969;
+                }
+                .btn:active{
+                  background: #585858 !important;
+                  line-height: 33px;
+                  border-color: #585858 !important;
                 }
             @media (max-width: 1200px) {
                 .main_card {
@@ -130,7 +135,7 @@ const Index = props => {
                     {
                         props.data.map(item => (
                             //Card 컴포넌트
-                            <Card key={item.pid} title={item.title} content={item.content} imgPath={item.imgPath} href={item.pid}/>
+                            <Card key={item.pid} title={item.title} content={item.content} imgPath={item.imgPath} pid={item.pid}/>
                         ))
                     }
                     <div className={"nav"}>
