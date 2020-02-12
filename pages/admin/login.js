@@ -2,9 +2,14 @@ import Head from "next/head";
 import Layout from '../../include/Layout';
 import React from "react";
 import { useState } from 'react';
+import Link from 'next/link';
+import { useRouter } from "next/router";
 import fetch from "isomorphic-unfetch";
 
+
 const Login  = props => {
+
+    const router = useRouter();
 
     //API 요청
     //function() req(email, password) to api
@@ -15,14 +20,14 @@ const Login  = props => {
         setPassword(e.target.value)
     }
 
+    const [ email, setEmail ] = useState('');
+    const [ password, setPassword ] = useState('');
+
     //이메일 검증 함수
     const chkEmail = () => {
         const emailrule = /^(([^<>()\[\].,;:\s@"]+(\.[^<>()\[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
         return emailrule.test(email);
     }
-
-    const [ email, setEmail ] = useState('');
-    const [ password, setPassword ] = useState('');
 
     const reqLogin = () => {
         console.log('E-mail :'+email);
@@ -30,6 +35,7 @@ const Login  = props => {
 
         if(!chkEmail(email)){
             alert('정확한 Email을 입력하세요')
+            return;
         }
         else{
             fetch(`http://localhost:3000/api/user/login`, {
@@ -46,15 +52,31 @@ const Login  = props => {
                 })
             }).then(function (res) {
 
-                console.log(res);
+                //로그인 성공시 관리자 리스트 화면으로 이동
+                if(res.status === 200){
+                    router.push(`/admin/p/list`);
+                }
+
+                //로그인실패시 status 코드에 따라 alert 생성
+                if(res.status === 400){
+                    alert('유저정보가 존재하지 않습니다.');
+                }
+
+                if(res.status === 600){
+                    alert('비밀번호가 일치하지 않습니다.');
+                }
+
 
 
             }).catch(function(err){
-                console.log(err);
+                console.log('loginFail');
             });
         }
 
-
+        if(!password){
+            alert('Password를 입력하세요');
+            return;
+        }
 
     }
 
@@ -68,7 +90,7 @@ const Login  = props => {
             <div className="content">
                 <div className={"login-box"}>
                     <h1>Login</h1>
-                    <div className={"text-center"} style={{"line-height":"1px"}}>
+                    <div className={"text-center"} style={{"lineheight":"1px"}}>
                         <span className="underline"></span>
                     </div>
 

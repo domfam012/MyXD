@@ -6,12 +6,6 @@ import Pagination from "../components/Pagination";
 
 
 
-
-
-
-
-
-
 const Index = props => {
     return (
         <Layout>
