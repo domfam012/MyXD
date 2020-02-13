@@ -151,8 +151,12 @@ const Header = props => {
                     padding: 0;
                     min-width: 564px;
                   }
-                .menu .nav-item.active, .menu .nav-item:hover {
-                  border: 0;
+                .menu .nav-item:active, .menu .nav-item:hover {
+                  border: none;
+                  background : #aaaaaa;
+                }
+                .menu .nav-item:active a, .menu .nav-item:hover a {
+                  color: #ffffff;
                 }
                 .navbar-brand {
                   padding: 0 0 0 30px;
@@ -164,6 +168,7 @@ const Header = props => {
                 }
                 .nav-item {
                   margin: 0;
+                  border: none;
                 }
                 .nav-item:last-child .nav-link {
                   border-bottom: none;
@@ -329,9 +334,11 @@ const Header = props => {
                   .navbar-xl {
                     min-width: 1200px;
                   }
+                  .navbar-brand {
+                    margin-right: 50px;
+                  }
               }
               
-            //  admin
             //admin===============
                 .admin {
                   min-width: 1200px;
@@ -346,15 +353,13 @@ const Header = props => {
                   margin-right: 95px;
                 }
                 .admin .nav-link {
-                  padding: 1.9rem 1rem;
+                  padding: 24px 10px !important;
                 }
                 .admin .navbar-icon {
                   position: absolute;
                   display: block;
                   top: 0;
                   right: 170px;
-                }
-                .admin .navbar-icon .navbar-nav {
                 }
                 .admin .navbar-icon .navbar-nav .nav-item {
                   margin-right: 30px;

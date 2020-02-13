@@ -17,7 +17,6 @@ const Page = ({errorCode, stars}) => {
             <style jsx>{`
                 body {
                 background: #F8F8F8;
-                font-family: NanumGothic;
             }
                 .error_wrap {
                 position: fixed;
@@ -42,12 +41,14 @@ const Page = ({errorCode, stars}) => {
                 font-size: 40px;
                 color: #116EDD;
                 font-weight: bold;
+                font-family: NanumGothic;
             }
                 .error_contents {
                 text-align: center;
                 line-height: 32px;
                 font-size: 20px;
                 color: #333333;
+                font-family: NanumGothic;
             }
             `}</style>
         </>
