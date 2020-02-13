@@ -59,7 +59,7 @@ const Update = props => {
                 reqData = { ...reqData, img, imgName };
             }
 
-            const res = await fetch(`http://localhost:3000/api/board/post/${pid}`, {
+            const res = await fetch(`http://13.209.55.219/api/board/post/${pid}`, {
                 method: 'PATCH',
                 headers: {
                     'Accept': 'application/json',
@@ -76,7 +76,7 @@ const Update = props => {
             data.append("img", inputFileEl.current.files[0]);
 
             const uploadRes = await axios({
-                url: `http://localhost:3000/api/board/upload`,
+                url: `http://13.209.55.219/api/board/upload`,
                 method: 'post',
                 headers: {'Content-Type': 'multipart/form-data' },
                 data
@@ -165,8 +165,8 @@ const Update = props => {
 
                                     <div className={"row form-btn"}>
                                         <div className={"col col-sm-12 text-center"}>
-                                            <a href="#" className={"btn btn-lg btn-outline-lightgray"} onClick={cancelSubmit}>취소</a>
-                                            <a href="#" type={"submit"} className={"btn btn-lg btn-primary ml-3"}>저장</a>
+                                            <button href="#" className={"btn btn-lg btn-outline-lightgray"} onClick={cancelSubmit}>취소</button>
+                                            <button href="#" type={"submit"} className={"btn btn-lg btn-primary ml-3"}>저장</button>
                                         </div>
                                     </div>
                                 </form>
@@ -269,8 +269,15 @@ const Update = props => {
 };
 
 Update.getInitialProps = async function (ctx) {
+    // const auth = await fetch(`http://13.209.55.219/api/user/admin/auth`);
+    // if ( auth.status !== 200 ) {
+    //     return {
+    //         auth: false
+    //     }
+    // }
+
     const pid = ctx.query.pid;
-    const res = await fetch(`http://localhost:3000/api/board/post/${pid}`);
+    const res = await fetch(`http://13.209.55.219/api/board/post/${pid}`);
     const result = await res.json();
 
     // data.typeOf()
