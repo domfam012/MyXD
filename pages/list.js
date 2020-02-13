@@ -9,7 +9,7 @@ import {faChevronDoubleLeft} from '@fortawesome/pro-light-svg-icons';
 import {faChevronLeft} from '@fortawesome/pro-light-svg-icons';
 import {faChevronRight} from '@fortawesome/pro-light-svg-icons';
 
-//template 컴포넌트
+//리스트 template 컴포넌트
 const Temp = props => {
     return (
         <>
@@ -105,6 +105,7 @@ const Temp = props => {
     );
 };
 
+//리스트 페이지
 const Index = props => {
 
     let activePage = props.activePage;
@@ -176,7 +177,7 @@ Index.getInitialProps = async function (ctx) {
     const res = await fetch(`http://localhost:3000/api/board/list/15?page=${page}`);
     const result = await res.json();
 
-    console.log(`Show data fetched. Count: ${result.data.length}`);
+    // console.log(`Show data fetched. Count: ${result.data.length}`);
 
     return {
         data: result.data,

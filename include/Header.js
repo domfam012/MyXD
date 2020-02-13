@@ -20,7 +20,7 @@ const Header = props => {
     const logout = async () => {
 
         const db = await loadDB();
-        const check = confirm("로그아웃 하시겠습니까?")
+        const check = confirm("로그아웃 하시겠습니까?");
         if (check) {
             firebase.auth().signOut().then(() => {
                 console.log('user logout');
@@ -28,7 +28,7 @@ const Header = props => {
             });
 
         }
-    }
+    };
 
 
     return (
