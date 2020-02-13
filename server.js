@@ -83,6 +83,6 @@ app.prepare().then(() => {
 
     }).listen(3000, err => {
         if (err) throw err;
-        console.log('> Ready on http://13.209.55.219');
+        console.log('> Ready on http://localhost:3000');
     });
 });

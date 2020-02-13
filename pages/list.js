@@ -111,7 +111,8 @@ const Index = props => {
     const router = useRouter();
 
     const handlePageChange = (pageNumber) => {
-        router.push(`/list/?page=${pageNumber}`)
+        window.scrollTo(0, 0);
+        router.push(`/list/?page=${pageNumber}`);
     };
 
     return (
@@ -129,8 +130,8 @@ const Index = props => {
                 {/*pagination 컴포넌트*/}
                 <Pagination
                     activePage={activePage}
-                    itemsCountPerPage={10}
-                    totalItemsCount={300}
+                    itemsCountPerPage={15}
+                    totalItemsCount={props.total}
                     pageRangeDisplayed={4}
                     onChange={handlePageChange}
                     linkClass="page-link"
@@ -173,14 +174,16 @@ const Index = props => {
 Index.getInitialProps = async function (ctx) {
 
     const page = ctx.query.page || '1';
-    const res = await fetch(`http://13.209.55.219/api/board/list/15?page=${page}`);
+    const res = await fetch(`http://localhost:3000/api/board/list/15?page=${page}`);
     const result = await res.json();
 
+    // console.log(result);
     console.log(`Show data fetched. Count: ${result.data.length}`);
 
     return {
         data: result.data,
-        activePage: Number(page)
+        activePage: Number(page),
+        total: result.total
     }
 };
 export default Index;

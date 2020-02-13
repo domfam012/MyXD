@@ -79,6 +79,10 @@ export default async (req, res) => {
 
         case "DELETE" :
             doc.delete();
+            const countDoc = await db.collection('Count').doc('Posts');
+            const decrement = firestore.FieldValue.increment(-1);
+            await countDoc.update({ count: decrement });
+
             resData = JSON.stringify({
                 status: 200, msg: 'success'
             });

@@ -59,7 +59,7 @@ const Update = props => {
                 reqData = { ...reqData, img, imgName };
             }
 
-            const res = await fetch(`http://13.209.55.219/api/board/post/${pid}`, {
+            const res = await fetch(`http://localhost:3000/api/board/post/${pid}`, {
                 method: 'PATCH',
                 headers: {
                     'Accept': 'application/json',
@@ -76,7 +76,7 @@ const Update = props => {
             data.append("img", inputFileEl.current.files[0]);
 
             const uploadRes = await axios({
-                url: `http://13.209.55.219/api/board/upload`,
+                url: `http://localhost:3000/api/board/upload`,
                 method: 'post',
                 headers: {'Content-Type': 'multipart/form-data' },
                 data
@@ -269,7 +269,7 @@ const Update = props => {
 };
 
 Update.getInitialProps = async function (ctx) {
-    // const auth = await fetch(`http://13.209.55.219/api/user/admin/auth`);
+    // const auth = await fetch(`http://localhost:3000/api/user/admin/auth`);
     // if ( auth.status !== 200 ) {
     //     return {
     //         auth: false
@@ -277,7 +277,7 @@ Update.getInitialProps = async function (ctx) {
     // }
 
     const pid = ctx.query.pid;
-    const res = await fetch(`http://13.209.55.219/api/board/post/${pid}`);
+    const res = await fetch(`http://localhost:3000/api/board/post/${pid}`);
     const result = await res.json();
 
     // data.typeOf()

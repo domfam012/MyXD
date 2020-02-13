@@ -3,6 +3,7 @@ import Layout from '../include/Layout';
 import Aside from '../include/Aside';
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
 import Pagination from "react-js-pagination";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDoubleRight } from '@fortawesome/pro-light-svg-icons';
@@ -24,7 +25,7 @@ const Card = props => {
                         {props.content}
                     </div>
                     <div>
-                        <Link href={`/p/${props.pid}`}>
+                        <Link href={`${props.link}`}>
                             <a className={"btn btn-primary"}>더 보기</a>
                         </Link>
                     </div>
@@ -119,13 +120,17 @@ const Card = props => {
 // 메인 페이지
 const Index = props => {
     let activePage = props.activePage;
-    // console.log(activePage);
     const router = useRouter();
 
     const handlePageChange = (pageNumber) => {
-        // console.log(`active page is ${pageNumber}`);
-        router.push(`/?page=${pageNumber}`)
+        window.scrollTo(0, 0);
+        router.push(`/?page=${pageNumber}`);
     };
+
+    // useEffect(() => {
+    //     console.log('use effect..');
+    //     window.scrollTo(0, 0);
+    // }, []);
 
     return (
 
@@ -135,15 +140,15 @@ const Index = props => {
                     {
                         props.data.map(item => (
                             //Card 컴포넌트
-                            <Card key={item.pid} title={item.title} content={item.content} imgPath={item.imgPath} pid={item.pid}/>
+                            <Card key={item.pid} title={item.title} content={item.content} imgPath={item.imgPath} pid={item.pid} link={item.link}/>
                         ))
                     }
                     <div className={"nav"}>
                         {/*pagination 컴포넌트*/}
                         <Pagination
                             activePage={activePage}
-                            itemsCountPerPage={10}
-                            totalItemsCount={300}
+                            itemsCountPerPage={15}
+                            totalItemsCount={props.total}
                             pageRangeDisplayed={4}
                             onChange={handlePageChange}
                             linkClass="page-link"
@@ -179,12 +184,15 @@ const Index = props => {
 
 // API 설정
 Index.getInitialProps = async function (ctx) {
+    console.log('[Index] ::: getInitialProps');
+    // window.scrollTo(0, 0);
 
     const page = ctx.query.page || '1';
-    const res = await fetch(`http://13.209.55.219/api/board/list/15?page=${page}`);
+    const res = await fetch(`http://localhost:3000/api/board/list/15?page=${page}`);
+    // const res = await fetch(`http://localhost:3000/api/board/list`);
     const result = await res.json();
 
-    const asideRes = await fetch('http://13.209.55.219/api/board/interest');
+    const asideRes = await fetch('http://localhost:3000/api/board/interest');
     const asideResult = await asideRes.json();
 
     // data.typeOf()
@@ -196,6 +204,7 @@ Index.getInitialProps = async function (ctx) {
         data: result.data,
         activePage : Number(page),
         asideData: asideResult.data,
+        total: result.total
     }
 };
 

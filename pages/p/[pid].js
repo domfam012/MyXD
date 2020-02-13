@@ -100,7 +100,7 @@ const Template = props => {
 
 //상세페이지
 const Detail = props => {
-
+    // console.log(`props.data: ${props.data}`);
     return (
         <Layout>
             <div className={"clearfix"}>
@@ -319,10 +319,10 @@ Detail.getInitialProps = async ctx => {
 
     console.log("API연결 pid" + pid);
 
-    const res = await fetch(`http://13.209.55.219/api/board/post/${pid}`);
+    const res = await fetch(`http://localhost:3000/api/board/post/${pid}`);
     const result = await res.json();
 
-    const asideRes = await fetch('http://13.209.55.219/api/board/interest');
+    const asideRes = await fetch('http://localhost:3000/api/board/interest');
     const asideResult = await asideRes.json();
 
     console.log('Aside!!!!'+asideRes);

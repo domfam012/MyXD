@@ -39,7 +39,7 @@ const Login  = props => {
             return;
         }
         else{
-            fetch(`http://13.209.55.219/api/user/login`, {
+            fetch(`http://localhost:3000/api/user/login`, {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
@@ -184,18 +184,17 @@ const Login  = props => {
     );
 };
 
-Login.getInitialProps = async (ctx) => {
-    const page = ctx.query.page || '1';
-    const res = await fetch(`http://13.209.55.219/api/board/list/5?page=${page}`);
-    const result = await res.json();
-
-    console.log(result);
-
-    return {
-        data: result.data,
-        page: Number(page)
-    };
-};
-
+// Login.getInitialProps = async (ctx) => {
+//     const page = ctx.query.page || '1';
+//     const res = await fetch(`http://localhost:3000/api/board/list/5?page=${page}`);
+//     const result = await res.json();
+//
+//     console.log(result);
+//
+//     return {
+//         data: result.data,
+//         page: Number(page)
+//     };
+// };
 
 export default Login;

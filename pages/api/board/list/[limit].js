@@ -10,13 +10,28 @@ export default async (req, res) => {
     console.log(`req.method : ${req.method}`);
     console.log(`req.query: ${JSON.stringify(req.query)}`);
 
+    //  TODO: https://config9.com/apps/firebase/firebase-firestore-collection-count/
+    /**
+     *  get collection size (documents length)
+     *
+     *  currently using the first
+     *
+     *  TODO: -> 3rd (DONE)
+     */
+
+
+
     const db = await loadDB();
     const collection = await db.collection('Posts');
 
     if (req.method === 'GET') {
         const { query: { limit, page } } = req;
+
+        const countRef = await db.collection('Count').doc('Posts').get();
+        const total = await countRef.data().count;
+
         let ref;
-        if(Number(page) === 1){
+        if (Number(page) === 1) {
             ref = await collection.orderBy("created", "desc").limit(parseInt(limit)).get();
         }
         else {
@@ -25,24 +40,17 @@ export default async (req, res) => {
             ref = await collection.orderBy("created", "desc").startAfter(lastVisible).limit(parseInt(limit)).get();
         }
 
-        /*
-            length 도 보내줘야됨
-
-
-         */
-
-
         const data = [];
         ref.forEach(doc => {
             data.push({pid: doc.id, ...doc.data()});
         });
 
         const resData = JSON.stringify({
-            status: 200, msg: 'success', data: data
+            status: 200, msg: 'success', data: data, total: total
         });
         res.status(200).json(resData);
 
-    } else {
+    } else { // reg.method !== "GET"
         res.json( { status: 405, msg: '' } );
     }
 }

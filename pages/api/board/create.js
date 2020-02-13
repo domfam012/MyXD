@@ -59,6 +59,11 @@ export default async (req, res) => {
             .catch(function(error) {
                 console.error("Error adding document: ", error);
             });
+
+        const countDoc = await db.collection('Count').doc('Posts');
+        const increment = firestore.FieldValue.increment(1);
+        await countDoc.update({ count: increment });
+
         // req.cookies.pid = pid;
         return res.status(200).json({ pid: pid });
 
