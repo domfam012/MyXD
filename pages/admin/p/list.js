@@ -18,7 +18,7 @@ const BoxList = props => {
     const deleteItem = () => {
         const check = confirm('해당 글을 삭제하시겠습니까?');
         if (check) {
-            fetch(`http://13.209.55.219/api/board/post/${pid}`, {
+            fetch(`http://localhost:3000/api/board/post/${pid}`, {
                 method: 'DELETE',
                 headers: {
                     'Accept': 'application/json',
@@ -157,16 +157,17 @@ const BoxList = props => {
 
 const List = props => {
     const router = useRouter();
-    const [ box, setBox ] = useState(props.data);
+    // const [ box, setBox ] = useState(props.data);
     const handlePageChange = (pageNumber) => {
-        router.push(`/admin/p/list?page=${pageNumber}`)
+        window.scrollTo(0, 0);
+        router.push(`/admin/p/list?page=${pageNumber}`);
     };
 
-    const handleRemove = pid => {
-        console.log('handling remove..')
-        const newBox = box.filter(item => item.pid !== pid);
-        setBox(newBox);
-    };
+    // const handleRemove = pid => {
+    //     console.log('handling remove..')
+    //     const newBox = box.filter(item => item.pid !== pid);
+    //     setBox(newBox);
+    // };
 
     console.log(props.page);
 
@@ -186,12 +187,11 @@ const List = props => {
                             <div className={"col pl-0 pr-0"}>
 
                                 {
-                                    box.map(item => (
+                                    props.data.map(item => (
                                         <BoxList
                                             key={item.pid}
                                             router={router}
                                             item={item}
-                                            onDelete={handleRemove}
                                         />
                                     ))
                                 }
@@ -209,7 +209,7 @@ const List = props => {
                             <Pagination
                                 activePage={props.page}
                                 itemsCountPerPage={5}
-                                totalItemsCount={450}
+                                totalItemsCount={props.total}
                                 pageRangeDisplayed={5}
                                 onChange={handlePageChange}
                                 linkClass="page-link"
@@ -273,22 +273,24 @@ const List = props => {
 };
 
 List.getInitialProps = async (ctx) => {
-    // const auth = await fetch(`http://13.209.55.219/api/user/admin/auth`);
+    // const auth = await fetch(`http://localhost:3000/api/user/admin/auth`);
     // if ( auth.status !== 200 ) {
     //     return {
     //         auth: false
     //     }
     // }
+console.log("getInitial");
 
     const page = ctx.query.page || '1';
-    const res = await fetch(`http://13.209.55.219/api/board/list/5?page=${page}`);
+    const res = await fetch(`http://localhost:3000/api/board/list/5?page=${page}`);
     const result = await res.json();
 
-    console.log(result);
+    // console.log(result);
 
     return {
         data: result.data,
-        page: Number(page)
+        page: Number(page),
+        total: result.total
     };
 };
 

@@ -15,6 +15,7 @@ export default async (req, res) => {
     if (req.method === 'GET') {
         const ref = await collection.orderBy('created', 'desc').get();
         const data = [];
+
         ref.forEach(doc => {
             data.push({pid: doc.id, ...doc.data()});
         });
