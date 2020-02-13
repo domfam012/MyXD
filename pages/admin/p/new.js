@@ -41,7 +41,8 @@ const New = props => {
         setLink(e.target.value);
     };
 
-    const cancelSubmit = () => {
+    const cancelSubmit = (e) => {
+        e.preventDefault();
         const check = confirm('작성을 취소하시겠습니까?');
         if (check) {
             router.push('/admin/p/list');
@@ -56,7 +57,7 @@ const New = props => {
         const check = confirm('등록하시겠습니까?');
         if (check) {
 
-            const res = await fetch('http://localhost:3000/api/board/create', {
+            const res = await fetch('http://13.209.55.219/api/board/create', {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
@@ -67,16 +68,19 @@ const New = props => {
             });
 
             const result = await res.json();
-            const pid = result.pid;
+            const imgSaveName = result.imgSaveName;
 
-            document.cookie = `pid=${pid}; path=/`;
+            console.log(`result:{${JSON.stringify(result)}} uploaded`);
+            console.log(`imgSaveName:{${JSON.stringify(imgSaveName)}} uploaded`);
+
+            document.cookie = `imgName=${imgSaveName}; path=/`;
 
             const data = new FormData();
-            data.set("pid", pid);
+            data.set("test", "test");
             data.append("img", inputFileEl.current.files[0]);
 
             const uploadRes = await axios({
-                url: `http://localhost:3000/api/board/upload`,
+                url: `http://13.209.55.219/api/board/upload`,
                 method: 'post',
                 headers: {'Content-Type': 'multipart/form-data' },
                 data
@@ -261,7 +265,7 @@ const New = props => {
 };
 
 New.getInitialProps = async (ctx) => {
-    // const auth = await fetch(`http://localhost:3000/api/user/admin/auth`);
+    // const auth = await fetch(`http://13.209.55.219/api/user/admin/auth`);
     // if ( auth.status !== 200 ) {
     //     return {
     //         auth: false
@@ -269,7 +273,7 @@ New.getInitialProps = async (ctx) => {
     // }
 
     const page = ctx.query.page || '1';
-    const res = await fetch(`http://localhost:3000/api/board/list/5?page=${page}`);
+    const res = await fetch(`http://13.209.55.219/api/board/list/5?page=${page}`);
     const result = await res.json();
 
     return {
