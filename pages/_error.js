@@ -4,7 +4,7 @@ import React from "react";
 
 const Page = ({errorCode, stars}) => {
     return (
-        <>
+        <div>
             <div id="wrap" className="wrap error_wrap">
                 <div className="error_page">
                     <img src="/img/common/error.png" alt="에러이미지"/>
@@ -51,7 +51,7 @@ const Page = ({errorCode, stars}) => {
                 font-family: NanumGothic;
             }
             `}</style>
-        </>
+        </div>
     )
 };
 

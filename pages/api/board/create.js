@@ -16,19 +16,18 @@ export default async (req, res) => {
         const category = 'default';
         const content = req.body.content || '';
         const imgOriginName = req.body.imgName || '';
-        const imgSaveName = '';
-        const imgPath = '/img/upload/' + imgSaveName;
+        const imgPath = '/img/upload/' + '';
         const link = req.body.link || '';
         const title= req.body.title || '';
 
-        console.log(imgOriginName);
+        console.log(`imgOriginName: ${imgOriginName}`);
 
         const data = {
             category: category,
             content: content,
             imgOriginName: imgOriginName,
             imgPath: imgPath,
-            imgSaveName: imgSaveName,
+            imgSaveName: '',
             link: link,
             index: 1,
             title: title,
@@ -37,35 +36,37 @@ export default async (req, res) => {
         };
 
         const collection = db.collection('Posts');
-        const pid = await collection.add(data)
+        const imgSaveName = await collection.add(data)
             .then(function(docRef) {
                 console.log("Document written with ID: ", docRef.id);
                 return docRef.id;
             })
             .then(pid => {
                 const fileExtension = imgOriginName.split('.')[imgOriginName.split('.').length - 1];
-                const imgName = pid + "-" + moment().format('YYYYMMDDHHmmss') + "." + fileExtension;
-                console.log(imgOriginName);
-                console.log(fileExtension);
+                const imgSaveName = pid + "-" + moment().format('YYYYMMDDHHmmss') + "." + fileExtension;
+                console.log(`fileExtension: ${fileExtension}`);
+                console.log(`imgOriginName: ${imgOriginName}`);
 
                 const newData = {
-                    imgSaveName : imgName,
-                    imgPath : imgPath + imgName
+                    imgSaveName : imgSaveName,
+                    imgPath : imgPath + imgSaveName
                 };
                 collection.doc(pid).update(newData);
 
-                return pid;
+                return imgSaveName;
             })
+
             .catch(function(error) {
                 console.error("Error adding document: ", error);
             });
+
+        console.log(imgSaveName);
 
         const countDoc = await db.collection('Count').doc('Posts');
         const increment = firestore.FieldValue.increment(1);
         await countDoc.update({ count: increment });
 
-        // req.cookies.pid = pid;
-        return res.status(200).json({ pid: pid });
+        return res.status(200).json({ imgSaveName: imgSaveName });
 
     } else {
         //

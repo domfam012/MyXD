@@ -17,6 +17,10 @@ const Update = props => {
     const router = useRouter();
     const pid = router.query.pid;
 
+    console.log(JSON.stringify(router.query));
+    console.log(`${pid} from update.js`);
+    console.log(img)
+
     const titleChange = e => {
         setTitle(e.target.value);
     };
@@ -40,7 +44,8 @@ const Update = props => {
         setLink(e.target.value);
     };
 
-    const cancelSubmit = () => {
+    const cancelSubmit = (e) => {
+        e.preventDefault();
         const check = confirm('작성을 취소하시겠습니까?');
         if (check) {
             router.push('/admin/p/list');
@@ -59,7 +64,7 @@ const Update = props => {
                 reqData = { ...reqData, img, imgName };
             }
 
-            const res = await fetch(`http://localhost:3000/api/board/post/${pid}`, {
+            const res = await fetch(`http://13.209.55.219/api/board/post/${pid}`, {
                 method: 'PATCH',
                 headers: {
                     'Accept': 'application/json',
@@ -69,14 +74,16 @@ const Update = props => {
                 body : JSON.stringify(reqData)
             });
             const result = await res.json();
-            const pid = result.pid;
+            const imgSaveName = result.imgSaveName;
+
+            document.cookie = `imgName=${imgSaveName}; path=/`;
 
             const data = new FormData();
-            data.set("pid", pid);
+            data.set("test", "test");
             data.append("img", inputFileEl.current.files[0]);
 
             const uploadRes = await axios({
-                url: `http://localhost:3000/api/board/upload`,
+                url: `http://13.209.55.219/api/board/upload`,
                 method: 'post',
                 headers: {'Content-Type': 'multipart/form-data' },
                 data
@@ -269,7 +276,7 @@ const Update = props => {
 };
 
 Update.getInitialProps = async function (ctx) {
-    // const auth = await fetch(`http://localhost:3000/api/user/admin/auth`);
+    // const auth = await fetch(`http://13.209.55.219/api/user/admin/auth`);
     // if ( auth.status !== 200 ) {
     //     return {
     //         auth: false
@@ -277,7 +284,7 @@ Update.getInitialProps = async function (ctx) {
     // }
 
     const pid = ctx.query.pid;
-    const res = await fetch(`http://localhost:3000/api/board/post/${pid}`);
+    const res = await fetch(`http://13.209.55.219/api/board/post/${pid}`);
     const result = await res.json();
 
     // data.typeOf()

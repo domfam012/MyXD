@@ -12,7 +12,7 @@ import {faChevronRight} from '@fortawesome/pro-light-svg-icons';
 //리스트 template 컴포넌트
 const Temp = props => {
     return (
-        <>
+        <div>
             <li>
                 <Link href={`/p/${props.pid}`}>
                     <a href="#" className="inner">
@@ -101,7 +101,7 @@ const Temp = props => {
                     }
               }
          `}</style>
-        </>
+        </div>
     );
 };
 
@@ -174,7 +174,7 @@ const Index = props => {
 Index.getInitialProps = async function (ctx) {
 
     const page = ctx.query.page || '1';
-    const res = await fetch(`http://localhost:3000/api/board/list/15?page=${page}`);
+    const res = await fetch(`http://13.209.55.219/api/board/list/15?page=${page}`);
     const result = await res.json();
 
     // console.log(`Show data fetched. Count: ${result.data.length}`);
