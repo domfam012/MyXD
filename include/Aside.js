@@ -37,7 +37,7 @@ const Aside = props => (
         {/*{*/}
         {/*    console.log(props.asideData)*/}
         {/*}*/}
-        <div className="clearfix">
+        <div>
             <div className="aside">
                 <a href="#">
                     <div className={"ad_area"}>
@@ -52,48 +52,17 @@ const Aside = props => (
                             <Card key={item.pid} title={item.title} pid={item.pid} imgPath={item.imgPath}/>
                         ))
                     }
-
-                    {/*<a href="#">
-                        <div className={"temp"}>
-                            <div className={"img"}>
-                                <img src="/img/aside/temp_01.png" alt="template image"/>
-                            </div>
-                            <div className={"title"}>
-                                <span>Hooked: free UI kit for Adobe XD</span>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="#">
-                        <div className={"temp"}>
-                            <div className={"img"}>
-                                <img src="/img/aside/temp_02.png" alt="template image"/>
-                            </div>
-                            <div className={"title"}>
-                                <span>Hooked: free UI kit for Adobe XD</span>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="#">
-                        <div className={"temp"}>
-                            <div className={"img"}>
-                                <img src="/img/aside/temp_03.png" alt="template image"/>
-                            </div>
-                            <div className={"title"}>
-                                <span>Hooked: free UI kit for Adobe XD</span>
-                            </div>
-                        </div>
-                    </a>*/}
-
                 </div>
             </div>
         </div>
         <style jsx>{`
           .aside {
-            float: right;
+            position: absolute;
+            right: 0;
+            top: 70px;
             width: 268px;
             box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
             background-color: #ffffff;
-            margin-bottom: 130px;
             overflow: hidden;
           }
           .aside .ad_area {

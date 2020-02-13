@@ -1,8 +1,6 @@
 import Head from 'next/head';
 import Header from './Header';
-import Aside from './Aside';
 import Footer from './Footer';
-
 import {useRouter} from "next/router";
 
 const Layout = props => {
@@ -38,9 +36,6 @@ const Layout = props => {
                 <script src="/js/bootstrap.min.js"/>
                 <script src="/js/common.js"/>
             </Head>
-
-
-
 
             <Header isResponsive={isResponsive}/>
             <div className={containerClass}>

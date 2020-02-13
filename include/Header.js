@@ -33,72 +33,80 @@ const Header = props => {
 
     return (
         <header>
-            <nav className={props.isResponsive ? "navbar navbar-expand-xl" : "navbar admin"}>
-                <Link href="/">
-                    <a className="navbar-brand"><span className="pink">MyXD</span> logo</a>
-                </Link>
-                {/* tab,mobile 메뉴 버튼 */}
-                <button className={`navbar-toggle ${menuActive ? 'active' : ''}`} type="button" data-toggle="collapse"
-                        data-target="#navbarText"
-                        aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation"
-                        onClick={() => setMenuState(!menuActive)}>
-                    <div className="navbar-toggler-icon">
-                        <span className={"bar1"}></span>
-                        <span className={"bar2"}></span>
-                        <span className={"bar3"}></span>
+            <div className={"nav_wrap"}>
+                <nav className={props.isResponsive ? "navbar navbar-expand-xl" : "navbar admin"}>
+                    <Link href="/">
+                        <a className="navbar-brand"><span className="pink">MyXD</span> logo</a>
+                    </Link>
+                    {/* tab,mobile 메뉴 버튼 */}
+                    <button className={`navbar-toggle ${menuActive ? 'active' : ''}`} type="button"
+                            data-toggle="collapse"
+                            data-target="#navbarText"
+                            aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation"
+                            onClick={() => setMenuState(!menuActive)}>
+                        <div className="navbar-toggler-icon">
+                            <span className={"bar1"}></span>
+                            <span className={"bar2"}></span>
+                            <span className={"bar3"}></span>
+                        </div>
+                    </button>
+                    <div className="collapse navbar-collapse menu" id="navbarText">
+                        <ul className="navbar-nav mr-auto">
+                            <li className="nav-item">
+                                <Link href="/list">
+                                    <a className="nav-link" href="/">UI KITS</a>
+                                </Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link href="/list">
+                                    <a className="nav-link" href="/list">Website</a>
+                                </Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link href="/detail">
+                                    <a className="nav-link" href="/detail">Mobile</a>
+                                </Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link href="/api/user/login" href="/detail">
+                                    <a className="nav-link">Plug-in</a>
+                                </Link>
+                            </li>
+                        </ul>
                     </div>
-                </button>
-                <div className="collapse navbar-collapse menu" id="navbarText">
-                    <ul className="navbar-nav mr-auto">
-                        <li className="nav-item">
-                            <Link href="/list">
-                                <a className="nav-link" href="/">UI KITS</a>
-                            </Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link href="/list">
-                                <a className="nav-link" href="/list">Website</a>
-                            </Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link href="/detail">
-                                <a className="nav-link" href="/detail">Mobile</a>
-                            </Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link href="/api/user/login" href="/detail">
-                                <a className="nav-link">Plug-in</a>
-                            </Link>
-                        </li>
-                    </ul>
-                </div>
-                <div className={"collapse navbar-collapse navbar-icon"}>
-                    <ul className="navbar-nav">
-                        <li className="nav-item">
-                            <a className="nav-link" href="#"><img src="/img/common/instargram.png"
-                                                                  alt="instargram"/></a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="#"><img src="/img/common/twitter.png" alt="twitter"/></a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="#"><img src="/img/common/facebook.png" alt="facebook"/></a>
-                        </li>
-                        <li className="nav-item">
-                            <Link href="/admin/login">
-                                <a onClick={logout} className="nav-link" href="#"><img src="/img/common/login.png" alt="login"/></a>
-                            </Link>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
+                    <div className={"collapse navbar-collapse navbar-icon"}>
+                        <ul className="navbar-nav">
+                            <li className="nav-item">
+                                <a className="nav-link" href="#"><img src="/img/common/instargram.png"
+                                                                      alt="instargram"/></a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link" href="#"><img src="/img/common/twitter.png" alt="twitter"/></a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link" href="#"><img src="/img/common/facebook.png"
+                                                                      alt="facebook"/></a>
+                            </li>
+                            <li className="nav-item">
+                                <Link href="/admin/login">
+                                    <a onClick={logout} className="nav-link" href="#"><img src="/img/common/login.png"
+                                                                                           alt="login"/></a>
+                                </Link>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
             <style jsx>{`
-              .navbar {
+              .nav_wrap {
                 width: 100%;
-                min-width: 1301px;
-                height: 70px;
-                padding: 0 170px;
                 background: #2e001f;
+                height: 70px;
+              }
+              .navbar {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 0 30px;
                 color: #fff;
               }
               .navbar-brand {
@@ -128,6 +136,7 @@ const Header = props => {
               .navbar-icon .navbar-nav {
                 position: absolute;
                 right: 0;
+                display: none;
               }
               .navbar-icon .navbar-nav .nav-item {
                 margin-right: 30px;
@@ -137,14 +146,6 @@ const Header = props => {
               }
               .navbar-toggler-icon {
                 display: none;
-              }
-              
-              @media (max-width: 1350px) {
-                .navbar{
-                    width: 100%;
-                    min-width: 576px;
-                    padding: 0 80px;
-                }
               }
               @media (max-width: 1199px) {
                 .navbar {
@@ -239,6 +240,9 @@ const Header = props => {
                   outline: none;
                 }
                 .navbar-nav {
+                    position: relative;
+                    z-index: 1;
+                    top: 5px;
                   background: #ffffff;
                   box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
                   border: solid 1px var(--white);
@@ -340,57 +344,19 @@ const Header = props => {
               }
               
             //admin===============
-                .admin {
-                  min-width: 1200px;
-                  }
-                .admin .menu {
-                  display: none !important;
-                }
-                .admin .navbar-brand {
-                  font-size: 20px;
-                  line-height: 66px;
-                  color: #fff;
-                  margin-right: 95px;
-                }
-                .admin .nav-link {
-                  padding: 24px 10px !important;
-                }
-                .admin .navbar-icon {
-                  position: absolute;
-                  display: block;
-                  top: 0;
-                  right: 170px;
-                }
-                .admin .navbar-icon .navbar-nav .nav-item {
-                  margin-right: 30px;
-                }
-                .admin .navbar-icon .navbar-nav .nav-item:nth-child(1),
-                .admin .navbar-icon .navbar-nav .nav-item:nth-child(2),
-                .admin .navbar-icon .navbar-nav .nav-item:nth-child(3) {
-                  display: none;
-                }
-                .admin .navbar-toggler-icon {
-                  display: none;
-                }
+                  .admin {}
                  @media (max-width: 1199px) {
                   .admin.navbar {
-                    min-width: 1200px;
                   }
                   .admin .navbar-nav {
-                    background: none;
-                    box-shadow: none;
-                    border: none;
                   }
                   .admin .navbar-brand {
-                    padding: 0 170px;
                   } 
                  }
                  @media (max-width: 760px) {
                   .admin.navbar {
-                    min-width: 1200px;
                   }
                   .admin .navbar-brand {
-                    padding: 0 170px;
                   } 
                  }
             `}</style>

@@ -28,7 +28,7 @@ const Temp = props => {
             <style jsx>{`
               li {
                 display: block;
-                width: 366px;
+                width: calc(100% - 818px);
                 float: left;
                 box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
                 background-color: var(--white);
@@ -46,8 +46,8 @@ const Temp = props => {
                 padding: 0;
               }
               .li-img img {
-                width: 366px;
-                height: 206px;
+                width: 100%;
+                height: 100%;
               }
               .li-text {
                 height: 84px;
@@ -57,8 +57,8 @@ const Temp = props => {
 
               @media (max-width: 1200px) {
                   li {
-                    width: 339px;
                     display: block;
+                    width: calc(50% - 14px);
                     float: left;
                     background: none;
                     border: 0;
@@ -74,8 +74,8 @@ const Temp = props => {
                     margin-right: 0;
                   }
                   .li-img img{
-                      width: 339px;
-                      height: 191px;
+                      width: 100%;
+                      height: 100%;
                     }
                   .inner {
                     display: block;
@@ -159,7 +159,6 @@ const Index = props => {
                     margin-top: 30px;
                     margin-bottom: 70px;
                 }
-              
               @media (max-width: 1200px) {
                   .list {
                     margin: 0 auto;
