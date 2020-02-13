@@ -14,7 +14,6 @@ export default async (req,res) => {
     const sessions = await useSession(req, res);
     // req.session.destroy(); // logout
 
-
     // console.log(req.body.email);
     // console.log(req.body.password);
 

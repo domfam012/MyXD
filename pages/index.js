@@ -32,7 +32,7 @@ const Card = props => {
                 </div>
                 <style jsx>{`
                 .main_card {
-                    width: 862px;
+                    width: calc(100% - 298px);
                     margin-right: 30px;
                     box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
                     background-color: #ffffff;
@@ -62,38 +62,23 @@ const Card = props => {
                     color: #666666;
                     margin: 23px 0 40px;
                 }
-                .nav {
-                    float: left;
-                }
                 .btn {
                   color: #ffffff;
                   line-height: 33px;
                 }
                 .btn:hover {
-                  background: #6A6969;
                   line-height: 33px;
-                  border-color: #6A6969;
                 }
                 .btn:active{
-                  background: #585858 !important;
                   line-height: 33px;
-                  border-color: #585858 !important;
                 }
             @media (max-width: 1200px) {
                 .main_card {
-                    width: 708px;
-                    margin-right: 0;
-                }
-                .box-left {
-                    float: unset;
                     width: 100%;
+                    margin-right: 0;
                 }
             }
             @media (max-width: 760px) {
-                .main_card {
-                    width: 100%;
-                    margin-right: 0;
-                }
                 .box_text {
                     padding: 30px 40px;
                 }
@@ -135,8 +120,8 @@ const Index = props => {
     return (
 
         <Layout page={"index"}>
-            <div className={"clearfix"}>
-                <div className={"float-left"}>
+            <div>
+                <div>
                     {
                         props.data.map(item => (
                             //Card 컴포넌트
@@ -174,7 +159,13 @@ const Index = props => {
                     width: 100%;
                     margin-top: 30px;
                     margin-bottom: 70px;
+                    padding-right: 332px;
                 }
+                @media (max-width: 1200px) {
+                .nav {
+                      padding-right : 0;
+                }
+            }
             `}</style>
         </Layout>
     );
