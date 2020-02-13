@@ -6,7 +6,7 @@ import React from "react";
 
 const Template = props => {
     return (
-        <>
+        <div>
             <li>
                 <Link href={`/p/${props.pid}`}>
                     <a href="#" className="inner">
@@ -78,7 +78,7 @@ const Template = props => {
                   }
             }
            `}</style>
-        </>
+        </div>
     )
 };
 

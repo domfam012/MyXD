@@ -12,7 +12,7 @@ import {faChevronRight} from '@fortawesome/pro-light-svg-icons';
 //리스트 template 컴포넌트
 const Temp = props => {
     return (
-        <>
+        <div>
             <li>
                 <Link href={`/p/${props.pid}`}>
                     <a href="#" className="inner">
@@ -101,7 +101,7 @@ const Temp = props => {
                     }
               }
          `}</style>
-        </>
+        </div>
     );
 };
 
