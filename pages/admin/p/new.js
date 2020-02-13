@@ -4,6 +4,7 @@ import { useState, useRef  } from 'react';
 import { useRouter } from 'next/router';
 import fetch from 'isomorphic-unfetch';
 import axios from 'axios';
+import Login from "../login";
 
 const New = props => {
     const [ title, setTitle ] = useState('');
@@ -13,6 +14,10 @@ const New = props => {
     const [ link, setLink ] = useState('');
     const inputFileEl = useRef(null);
     const router = useRouter();
+
+    // if( !props.auth ) {
+    //     router.push('/admin/login');
+    // }
 
     const titleChange = e => {
         setTitle(e.target.value);
@@ -51,7 +56,7 @@ const New = props => {
         const check = confirm('등록하시겠습니까?');
         if (check) {
 
-            const res = await fetch('http://localhost:3000/api/board/create', {
+            const res = await fetch('http://13.209.55.219/api/board/create', {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
@@ -71,7 +76,7 @@ const New = props => {
             data.append("img", inputFileEl.current.files[0]);
 
             const uploadRes = await axios({
-                url: `http://localhost:3000/api/board/upload`,
+                url: `http://13.209.55.219/api/board/upload`,
                 method: 'post',
                 headers: {'Content-Type': 'multipart/form-data' },
                 data
@@ -253,6 +258,25 @@ const New = props => {
 
         </Layout>
     );
+};
+
+New.getInitialProps = async (ctx) => {
+    // const auth = await fetch(`http://13.209.55.219/api/user/admin/auth`);
+    // if ( auth.status !== 200 ) {
+    //     return {
+    //         auth: false
+    //     }
+    // }
+
+    const page = ctx.query.page || '1';
+    const res = await fetch(`http://13.209.55.219/api/board/list/5?page=${page}`);
+    const result = await res.json();
+
+    return {
+        auth: true,
+        data: result.data,
+        page: Number(page)
+    };
 };
 
 export default New;

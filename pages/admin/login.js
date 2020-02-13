@@ -5,6 +5,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from "next/router";
 import fetch from "isomorphic-unfetch";
+import List from "./p/list";
 
 
 const Login  = props => {
@@ -34,11 +35,11 @@ const Login  = props => {
         console.log('PWD :'+password);
 
         if(!chkEmail(email)){
-            alert('정확한 Email을 입력하세요')
+            alert('정확한 Email을 입력하세요');
             return;
         }
         else{
-            fetch(`http://localhost:3000/api/user/login`, {
+            fetch(`http://13.209.55.219/api/user/login`, {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
@@ -183,6 +184,18 @@ const Login  = props => {
     );
 };
 
+Login.getInitialProps = async (ctx) => {
+    const page = ctx.query.page || '1';
+    const res = await fetch(`http://13.209.55.219/api/board/list/5?page=${page}`);
+    const result = await res.json();
+
+    console.log(result);
+
+    return {
+        data: result.data,
+        page: Number(page)
+    };
+};
 
 
 export default Login;
