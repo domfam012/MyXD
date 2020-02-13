@@ -34,9 +34,9 @@ const Card = props => {
 
 const Aside = props => (
     <aside>
-        {
-            console.log(props.asideData)
-        }
+        {/*{*/}
+        {/*    console.log(props.asideData)*/}
+        {/*}*/}
         <div className="clearfix">
             <div className="aside">
                 <a href="#">
