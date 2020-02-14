@@ -36,8 +36,6 @@ app.prepare().then(() => {
 
         express.use(multer({dest: './public/uploads/'}).any());
 
-        // api -> set.. -> next
-
         // const apiRegTest = /^\/api((\/[^\s/\/]+)*)?$/;
         // if (apiRegTest.test(pathname)) {
         //     // return res.json({a:1});
@@ -45,38 +43,9 @@ app.prepare().then(() => {
         //     console.log('here?');
         // } else
 
-        // const adminRegTest = /^\/admin((\/[^\s/\/]+)*)?$/;
-        // if (adminRegTest.test(pathname)) {
-        //     // return res.json({a:1});
-        //     console.log('here?');
-        //     const authCheck = async () => {
-        //         const sessions = await useSession(req, res);
-        //         if (!req.session.user) {
-        //             console.log('none');
-        //             res.writeHead(302, { Location: '/admin/login' });
-        //             res.end();
-        //         } else {
-        //             console.log('user');
-        //             res.writeHead(302, { Location: '/admin/p/list' });
-        //             res.end();
-        //         }
-        //     };
-        //     authCheck();
-        // } else {
-        //     handle(req, res, parsedUrl);
-        // }
-
         if (pathname === '/admin') {
-            // res.writeHead(302, { Location: '/admin/login' });
-            // res.end();
-
-            const authCheck = async () => {
-                const sessions = await useSession(req, res);
-                if (!sessions.user) {
-                    res.writeHead(302, { Location: '/admin/login' });
-                    res.end();
-                }
-            }
+            res.writeHead(302, { Location: '/admin/login' });
+            res.end();
         } else {
             handle(req, res, parsedUrl);
         }
