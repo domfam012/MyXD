@@ -4,6 +4,7 @@ import { useState, useRef } from 'react';
 import { useRouter } from 'next/router';
 import fetch from 'isomorphic-unfetch';
 import axios from 'axios';
+import nextCookie from "next-cookies";
 
 const Update = props => {
     const [ data, setData ] = useState(props.data);
@@ -276,21 +277,16 @@ const Update = props => {
 };
 
 Update.getInitialProps = async function (ctx) {
-    // const auth = await fetch(`http://13.209.55.219/api/user/admin/auth`);
-    // if ( auth.status !== 200 ) {
-    //     return {
-    //         auth: false
-    //     }
-    // }
+    const { token } = nextCookie(ctx);
+    const auth = !!token;
+    if (!auth) {
+        ctx.res.writeHead(302, { Location: '/admin/login' });
+        ctx.res.end();
+    }
 
     const pid = ctx.query.pid;
     const res = await fetch(`http://13.209.55.219/api/board/post/${pid}`);
     const result = await res.json();
-
-    // data.typeOf()
-    // console.log(result);
-    // console.log(typeof result);
-    // console.log(`Show data fetched. Count: ${result.data.length}`);
 
     return {
         data: result.data
