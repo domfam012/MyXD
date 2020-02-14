@@ -55,28 +55,28 @@ const Template = props => {
                 }
                 
                 @media (max-width: 1200px) {
-                li {
-                    margin: 20px 20px 0 0;
-                    width: calc(50% - 40px);
-                  }
-                li:nth-child(3) {
-                    margin-left: 30px;
+                    li {
+                        margin: 20px 20px 0 0;
+                        width: calc(50% - 40px);
+                    }
+                    li:nth-child(3) {
+                        margin-left: 30px;
+                    }
                 }
-            }
-            //모바일
-            @media (max-width: 760px) {
-                 li {
-                    width: 100%;
-                    margin-left: 0;
-                    margin-right: 0;
-                  }
-                  li:nth-child(1) {
-                    margin-left: 0;
-                  }
-                  li:nth-child(3) {
-                    margin-left: 0;
-                  }
-            }
+                //모바일
+                @media (max-width: 760px) {
+                     li {
+                        width: 100%;
+                        margin-left: 0;
+                        margin-right: 0;
+                      }
+                      li:nth-child(1) {
+                        margin-left: 0;
+                      }
+                      li:nth-child(3) {
+                        margin-left: 0;
+                      }
+                }            
            `}</style>
         </>
     )
@@ -221,6 +221,30 @@ const Detail = props => {
                 }
                 .list {
                 padding : 0 40px;
+                }
+                
+                //IE10+ 적용 css
+                @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+                     /* Enter your style code */
+                     //You may also like
+                    .detail_title {
+                        position: relative;
+                        width: 180px;
+                        height: 23px;
+                        color: #666666;
+                        font-size: 20px;
+                        font-weight: bold;
+                        margin: 0 auto 18px;
+                    }
+                    .detail_title:after {
+                        position: absolute;
+                        content: '';
+                        width: 100px;
+                        height: 1px;
+                        border-bottom: 1px solid #96959a;
+                        bottom: -17px;
+                        left: 32px;
+                    }
                 }
             }
             `}</style>
