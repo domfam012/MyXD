@@ -228,6 +228,7 @@ const Update = props => {
                     width: 321px;
                     height: 182px;
                     border: 1px solid #eaeaea;
+                    overflow: hidden;
                 }
                 .file-label .add {
                     display: block;
