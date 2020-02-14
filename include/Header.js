@@ -65,12 +65,12 @@ const Header = props => {
                                 </Link>
                             </li>
                             <li className="nav-item">
-                                <Link href="/detail">
+                                <Link href="/admin">
                                     <a className="nav-link" href="/detail">Mobile</a>
                                 </Link>
                             </li>
                             <li className="nav-item">
-                                <Link href="/api/user/login" href="/detail">
+                                <Link href="/detail">
                                     <a className="nav-link">Plug-in</a>
                                 </Link>
                             </li>
