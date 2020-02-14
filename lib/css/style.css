@@ -118,7 +118,7 @@ pagination
     border-color: transparent;
 }
 /*
- cehckbox
+ checkbox
 */
 [type="checkbox"]:not(:checked),
 [type="checkbox"]:checked {
