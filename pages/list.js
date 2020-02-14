@@ -174,7 +174,7 @@ const Index = props => {
 Index.getInitialProps = async function (ctx) {
 
     const page = ctx.query.page || '1';
-    const res = await fetch(`http://localhost/api/board/list/15?page=${page}`);
+    const res = await fetch(`http://13.209.55.219/api/board/list/15?page=${page}`);
     const result = await res.json();
 
     // console.log(`Show data fetched. Count: ${result.data.length}`);

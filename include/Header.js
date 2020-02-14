@@ -21,7 +21,7 @@ const Header = props => {
         if (check) {
             console.log(`logout check true`);
 
-            const res = await fetch(`http://localhost/api/user/logout`);
+            const res = await fetch(`http://13.209.55.219/api/user/logout`);
             if (res.status === 200) {
                 console.log('logout success');
                 cookie.remove('token');

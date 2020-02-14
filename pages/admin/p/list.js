@@ -19,7 +19,7 @@ const BoxList = props => {
     const deleteItem = () => {
         const check = confirm('해당 글을 삭제하시겠습니까?');
         if (check) {
-            fetch(`http://localhost/api/board/post/${pid}`, {
+            fetch(`http://13.209.55.219/api/board/post/${pid}`, {
                 method: 'DELETE',
                 headers: {
                     'Accept': 'application/json',
@@ -286,7 +286,7 @@ List.getInitialProps = async (ctx) => {
     }
 
     const page = ctx.query.page || '1';
-    const res = await fetch(`http://localhost/api/board/list/5?page=${page}`);
+    const res = await fetch(`http://13.209.55.219/api/board/list/5?page=${page}`);
     const result = await res.json();
 
     // console.log(result);
