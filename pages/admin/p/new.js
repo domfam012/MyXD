@@ -4,7 +4,7 @@ import { useState, useRef  } from 'react';
 import { useRouter } from 'next/router';
 import fetch from 'isomorphic-unfetch';
 import axios from 'axios';
-import Login from "../login";
+import nextCookie from 'next-cookies';
 
 const New = props => {
     const [ title, setTitle ] = useState('');
@@ -14,10 +14,6 @@ const New = props => {
     const [ link, setLink ] = useState('');
     const inputFileEl = useRef(null);
     const router = useRouter();
-
-    // if( !props.auth ) {
-    //     router.push('/admin/login');
-    // }
 
     const titleChange = e => {
         setTitle(e.target.value);
@@ -125,9 +121,24 @@ const New = props => {
                                             <label className="col-form-label">카테고리</label>
                                         </div>
                                         <div className={"input-area"}>
-                                            <input type="text" name={"title"} className="form-control" placeholder={"제목을 입력하세요."} maxLength="50"
-                                                   onChange={titleChange}
-                                            />
+                                            <label className="checkbox checkbox_single">
+                                                <input type="checkbox" className="filled-in"/>
+                                                <span>UI KITS</span>
+                                            </label>
+                                            <label className="checkbox checkbox_single">
+                                                <input type="checkbox" className="filled-in"/>
+                                                <span>Website</span>
+                                            </label>
+                                            <label className="checkbox checkbox_single">
+                                                <input type="checkbox" className="filled-in"/>
+                                                <span>Mobile</span>
+                                            </label>
+                                            <label className="checkbox checkbox_single">
+                                                <input type="checkbox" className="filled-in"/>
+                                                <span>Plug-in</span>
+                                            </label>
+
+
                                         </div>
                                     </div>
 
@@ -277,19 +288,19 @@ const New = props => {
 };
 
 New.getInitialProps = async (ctx) => {
-    // const auth = await fetch(`http://13.209.55.219/api/user/admin/auth`);
-    // if ( auth.status !== 200 ) {
-    //     return {
-    //         auth: false
-    //     }
-    // }
+    const { token } = nextCookie(ctx);
+    const auth = !!token;
+    if (!auth) {
+        ctx.res.writeHead(302, { Location: '/admin/login' });
+        ctx.res.end();
+    }
 
     const page = ctx.query.page || '1';
     const res = await fetch(`http://13.209.55.219/api/board/list/5?page=${page}`);
     const result = await res.json();
 
     return {
-        auth: true,
+        auth: auth,
         data: result.data,
         page: Number(page)
     };

@@ -10,6 +10,7 @@ import { faChevronDoubleLeft } from '@fortawesome/pro-light-svg-icons';
 import { faChevronLeft } from '@fortawesome/pro-light-svg-icons';
 import { faChevronRight } from '@fortawesome/pro-light-svg-icons';
 import Pagination from "react-js-pagination";
+import nextCookie from "next-cookies";
 
 const BoxList = props => {
     const { router, item, onDelete } = props;
@@ -273,13 +274,12 @@ const List = props => {
 };
 
 List.getInitialProps = async (ctx) => {
-    // const auth = await fetch(`http://13.209.55.219/api/user/admin/auth`);
-    // if ( auth.status !== 200 ) {
-    //     return {
-    //         auth: false
-    //     }
-    // }
-console.log("getInitial");
+    const { token } = nextCookie(ctx);
+    const auth = !!token;
+    if (!auth) {
+        ctx.res.writeHead(302, { Location: '/admin/login' });
+        ctx.res.end();
+    }
 
     const page = ctx.query.page || '1';
     const res = await fetch(`http://13.209.55.219/api/board/list/5?page=${page}`);

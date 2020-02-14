@@ -2,11 +2,11 @@ import Head from "next/head";
 import Layout from '../../include/Layout';
 import React from "react";
 import { useState } from 'react';
-import Link from 'next/link';
 import { useRouter } from "next/router";
 import fetch from "isomorphic-unfetch";
-import List from "./p/list";
-
+import nextCookie from 'next-cookies';
+import cookie from 'js-cookie'
+import New from "./p/new";
 
 const Login  = props => {
 
@@ -16,10 +16,10 @@ const Login  = props => {
     //function() req(email, password) to api
     const handleEmailChange = (e) => {
         setEmail(e.target.value)
-    }
+    };
     const handlePasswordChange = (e) => {
         setPassword(e.target.value)
-    }
+    };
 
     const [ email, setEmail ] = useState('');
     const [ password, setPassword ] = useState('');
@@ -54,23 +54,29 @@ const Login  = props => {
             }).then(function (res) {
 
                 //로그인 성공시 관리자 리스트 화면으로 이동
-                if(res.status === 200){
-                    router.push(`/admin/p/list`);
+                if (res.status === 200) {
+                    return res.json();
                 }
 
                 //로그인실패시 status 코드에 따라 alert 생성
-                if(res.status === 400){
+                if (res.status === 400) {
                     alert('유저정보가 존재하지 않습니다.');
                 }
 
-                if(res.status === 600){
+                if (res.status === 600) {
                     alert('비밀번호가 일치하지 않습니다.');
                 }
 
+            }).then(json => {
 
+                console.log('json:::');
+                console.log(json);
+                cookie.set('token', json.token, { expires: 1 });
+                router.push('/admin/p/list');
 
             }).catch(function(err){
                 console.log('loginFail');
+                console.log(err);
             });
         }
 
@@ -184,17 +190,18 @@ const Login  = props => {
     );
 };
 
-// Login.getInitialProps = async (ctx) => {
-//     const page = ctx.query.page || '1';
-//     const res = await fetch(`http://13.209.55.219/api/board/list/5?page=${page}`);
-//     const result = await res.json();
-//
-//     console.log(result);
-//
-//     return {
-//         data: result.data,
-//         page: Number(page)
-//     };
-// };
+Login.getInitialProps = async (ctx) => {
+    const { token } = nextCookie(ctx);
+
+    const auth = !!token;
+    if (auth) {
+        ctx.res.writeHead(302, { Location: '/admin/p/list' });
+        ctx.res.end();
+    }
+
+    return {
+        auth: auth
+    };
+};
 
 export default Login;
