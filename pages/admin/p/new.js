@@ -115,6 +115,18 @@ const New = props => {
                                             />
                                         </div>
                                     </div>
+
+                                    <div className={"form-group"}>
+                                        <div className={"label-area"}>
+                                            <label className="col-form-label">카테고리</label>
+                                        </div>
+                                        <div className={"input-area"}>
+                                            <input type="text" name={"title"} className="form-control" placeholder={"제목을 입력하세요."} maxLength="50"
+                                                   onChange={titleChange}
+                                            />
+                                        </div>
+                                    </div>
+
                                     <div className={"form-group"}>
                                         <div className={"label-area"}>
                                             <label className="col-form-label" style={{"lineHeight":"20.4"}}>내용</label>
