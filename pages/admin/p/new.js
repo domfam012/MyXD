@@ -121,9 +121,24 @@ const New = props => {
                                             <label className="col-form-label">카테고리</label>
                                         </div>
                                         <div className={"input-area"}>
-                                            <input type="text" name={"title"} className="form-control" placeholder={"제목을 입력하세요."} maxLength="50"
-                                                   onChange={titleChange}
-                                            />
+                                            <label className="checkbox checkbox_single">
+                                                <input type="checkbox" className="filled-in"/>
+                                                <span>UI KITS</span>
+                                            </label>
+                                            <label className="checkbox checkbox_single">
+                                                <input type="checkbox" className="filled-in"/>
+                                                <span>Website</span>
+                                            </label>
+                                            <label className="checkbox checkbox_single">
+                                                <input type="checkbox" className="filled-in"/>
+                                                <span>Mobile</span>
+                                            </label>
+                                            <label className="checkbox checkbox_single">
+                                                <input type="checkbox" className="filled-in"/>
+                                                <span>Plug-in</span>
+                                            </label>
+
+
                                         </div>
                                     </div>
 

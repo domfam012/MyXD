@@ -132,12 +132,14 @@ pagination
     cursor: pointer;
     display: inline-block;
     height: 25px;
-    line-height: 25px;
+    line-height: 40px;
     font-size: 16px;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    color: #333333;
+    letter-spacing: -.8px;
 }
 
 [type="checkbox"] + span:not(.lever):before,
@@ -240,7 +242,7 @@ pagination
     height: 0;
     border: 3px solid transparent;
     left: 6px;
-    top: 10px;
+    top: 14px;
     -webkit-transform: rotateZ(37deg);
     transform: rotateZ(37deg);
     -webkit-transform-origin: 100% 100%;
@@ -252,13 +254,13 @@ pagination
     width: 18px;
     background-color: transparent;
     border: 2px solid #999999;
-    top: 4px;
+    top: 11px;
     left:2px;
     z-index: 0;
 }
 
 [type="checkbox"].filled-in:checked + span:not(.lever):before {
-    top: 2px;
+    top: 9px;
     left: 2px;
     width: 8px;
     height: 13px;
@@ -273,12 +275,12 @@ pagination
 }
 
 [type="checkbox"].filled-in:checked + span:not(.lever):after {
-    top: 4px;
+    top: 11px;
     left:2px;
     width: 18px;
     height: 18px;
-    border: 2px solid var(--color-point);
-    background-color: var(--color-point);
+    border: 2px solid var(--primary);
+    background-color: var(--primary);
     z-index: 0;
 }
 
@@ -511,6 +513,8 @@ label {
     cursor: pointer;
     font-weight: bold;
     font-size: 16px;
+    margin-right: 40px;
+    vertical-align: sub;
 }
 
 button {
