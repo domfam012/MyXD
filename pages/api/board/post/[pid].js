@@ -8,7 +8,7 @@ export default async (req, res) => {
     res.setHeader('Content-Type', 'application/json');
 
     const { query: { pid } } = req;
-    // console.log(pid);
+    console.log(`${pid} from api/../[pid].js`);
     // console.log(req.query);
 
     const db = await loadDB();
@@ -42,11 +42,12 @@ export default async (req, res) => {
             break;
 
         case "PATCH" :
+
             // Update
             const category = 'default';
             const content = req.body.content || '';
-            const link = req.body.link;
-            const title= req.body.title;
+            const link = req.body.link || '';
+            const title= req.body.title || '';
 
             let newData = {
                 category: category,
@@ -64,14 +65,21 @@ export default async (req, res) => {
                     imgOriginName: req.body.imgName,
                     imgPath: '/img/upload/' + imgName,
                     imgSaveName: imgName
-                }
-                newData = { ...newData, imgData };
+                };
+
+                console.log(`imgData: ${imgData}`);
+                console.log(`pid: ${pid}`);
+
+                newData = { ...newData, ...imgData };
             }
 
             await doc.update(newData);
 
+            console.log(newData)
+            console.log(JSON.stringify(newData))
+
             resData = JSON.stringify({
-                status: 200, msg: 'success'
+                status: 200, msg: 'success', imgSaveName: newData.imgSaveName
             });
             res.status(200).json(resData);
 

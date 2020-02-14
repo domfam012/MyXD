@@ -8,12 +8,12 @@ export default async (req, res) => {
     form.uploadDir = "./public/img/upload";
     form.keepExtensions = true;
 
-    const pid = req.cookies.pid;
+    const imgName = req.cookies.imgName;
+    console.log(imgName);
+
     form.parse(req);
     form.on('file', function (name, file) {
-        const fileExtension = file.name.split('.')[file.name.split('.').length - 1];
-        const imgName = pid + "-" + moment().format('YYYYMMDDHHmmss') + "." + fileExtension;
-
+        // const fileExtension = file.name.split('.')[file.name.split('.').length - 1];
         fs.rename(file.path, form.uploadDir + "/" + imgName,function (err) {
             if (err) {
                 fs.unlink(form.uploadDir + "/" + imgName);
