@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import { useRouter } from "next/router";
 import Link from "next/link";
-import 'firebase/auth';
-import 'firebase/database';
-import * as firebase from "firebase";
-import { loadDB, firestore } from './../lib/js/db';
+import fetch from "isomorphic-unfetch";
+import cookie from "js-cookie";
 
 const Header = props => {
     const router = useRouter();
@@ -17,16 +15,20 @@ const Header = props => {
     const [menuActive, setMenuState] = useState(false);
 
     //로그아웃
-    const logout = async () => {
-
-        const db = await loadDB();
+    const logout = async (e) => {
+        e.preventDefault();
         const check = confirm("로그아웃 하시겠습니까?");
         if (check) {
-            firebase.auth().signOut().then(() => {
-                console.log('user logout');
-                router.push(`/admin/login`);
-            });
+            console.log(`logout check true`);
 
+            const res = await fetch(`http://13.209.55.219/api/user/logout`);
+            if (res.status === 200) {
+                console.log('logout success');
+                cookie.remove('token');
+                router.push('/admin/login');
+            } else {
+                console.log('error occured');
+            }
         }
     };
 

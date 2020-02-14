@@ -274,13 +274,11 @@ const New = props => {
 
 New.getInitialProps = async (ctx) => {
     const { token } = nextCookie(ctx);
-
     const auth = !!token;
     if (!auth) {
         ctx.res.writeHead(302, { Location: '/admin/login' });
         ctx.res.end();
     }
-
 
     const page = ctx.query.page || '1';
     const res = await fetch(`http://13.209.55.219/api/board/list/5?page=${page}`);
