@@ -124,6 +124,31 @@ const Update = props => {
                                             />
                                         </div>
                                     </div>
+
+                                    <div className={"form-group"}>
+                                        <div className={"label-area"}>
+                                            <label className="col-form-label">카테고리</label>
+                                        </div>
+                                        <div className={"input-area"}>
+                                            <label className="checkbox checkbox_single">
+                                                <input type="checkbox" className="filled-in"/>
+                                                <span>UI KITS</span>
+                                            </label>
+                                            <label className="checkbox checkbox_single">
+                                                <input type="checkbox" className="filled-in"/>
+                                                <span>Website</span>
+                                            </label>
+                                            <label className="checkbox checkbox_single">
+                                                <input type="checkbox" className="filled-in"/>
+                                                <span>Mobile</span>
+                                            </label>
+                                            <label className="checkbox checkbox_single">
+                                                <input type="checkbox" className="filled-in"/>
+                                                <span>Plug-in</span>
+                                            </label>
+                                        </div>
+                                    </div>
+
                                     <div className={"form-group"}>
                                         <div className={"label-area"}>
                                             <label className="col-form-label" style={{"lineHeight":"20.4"}}>내용</label>
