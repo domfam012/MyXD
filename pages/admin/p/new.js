@@ -75,10 +75,16 @@ const New = props => {
             data.set("test", "test");
             data.append("img", inputFileEl.current.files[0]);
 
+
+            // const uploadRes = await axios({
+            //     url: `http://13.209.55.219/api/board/upload`,
+            //     method: 'post',
+            //     headers: {'Content-Type': 'multipart/form-data' },
+            //     data
+            // });
             const uploadRes = await axios({
                 url: `http://13.209.55.219/api/board/upload`,
                 method: 'post',
-                headers: {'Content-Type': 'multipart/form-data' },
                 data
             });
 

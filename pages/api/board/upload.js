@@ -12,11 +12,31 @@ export default async (req, res) => {
     console.log(imgName);
 
     form.parse(req);
+
+    // console.log(`\n\r`);
+    // console.log(`\n\r`);
+    // console.log(`\n\r`);
+    // console.log(`\n\r`);
+    // console.log(`\n\r`);
+    // console.log(`uploading test....`);
+    // console.log(`uploading test....`);
+    // console.log(`uploading test....`);
+    // console.log(`\n\r`);
+    // // console.log(req);
+    // console.log(`\n\r`);
+    // console.log(`\n\r`);
+    // console.log(`\n\r`);
+    // console.log(`\n\r`);
+    // console.log(`\n\r`);
+
     form.on('file', function (name, file) {
         // const fileExtension = file.name.split('.')[file.name.split('.').length - 1];
         fs.rename(file.path, form.uploadDir + "/" + imgName,function (err) {
             if (err) {
-                fs.unlink(form.uploadDir + "/" + imgName);
+                fs.unlink(form.uploadDir + "/" + imgName, (unlinkErr) => {
+                    throw unlinkErr;
+                });
+                console.log('fs.rename err occured ::: file deleted');
             }
         });
     });

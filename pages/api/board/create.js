@@ -32,7 +32,7 @@ export default async (req, res) => {
             index: 1,
             title: title,
             viewCount: 0,
-            created: firestore.FieldValue.serverTimestamp()
+            created: moment().format()
         };
 
         const collection = db.collection('Posts');

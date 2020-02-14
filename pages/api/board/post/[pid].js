@@ -42,7 +42,6 @@ export default async (req, res) => {
             break;
 
         case "PATCH" :
-
             // Update
             const category = 'default';
             const content = req.body.content || '';
@@ -54,7 +53,7 @@ export default async (req, res) => {
                 content: content,
                 link: link,
                 title: title,
-                updated: firestore.FieldValue.serverTimestamp()
+                updated: moment().format()
             };
 
             if (req.body.imgName) {
