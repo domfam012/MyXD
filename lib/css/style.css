@@ -15,90 +15,28 @@
 a:focus, a:active, button:focus, button:active, input:focus, input:active {
     outline: none;
 }
-
-/*
- icon
-*/
-.icon {
-    display: block;
-    vertical-align: middle;
-}
-.icon.icon-double-left {
-    width: 12px;
-    height: 16px;
-    background: url("/img/common/chevron-double-left.png") no-repeat;
-}
-.icon.icon-double-right {
-    width: 12px;
-    height: 16px;
-    background: url("/img/common/chevron-double-right.png") no-repeat;
-}
-.icon.icon-left {
-    width: 8px;
-    height: 16px;
-    background: url("/img/common/chevron-left.png") no-repeat;
-}
-.icon.icon-right {
-    width: 8px;
-    height: 16px;
-    background: url("/img/common/chevron-right.png") no-repeat;
-}
-.icon.icon-bar {
-    width: 14px;
-    height: 16px;
-    background: url("/img/common/bars.png") no-repeat;
-}
 /*
  container
 */
 .container {
-    width: 1200px;
-    min-width: 1000px;
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 70px 20px 0;
-}
-.list-container {
-    padding: 70px 6px 0;
-}
-@media (max-width: 1350px) {
-    .list-container {
-        width: 1154px !important;
-        padding: 70px 1px 0 !important;
-    }
-    .container {
-        width: 1184px;
-        min-width: 980px;
-        margin: 0 auto;
-        padding: 70px 12px 0;
-    }
+    padding: 70px 0;
 }
 @media (max-width: 1200px) {
-    .list-container {
-        width: 768px !important;
-        padding: 30px 30px 0 !important;
-    }
     .container {
-        width: 768px;
-        min-width: 576px;
-        padding: 30px 30px 0;
+        padding: 70px 20px 0;
     }
 }
-
 @media (min-width: 760px) and (max-width: 768px)  {
-    .list-container {
-        width: 708px !important;
-        padding: 30px 0 0 !important;
-    }
     .container {
         width: 708px;
         padding: 30px 0 0;
     }
 }
 @media (max-width: 760px) {
-    .list-container {
-        width: 100% !important;
-        padding: 20px 20px 0 !important;
-    }
     .container {
         width: 100%;
         min-width: 320px;
@@ -504,7 +442,6 @@ template {
 [hidden] {
     display: none !important;
 }
-
 .clearfix::after {
     display: block;
     clear: both;
@@ -528,14 +465,4 @@ template {
 }
 .underline {
     text-decoration: underline;
-}
-
-.align-left{
-    text-align: left;
-}
-.align-right {
-    text-align: right;
-}
-.align-center {
-    text-align: center;
 }

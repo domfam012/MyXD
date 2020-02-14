@@ -1,12 +1,8 @@
-import Head from "next/head";
 import Layout from '../../include/Layout';
 import Aside from '../../include/Aside';
-import { useRouter } from "next/router";
 import fetch from 'isomorphic-unfetch'
 import Link from "next/link";
 import React from "react";
-import { useState } from "react";
-
 
 const Template = props => {
     return (
@@ -25,10 +21,8 @@ const Template = props => {
             </li>
             <style jsx>{`
                 li {
-                    margin-top: 30px;
-                    margin-left: 0;
                     display: block;
-                    width: 254px;
+                    width: calc(33% - 33px);
                     float: left;
                     margin-right: 20px;
                 }
@@ -62,36 +56,26 @@ const Template = props => {
                 
                 @media (max-width: 1200px) {
                 li {
-                    margin-top: 20px;
-                    margin-left: 0;
-                    width: 314px;
-                    float: left;
-                    margin-right: 20px;
+                    margin: 20px 20px 0 0;
+                    width: calc(50% - 40px);
                   }
-                li:nth-child(2n){
-                  }
-                .li-img img{
-                    width: 314px;
+                li:nth-child(3) {
+                    margin-left: 30px;
                 }
             }
             //모바일
             @media (max-width: 760px) {
-                 .title{
-                    line-height: 48px;
-                    letter-spacing: -0.5px;
-                 }
-                 .text{
-                    font-size: 16px;
-                    line-height: 25px;
-                    letter-spacing: -0.5px;
-                    margin: 10px 0 40px;
-                }
                  li {
                     width: 100%;
+                    margin-left: 0;
+                    margin-right: 0;
                   }
-                .li-img img{
-                    width: 100%;
-                }
+                  li:nth-child(1) {
+                    margin-left: 0;
+                  }
+                  li:nth-child(3) {
+                    margin-left: 0;
+                  }
             }
            `}</style>
         </>
@@ -128,45 +112,6 @@ const Detail = props => {
                                             <Template key={item.pid} title={item.title} category={item.category} pid={item.pid} imgPath={item.imgPath}/>
                                         ))
                                     }
-
-                                    {/*<li>
-                                        <Link href={``}>
-                                            <a href="#" className="inner">
-                                                <div className="li-img">
-                                                    <img src="/img/detail/detail_sample_01.png" alt="sample"/>
-                                                </div>
-                                                <div className="li-text">
-                                                    <p className="title">Fast food XD</p>
-                                                    <p className="sub-title">website template</p>
-                                                </div>
-                                            </a>
-                                        </Link>
-                                    </li>
-
-                                    <li>
-                                        <a href="#" className="inner">
-                                            <div className="li-img">
-                                                <img src="/img/detail/detail_sample_02.png" alt="sample"/>
-                                            </div>
-                                            <div className="li-text">
-                                                <p className="title">Biller XD</p>
-                                                <p className="sub-title">landing page template</p>
-                                            </div>
-                                        </a>
-                                    </li>
-
-                                    <li>
-                                        <a href="#" className="inner">
-                                            <div className="li-img">
-                                                <img src="/img/detail/detail_sample_03.png" alt="sample"/>
-                                            </div>
-                                            <div className="li-text">
-                                                <p className="title">Football/soccer betting XD</p>
-                                                <p className="sub-title">landing page</p>
-                                            </div>
-                                        </a>
-                                    </li>*/}
-
                                 </ul>
                             </div>
                         </div>
@@ -174,18 +119,16 @@ const Detail = props => {
                 </div>
                 <Aside asideData={ props.asideData }/>
             </div>
-            <style jsx global>{`
-                .box-left {
-                    float: left;
-                }
+            <style jsx>{`
                 .main_card {
-                    width: 862px;
+                    width: calc(100% - 298px);
                     margin-right: 30px;
                     box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
                     background-color: #ffffff;
                     margin-bottom: 50px;
+                    cursor: pointer;
                 }
-                .main_card:nth-child(2) {
+                .main_card:last-child {
                   margin-bottom: 0;
                 }
                 .main_card .img {
@@ -216,14 +159,10 @@ const Detail = props => {
                   line-height: 33px;
                 }
                 .btn:hover {
-                  background: #6A6969;
                   line-height: 33px;
-                  border-color: #6A6969;
                 }
                 .btn:active{
-                  background: #585858 !important;
                   line-height: 33px;
-                  border-color: #585858 !important;
                 }
              //You may also like
                 .detail_title {
@@ -245,6 +184,9 @@ const Detail = props => {
                     left: 32px;
                 }
             // 더보기
+                  .box-list {
+                    padding-top: 19px;
+                  }
                   .list {
                     overflow: hidden;
                   }
@@ -253,19 +195,6 @@ const Detail = props => {
                 .main_card {
                     width: 100%;
                     margin-right: 0;
-                }
-                .list li {
-                    margin-top: 20px;
-                    margin-left: 0;
-                    width: 314px;
-                    float: left;
-                    margin-right: 25px;
-                  }
-                .list li:nth-child(3){
-                    margin-left: 30px;
-                  }
-                .li-img img{
-                    width: 314px;
                 }
             }
             //모바일
@@ -293,19 +222,6 @@ const Detail = props => {
                 .list {
                 padding : 0 40px;
                 }
-                .list li {
-                    width: 100%;
-                    margin: 0;
-                  }
-                .list li:first-child {
-                    margin: 0;
-                 }
-                .li-img img{
-                    width: 100%;
-                }
-                .list li:nth-child(3){
-                    margin-left: 0;
-                 }
             }
             `}</style>
         </Layout>
