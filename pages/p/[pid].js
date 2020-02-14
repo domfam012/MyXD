@@ -9,7 +9,7 @@ const Template = props => {
         <div>
             <li>
                 <Link href={`/p/${props.pid}`}>
-                    <a href="#" className="inner">
+                    <a className="inner">
                         <div className="li-img">
                             <img src={props.imgPath} alt="sample"/>
                         </div>

@@ -140,16 +140,20 @@ const BoxList = props => {
                     box-shadow: 3px 3px 12px 0 rgba(0, 0, 0, 0.24);
                     background-color: var(--white);
                 }
-                
-                .img-list{
+
+                .img-list {
                     width: 278px;
                     height: 162px;
                 }
                 
-                .box-bottom-line{
+                .box-bottom-line {
                     margin-top: 41px;
                     width:1060px;
                     color:#fcfcfc;
+                }
+                
+                .box-list:hover .box-bottom-line {
+                    width: 0;
                 }
             `}</style>
         </div>
