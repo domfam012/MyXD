@@ -53,7 +53,7 @@ const New = props => {
         const check = confirm('등록하시겠습니까?');
         if (check) {
 
-            const res = await fetch('http://localhost:3000/api/board/create', {
+            const res = await fetch('http://13.209.55.219/api/board/create', {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
@@ -76,7 +76,7 @@ const New = props => {
             data.append("img", inputFileEl.current.files[0]);
 
             const uploadRes = await axios({
-                url: `http://localhost:3000/api/board/upload`,
+                url: `http://13.209.55.219/api/board/upload`,
                 method: 'post',
                 headers: {'Content-Type': 'multipart/form-data' },
                 data
@@ -294,7 +294,7 @@ New.getInitialProps = async (ctx) => {
     }
 
     const page = ctx.query.page || '1';
-    const res = await fetch(`http://localhost:3000/api/board/list/5?page=${page}`);
+    const res = await fetch(`http://13.209.55.219/api/board/list/5?page=${page}`);
     const result = await res.json();
 
     return {
