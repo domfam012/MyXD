@@ -137,8 +137,6 @@ const New = props => {
                                                 <input type="checkbox" className="filled-in"/>
                                                 <span>Plug-in</span>
                                             </label>
-
-
                                         </div>
                                     </div>
 
