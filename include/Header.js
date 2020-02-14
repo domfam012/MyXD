@@ -34,7 +34,7 @@ const Header = props => {
     return (
         <header>
             <div className={"nav_wrap"}>
-                <nav className={props.isResponsive ? "navbar navbar-expand-xl" : "navbar admin"}>
+                <nav className={props.isResponsive ? "navbar navbar-expand-xl" : "navbar navbar-expand-xl admin"}>
                     <Link href="/">
                         <a className="navbar-brand"><span className="pink">MyXD</span> logo</a>
                     </Link>
@@ -342,23 +342,18 @@ const Header = props => {
                     margin-right: 50px;
                   }
               }
-              
-            //admin===============
-                  .admin {}
-                 @media (max-width: 1199px) {
-                  .admin.navbar {
-                  }
-                  .admin .navbar-nav {
-                  }
-                  .admin .navbar-brand {
-                  } 
-                 }
-                 @media (max-width: 760px) {
-                  .admin.navbar {
-                  }
-                  .admin .navbar-brand {
-                  } 
-                 }
+            // admin 
+                .admin .navbar-icon .navbar-nav {
+                position: absolute;
+                right: 0;
+                display: inline-flex;
+              }
+              .admin .navbar-icon .navbar-nav .nav-item:nth-child(1),
+               .admin .navbar-icon .navbar-nav .nav-item:nth-child(2), 
+               .admin .navbar-icon .navbar-nav .nav-item:nth-child(3) {
+                display:none;
+              }
+            
             `}</style>
         </header>
     );
