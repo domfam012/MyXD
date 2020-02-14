@@ -167,7 +167,7 @@ const Detail = props => {
              //You may also like
                 .detail_title {
                     position: relative;
-                    width: 160px;
+                    width: 180px;
                     height: 23px;
                     color: #666666;
                     font-size: 20px;
@@ -221,30 +221,6 @@ const Detail = props => {
                 }
                 .list {
                 padding : 0 40px;
-                }
-                
-                //IE10+ 적용 css
-                @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
-                     /* Enter your style code */
-                     //You may also like
-                    .detail_title {
-                        position: relative;
-                        width: 180px;
-                        height: 23px;
-                        color: #666666;
-                        font-size: 20px;
-                        font-weight: bold;
-                        margin: 0 auto 18px;
-                    }
-                    .detail_title:after {
-                        position: absolute;
-                        content: '';
-                        width: 100px;
-                        height: 1px;
-                        border-bottom: 1px solid #96959a;
-                        bottom: -17px;
-                        left: 32px;
-                    }
                 }
             }
             `}</style>
