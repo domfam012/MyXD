@@ -28,7 +28,7 @@ const Temp = props => {
             <style jsx>{`
               li {
                 display: block;
-                width: calc(100% - 818px);
+                width: calc(100% - 827px);
                 float: left;
                 box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
                 background-color: var(--white);
@@ -58,7 +58,7 @@ const Temp = props => {
               @media (max-width: 1200px) {
                   li {
                     display: block;
-                    width: calc(50% - 14px);
+                    width: calc(50% - 27px);
                     float: left;
                     background: none;
                     border: 0;

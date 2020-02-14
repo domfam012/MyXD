@@ -186,8 +186,8 @@ pagination
     height: 22px;
     border-top: 2px solid transparent;
     border-left: 2px solid transparent;
-    border-right: 2px solid var(--color-point);
-    border-bottom: 2px solid var(--color-point);
+    border-right: 2px solid var(--primary);
+    border-bottom: 2px solid var(--primary);
     -webkit-transform: rotate(40deg);
     transform: rotate(40deg);
     -webkit-backface-visibility: hidden;
@@ -208,7 +208,7 @@ pagination
     height: 22px;
     border-top: none;
     border-left: none;
-    border-right: 2px solid var(--color-point);
+    border-right: 2px solid var(--primary);
     border-bottom: none;
     -webkit-transform: rotate(90deg);
     transform: rotate(90deg);
@@ -292,8 +292,8 @@ pagination
 
 [type="checkbox"].filled-in.tabbed:checked:focus + span:not(.lever):after {
     border-radius: 2px;
-    background-color: var(--color-point);
-    border-color: var(--color-point);
+    background-color: var(--primary);
+    border-color: var(--primary);
 }
 
 [type="checkbox"].filled-in:disabled:not(:checked) + span:not(.lever):before {

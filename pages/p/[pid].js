@@ -6,7 +6,7 @@ import React from "react";
 
 const Template = props => {
     return (
-        <div>
+        <>
             <li>
                 <Link href={`/p/${props.pid}`}>
                     <a className="inner">
@@ -22,7 +22,7 @@ const Template = props => {
             <style jsx>{`
                 li {
                     display: block;
-                    width: calc(33% - 33px);
+                    width: calc(33% - 31px);
                     float: left;
                     margin-right: 20px;
                 }
@@ -78,7 +78,7 @@ const Template = props => {
                   }
             }
            `}</style>
-        </div>
+        </>
     )
 };
 
@@ -88,7 +88,7 @@ const Detail = props => {
     return (
         <Layout>
             <div className={"clearfix"}>
-                <div className={"float-left"}>
+                <div>
                     <div className={"main_card"}>
                         <div className={"img"}><img src={props.data.imgPath} alt=""/></div>
                         <div className={"box_text"}>
