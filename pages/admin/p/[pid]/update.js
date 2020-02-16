@@ -5,6 +5,8 @@ import { useRouter } from 'next/router';
 import fetch from 'isomorphic-unfetch';
 import axios from 'axios';
 import nextCookie from "next-cookies";
+import { loadStorage, storage } from './../../../../lib/js/db';
+import shortid from 'shortid';
 
 const Update = props => {
     const [ data, setData ] = useState(props.data);
@@ -17,10 +19,6 @@ const Update = props => {
     const inputFileEl = useRef(null);
     const router = useRouter();
     const pid = router.query.pid;
-
-    console.log(JSON.stringify(router.query));
-    console.log(`${pid} from update.js`);
-    console.log(img)
 
     const titleChange = e => {
         setTitle(e.target.value);
@@ -52,7 +50,7 @@ const Update = props => {
             router.push('/admin/p/list');
         }
     };
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
 
         /**
@@ -61,40 +59,73 @@ const Update = props => {
         const check = confirm('등록하시겠습니까?');
         if (check) {
             let reqData = { title, content, link };
-            if (imgChanged) {
-                reqData = { ...reqData, img, imgName };
-            }
+            uploadFile(reqData, uploadPost);
+        }
+    };
 
-            const res = await fetch(`http://13.209.55.219/api/board/post/${pid}`, {
-                method: 'PATCH',
+    const uploadFile = async (reqData, cb) => {
+        if (imgChanged) {
+            const sid = shortid.generate();
+            const storage = await loadStorage();
+            const storageRef = storage.ref(`post/${sid}`);
+            const uploadTask = storageRef.put(inputFileEl.current.files[0]);
+            uploadTask.on('state_changed',
+                snapshot => {
+                    const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                },
+                err => {
+                    switch (error.code) {
+                        case 'storage/unauthorized':
+                            alert("User doesn't have permission to access the object");
+                            break;
+                        case 'storage/canceled':
+                            alert("User canceled the upload");
+                            break;
+                        case 'storage/unknown':
+                            alert("Unknown error occurred, inspect error.serverResponse");
+                            break;
+                    }
+                },
+                async () => {
+                    const downloadURL = await uploadTask.snapshot.ref.getDownloadURL()
+                        .then(downloadURL => {
+                            console.log(`file uploaded..\n${downloadURL}`);
+                            return downloadURL;
+                        });
+
+                    const newData = {
+                        ...reqData, imgName: imgName, imgPath: downloadURL, imgSaveName: sid
+                    };
+
+                    cb(newData);
+                }
+            );
+        }
+        else {
+            cb(reqData);
+        }
+    };
+
+    const uploadPost = (reqData) => {
+        console.log('#5');
+        console.log(reqData);
+        axios.patch(`http://13.209.55.219/api/board/post/${pid}`, reqData, {
                 headers: {
                     'Accept': 'application/json',
                     'Headers': 'content-type',
                     'Content-Type': 'application/json'
-                },
-                body : JSON.stringify(reqData)
-            });
-            const result = await res.json();
-            const imgSaveName = result.imgSaveName;
-
-            document.cookie = `imgName=${imgSaveName}; path=/`;
-
-            const data = new FormData();
-            data.set("test", "test");
-            data.append("img", inputFileEl.current.files[0]);
-
-            const uploadRes = await axios({
-                url: `http://13.209.55.219/api/board/upload`,
-                method: 'post',
-                headers: {'Content-Type': 'multipart/form-data' },
-                data
-            });
-
-            if (uploadRes.status === 200) {
+                }
+            })
+            .then(() => {
+                console.log(`post uploaded..\n`);
+                alert('업로드 되었습니다.');
                 router.push('/admin/p/list');
-            }
-
-        }
+            })
+            .catch(err => {
+                console.log(err);
+                alert('uncaught error occured');
+                router.push('/admin/p/list');
+            });
     };
 
     return (
