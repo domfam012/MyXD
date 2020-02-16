@@ -18,19 +18,21 @@ const Card = props => {
     return (
         <div className={"main_card"}>
             <Link href={`/p/${props.pid}`}>
-                <div className={"img"}><img src={props.imgPath} alt="temp"/></div>
+                <a>
+                    <div className={"img"}><img src={props.imgPath} alt="temp"/></div>
+                </a>
             </Link>
             <div className={"box_text"}>
                 <Link href={`/p/${props.pid}`}>
-                    <div className={"title"}>{props.title}</div>
+                    <a>
+                        <div className={"title"}>{props.title}</div>
+                    </a>
                 </Link>
                 <div className={"text"}>
                     {props.content}
                 </div>
                 <div>
-                    <Link href={`${props.link}`}>
-                        <a className={"btn btn-primary"}>더 보기</a>
-                    </Link>
+                    <a href={`/p/${props.pid}`} className={"btn btn-primary"}>더 보기</a>
                 </div>
             </div>
             <style jsx>{`
@@ -40,7 +42,6 @@ const Card = props => {
                 box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
                 background-color: #ffffff;
                 margin-bottom: 50px;
-                cursor: pointer;
             }
             .main_card:last-child {
               margin-bottom: 0;
@@ -124,6 +125,7 @@ const Index = props => {
         <Layout page={"index"}>
             <div>
                 <div>
+                    {/*testing..testing..*/}
                     {
                         props.data.map(item => (
                             //Card 컴포넌트
