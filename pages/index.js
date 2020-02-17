@@ -115,17 +115,11 @@ const Index = props => {
         router.push(`/?page=${pageNumber}`);
     };
 
-    // useEffect(() => {
-    //     console.log('use effect..');
-    //     window.scrollTo(0, 0);
-    // }, []);
-
     return (
 
         <Layout page={"index"}>
             <div>
                 <div>
-                    {/*testing..testing..*/}
                     {
                         props.data.map(item => (
                             //Card 컴포넌트
@@ -175,26 +169,13 @@ const Index = props => {
     );
 };
 
-
-
-// API 설정
 Index.getInitialProps = async function (ctx) {
-    console.log('[Index] ::: getInitialProps');
-    // window.scrollTo(0, 0);
-
-    const page = ctx.query.page || '1';
-    const res = await fetch(`http://13.209.55.219/api/board/list/15?page=${page}`);
-    // const res = await fetch(`http://13.209.55.219/api/board/list`);
-
+    const page = ctx.query.page || '1'; // default page index
+    const res = await fetch(`http://13.209.55.219/api/board/list/15?page=${page}`); // get /api/board/lsit/[limit]?page={page}
     const result = await res.json();
 
-    const asideRes = await fetch('http://13.209.55.219/api/board/interest');
+    const asideRes = await fetch(`http://13.209.55.219/api/board/interest`);
     const asideResult = await asideRes.json();
-
-    // data.typeOf()
-    // console.log(result);
-    // console.log(typeof result);
-    // console.log(`Show data fetched. Count: ${result.data.length}`);
 
     return {
         data: result.data,

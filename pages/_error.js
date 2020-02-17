@@ -60,10 +60,6 @@ Page.getInitialProps = async () => {
     const errorCode = res.statusCode > 200 ? res.statusCode : false;
     const json = await res.json();
 
-    // console.log(json);
-    // console.log(res.statusCode);
-    // console.log(errorCode);
-
     return { errorCode: 404, stars: json.stargazers_count };
 };
 

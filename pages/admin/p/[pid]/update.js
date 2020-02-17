@@ -212,7 +212,6 @@ const Update = props => {
                                             <input type="file" id="fileUploader" className="form-control-file"
                                                    ref={inputFileEl}
                                                    onChange={onFileUpload}/>
-                                            {/*<input type="file" id="fileUploader" className="form-control-file" onChange={this.onChange}/>*/}
                                         </div>
                                     </div>
                                     <div className={"form-group"}>

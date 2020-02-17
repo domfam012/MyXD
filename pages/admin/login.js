@@ -6,14 +6,11 @@ import { useRouter } from "next/router";
 import fetch from "isomorphic-unfetch";
 import nextCookie from 'next-cookies';
 import cookie from 'js-cookie'
-import New from "./p/new";
 
 const Login  = props => {
 
     const router = useRouter();
 
-    //API 요청
-    //function() req(email, password) to api
     const handleEmailChange = (e) => {
         setEmail(e.target.value)
     };
@@ -31,9 +28,6 @@ const Login  = props => {
     }
 
     const reqLogin = () => {
-        console.log('E-mail :'+email);
-        console.log('PWD :'+password);
-
         if(!chkEmail(email)){
             alert('정확한 Email을 입력하세요');
             return;
@@ -68,14 +62,10 @@ const Login  = props => {
                 }
 
             }).then(json => {
-
-                console.log('json:::');
-                console.log(json);
                 cookie.set('token', json.token, { expires: 1 });
                 router.push('/admin/p/list');
 
             }).catch(function(err){
-                console.log('loginFail');
                 console.log(err);
             });
         }

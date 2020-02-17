@@ -17,6 +17,9 @@ export default async (req, res) => {
      *  currently using the first
      *
      *  TODO: -> 3rd (DONE)
+     *
+     *  TODO: check the firestore update rule!!
+     *
      */
 
 
