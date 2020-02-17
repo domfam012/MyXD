@@ -52,6 +52,11 @@ const New = props => {
         /**
          *  data check here
          */
+        if (!title || !content || !imgName || !link) {
+            alert('값을 모두 입력해주세요.');
+            return;
+        }
+
         const check = confirm('등록하시겠습니까?');
         if (check) {
             const sid = shortid.generate();

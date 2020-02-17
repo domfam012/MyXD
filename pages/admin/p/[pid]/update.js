@@ -56,6 +56,13 @@ const Update = props => {
         /**
          *  data check here
          */
+        if (!title || !content || !link) {
+            alert('값을 모두 입력해주세요.');
+            return;
+        }
+        else if (imgChanged && !imgName) {
+            alert('값을 모두 입력해주세요.');
+        }
         const check = confirm('등록하시겠습니까?');
         if (check) {
             let reqData = { title, content, link };

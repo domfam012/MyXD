@@ -12,7 +12,7 @@ const Footer = props => (
             }
             .footer span {
                 font-size : 12px;
-                color : var(--white);
+                color : #FFF;
                 vertical-align: middle;
                 line-height: 60px;
                 padding-left: 170px;
