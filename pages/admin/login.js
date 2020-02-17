@@ -147,7 +147,7 @@ const Login  = props => {
                     color: #333;
                 }
                 input[type="password"] {
-                    letter-spacing: -5.5px;
+                    letter-spacing: -2px;
                 }
                 input::placeholder {
                     letter-spacing: normal;
