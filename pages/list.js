@@ -54,7 +54,13 @@ const Temp = props => {
                 padding: 28px 30px;
                 background: #ffffff;
               }
-
+              .li-text .title {
+                color: #333333;
+                line-height: 26px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap; 
+              }
               @media (max-width: 1200px) {
                   li {
                     display: block;
@@ -94,10 +100,6 @@ const Temp = props => {
                     li .li-img img{
                       width: 100%;
                       height: 100%;
-                    }
-                    .li-text {
-                      height: 78px;
-                      padding: 28px 30px;
                     }
               }
          `}</style>

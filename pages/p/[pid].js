@@ -49,6 +49,10 @@ const Template = props => {
                 }
                 .li-text .title {
                     font-size: 20px;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    
                 }
                 .sub-title {
                     font-size: 20px;
@@ -156,6 +160,7 @@ const Detail = props => {
                     overflow: hidden;
                     white-space: nowrap;
                     text-overflow: ellipsis;
+                    color: #116edd;
                 }
                 .box_text .text{
                     font-size: 16px;
