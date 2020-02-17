@@ -191,6 +191,9 @@ const Header = props => {
                   border-bottom: 1px solid #E2E2E2;
                   font-weight: bold;
                 }
+                .active .menu .nav-item, .menu .nav-item:hover .nav-link{
+                  color: #ffffff;
+                }
                 .nav-link:active {
                   background: #aaaaaa;
                   color: #ffffff;
