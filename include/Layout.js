@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import Header from './Header';
 import Footer from './Footer';
-import {useRouter} from "next/router";
+import { useRouter } from "next/router";
 
 const Layout = props => {
     // 관리자 페이지 접속인지 확인

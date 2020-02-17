@@ -55,28 +55,28 @@ const Template = props => {
                 }
                 
                 @media (max-width: 1200px) {
-                li {
-                    margin: 20px 20px 0 0;
-                    width: calc(50% - 40px);
-                  }
-                li:nth-child(3) {
-                    margin-left: 30px;
+                    li {
+                        margin: 20px 20px 0 0;
+                        width: calc(50% - 40px);
+                    }
+                    li:nth-child(3) {
+                        margin-left: 30px;
+                    }
                 }
-            }
-            //모바일
-            @media (max-width: 760px) {
-                 li {
-                    width: 100%;
-                    margin-left: 0;
-                    margin-right: 0;
-                  }
-                  li:nth-child(1) {
-                    margin-left: 0;
-                  }
-                  li:nth-child(3) {
-                    margin-left: 0;
-                  }
-            }
+                //모바일
+                @media (max-width: 760px) {
+                     li {
+                        width: 100%;
+                        margin-left: 0;
+                        margin-right: 0;
+                      }
+                      li:nth-child(1) {
+                        margin-left: 0;
+                      }
+                      li:nth-child(3) {
+                        margin-left: 0;
+                      }
+                }            
            `}</style>
         </>
     )
@@ -166,7 +166,7 @@ const Detail = props => {
              //You may also like
                 .detail_title {
                     position: relative;
-                    width: 160px;
+                    width: 180px;
                     height: 23px;
                     color: #666666;
                     font-size: 20px;
