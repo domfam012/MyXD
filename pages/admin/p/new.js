@@ -154,19 +154,19 @@ const New = props => {
                                         </div>
                                         <div className={"input-area"}>
                                             <label className="checkbox checkbox_single">
-                                                <input type="checkbox" value={'UI KITS'} checked={} onChange={categoryChange} className="filled-in"/>
+                                                <input type="checkbox" value={'UI KITS'} checked={'checked'} onChange={categoryChange} className="filled-in"/>
                                                 <span>UI KITS</span>
                                             </label>
                                             <label className="checkbox checkbox_single">
-                                                <input type="checkbox" value={'Website'} checked={} onChange={categoryChange} className="filled-in"/>
+                                                <input type="checkbox" value={'Website'} checked={'checked'} onChange={categoryChange} className="filled-in"/>
                                                 <span>Website</span>
                                             </label>
                                             <label className="checkbox checkbox_single">
-                                                <input type="checkbox" value={'Mobile'} checked={} onChange={categoryChange} className="filled-in"/>
+                                                <input type="checkbox" value={'Mobile'} checked={'checked'} onChange={categoryChange} className="filled-in"/>
                                                 <span>Mobile</span>
                                             </label>
                                             <label className="checkbox checkbox_single">
-                                                <input type="checkbox" value={'Plug-in'} checked={} onChange={categoryChange} className="filled-in"/>
+                                                <input type="checkbox" value={'Plug-in'} checked={'checked'} onChange={categoryChange} className="filled-in"/>
                                                 <span>Plug-in</span>
                                             </label>
                                         </div>
