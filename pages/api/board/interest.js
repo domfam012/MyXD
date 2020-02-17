@@ -17,12 +17,10 @@ export default async (req, res) => {
         ref.forEach(doc => {
             data.push({pid: doc.id, ...doc.data()});
         });
-        // res.status(200).json({ status: 200, msg: 'success', data: data });
 
         const resData = JSON.stringify({
             status: 200, msg: 'success', data: data
         });
-        // console.log(typeof resData);
 
         res.status(200).send(resData);
     } else {

@@ -8,15 +8,9 @@ export default async (req, res) => {
     res.setHeader('Content-Type', 'application/json');
 
     const { query: { pid } } = req;
-    console.log(`${pid} from api/../[pid].js`);
-    // console.log(req.query);
 
     const db = await loadDB();
     const doc = await db.collection('Posts').doc(pid);
-
-    // let test = await doc.get();
-    // console.log(test._document);
-    // test._document === null 이면 없음
 
     let resData;
     switch ( req.method) {
@@ -42,10 +36,6 @@ export default async (req, res) => {
             break;
 
         case "PATCH" :
-
-            console.log('here');
-            console.log(req.body);
-
             // Update
             const category = 'default';
             const content = req.body.content || '';

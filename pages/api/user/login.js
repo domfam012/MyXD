@@ -14,8 +14,6 @@ export default async (req,res) => {
 
         firebase.auth().signInWithEmailAndPassword(req.body.email, req.body.password)
             .then(cred => {
-                // console.log(cred.user.email);
-
                 //로그인이 성공한 경우
                 if(cred.user.email){
 
@@ -23,7 +21,6 @@ export default async (req,res) => {
                         msg: "succsss",
                         token: req.body.email
                     });
-                    console.log("SUCCESS");
                     return 200;
                 }
 
@@ -41,8 +38,6 @@ export default async (req,res) => {
                         msg:'비밀번호를 정확하게 입력하세요.',
                     })
                 }
-
-                console.log(error);
                 return res.end();
             });
     }

@@ -12,7 +12,21 @@ const option = {
         name: 'MyXD',
         keys: ['MyXD12!#', 'DomFAM3$'],
         maxAge: 1000 * 60 * 60 * 10 // 10 hours
-    }
+    },
+    assetPrefix: {
+        dev: '',
+        aws: 'http://13.209.55.219/',
+        ghp: 'https://pyungwook-domfam.github.io/domfam012'
+    },
+    ip: {
+        dev: "127.0.0.1",
+        production: "13.209.55.219"
+    },
+    port: {
+        dev: 3000,
+        production: 80
+    },
+    GA_TRACKING_ID: 'GTM-TKK4MJ7'
 };
 
 module.exports = {

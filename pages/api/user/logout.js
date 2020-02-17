@@ -10,7 +10,6 @@ export default async (req,res) => {
 
     if (req.method === 'GET'){
         firebase.auth().signOut().then(() => {
-            console.log('user logout');
             res.status(200).end();
         });
     }

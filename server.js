@@ -2,7 +2,6 @@ const { createServer } = require('http');
 const { parse } = require('url');
 const next = require('next');
 
-const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
 const handle = app.getRequestHandler();
 
@@ -13,11 +12,9 @@ const bodyParser = require('body-parser');
 const config = require('./config.js');
 const cookieSession = require('cookie-session');
 
-const multer = require('multer');
-const { useSession } = require('next-session');
-
-const port = dev ? 3000 : 80;
-const ip = dev ? "127.0.0.1" : "13.209.55.219";
+const dev = process.env.NODE_ENV !== 'production';
+const port = dev ? config.port.dev : config.port.production;
+const ip = dev ? config.ip.dev : config.ip.production;
 
 app.prepare().then(() => {
     createServer((req, res) => {
@@ -34,15 +31,6 @@ app.prepare().then(() => {
             bodyParser.json()
         );
 
-        express.use(multer({dest: './public/uploads/'}).any());
-
-        // const apiRegTest = /^\/api((\/[^\s/\/]+)*)?$/;
-        // if (apiRegTest.test(pathname)) {
-        //     // return res.json({a:1});
-        //     // require('./api.js')(req, res);
-        //     console.log('here?');
-        // } else
-
         if (pathname === '/admin') {
             res.writeHead(302, { Location: '/admin/login' });
             res.end();
@@ -50,10 +38,12 @@ app.prepare().then(() => {
             handle(req, res, parsedUrl);
         }
 
-        // port -> port 로 넣어줘야됨
-        
-    }).listen(80, err => {
+    }).listen(port, err => {
         if (err) throw err;
+
+        console.log(`> NODE_ENV: ${process.env.NODE_ENV}`);
         console.log(`> Ready on http://${ip}`);
+        console.log(`>>> __IP: [${ip}] __PORT: [${port}]`);
+        console.log(`\n\n\n`);
     });
 });

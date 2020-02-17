@@ -27,13 +27,8 @@ const BoxList = props => {
                     'Content-Type': 'application/json'
                 }
             }).then(function (json) {
-
                 alert('삭제 되었습니다.');
-                // onDelete(pid);
-
                 location.reload();
-                // router.push('/admin/p/list');
-                // router.push('/admin/p/list', null, true);
             }).catch(function(err){
                 console.log(err);
             });
@@ -133,7 +128,6 @@ const BoxList = props => {
                     padding-bottom: 39px;
                     height: 238px;
                     border: 0 solid transparent;
-                    // box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
                 }
                 
                 .box-list:hover {
@@ -162,19 +156,10 @@ const BoxList = props => {
 
 const List = props => {
     const router = useRouter();
-    // const [ box, setBox ] = useState(props.data);
     const handlePageChange = (pageNumber) => {
         window.scrollTo(0, 0);
         router.push(`/admin/p/list?page=${pageNumber}`);
     };
-
-    // const handleRemove = pid => {
-    //     console.log('handling remove..')
-    //     const newBox = box.filter(item => item.pid !== pid);
-    //     setBox(newBox);
-    // };
-
-    console.log(props.page);
 
     return (
         <Layout>
@@ -288,8 +273,6 @@ List.getInitialProps = async (ctx) => {
     const page = ctx.query.page || '1';
     const res = await fetch(`http://13.209.55.219/api/board/list/5?page=${page}`);
     const result = await res.json();
-
-    // console.log(result);
 
     return {
         data: result.data,
