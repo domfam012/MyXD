@@ -109,7 +109,7 @@ const Update = props => {
     const uploadPost = (reqData) => {
         console.log('#5');
         console.log(reqData);
-        axios.patch(`http://13.209.55.219/api/board/post/${pid}`, reqData, {
+        axios.patch(`http://myxd.co.kr/api/board/post/${pid}`, reqData, {
                 headers: {
                     'Accept': 'application/json',
                     'Headers': 'content-type',
@@ -341,7 +341,7 @@ Update.getInitialProps = async function (ctx) {
     }
 
     const pid = ctx.query.pid;
-    const res = await fetch(`http://13.209.55.219/api/board/post/${pid}`);
+    const res = await fetch(`http://myxd.co.kr/api/board/post/${pid}`);
     const result = await res.json();
 
     return {

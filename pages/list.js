@@ -9,6 +9,7 @@ import {faChevronDoubleLeft} from '@fortawesome/pro-light-svg-icons';
 import {faChevronLeft} from '@fortawesome/pro-light-svg-icons';
 import {faChevronRight} from '@fortawesome/pro-light-svg-icons';
 import fetch from 'isomorphic-unfetch';
+import getConfig from 'next/config';
 
 //리스트 template 컴포넌트
 const Temp = props => {
@@ -108,6 +109,7 @@ const Temp = props => {
 
 //리스트 페이지
 const Index = props => {
+    console.log(`${process.env.ASSET_PREFIX}`);
 
     let activePage = props.activePage;
     const router = useRouter();
@@ -175,7 +177,7 @@ const Index = props => {
 Index.getInitialProps = async function (ctx) {
 
     const page = ctx.query.page || '1';
-    const res = await fetch(`http://13.209.55.219/api/board/list/15?page=${page}`);
+    const res = await fetch(`http://myxd.co.kr/api/board/list/15?page=${page}`);
     const result = await res.json();
 
     return {

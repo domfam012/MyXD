@@ -15,7 +15,7 @@ const option = {
     },
     assetPrefix: {
         dev: 'http://localhost:3000',
-        aws: 'http://13.209.55.219/',
+        aws: 'http://myxd.co.kr',
         ghp: 'https://pyungwook-domfam.github.io/domfam012'
     },
     ip: {
@@ -26,7 +26,7 @@ const option = {
         dev: 3000,
         production: 80
     },
-    GA_TRACKING_ID: 'GTM-TKK4MJ7'
+    GA_TRACKING_ID: 'UA-158587547-1'
 };
 
 module.exports = {

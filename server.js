@@ -10,11 +10,11 @@ const express = require('express')();
 const helmet = require('helmet');
 const bodyParser = require('body-parser');
 
-const config = require('./config.js');
+const { option } = require('./config.js');
 const cookieSession = require('cookie-session');
 
-const port = dev ? config.port.dev : config.port.production;
-const ip = dev ? config.ip.dev : config.ip.production;
+const port = dev ? option.port.dev : option.port.production;
+const ip = dev ? option.ip.dev : option.ip.production;
 
 app.prepare().then(() => {
     createServer((req, res) => {
@@ -26,7 +26,7 @@ app.prepare().then(() => {
         express.set('trust proxy', 1);
         express.use(
             helmet(),
-            cookieSession(config.option.cookie),
+            cookieSession(option.cookie),
             bodyParser.urlencoded({extended: true}),
             bodyParser.json()
         );
@@ -42,7 +42,7 @@ app.prepare().then(() => {
         if (err) throw err;
 
         console.log(`> NODE_ENV: ${process.env.NODE_ENV}`);
-        console.log(`> Ready on http://${ip}`);
+        console.log(`> Ready on http://${ip}:${port}`);
         console.log(`>>> __IP: [${ip}] __PORT: [${port}]`);
         console.log(`\n\n\n`);
     });

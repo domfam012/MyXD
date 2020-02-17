@@ -98,7 +98,7 @@ const New = props => {
                         title, content, imgName, link, imgPath: downloadURL, imgSaveName: sid
                     };
 
-                    await axios.post(`http://13.209.55.219/api/board/create`, reqData, {
+                    await axios.post(`http://myxd.co.kr/api/board/create`, reqData, {
                             headers: {
                                 'Accept': 'application/json',
                                 'Headers': 'content-type',
