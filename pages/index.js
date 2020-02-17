@@ -44,9 +44,13 @@ const Card = props => {
                 }
                 .main_card .img {
                     width: 100%;
+                    height: 506px;
+                    background: #d3d3d3;
+                    text-align: center;
                 }
                 .main_card .img img {
-                    width: 100%;
+                    width: auto;
+                    height: 100%;
                 }
                 .box_text {
                     padding: 33px 30px 30px 30px;
@@ -55,13 +59,24 @@ const Card = props => {
                     font-size: 30px;
                     line-height: 40px;
                     letter-spacing: -1.5px;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
                 }
                 .box_text .text{
                     font-size: 16px;
                     line-height: 25px;
                     color: #666666;
                     margin: 23px 0 40px;
-                }
+                    display: -webkit-box;
+                    white-space: normal;
+                    height: 73px;
+                    word-wrap: break-word;
+                    -webkit-line-clamp: 3;
+                    -webkit-box-orient: vertical;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    }
                 .btn {
                   color: #ffffff;
                   line-height: 33px;
@@ -76,6 +91,17 @@ const Card = props => {
                 .main_card {
                     width: 100%;
                     margin-right: 0;
+                }
+                .main_card .img {
+                    width: 100%;
+                    height: 100%
+                }
+                .main_card .img img {
+                    width: 100%;
+                    height: 100%
+                }
+                .main_card .text {
+                    height: 70px;
                 }
             }
             @media (max-width: 760px) {

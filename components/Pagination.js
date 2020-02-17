@@ -1,16 +1,16 @@
+import Index from "../pages";
+
 const Pagination = props => (
     <>
         <div>
             <nav className={"nav"} aria-label="Page navigation example">
                 <ul className="pagination">
-                    <Link href={"/?page=1"}>
-                        <li className="page-item">
-                            <a className="page-link first" href="#" aria-label="Previous">
-                                <span aria-hidden="true"><i className={"icon icon-double-left"}></i></span>
-                            </a>
-                        </li>
-                    </Link>
-                    <li className="page-item" id={"prev"}>
+                    <li className="page-item" onClick={""}>
+                        <a className="page-link first" href="#" aria-label="Previous">
+                            <span aria-hidden="true"><i className={"icon icon-double-left"}></i></span>
+                        </a>
+                    </li>
+                    <li className="page-item">
                         <a className="page-link prev" href="#" aria-label="Previous">
                             <span aria-hidden="true"><i className={"icon icon-left"}></i></span>
                         </a>
@@ -19,12 +19,12 @@ const Pagination = props => (
                     <li className="page-item"><a className="page-link" href="#">2</a></li>
                     <li className="page-item"><a className="page-link" href="#">3</a></li>
                     <li className="page-item"><a className="page-link" href="#">4</a></li>
-                    <li className="page-item" id={"next"}>
+                    <li className="page-item">
                         <a className="page-link next" href="#" aria-label="Next">
                             <span aria-hidden="true"><i className={"icon icon-right"}></i></span>
                         </a>
                     </li>
-                    <li className="page-item" id={"last"}>
+                    <li className="page-item">
                         <a className="page-link last" href="#" aria-label="Previous">
                             <span aria-hidden="true"><i className={"icon icon-double-right"}></i></span>
                         </a>
@@ -32,7 +32,11 @@ const Pagination = props => (
                 </ul>
             </nav>
             <style jsx>{`
-               
+               .nav {
+                    width: 100%;
+                    margin-top: 30px;
+                    margin-bottom: 70px;
+                }
                .pagination {
                     margin: 0 auto;
                }
@@ -62,6 +66,7 @@ const Pagination = props => (
                }
                .page-link:hover, .page-link:active {
                     color: var(--primary);
+                    color: #116edd;
                     font-weight: bold;
                 }
                .page-link:active, .page-link:focus {
@@ -72,7 +77,6 @@ const Pagination = props => (
         </div>
     </>
 );
-
 
 
 export default Pagination;

@@ -48,9 +48,11 @@ color
 */
 .pink {
     color: var(--pink);
+    color: #e83e8c;
 }
 .secondary {
     color: var(--secondary);
+    color: #2699fb;
 }
 .mt-0 {
     margin-top: 0;
@@ -63,6 +65,7 @@ pagination
 }
 .page-item.active .page-link {
     color: var(--primary);
+    color: #116edd;
     font-weight: bold;
     background: transparent;
 }
@@ -187,7 +190,9 @@ pagination
     border-top: 2px solid transparent;
     border-left: 2px solid transparent;
     border-right: 2px solid var(--primary);
+    border-right: 2px solid #116edd;
     border-bottom: 2px solid var(--primary);
+    border-bottom: 2px solid #116edd;
     -webkit-transform: rotate(40deg);
     transform: rotate(40deg);
     -webkit-backface-visibility: hidden;
@@ -209,6 +214,7 @@ pagination
     border-top: none;
     border-left: none;
     border-right: 2px solid var(--primary);
+    border-right: 2px solid #116edd;
     border-bottom: none;
     -webkit-transform: rotate(90deg);
     transform: rotate(90deg);
@@ -280,7 +286,9 @@ pagination
     width: 18px;
     height: 18px;
     border: 2px solid var(--primary);
+    border: 2px solid #116edd;
     background-color: var(--primary);
+    background-color: #116edd;
     z-index: 0;
 }
 
@@ -293,7 +301,9 @@ pagination
 [type="checkbox"].filled-in.tabbed:checked:focus + span:not(.lever):after {
     border-radius: 2px;
     background-color: var(--primary);
+    background-color: #116edd;
     border-color: var(--primary);
+    border-color: #116edd;
 }
 
 [type="checkbox"].filled-in:disabled:not(:checked) + span:not(.lever):before {
@@ -325,7 +335,7 @@ pagination
 }
 
 html {
-    font-family: var(--font5);
+    font-family: NanumGothic;
     line-height: 1.15;
     -webkit-text-size-adjust: 100%;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -338,7 +348,7 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
 
 body {
     margin: 0;
-    font-family: var(--font5) , dotum, 돋움, "굴림", Gulim, Tahoma, sans-serif;
+    font-family: NanumGothic , dotum, 돋움, "굴림", Gulim, Tahoma, sans-serif;
     font-size: 16px;
     font-weight: 400;
     line-height: 22px;

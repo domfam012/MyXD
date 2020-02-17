@@ -52,7 +52,7 @@ app.prepare().then(() => {
 
         // port -> port 로 넣어줘야됨
 
-    }).listen(80, err => {
+    }).listen(3000, err => {
         if (err) throw err;
         console.log(`> Ready on http://${ip}`);
     });

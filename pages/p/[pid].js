@@ -34,6 +34,7 @@ const Template = props => {
                 }
                 li img {
                     width: 100%;
+                    height: 143px;
                 }
                 .inner {
                     display: block;
