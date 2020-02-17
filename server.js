@@ -42,7 +42,7 @@ app.prepare().then(() => {
         if (err) throw err;
 
         console.log(`> NODE_ENV: ${process.env.NODE_ENV}`);
-        console.log(`> Ready on http://${ip}`);
+        console.log(`> Ready on http://${ip}:${port}`);
         console.log(`>>> __IP: [${ip}] __PORT: [${port}]`);
         console.log(`\n\n\n`);
     });
