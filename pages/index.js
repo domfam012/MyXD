@@ -61,6 +61,7 @@ const Card = props => {
                     overflow: hidden;
                     white-space: nowrap;
                     text-overflow: ellipsis;
+                    color: #116edd;
                 }
                 .box_text .text{
                     font-size: 16px;

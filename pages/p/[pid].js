@@ -50,8 +50,9 @@ const Template = props => {
                 .li-text .title {
                     font-size: 20px;
                     overflow: hidden;
-                    text-overflow: ellipsis;
                     white-space: nowrap;
+                    text-overflow: ellipsis;
+                    
                 }
                 .sub-title {
                     font-size: 20px;
@@ -66,6 +67,10 @@ const Template = props => {
                     li:nth-child(3) {
                         margin-left: 30px;
                     }
+                    li img {
+                    width: 100%;
+                    height: 100%;
+                }
                 }
                 //모바일
                 @media (max-width: 760px) {
@@ -136,9 +141,13 @@ const Detail = props => {
                 }
                 .main_card .img {
                     width: 100%;
+                    height: 506px;
+                    background: #d3d3d3;
+                    text-align: center;
                 }
                 .main_card .img img {
-                    width: 100%;
+                    width: auto;
+                    height: 100%;
                 }
                 .box_text {
                     padding: 33px 30px 30px 30px;
@@ -147,16 +156,25 @@ const Detail = props => {
                     font-size: 30px;
                     line-height: 40px;
                     letter-spacing: -1.5px;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    color: #116edd;
                 }
                 .box_text .text{
                     font-size: 16px;
                     line-height: 25px;
                     color: #666666;
                     margin: 23px 0 40px;
-                }
-                .nav {
-                    float: left;
-                }
+                    display: -webkit-box;
+                    white-space: normal;
+                    height: 73px;
+                    word-wrap: break-word;
+                    -webkit-line-clamp: 3;
+                    -webkit-box-orient: vertical;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    }
                 .btn {
                   color: #ffffff;
                   line-height: 33px;
@@ -166,6 +184,9 @@ const Detail = props => {
                 }
                 .btn:active{
                   line-height: 33px;
+                }
+                .nav {
+                  float: left;
                 }
              //You may also like
                 .detail_title {
@@ -199,13 +220,20 @@ const Detail = props => {
                     width: 100%;
                     margin-right: 0;
                 }
+                .main_card .img {
+                    width: 100%;
+                    height: 100%
+                }
+                .main_card .img img {
+                    width: 100%;
+                    height: 100%
+                }
+                .main_card .text {
+                    height: 70px;
+                }
             }
             //모바일
             @media (max-width: 760px) {
-                .main_card {
-                    width: 100%;
-                    margin-right: 0;
-                }
                 .box_text {
                     padding: 30px 40px;
                 }
