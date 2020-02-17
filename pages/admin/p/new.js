@@ -9,10 +9,6 @@ import { loadStorage, storage } from './../../../lib/js/db';
 import shortid from 'shortid';
 
 const New = props => {
-
-    //category 배열 초기화
-    const [ category, setCategory ] = useState([]);
-
     const [ title, setTitle ] = useState('');
     const [ content, setContent ] = useState('');
     const [ img, setImg ] = useState('');
@@ -20,14 +16,6 @@ const New = props => {
     const [ link, setLink ] = useState('');
     const inputFileEl = useRef(null);
     const router = useRouter();
-
-
-    //category checkbox 값 배열에 적재
-    const categoryChange = e => {
-        console.log(e.target.checked);
-        console.log(e.target.value);
-    }
-
 
     const titleChange = e => {
         setTitle(e.target.value);
@@ -98,7 +86,7 @@ const New = props => {
                         title, content, imgName, link, imgPath: downloadURL, imgSaveName: sid
                     };
 
-                    await axios.post(`http://myxd.co.kr/api/board/create`, reqData, {
+                    await axios.post(`http://13.209.55.219/api/board/create`, reqData, {
                             headers: {
                                 'Accept': 'application/json',
                                 'Headers': 'content-type',
@@ -154,19 +142,19 @@ const New = props => {
                                         </div>
                                         <div className={"input-area"}>
                                             <label className="checkbox checkbox_single">
-                                                <input type="checkbox" value={'UI KITS'} checked={'checked'} onChange={categoryChange} className="filled-in"/>
+                                                <input type="checkbox" className="filled-in"/>
                                                 <span>UI KITS</span>
                                             </label>
                                             <label className="checkbox checkbox_single">
-                                                <input type="checkbox" value={'Website'} checked={'checked'} onChange={categoryChange} className="filled-in"/>
+                                                <input type="checkbox" className="filled-in"/>
                                                 <span>Website</span>
                                             </label>
                                             <label className="checkbox checkbox_single">
-                                                <input type="checkbox" value={'Mobile'} checked={'checked'} onChange={categoryChange} className="filled-in"/>
+                                                <input type="checkbox" className="filled-in"/>
                                                 <span>Mobile</span>
                                             </label>
                                             <label className="checkbox checkbox_single">
-                                                <input type="checkbox" value={'Plug-in'} checked={'checked'} onChange={categoryChange} className="filled-in"/>
+                                                <input type="checkbox" className="filled-in"/>
                                                 <span>Plug-in</span>
                                             </label>
                                         </div>
@@ -203,6 +191,7 @@ const New = props => {
                                             <input type="file" id="fileUploader" name={"img"} className="form-control-file"
                                                    ref={inputFileEl}
                                                    onChange={onFileUpload}/>
+                                            {/*<input type="file" id="fileUploader" className="form-control-file" onChange={this.onChange}/>*/}
                                         </div>
                                     </div>
                                     <div className={"form-group"}>
@@ -325,7 +314,7 @@ New.getInitialProps = async (ctx) => {
     }
 
     const page = ctx.query.page || '1';
-    const res = await fetch(`http://myxd.co.kr/api/board/list/5?page=${page}`);
+    const res = await fetch(`http://13.209.55.219/api/board/list/5?page=${page}`);
     const result = await res.json();
 
     return {

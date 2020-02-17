@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useRouter } from "next/router";
+import React, {useState} from 'react';
+import {useRouter} from "next/router";
 import Link from "next/link";
 import fetch from "isomorphic-unfetch";
 import cookie from "js-cookie";
@@ -38,7 +38,7 @@ const Header = props => {
             <div className={"nav_wrap"}>
                 <nav className={props.isResponsive ? "navbar navbar-expand-xl" : "navbar navbar-expand-xl admin"}>
                     <Link href="/">
-                        <a className="navbar-brand"><span className="pink">MyXD</span> logo</a>
+                        <a className="navbar-brand"><span className="pink">MyXD</span></a>
                     </Link>
                     {/* tab,mobile 메뉴 버튼 */}
                     <button className={`navbar-toggle ${menuActive ? 'active' : ''}`} type="button"
@@ -54,26 +54,27 @@ const Header = props => {
                     </button>
                     <div className="collapse navbar-collapse menu" id="navbarText">
                         <ul className="navbar-nav mr-auto">
-                            <li className="nav-item">
-                                <Link href="/list">
+                            <Link href="/list" activeClassName="active">
+                                <li className="nav-item">
                                     <a className="nav-link" href="/">UI KITS</a>
-                                </Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link href="/list">
+                                </li>
+                            </Link>
+                            <Link href="/list" activeClassName="active">
+                                <li className="nav-item">
                                     <a className="nav-link" href="/list">Website</a>
-                                </Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link href="/admin">
+                                </li>
+                            </Link>
+                            <Link href="/admin" activeClassName="active">
+                                <li className="nav-item">
                                     <a className="nav-link" href="/detail">Mobile</a>
-                                </Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link href="/detail">
+                                </li>
+                            </Link>
+                            <Link href="/detail" activeClassName="active">
+                                <li className="nav-item">
                                     <a className="nav-link">Plug-in</a>
-                                </Link>
-                            </li>
+                                </li>
+                            </Link>
+
                         </ul>
                     </div>
                     <div className={"collapse navbar-collapse navbar-icon"}>
@@ -118,11 +119,18 @@ const Header = props => {
                 margin-right: 95px;
               }
               .nav-link {
-                padding: 17px 10px !important;
+                padding: 8.5px 10px !important;
+                color: #ffffff;
               }
-              .menu .nav-item.active, .menu .nav-item:hover {
+              .active .menu .nav-item, .menu .nav-item:hover {
                 border-bottom: 2px solid var(--pink);
+                border-bottom: 2px solid #e83e8c;
                 color: var(--pink);
+                color: #e83e8c;
+              }
+              .active .menu .nav-item, .menu .nav-item:hover .nav-link{
+                color: var(--pink);
+                color: #e83e8c;
               }
               .nav-item {
                 margin-right: 80px;
@@ -183,25 +191,21 @@ const Header = props => {
                   border-bottom: 1px solid #E2E2E2;
                   font-weight: bold;
                 }
+                .active .menu .nav-item, .menu .nav-item:hover .nav-link{
+                  color: #ffffff;
+                }
                 .nav-link:active {
                   background: #aaaaaa;
                   color: #ffffff;
                 }
                 .navbar-toggle {
                   background: none;
-                  padding-right: 60px;
                   margin-right: 30px;
+                  padding : 15px 10px 10px;
+                  height: 70px;
                 }
                 .navbar-toggle:focus {
                   outline: none;
-                }
-                .navbar-toggler-icon:after {
-                    content: 'MENU';
-                    position: absolute;
-                    color: #ffffff;
-                    font-size: 16px;
-                    top: -4px;
-                    right: -52px;
                 }
                 .navbar-toggler-icon {
                     position: relative;
@@ -227,11 +231,13 @@ const Header = props => {
                 .navbar-toggle.active .bar1 {
                     -webkit-transform: rotate(-45deg) translate(-9px, 6px) ;
                     transform: rotate(-45deg) translate(-1.5px,4.5px);
+                    background: #707070;
                 }
 
                 .navbar-toggle.active .bar2 {
                     -webkit-transform: rotate(45deg) translate(-8px, -8px) ;
                     transform: rotate(45deg) translate(1px,-2px);
+                    background: #707070;
                 }
 
                 .navbar-toggle.active .bar3 {
@@ -242,19 +248,18 @@ const Header = props => {
                   outline: none;
                 }
                 .navbar-nav {
-                    position: relative;
-                    z-index: 1;
-                    top: 5px;
+                  position: relative;
+                  z-index: 1;
+                  top: 0;
                   background: #ffffff;
                   box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
                   border: solid 1px var(--white);
+                  padding: 10px 0;
                   }
                 .menu .nav-item.active, .menu .nav-item:hover {
                   border: 0;
                 }
-                .navbar-brand {
-                  padding: 0 0 0 30px;
-                }
+               
                 .navbar-toggler {
                   position: relative;
                   padding-right: 48px;
@@ -277,21 +282,8 @@ const Header = props => {
                   background: #aaaaaa;
                   color: #ffffff;
                 }
-                .navbar-toggle {
-                  background: none;
-                  padding-right: 60px;
-                  margin-right: 30px;
-                }
                 .navbar-toggle:focus {
                   outline: none;
-                }
-                .navbar-toggler-icon:after {
-                    content: 'MENU';
-                    position: absolute;
-                    color: #ffffff;
-                    font-size: 16px;
-                    top: -4px;
-                    right: -52px;
                 }
                 .navbar-toggler-icon {
                     position: relative;
@@ -337,25 +329,11 @@ const Header = props => {
                     padding: 0;
                     min-width: 320px;
                   }
-                  .navbar-xl {
-                    min-width: 1200px;
-                  }
                   .navbar-brand {
                     margin-right: 50px;
                   }
               }
-            // admin 
-                .admin .navbar-icon .navbar-nav {
-                position: absolute;
-                right: 0;
-                display: inline-flex;
-              }
-              .admin .navbar-icon .navbar-nav .nav-item:nth-child(1),
-               .admin .navbar-icon .navbar-nav .nav-item:nth-child(2), 
-               .admin .navbar-icon .navbar-nav .nav-item:nth-child(3) {
-                display:none;
-              }
-            
+      
             `}</style>
         </header>
     );

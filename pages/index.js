@@ -12,102 +12,125 @@ import { faChevronLeft } from '@fortawesome/pro-light-svg-icons';
 import { faChevronRight } from '@fortawesome/pro-light-svg-icons';
 import fetch from "isomorphic-unfetch";
 
+
 // card 컴포넌트
 const Card = props => {
     return (
-        <div className={"main_card"}>
-            <Link href={`/p/${props.pid}`}>
-                <a>
-                    <div className={"img"}><img src={props.imgPath} alt="temp"/></div>
-                </a>
-            </Link>
-            <div className={"box_text"}>
-                <Link href={`/p/${props.pid}`}>
-                    <a>
-                        <div className={"title"}>{props.title}</div>
-                    </a>
-                </Link>
-                <div className={"text"}>
-                    {props.content}
+        <Link href={`/p/${props.pid}`}>
+            <div className={"main_card"}>
+                <div className={"img"}><img src={props.imgPath} alt="temp"/></div>
+                <div className={"box_text"}>
+                    <div className={"title"}>{props.title}</div>
+                    <div className={"text"}>
+                        {props.content}
+                    </div>
+                    <div>
+                        <Link href={`${props.link}`}>
+                            <a className={"btn btn-primary"}>더 보기</a>
+                        </Link>
+                    </div>
                 </div>
-                <div>
-                    <a href={`/p/${props.pid}`} className={"btn btn-primary"}>더 보기</a>
-                </div>
+                <style jsx>{`
+                .main_card {
+                    width: calc(100% - 298px);
+                    margin-right: 30px;
+                    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+                    background-color: #ffffff;
+                    margin-bottom: 50px;
+                    cursor: pointer;
+                }
+                .main_card:last-child {
+                  margin-bottom: 0;
+                }
+                .main_card .img {
+                    width: 100%;
+                    height: 506px;
+                    background: #d3d3d3;
+                    text-align: center;
+                }
+                .main_card .img img {
+                    width: auto;
+                    height: 100%;
+                }
+                .box_text {
+                    padding: 33px 30px 30px 30px;
+                }
+                .box_text .title{
+                    font-size: 30px;
+                    line-height: 40px;
+                    letter-spacing: -1.5px;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    color: #116edd;
+                }
+                .box_text .text{
+                    font-size: 16px;
+                    line-height: 25px;
+                    color: #666666;
+                    margin: 23px 0 40px;
+                    display: -webkit-box;
+                    white-space: normal;
+                    height: 73px;
+                    word-wrap: break-word;
+                    -webkit-line-clamp: 3;
+                    -webkit-box-orient: vertical;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    }
+                .btn {
+                  color: #ffffff;
+                  line-height: 33px;
+                }
+                .btn:hover {
+                  line-height: 33px;
+                }
+                .btn:active{
+                  line-height: 33px;
+                }
+            @media (max-width: 1200px) {
+                .main_card {
+                    width: 100%;
+                    margin-right: 0;
+                }
+                .main_card .img {
+                    width: 100%;
+                    height: 100%
+                }
+                .main_card .img img {
+                    width: 100%;
+                    height: 100%
+                }
+                .main_card .text {
+                    height: 70px;
+                }
+            }
+            @media (max-width: 760px) {
+                .box_text {
+                    padding: 30px 40px;
+                }
+                .box_text .title{
+                    line-height: 48px;
+                    letter-spacing: -0.5px;
+                }
+                .box_text .text{
+                    font-size: 16px;
+                    line-height: 25px;
+                    letter-spacing: -0.5px;
+                    margin: 10px 0 40px;
+                }
+                .btn {
+                  width: 100%;
+                }
+            }
+            `}</style>
             </div>
-            <style jsx>{`
-            .main_card {
-                width: calc(100% - 298px);
-                margin-right: 30px;
-                box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
-                background-color: #ffffff;
-                margin-bottom: 50px;
-            }
-            .main_card:last-child {
-              margin-bottom: 0;
-            }
-            .main_card .img {
-                width: 100%;
-            }
-            .main_card .img img {
-                width: 100%;
-            }
-            .box_text {
-                padding: 33px 30px 30px 30px;
-            }
-            .box_text .title{
-                font-size: 30px;
-                line-height: 40px;
-                letter-spacing: -1.5px;
-            }
-            .box_text .text{
-                font-size: 16px;
-                line-height: 25px;
-                color: #666666;
-                margin: 23px 0 40px;
-            }
-            .btn {
-              color: #ffffff;
-              line-height: 33px;
-            }
-            .btn:hover {
-              line-height: 33px;
-            }
-            .btn:active{
-              line-height: 33px;
-            }
-        @media (max-width: 1200px) {
-            .main_card {
-                width: 100%;
-                margin-right: 0;
-            }
-        }
-        @media (max-width: 760px) {
-            .box_text {
-                padding: 30px 40px;
-            }
-            .box_text .title{
-                line-height: 48px;
-                letter-spacing: -0.5px;
-            }
-            .box_text .text{
-                font-size: 16px;
-                line-height: 25px;
-                letter-spacing: -0.5px;
-                margin: 10px 0 40px;
-            }
-            .btn {
-              width: 100%;
-            }
-        }
-        `}</style>
-        </div>
+        </Link>
     )
 };
 
 // 메인 페이지
 const Index = props => {
-    // console.log(`${process.env.ASSET_PREFIX}`);
-
     let activePage = props.activePage;
     const router = useRouter();
 
@@ -115,6 +138,11 @@ const Index = props => {
         window.scrollTo(0, 0);
         router.push(`/?page=${pageNumber}`);
     };
+
+    // useEffect(() => {
+    //     console.log('use effect..');
+    //     window.scrollTo(0, 0);
+    // }, []);
 
     return (
 
@@ -170,13 +198,25 @@ const Index = props => {
     );
 };
 
+
+
+// API 설정
 Index.getInitialProps = async function (ctx) {
-    const page = ctx.query.page || '1'; // default page index
-    const res = await fetch(`http://myxd.co.kr/api/board/list/15?page=${page}`); // get /api/board/lsit/[limit]?page={page}
+    console.log('[Index] ::: getInitialProps');
+    // window.scrollTo(0, 0);
+
+    const page = ctx.query.page || '1';
+    const res = await fetch(`http://localhost:3000/api/board/list/15?page=${page}`);
+    // const res = await fetch(`http://13.209.55.219/api/board/list`);
     const result = await res.json();
 
-    const asideRes = await fetch(`http://myxd.co.kr/api/board/interest`);
+    const asideRes = await fetch('http://13.209.55.219/api/board/interest');
     const asideResult = await asideRes.json();
+
+    // data.typeOf()
+    // console.log(result);
+    // console.log(typeof result);
+    // console.log(`Show data fetched. Count: ${result.data.length}`);
 
     return {
         data: result.data,

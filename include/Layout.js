@@ -38,6 +38,7 @@ const Layout = props => {
             </Head>
 
             <Header isResponsive={isResponsive}/>
+
             <div className={containerClass}>
                 {props.children}
             </div>
