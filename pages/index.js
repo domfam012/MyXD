@@ -15,92 +15,115 @@ import fetch from "isomorphic-unfetch";
 // card 컴포넌트
 const Card = props => {
     return (
-        <div className={"main_card"}>
-            <Link href={`/p/${props.pid}`}>
-                <a>
-                    <div className={"img"}><img src={props.imgPath} alt="temp"/></div>
-                </a>
-            </Link>
-            <div className={"box_text"}>
-                <Link href={`/p/${props.pid}`}>
-                    <a>
-                        <div className={"title"}>{props.title}</div>
-                    </a>
-                </Link>
-                <div className={"text"}>
-                    {props.content}
+        <Link href={`/p/${props.pid}`}>
+            <div className={"main_card"}>
+                <div className={"img"}><img src={props.imgPath} alt="temp"/></div>
+                <div className={"box_text"}>
+                    <div className={"title"}>{props.title}</div>
+                    <div className={"text"}>
+                        {props.content}
+                    </div>
+                    <div>
+                        <Link href={`${props.link}`}>
+                            <a className={"btn btn-primary"}>더 보기</a>
+                        </Link>
+                    </div>
                 </div>
-                <div>
-                    <a href={`/p/${props.pid}`} className={"btn btn-primary"}>더 보기</a>
-                </div>
+                <style jsx>{`
+                .main_card {
+                    width: calc(100% - 298px);
+                    margin-right: 30px;
+                    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+                    background-color: #ffffff;
+                    margin-bottom: 50px;
+                    cursor: pointer;
+                }
+                .main_card:last-child {
+                  margin-bottom: 0;
+                }
+                .main_card .img {
+                    width: 100%;
+                    height: 506px;
+                    background: #d3d3d3;
+                    text-align: center;
+                }
+                .main_card .img img {
+                    width: auto;
+                    height: 100%;
+                }
+                .box_text {
+                    padding: 33px 30px 30px 30px;
+                }
+                .box_text .title{
+                    font-size: 30px;
+                    line-height: 40px;
+                    letter-spacing: -1.5px;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                }
+                .box_text .text{
+                    font-size: 16px;
+                    line-height: 25px;
+                    color: #666666;
+                    margin: 23px 0 40px;
+                    display: -webkit-box;
+                    white-space: normal;
+                    height: 73px;
+                    word-wrap: break-word;
+                    -webkit-line-clamp: 3;
+                    -webkit-box-orient: vertical;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    }
+                .btn {
+                  color: #ffffff;
+                  line-height: 33px;
+                }
+                .btn:hover {
+                  line-height: 33px;
+                }
+                .btn:active{
+                  line-height: 33px;
+                }
+            @media (max-width: 1200px) {
+                .main_card {
+                    width: 100%;
+                    margin-right: 0;
+                }
+                .main_card .img {
+                    width: 100%;
+                    height: 100%
+                }
+                .main_card .img img {
+                    width: 100%;
+                    height: 100%
+                }
+                .main_card .text {
+                    height: 70px;
+                }
+            }
+            @media (max-width: 760px) {
+                .box_text {
+                    padding: 30px 40px;
+                }
+                .box_text .title{
+                    line-height: 48px;
+                    letter-spacing: -0.5px;
+                }
+                .box_text .text{
+                    font-size: 16px;
+                    line-height: 25px;
+                    letter-spacing: -0.5px;
+                    margin: 10px 0 40px;
+                }
+                .btn {
+                  width: 100%;
+                }
+            }
+            `}</style>
             </div>
-            <style jsx>{`
-            .main_card {
-                width: calc(100% - 298px);
-                margin-right: 30px;
-                box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
-                background-color: #ffffff;
-                margin-bottom: 50px;
-            }
-            .main_card:last-child {
-              margin-bottom: 0;
-            }
-            .main_card .img {
-                width: 100%;
-            }
-            .main_card .img img {
-                width: 100%;
-            }
-            .box_text {
-                padding: 33px 30px 30px 30px;
-            }
-            .box_text .title{
-                font-size: 30px;
-                line-height: 40px;
-                letter-spacing: -1.5px;
-            }
-            .box_text .text{
-                font-size: 16px;
-                line-height: 25px;
-                color: #666666;
-                margin: 23px 0 40px;
-            }
-            .btn {
-              color: #ffffff;
-              line-height: 33px;
-            }
-            .btn:hover {
-              line-height: 33px;
-            }
-            .btn:active{
-              line-height: 33px;
-            }
-        @media (max-width: 1200px) {
-            .main_card {
-                width: 100%;
-                margin-right: 0;
-            }
-        }
-        @media (max-width: 760px) {
-            .box_text {
-                padding: 30px 40px;
-            }
-            .box_text .title{
-                line-height: 48px;
-                letter-spacing: -0.5px;
-            }
-            .box_text .text{
-                font-size: 16px;
-                line-height: 25px;
-                letter-spacing: -0.5px;
-                margin: 10px 0 40px;
-            }
-            .btn {
-              width: 100%;
-            }
-        }
-        `}</style>
-        </div>
+        </Link>
     )
 };
 
