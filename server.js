@@ -2,6 +2,7 @@ const { createServer } = require('http');
 const { parse } = require('url');
 const next = require('next');
 
+const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
 const handle = app.getRequestHandler();
 
@@ -9,12 +10,11 @@ const express = require('express')();
 const helmet = require('helmet');
 const bodyParser = require('body-parser');
 
-const config = require('./config.js');
+const { option } = require('./config.js');
 const cookieSession = require('cookie-session');
 
-const dev = process.env.NODE_ENV !== 'production';
-const port = dev ? config.port.dev : config.port.production;
-const ip = dev ? config.ip.dev : config.ip.production;
+const port = dev ? option.port.dev : option.port.production;
+const ip = dev ? option.ip.dev : option.ip.production;
 
 app.prepare().then(() => {
     createServer((req, res) => {
@@ -26,7 +26,7 @@ app.prepare().then(() => {
         express.set('trust proxy', 1);
         express.use(
             helmet(),
-            cookieSession(config.option.cookie),
+            cookieSession(option.cookie),
             bodyParser.urlencoded({extended: true}),
             bodyParser.json()
         );

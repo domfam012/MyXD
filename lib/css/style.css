@@ -636,8 +636,8 @@ summary {
 }
 
 template {
-    display: none;
-}
+                         display: none;
+                     }
 
 [hidden] {
     display: none !important;
@@ -666,3 +666,7 @@ template {
 .underline {
     text-decoration: underline;
 }
+
+/**
+    bootstrap tooltip
+ */

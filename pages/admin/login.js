@@ -8,7 +8,6 @@ import nextCookie from 'next-cookies';
 import cookie from 'js-cookie'
 
 const Login  = props => {
-
     const router = useRouter();
 
     const handleEmailChange = (e) => {
@@ -25,7 +24,7 @@ const Login  = props => {
     const chkEmail = () => {
         const emailrule = /^(([^<>()\[\].,;:\s@"]+(\.[^<>()\[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
         return emailrule.test(email);
-    }
+    };
 
     const reqLogin = () => {
         if(!chkEmail(email)){
@@ -33,7 +32,7 @@ const Login  = props => {
             return;
         }
         else{
-            fetch(`http://localhost:3000/api/user/login`, {
+            fetch(`http://myxd.co.kr/api/user/login`, {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
@@ -92,8 +91,12 @@ const Login  = props => {
                     </div>
 
                     <form name={"login-form"}>
-                        <input name={"login-email"} onChange={handleEmailChange} type="text" placeholder={"E-mail를 입력해주세요."} maxLength="20"/>
-                        <input name={"login-password"} onChange={handlePasswordChange} type="password" placeholder={"비밀번호를 입력해주세요."} maxLength="24"/>
+                        <input name={"login-email"} onChange={handleEmailChange} type="text" placeholder={"E-mail을 입력해주세요."} maxLength="30"
+                               data-toggle="tooltip" data-placement="bottom" title="E-mail을 입력해주세요."
+                        />
+                        <input name={"login-password"} onChange={handlePasswordChange} type="password" placeholder={"비밀번호를 입력해주세요."} maxLength="30"
+                               data-toggle="tooltip" data-placement="bottom" title="비밀번호를 입력해주세요."
+                        />
                     </form>
 
                     <div className="text-center">

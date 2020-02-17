@@ -313,7 +313,7 @@ New.getInitialProps = async (ctx) => {
     }
 
     const page = ctx.query.page || '1';
-    const res = await fetch(`http://13.209.55.219/api/board/list/5?page=${page}`);
+    const res = await fetch(`http://myxd.co.kr/api/board/list/5?page=${page}`);
     const result = await res.json();
 
     return {

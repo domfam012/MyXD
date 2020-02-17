@@ -12,7 +12,6 @@ import { faChevronLeft } from '@fortawesome/pro-light-svg-icons';
 import { faChevronRight } from '@fortawesome/pro-light-svg-icons';
 import fetch from "isomorphic-unfetch";
 
-
 // card 컴포넌트
 const Card = props => {
     return (
@@ -107,6 +106,8 @@ const Card = props => {
 
 // 메인 페이지
 const Index = props => {
+    // console.log(`${process.env.ASSET_PREFIX}`);
+
     let activePage = props.activePage;
     const router = useRouter();
 
@@ -171,10 +172,10 @@ const Index = props => {
 
 Index.getInitialProps = async function (ctx) {
     const page = ctx.query.page || '1'; // default page index
-    const res = await fetch(`http://13.209.55.219/api/board/list/15?page=${page}`); // get /api/board/lsit/[limit]?page={page}
+    const res = await fetch(`http://myxd.co.kr/api/board/list/15?page=${page}`); // get /api/board/lsit/[limit]?page={page}
     const result = await res.json();
 
-    const asideRes = await fetch(`http://13.209.55.219/api/board/interest`);
+    const asideRes = await fetch(`http://myxd.co.kr/api/board/interest`);
     const asideResult = await asideRes.json();
 
     return {
