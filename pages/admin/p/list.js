@@ -19,7 +19,7 @@ const BoxList = props => {
     const deleteItem = () => {
         const check = confirm('해당 글을 삭제하시겠습니까?');
         if (check) {
-            fetch(`http://13.209.55.219/api/board/post/${pid}`, {
+            fetch(`http://localhost:3000/api/board/post/${pid}`, {
                 method: 'DELETE',
                 headers: {
                     'Accept': 'application/json',
@@ -140,16 +140,20 @@ const BoxList = props => {
                     box-shadow: 3px 3px 12px 0 rgba(0, 0, 0, 0.24);
                     background-color: var(--white);
                 }
-                
-                .img-list{
+
+                .img-list {
                     width: 278px;
                     height: 162px;
                 }
                 
-                .box-bottom-line{
+                .box-bottom-line {
                     margin-top: 41px;
                     width:1060px;
                     color:#fcfcfc;
+                }
+                
+                .box-list:hover .box-bottom-line {
+                    width: 0;
                 }
             `}</style>
         </div>
@@ -282,7 +286,7 @@ List.getInitialProps = async (ctx) => {
     }
 
     const page = ctx.query.page || '1';
-    const res = await fetch(`http://13.209.55.219/api/board/list/5?page=${page}`);
+    const res = await fetch(`http://localhost:3000/api/board/list/5?page=${page}`);
     const result = await res.json();
 
     // console.log(result);

@@ -16,8 +16,8 @@ const cookieSession = require('cookie-session');
 const multer = require('multer');
 const { useSession } = require('next-session');
 
-// console.log('__dirname');
-// console.log(__dirname);
+const port = dev ? 3000 : 80;
+const ip = dev ? "127.0.0.1" : "13.209.55.219";
 
 app.prepare().then(() => {
     createServer((req, res) => {
@@ -50,8 +50,10 @@ app.prepare().then(() => {
             handle(req, res, parsedUrl);
         }
 
-    }).listen(3000, err => {
+        // port -> port 로 넣어줘야됨
+
+    }).listen(80, err => {
         if (err) throw err;
-        console.log('> Ready on http://13.209.55.219');
+        console.log(`> Ready on http://${ip}`);
     });
 });

@@ -43,6 +43,9 @@ export default async (req, res) => {
 
         case "PATCH" :
 
+            console.log('here');
+            console.log(req.body);
+
             // Update
             const category = 'default';
             const content = req.body.content || '';
@@ -54,35 +57,22 @@ export default async (req, res) => {
                 content: content,
                 link: link,
                 title: title,
-                updated: firestore.FieldValue.serverTimestamp()
+                updated: moment().locale('ko').format()
             };
 
             if (req.body.imgName) {
-                const fileExtension = req.body.imgName.split('.')[req.body.imgName.split('.').length - 1];
-                const imgName = pid + "-" + moment().format('YYYYMMDDHHmmss') + "." + fileExtension;
-
                 const imgData = {
                     imgOriginName: req.body.imgName,
-                    imgPath: '/img/upload/' + imgName,
-                    imgSaveName: imgName
+                    imgPath: req.body.imgPath,
+                    imgSaveName: req.body.imgSaveName
                 };
-
-                console.log(`imgData: ${imgData}`);
-                console.log(`pid: ${pid}`);
 
                 newData = { ...newData, ...imgData };
             }
 
             await doc.update(newData);
 
-            console.log(newData)
-            console.log(JSON.stringify(newData))
-
-            resData = JSON.stringify({
-                status: 200, msg: 'success', imgSaveName: newData.imgSaveName
-            });
-            res.status(200).json(resData);
-
+            res.status(200).end();
             break;
 
         case "DELETE" :

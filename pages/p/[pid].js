@@ -9,7 +9,7 @@ const Template = props => {
         <>
             <li>
                 <Link href={`/p/${props.pid}`}>
-                    <a href="#" className="inner">
+                    <a className="inner">
                         <div className="li-img">
                             <img src={props.imgPath} alt="sample"/>
                         </div>
@@ -55,28 +55,28 @@ const Template = props => {
                 }
                 
                 @media (max-width: 1200px) {
-                li {
-                    margin: 20px 20px 0 0;
-                    width: calc(50% - 40px);
-                  }
-                li:nth-child(3) {
-                    margin-left: 30px;
+                    li {
+                        margin: 20px 20px 0 0;
+                        width: calc(50% - 40px);
+                    }
+                    li:nth-child(3) {
+                        margin-left: 30px;
+                    }
                 }
-            }
-            //모바일
-            @media (max-width: 760px) {
-                 li {
-                    width: 100%;
-                    margin-left: 0;
-                    margin-right: 0;
-                  }
-                  li:nth-child(1) {
-                    margin-left: 0;
-                  }
-                  li:nth-child(3) {
-                    margin-left: 0;
-                  }
-            }
+                //모바일
+                @media (max-width: 760px) {
+                     li {
+                        width: 100%;
+                        margin-left: 0;
+                        margin-right: 0;
+                      }
+                      li:nth-child(1) {
+                        margin-left: 0;
+                      }
+                      li:nth-child(3) {
+                        margin-left: 0;
+                      }
+                }            
            `}</style>
         </>
     )
@@ -167,7 +167,7 @@ const Detail = props => {
              //You may also like
                 .detail_title {
                     position: relative;
-                    width: 160px;
+                    width: 180px;
                     height: 23px;
                     color: #666666;
                     font-size: 20px;
@@ -235,10 +235,10 @@ Detail.getInitialProps = async ctx => {
 
     console.log("API연결 pid" + pid);
 
-    const res = await fetch(`http://13.209.55.219/api/board/post/${pid}`);
+    const res = await fetch(`http://localhost:3000/api/board/post/${pid}`);
     const result = await res.json();
 
-    const asideRes = await fetch('http://13.209.55.219/api/board/interest');
+    const asideRes = await fetch('http://localhost:3000/api/board/interest');
     const asideResult = await asideRes.json();
 
     console.log('Aside!!!!'+asideRes);
