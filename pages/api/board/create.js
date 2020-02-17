@@ -13,7 +13,7 @@ export default async (req, res) => {
         const db = await loadDB();
 
         // 받아온 값 타입 && null 체크
-        const category = 'default';
+        const category = req.body.category || '';
         const content = req.body.content || '';
         const imgOriginName = req.body.imgName || '';
         const imgSaveName = req.body.imgSaveName || '';
