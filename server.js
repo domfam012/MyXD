@@ -2,6 +2,7 @@ const { createServer } = require('http');
 const { parse } = require('url');
 const next = require('next');
 
+const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
 const handle = app.getRequestHandler();
 
@@ -12,7 +13,6 @@ const bodyParser = require('body-parser');
 const config = require('./config.js');
 const cookieSession = require('cookie-session');
 
-const dev = process.env.NODE_ENV !== 'production';
 const port = dev ? config.port.dev : config.port.production;
 const ip = dev ? config.ip.dev : config.ip.production;
 

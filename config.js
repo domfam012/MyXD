@@ -14,7 +14,7 @@ const option = {
         maxAge: 1000 * 60 * 60 * 10 // 10 hours
     },
     assetPrefix: {
-        dev: '',
+        dev: 'http://localhost:3000',
         aws: 'http://13.209.55.219/',
         ghp: 'https://pyungwook-domfam.github.io/domfam012'
     },

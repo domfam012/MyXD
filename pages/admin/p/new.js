@@ -10,6 +10,7 @@ import shortid from 'shortid';
 
 const New = props => {
 
+    //category 배열 초기화
     const [ category, setCategory ] = useState([]);
 
     const [ title, setTitle ] = useState('');
@@ -21,10 +22,12 @@ const New = props => {
     const router = useRouter();
 
 
-    //category checked value input Array
+    //category checkbox 값 배열에 적재
     const categoryChange = e => {
-        const value = e.target.value;
-    };
+        console.log(e.target.checked);
+        console.log(e.target.value);
+    }
+
 
     const titleChange = e => {
         setTitle(e.target.value);
@@ -92,7 +95,7 @@ const New = props => {
                         });
 
                     const reqData = {
-                        category, title, content, imgName, link, imgPath: downloadURL, imgSaveName: sid
+                        title, content, imgName, link, imgPath: downloadURL, imgSaveName: sid
                     };
 
                     await axios.post(`http://13.209.55.219/api/board/create`, reqData, {
@@ -151,19 +154,19 @@ const New = props => {
                                         </div>
                                         <div className={"input-area"}>
                                             <label className="checkbox checkbox_single">
-                                                <input type="checkbox" value={'UI_KITS'} onChange={categoryChange} className="filled-in"/>
+                                                <input type="checkbox" value={'UI KITS'} checked={} onChange={categoryChange} className="filled-in"/>
                                                 <span>UI KITS</span>
                                             </label>
                                             <label className="checkbox checkbox_single">
-                                                <input type="checkbox" value={'Website'} onChange={categoryChange} className="filled-in"/>
+                                                <input type="checkbox" value={'Website'} checked={} onChange={categoryChange} className="filled-in"/>
                                                 <span>Website</span>
                                             </label>
                                             <label className="checkbox checkbox_single">
-                                                <input type="checkbox" value={'Mobile'} onChange={categoryChange} className="filled-in"/>
+                                                <input type="checkbox" value={'Mobile'} checked={} onChange={categoryChange} className="filled-in"/>
                                                 <span>Mobile</span>
                                             </label>
                                             <label className="checkbox checkbox_single">
-                                                <input type="checkbox" value={'Plug-in'} onChange={categoryChange} className="filled-in"/>
+                                                <input type="checkbox" value={'Plug-in'} checked={} onChange={categoryChange} className="filled-in"/>
                                                 <span>Plug-in</span>
                                             </label>
                                         </div>
@@ -322,7 +325,7 @@ New.getInitialProps = async (ctx) => {
     }
 
     const page = ctx.query.page || '1';
-    const res = await fetch(`http://13.209.55.219/api/board/list/5?page=${page}`);
+    const res = await fetch(`http://myxd.co.kr/api/board/list/5?page=${page}`);
     const result = await res.json();
 
     return {
