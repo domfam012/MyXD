@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useRouter } from "next/router";
+import React, {useState} from 'react';
+import {useRouter} from "next/router";
 import Link from "next/link";
 import fetch from "isomorphic-unfetch";
 import cookie from "js-cookie";
@@ -38,7 +38,7 @@ const Header = props => {
             <div className={"nav_wrap"}>
                 <nav className={props.isResponsive ? "navbar navbar-expand-xl" : "navbar navbar-expand-xl admin"}>
                     <Link href="/">
-                        <a className="navbar-brand"><span className="pink">MyXD</span> logo</a>
+                        <a className="navbar-brand"><span className="pink">MyXD</span></a>
                     </Link>
                     {/* tab,mobile 메뉴 버튼 */}
                     <button className={`navbar-toggle ${menuActive ? 'active' : ''}`} type="button"
@@ -54,26 +54,27 @@ const Header = props => {
                     </button>
                     <div className="collapse navbar-collapse menu" id="navbarText">
                         <ul className="navbar-nav mr-auto">
-                            <li className="nav-item">
-                                <Link href="/list">
+                            <Link href="/list" activeClassName="active">
+                                <li className="nav-item">
                                     <a className="nav-link" href="/">UI KITS</a>
-                                </Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link href="/list">
+                                </li>
+                            </Link>
+                            <Link href="/list" activeClassName="active">
+                                <li className="nav-item">
                                     <a className="nav-link" href="/list">Website</a>
-                                </Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link href="/admin">
+                                </li>
+                            </Link>
+                            <Link href="/admin" activeClassName="active">
+                                <li className="nav-item">
                                     <a className="nav-link" href="/detail">Mobile</a>
-                                </Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link href="/detail">
+                                </li>
+                            </Link>
+                            <Link href="/detail" activeClassName="active">
+                                <li className="nav-item">
                                     <a className="nav-link">Plug-in</a>
-                                </Link>
-                            </li>
+                                </li>
+                            </Link>
+
                         </ul>
                     </div>
                     <div className={"collapse navbar-collapse navbar-icon"}>
@@ -120,7 +121,7 @@ const Header = props => {
               .nav-link {
                 padding: 17px 10px !important;
               }
-              .menu .nav-item.active, .menu .nav-item:hover {
+              .active .menu .nav-item, .menu .nav-item:hover {
                 border-bottom: 2px solid var(--pink);
                 color: var(--pink);
               }
