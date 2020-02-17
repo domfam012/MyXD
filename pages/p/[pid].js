@@ -49,6 +49,9 @@ const Template = props => {
                 }
                 .li-text .title {
                     font-size: 20px;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
                 }
                 .sub-title {
                     font-size: 20px;

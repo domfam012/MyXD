@@ -279,6 +279,7 @@ const New = props => {
                 .file-label .added {
                     width: 100%;
                     margin: auto;
+                    overflow: hidden;
                 }
                 .file-label .added img {
                     width: 100%;
