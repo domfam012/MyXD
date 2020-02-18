@@ -21,6 +21,8 @@ const Update = props => {
     const router = useRouter();
     const pid = router.query.pid;
 
+    console.log(content);
+
     const titleChange = e => {
         setTitle(e.target.value);
     };
@@ -178,19 +180,19 @@ const Update = props => {
                                         </div>
                                         <div className={"input-area"}>
                                             <label className="checkbox checkbox_single">
-                                                <input type="checkbox" className="filled-in" value={"UI KITS"} onChange={categoryChange}/>
+                                                <input type="checkbox" defaultChecked={category.indexOf('UI KITS') > -1} className="filled-in" value={"UI KITS"} onChange={categoryChange}/>
                                                 <span>UI KITS</span>
                                             </label>
                                             <label className="checkbox checkbox_single">
-                                                <input type="checkbox" className="filled-in" value={"Website"} onChange={categoryChange}/>
+                                                <input type="checkbox" defaultChecked={category.indexOf('Website') > -1} className="filled-in" value={"Website"} onChange={categoryChange}/>
                                                 <span>Website</span>
                                             </label>
                                             <label className="checkbox checkbox_single">
-                                                <input type="checkbox" className="filled-in" value={"Mobile"} onChange={categoryChange}/>
+                                                <input type="checkbox" defaultChecked={category.indexOf('Mobile') > -1} className="filled-in" value={"Mobile"} onChange={categoryChange}/>
                                                 <span>Mobile</span>
                                             </label>
                                             <label className="checkbox checkbox_single">
-                                                <input type="checkbox" className="filled-in" value={"Plug-in"} onChange={categoryChange}/>
+                                                <input type="checkbox" defaultChecked={category.indexOf('Plug-in') > -1} className="filled-in" value={"Plug-in"} onChange={categoryChange}/>
                                                 <span>Plug-in</span>
                                             </label>
                                         </div>

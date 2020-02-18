@@ -8,16 +8,16 @@ const Template = props => {
     return (
         <>
             <li>
-                <div className="li-img">
-                    <img src={props.imgPath} alt="sample"/>
-                </div>
-                <div className="li-text">
-                    <Link href={`/p/${props.pid}`}>
-                        <a className="inner">
+                <Link href={`/p/${props.pid}`}>
+                    <a className="inner">
+                        <div className="li-img">
+                            <img src={props.imgPath} alt="sample"/>
+                        </div>
+                        <div className="li-text">
                             <p className="title">{props.title}</p>
-                        </a>
-                    </Link>
-                </div>
+                        </div>
+                    </a>
+                </Link>
             </li>
             <style jsx>{`
                 li {
