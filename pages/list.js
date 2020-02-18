@@ -180,7 +180,7 @@ Index.getInitialProps = async function (ctx) {
 
     const page = ctx.query.page || '1';
     const cat = ctx.query.cat || 'uikits';
-    const res = await fetch(`http://127.0.0.1:3000/api/board/list/15?cat=${cat}&page=${page}`);
+    const res = await fetch(`http://myxd.co.kr/api/board/list/15?cat=${cat}&page=${page}`);
     const result = await res.json();
 
     console.log(`cat: ${cat}`);

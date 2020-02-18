@@ -8,16 +8,16 @@ const Template = props => {
     return (
         <>
             <li>
-                <Link href={`/p/${props.pid}`}>
-                    <a className="inner">
-                        <div className="li-img">
-                            <img src={props.imgPath} alt="sample"/>
-                        </div>
-                        <div className="li-text">
+                <div className="li-img">
+                    <img src={props.imgPath} alt="sample"/>
+                </div>
+                <div className="li-text">
+                    <Link href={`/p/${props.pid}`}>
+                        <a className="inner">
                             <p className="title">{props.title}</p>
-                        </div>
-                    </a>
-                </Link>
+                        </a>
+                    </Link>
+                </div>
             </li>
             <style jsx>{`
                 li {
@@ -114,7 +114,6 @@ const Detail = props => {
                             </div>
                             <div className={"box-list"}>
                                 <ul className="list img-list">
-
                                     {
                                         props.asideData.map(item => (
                                             <Template key={item.pid} title={item.title} category={item.category} pid={item.pid} imgPath={item.imgPath}/>
@@ -134,7 +133,6 @@ const Detail = props => {
                     box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
                     background-color: #ffffff;
                     margin-bottom: 50px;
-                    cursor: pointer;
                 }
                 .main_card:last-child {
                   margin-bottom: 0;
