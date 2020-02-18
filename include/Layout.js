@@ -35,7 +35,14 @@ const Layout = props => {
                 <meta name="robots" content="index,follow"/>
                 <meta name="description" content="MyXD"/>
                 <meta name="keywords" content="MyXD"/>
+                <meta property="og:type" content="website"/>
+                <meta property="og:title" content="main"/>
+                <meta property="og:description" content="메인 화면"/>
+                <meta property="og:url" content="http://www.myxd.co.kr"/>
+
+
                 <meta name="naver-site-verification" content="889f5fc82fdaabf2019b55cf2a3e58a14db3efee"/>
+
                 <script src="/js/jquery.js"/>
                 <script src="/js/bootstrap.min.js"/>
                 <script src="/js/common.js"/>
