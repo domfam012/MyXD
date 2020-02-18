@@ -61,7 +61,9 @@ const Temp = props => {
                 line-height: 26px;
                 overflow: hidden;
                 text-overflow: ellipsis;
-                white-space: nowrap; 
+                white-space: nowrap;
+                width: 313px;
+                display: block; 
               }
               @media (max-width: 1200px) {
                   li {
