@@ -41,7 +41,7 @@ const Layout = props => {
                 <script src="/js/common.js"/>
             </Head>
 
-            { isResponsive
+            { isAdmin
                 ? (
                     <HeaderAdmin/>
                 )
