@@ -111,8 +111,6 @@ const Temp = props => {
 
 //리스트 페이지
 const Index = props => {
-    console.log(`${process.env.ASSET_PREFIX}`);
-
     let activePage = props.activePage;
     const router = useRouter();
 

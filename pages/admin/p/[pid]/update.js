@@ -12,6 +12,7 @@ const Update = props => {
     const [ data, setData ] = useState(props.data);
     const [ title, setTitle ] = useState(data.title);
     const [ content, setContent ] = useState(data.content);
+    const [ category, setCategory ] = useState(data.category);
     const [ img, setImg ] = useState(data.imgPath);
     const [ imgName, setImgName ] = useState('');
     const [ imgChanged, setImgChanged ] = useState(false);
@@ -25,6 +26,15 @@ const Update = props => {
     };
     const contentChange = e => {
         setContent(e.target.value);
+    };
+    const categoryChange = e => {
+        const val = e.target.value;
+        if (e.target.checked) { // 배열에 추가
+            setCategory(category => [ ...category, val ]);
+        }
+        else { // 배열에서 제거
+            setCategory(category.filter(item => item !== val));
+        }
     };
     const onFileUpload = e => {
         const preview = URL.createObjectURL(e.target.files[0]);
@@ -65,7 +75,7 @@ const Update = props => {
         }
         const check = confirm('등록하시겠습니까?');
         if (check) {
-            let reqData = { title, content, link };
+            let reqData = { title, content, link, category };
             uploadFile(reqData, uploadPost);
         }
     };
@@ -81,7 +91,7 @@ const Update = props => {
                     const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
                 },
                 err => {
-                    switch (error.code) {
+                    switch (err.code) {
                         case 'storage/unauthorized':
                             alert("User doesn't have permission to access the object");
                             break;
@@ -114,8 +124,7 @@ const Update = props => {
     };
 
     const uploadPost = (reqData) => {
-        console.log('#5');
-        console.log(reqData);
+
         axios.patch(`http://myxd.co.kr/api/board/post/${pid}`, reqData, {
                 headers: {
                     'Accept': 'application/json',
@@ -169,19 +178,19 @@ const Update = props => {
                                         </div>
                                         <div className={"input-area"}>
                                             <label className="checkbox checkbox_single">
-                                                <input type="checkbox" className="filled-in"/>
+                                                <input type="checkbox" className="filled-in" value={"UI KITS"} onChange={categoryChange}/>
                                                 <span>UI KITS</span>
                                             </label>
                                             <label className="checkbox checkbox_single">
-                                                <input type="checkbox" className="filled-in"/>
+                                                <input type="checkbox" className="filled-in" value={"Website"} onChange={categoryChange}/>
                                                 <span>Website</span>
                                             </label>
                                             <label className="checkbox checkbox_single">
-                                                <input type="checkbox" className="filled-in"/>
+                                                <input type="checkbox" className="filled-in" value={"Mobile"} onChange={categoryChange}/>
                                                 <span>Mobile</span>
                                             </label>
                                             <label className="checkbox checkbox_single">
-                                                <input type="checkbox" className="filled-in"/>
+                                                <input type="checkbox" className="filled-in" value={"Plug-in"} onChange={categoryChange}/>
                                                 <span>Plug-in</span>
                                             </label>
                                         </div>
