@@ -3,6 +3,7 @@ import Header from './Header';
 import HeaderAdmin from './HeaderAdmin';
 import Footer from './Footer';
 import { useRouter } from "next/router";
+import React from "react";
 
 const Layout = props => {
     // 관리자 페이지 접속인지 확인
@@ -31,7 +32,7 @@ const Layout = props => {
                 <meta httpEquiv="X-UA-Compatible" content="IE=Edge"/>
                 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
                 <meta name="apple-mobile-web-app-title" content="MyXD"/>
-                <meta name="robots" content="index,follow">
+                <meta name="robots" content="index,follow"/>
                 <meta name="description" content="MyXD"/>
                 <meta name="keywords" content="MyXD"/>
                 <meta name="naver-site-verification" content="889f5fc82fdaabf2019b55cf2a3e58a14db3efee"/>
