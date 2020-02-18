@@ -80,13 +80,19 @@ const HeaderAdmin = props => {
               /*
                 gnb(Admin) 
               */
-              .nav_wrap {
+              header {
                 width: 100%;
+                height: 70px;
+                background: #2e001f;
+            }
+              .nav_wrap {
+                width: 1200px;
                 background: #2e001f;
                 height: 70px;
+                margin: 0 auto;
               }
               .nav_wrap .gnb {
-                width: 1200px;
+                width: 1160px;
                 height: 70px;
                 margin: 0 auto;
                 padding: 0 30px;
@@ -128,12 +134,9 @@ const HeaderAdmin = props => {
               .nav_wrap .icon-menu {
                 position: relative;
               }
-              .nav_wrap .icon-menu ul {
-                position: absolute;
-                right: 20px;
-              }
               .nav_wrap .icon-menu ul .item {
-                margin-right: 30px;
+                position: absolute;
+                right: 0;
                 line-height: 62px;
               }
               .nav_wrap .icon-menu ul .item .link{

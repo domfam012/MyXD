@@ -48,7 +48,7 @@ const Card = props => {
                     text-align: center;
                 }
                 .main_card .img img {
-                    width: auto;
+                    width: 100%;
                     height: 100%;
                 }
                 .box_text {
@@ -61,7 +61,7 @@ const Card = props => {
                     overflow: hidden;
                     white-space: nowrap;
                     text-overflow: ellipsis;
-                    color: #116edd;
+                    color: #333333;
                 }
                 .box_text .text{
                     font-size: 16px;

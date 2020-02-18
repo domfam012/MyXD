@@ -104,7 +104,7 @@ const Header = props => {
                 height: 70px;
               }
               .navbar {
-                max-width: 1200px;
+                width: 1200px;
                 margin: 0 auto;
                 padding: 0 30px;
                 color: #fff;
@@ -161,9 +161,13 @@ const Header = props => {
               }
               @media (max-width: 1199px) {
                 .navbar {
+                    width: 100%;
                     padding: 0;
                     min-width: 564px;
                   }
+                .navbar-nav {
+                  width: 100%;
+                }
                 .menu .nav-item:active, .menu .nav-item:hover {
                   border: none;
                   background : #aaaaaa;
@@ -202,7 +206,7 @@ const Header = props => {
                 }
                 .navbar-toggle {
                   background: none;
-                  margin-right: 30px;
+                  margin-right: 20px;
                   padding : 15px 10px 10px;
                   height: 70px;
                 }
