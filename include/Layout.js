@@ -40,7 +40,6 @@ const Layout = props => {
                 <meta property="og:description" content="메인 화면"/>
                 <meta property="og:url" content="http://www.myxd.co.kr"/>
 
-
                 <meta name="naver-site-verification" content="889f5fc82fdaabf2019b55cf2a3e58a14db3efee"/>
 
                 <script src="/js/jquery.js"/>
