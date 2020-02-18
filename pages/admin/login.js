@@ -33,10 +33,12 @@ const Login  = props => {
 
     const reqLogin = () => {
         if(!chkEmail(email)){
-            alert('정확한 Email을 입력하세요');
+            setEmailTipShow(true);
             return;
-        }
-        else{
+        } else if(!password){
+            setPwdTipShow(true);
+            return;
+        } else {
             fetch(`http://myxd.co.kr/api/user/login`, {
                 method: 'POST',
                 headers: {
@@ -74,12 +76,7 @@ const Login  = props => {
             });
         }
 
-        if(!password){
-            alert('Password를 입력하세요');
-            return;
-        }
-
-    }
+    };
 
 
     return (

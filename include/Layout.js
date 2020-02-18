@@ -39,15 +39,15 @@ const Layout = props => {
                 <script src="/js/common.js"/>
             </Head>
 
-            {/*{ isAdmin*/}
-            {/*    ? (*/}
-            {/*        <HeaderAdmin/>*/}
-            {/*    )*/}
-            {/*    : (*/}
-            {/*        <Header isResponsive={isResponsive}/>*/}
-            {/*    )*/}
-            {/*}*/}
-            <Header isResponsive={isResponsive}/>
+            { isAdmin
+                ? (
+                    <HeaderAdmin/>
+                )
+                : (
+                    <Header isResponsive={isResponsive}/>
+                )
+            }
+            {/*<Header isResponsive={isResponsive}/>*/}
 
             <div className={containerClass}>
                 {props.children}
