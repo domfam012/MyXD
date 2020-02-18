@@ -16,6 +16,8 @@ const BoxList = props => {
     const { router, item, onDelete } = props;
     const pid = item.pid;
 
+    const [ show, setShow ] = useState(false);
+
     const deleteItem = () => {
         const check = confirm('해당 글을 삭제하시겠습니까?');
         if (check) {
@@ -59,6 +61,7 @@ const BoxList = props => {
 
                 </div>
                 <div className={"col item-box-3"}>
+                    {/*<button className={"btn-sm btn-gray-7 mr-3"} onClick={setShow(!show)}>삭제</button>*/}
                     <button className={"btn-sm btn-gray-7 mr-3"} onClick={deleteItem}>삭제</button>
                     <button className={"btn-sm btn-primary"} onClick={updateItem}>편집</button>
                 </div>

@@ -11,6 +11,7 @@ import shortid from 'shortid';
 const New = props => {
     const [ title, setTitle ] = useState('');
     const [ content, setContent ] = useState('');
+    const [ category, setCategory ] = useState([]);
     const [ img, setImg ] = useState('');
     const [ imgName, setImgName ] = useState('');
     const [ link, setLink ] = useState('');
@@ -22,6 +23,15 @@ const New = props => {
     };
     const contentChange = e => {
         setContent(e.target.value);
+    };
+    const categoryChange = e => {
+        const val = e.target.value;
+        if (e.target.checked) { // 배열에 추가
+            setCategory(category => [ ...category, val ]);
+        }
+        else { // 배열에서 제거
+            setCategory(category.filter(item => item !== val));
+        }
     };
     const onFileUpload = e => {
         const preview = URL.createObjectURL(e.target.files[0]);
@@ -68,7 +78,7 @@ const New = props => {
                     const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
                 },
                 err => {
-                    switch (error.code) {
+                    switch (err.code) {
                         case 'storage/unauthorized':
                              alert("User doesn't have permission to access the object");
                             break;
@@ -88,10 +98,10 @@ const New = props => {
                         });
 
                     const reqData = {
-                        title, content, imgName, link, imgPath: downloadURL, imgSaveName: sid
+                        title, content, category, imgName, link, imgPath: downloadURL, imgSaveName: sid
                     };
 
-                    await axios.post(`http://myxd.co.kr/api/board/create`, reqData, {
+                    await axios.post(`http://127.0.0.1:3000/api/board/create`, reqData, {
                             headers: {
                                 'Accept': 'application/json',
                                 'Headers': 'content-type',
@@ -147,19 +157,19 @@ const New = props => {
                                         </div>
                                         <div className={"input-area"}>
                                             <label className="checkbox checkbox_single">
-                                                <input type="checkbox" className="filled-in"/>
+                                                <input type="checkbox" className="filled-in" value={"UI KITS"} onChange={categoryChange}/>
                                                 <span>UI KITS</span>
                                             </label>
                                             <label className="checkbox checkbox_single">
-                                                <input type="checkbox" className="filled-in"/>
+                                                <input type="checkbox" className="filled-in" value={"Website"} onChange={categoryChange}/>
                                                 <span>Website</span>
                                             </label>
                                             <label className="checkbox checkbox_single">
-                                                <input type="checkbox" className="filled-in"/>
+                                                <input type="checkbox" className="filled-in" value={"Mobile"} onChange={categoryChange}/>
                                                 <span>Mobile</span>
                                             </label>
                                             <label className="checkbox checkbox_single">
-                                                <input type="checkbox" className="filled-in"/>
+                                                <input type="checkbox" className="filled-in" value={"Plug-in"} onChange={categoryChange}/>
                                                 <span>Plug-in</span>
                                             </label>
                                         </div>

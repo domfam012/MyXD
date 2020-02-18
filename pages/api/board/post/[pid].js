@@ -37,7 +37,7 @@ export default async (req, res) => {
 
         case "PATCH" :
             // Update
-            const category = 'default';
+            const category = req.body.category;
             const content = req.body.content || '';
             const link = req.body.link || '';
             const title= req.body.title || '';

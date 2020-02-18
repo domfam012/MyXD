@@ -1,7 +1,7 @@
 const Footer = props => (
     <footer>
         <div className={ props.isResponsive ? "footer" : "footer footer-xl" }>
-            <span>Copyright © Domfam Corp. All rights reserved.</span>
+            <div>Copyright © Domfam Corp. All rights reserved.</div>
         </div>
         <style jsx>{`
             .footer {
@@ -10,15 +10,18 @@ const Footer = props => (
                 border: solid 1px #707070;
                 background-color: #777777;
             }
-            .footer span {
+            .footer div {
+                width: 1200px;
+                margin: 0 auto;
+                padding-left: 30px;
                 font-size : 12px;
                 color : #FFF;
                 vertical-align: middle;
                 line-height: 60px;
-                padding-left: 170px;
             }
             @media (max-width: 1200px) {
-                .footer span {
+                .footer div {
+                    width: 100%;
                     padding-left: 30px;
                 }
                 .footer-xl {
@@ -26,7 +29,7 @@ const Footer = props => (
                 }
             }
             @media (max-width: 768px) {
-                .footer span {
+                .footer div {
                     padding-left: 20px;
                 }
                 .footer-xl {

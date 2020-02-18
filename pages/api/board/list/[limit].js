@@ -28,17 +28,36 @@ export default async (req, res) => {
     const collection = await db.collection('Posts');
 
     if (req.method === 'GET') {
-        const { query: { limit, page } } = req;
+        const { query: { limit, page, cat } } = req;
 
         const countRef = await db.collection('Count').doc('Posts').get();
         const total = await countRef.data().count;
 
+        let category = '';
+        switch (cat) {
+            case 'uikits':
+                category = 'UI KITS';
+                break;
+            case 'website':
+                category = 'Website';
+                break;
+            case 'mobile':
+                category = 'Mobile';
+                break;
+            case 'plugin':
+                category = 'Plug-in';
+                break;
+            default:
+                category = 'UI KITS';
+                break;
+        }
+
         let ref;
         if (Number(page) === 1) {
-            ref = await collection.orderBy("created", "desc").limit(parseInt(limit)).get();
+            ref = await collection.where("category", "array-contains", category).orderBy("created", "desc").limit(parseInt(limit)).get();
         }
         else {
-            const prev = await collection.orderBy('created', 'desc').limit(parseInt(limit)*(parseInt(page)-1)).get();
+            const prev = await collection.where("category", "array-contains", category).orderBy('created', 'desc').limit(parseInt(limit)*(parseInt(page)-1)).get();
             const lastVisible = prev.docs[prev.docs.length-1];
             ref = await collection.orderBy("created", "desc").startAfter(lastVisible).limit(parseInt(limit)).get();
         }

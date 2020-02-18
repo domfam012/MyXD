@@ -19,11 +19,11 @@ const Header = props => {
         e.preventDefault();
         const check = confirm("로그아웃 하시겠습니까?");
         if (check) {
-            console.log(`logout check true`);
+            // console.log(`logout check true`);
 
             const res = await fetch(`http://13.209.55.219/api/user/logout`);
             if (res.status === 200) {
-                console.log('logout success');
+                // console.log('logout success');
                 cookie.remove('token');
                 router.push('/admin/login');
             } else {
@@ -54,23 +54,23 @@ const Header = props => {
                     </button>
                     <div className="collapse navbar-collapse menu" id="navbarText">
                         <ul className="navbar-nav mr-auto">
-                            <Link href="/list" activeClassName="active">
-                                <li className="nav-item">
-                                    <a className="nav-link" href="/">UI KITS</a>
+                            <Link href="/list?cat=uikits">
+                                <li className={`nav-item ${props.activeMenu === 'uikits' ? 'active' : ''}`}>
+                                    <a className="nav-link">UI KITS</a>
                                 </li>
                             </Link>
-                            <Link href="/list" activeClassName="active">
-                                <li className="nav-item">
-                                    <a className="nav-link" href="/list">Website</a>
+                            <Link href="/list?cat=website">
+                                <li className={`nav-item ${props.activeMenu === 'website' ? 'active' : ''}`}>
+                                    <a className="nav-link">Website</a>
                                 </li>
                             </Link>
-                            <Link href="/admin" activeClassName="active">
-                                <li className="nav-item">
-                                    <a className="nav-link" href="/detail">Mobile</a>
+                            <Link href="/list?cat=mobile">
+                                <li className={`nav-item ${props.activeMenu === 'mobile' ? 'active' : ''}`}>
+                                    <a className="nav-link">Mobile</a>
                                 </li>
                             </Link>
-                            <Link href="/detail" activeClassName="active">
-                                <li className="nav-item">
+                            <Link href="/list?cat=plugin">
+                                <li className={`nav-item ${props.activeMenu === 'plugin' ? 'active' : ''}`}>
                                     <a className="nav-link">Plug-in</a>
                                 </li>
                             </Link>
@@ -80,20 +80,17 @@ const Header = props => {
                     <div className={"collapse navbar-collapse navbar-icon"}>
                         <ul className="navbar-nav">
                             <li className="nav-item">
-                                <a className="nav-link" href="#"><img src="/img/common/instargram.png"
-                                                                      alt="instargram"/></a>
+                                <a className="nav-link" href="#"><img src="/img/common/instargram.png" alt="instargram"/></a>
                             </li>
                             <li className="nav-item">
                                 <a className="nav-link" href="#"><img src="/img/common/twitter.png" alt="twitter"/></a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="#"><img src="/img/common/facebook.png"
-                                                                      alt="facebook"/></a>
+                                <a className="nav-link" href="#"><img src="/img/common/facebook.png" alt="facebook"/></a>
                             </li>
                             <li className="nav-item">
                                 <Link href="/admin/login">
-                                    <a onClick={logout} className="nav-link" href="#"><img src="/img/common/login.png"
-                                                                                           alt="login"/></a>
+                                    <a onClick={logout} className="nav-link" href="#"><img src="/img/common/login.png" alt="login"/></a>
                                 </Link>
                             </li>
                         </ul>
@@ -107,28 +104,33 @@ const Header = props => {
                 height: 70px;
               }
               .navbar {
-                max-width: 1200px;
+                width: 1200px;
                 margin: 0 auto;
                 padding: 0 30px;
                 color: #fff;
               }
+              .navbar-nav {
+                width: fit-content;
+                margin: 0 auto;
+                }           
               .navbar-brand {
                 font-size: 20px;
                 line-height: 66px;
                 color: #fff;
-                margin-right: 95px;
+                margin-right: 159px;
               }
               .nav-link {
                 padding: 8.5px 10px !important;
                 color: #ffffff;
+                font-weight: bold;
               }
-              .active .menu .nav-item, .menu .nav-item:hover {
+               .menu .nav-item.active, .menu .nav-item:hover {
                 border-bottom: 2px solid var(--pink);
                 border-bottom: 2px solid #e83e8c;
                 color: var(--pink);
                 color: #e83e8c;
               }
-              .active .menu .nav-item, .menu .nav-item:hover .nav-link{
+               .menu .nav-item.active .nav-link, .menu .nav-item:hover .nav-link{
                 color: var(--pink);
                 color: #e83e8c;
               }
@@ -159,9 +161,13 @@ const Header = props => {
               }
               @media (max-width: 1199px) {
                 .navbar {
+                    width: 100%;
                     padding: 0;
                     min-width: 564px;
                   }
+                .navbar-nav {
+                  width: 100%;
+                }
                 .menu .nav-item:active, .menu .nav-item:hover {
                   border: none;
                   background : #aaaaaa;
@@ -200,7 +206,7 @@ const Header = props => {
                 }
                 .navbar-toggle {
                   background: none;
-                  margin-right: 30px;
+                  margin-right: 20px;
                   padding : 15px 10px 10px;
                   height: 70px;
                 }

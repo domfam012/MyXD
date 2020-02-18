@@ -12,10 +12,15 @@ export default async (req,res) => {
     if (req.method === 'POST'){
         const db = await loadDB();
 
+        // console.log('login#1');
+
         firebase.auth().signInWithEmailAndPassword(req.body.email, req.body.password)
             .then(cred => {
                 //로그인이 성공한 경우
                 if(cred.user.email){
+
+                    // console.log('login#2');
+                    // console.log(cred.user.email);
 
                     res.status(200).json({
                         msg: "succsss",
