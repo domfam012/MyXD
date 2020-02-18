@@ -157,7 +157,7 @@ const Detail = props => {
                     overflow: hidden;
                     white-space: nowrap;
                     text-overflow: ellipsis;
-                    color: #116edd;
+                    color: #333;
                 }
                 .box_text .text{
                     font-size: 16px;
