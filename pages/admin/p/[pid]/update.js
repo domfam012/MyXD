@@ -56,6 +56,13 @@ const Update = props => {
         /**
          *  data check here
          */
+        if (!title || !content || !link) {
+            alert('값을 모두 입력해주세요.');
+            return;
+        }
+        else if (imgChanged && !imgName) {
+            alert('값을 모두 입력해주세요.');
+        }
         const check = confirm('등록하시겠습니까?');
         if (check) {
             let reqData = { title, content, link };
@@ -109,7 +116,7 @@ const Update = props => {
     const uploadPost = (reqData) => {
         console.log('#5');
         console.log(reqData);
-        axios.patch(`http://13.209.55.219/api/board/post/${pid}`, reqData, {
+        axios.patch(`http://myxd.co.kr/api/board/post/${pid}`, reqData, {
                 headers: {
                     'Accept': 'application/json',
                     'Headers': 'content-type',
@@ -212,7 +219,6 @@ const Update = props => {
                                             <input type="file" id="fileUploader" className="form-control-file"
                                                    ref={inputFileEl}
                                                    onChange={onFileUpload}/>
-                                            {/*<input type="file" id="fileUploader" className="form-control-file" onChange={this.onChange}/>*/}
                                         </div>
                                     </div>
                                     <div className={"form-group"}>
@@ -342,7 +348,7 @@ Update.getInitialProps = async function (ctx) {
     }
 
     const pid = ctx.query.pid;
-    const res = await fetch(`http://13.209.55.219/api/board/post/${pid}`);
+    const res = await fetch(`http://myxd.co.kr/api/board/post/${pid}`);
     const result = await res.json();
 
     return {

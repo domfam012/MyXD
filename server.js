@@ -10,14 +10,11 @@ const express = require('express')();
 const helmet = require('helmet');
 const bodyParser = require('body-parser');
 
-const config = require('./config.js');
+const { option } = require('./config.js');
 const cookieSession = require('cookie-session');
 
-const multer = require('multer');
-const { useSession } = require('next-session');
-
-const port = dev ? 3000 : 80;
-const ip = dev ? "127.0.0.1" : "13.209.55.219";
+const port = dev ? option.port.dev : option.port.production;
+const ip = dev ? option.ip.dev : option.ip.production;
 
 app.prepare().then(() => {
     createServer((req, res) => {
@@ -29,19 +26,10 @@ app.prepare().then(() => {
         express.set('trust proxy', 1);
         express.use(
             helmet(),
-            cookieSession(config.option.cookie),
+            cookieSession(option.cookie),
             bodyParser.urlencoded({extended: true}),
             bodyParser.json()
         );
-
-        express.use(multer({dest: './public/uploads/'}).any());
-
-        // const apiRegTest = /^\/api((\/[^\s/\/]+)*)?$/;
-        // if (apiRegTest.test(pathname)) {
-        //     // return res.json({a:1});
-        //     // require('./api.js')(req, res);
-        //     console.log('here?');
-        // } else
 
         if (pathname === '/admin') {
             res.writeHead(302, { Location: '/admin/login' });
@@ -50,10 +38,12 @@ app.prepare().then(() => {
             handle(req, res, parsedUrl);
         }
 
-        // port -> port 로 넣어줘야됨
-
-    }).listen(3000, err => {
+    }).listen(port, err => {
         if (err) throw err;
-        console.log(`> Ready on http://${ip}`);
+
+        console.log(`> NODE_ENV: ${process.env.NODE_ENV}`);
+        console.log(`> Ready on http://${ip}:${port}`);
+        console.log(`>>> __IP: [${ip}] __PORT: [${port}]`);
+        console.log(`\n\n\n`);
     });
 });

@@ -22,6 +22,9 @@ const Card = props => {
                         font-size: 14px;
                         color: #707070;
                         padding: 10px 0;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
                     }
                     `}</style>
                 </div>

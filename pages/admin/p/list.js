@@ -90,7 +90,7 @@ const BoxList = props => {
                 
                 .list-title{
                     width: 498px;
-                    height: 35px;
+                    height: 42px;
                     font-size: 30px;
                     font-weight: bold;
                     font-stretch: normal;
@@ -108,7 +108,7 @@ const BoxList = props => {
                 .list-content{
                     margin-top: 22px;
                     width: 432px;
-                    height: 98px;
+                    height: 75px;
                     font-size: 16px;
                     font-weight: normal;
                     font-stretch: normal;
@@ -118,8 +118,13 @@ const BoxList = props => {
                     text-align: left;
                     color: #666666;
                     overflow:hidden;
+                    word-wrap: break-word;
+                    -webkit-line-clamp: 3;
+                    -webkit-box-orient: vertical;
                     text-overflow:ellipsis;
-                    white-space:nowrap;
+                    white-space: normal;
+                    word-wrap: break-word;
+                    display: -webkit-box;
                     padding-left: 38px;
                 }
                 

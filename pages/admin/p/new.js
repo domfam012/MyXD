@@ -52,6 +52,11 @@ const New = props => {
         /**
          *  data check here
          */
+        if (!title || !content || !imgName || !link) {
+            alert('값을 모두 입력해주세요.');
+            return;
+        }
+
         const check = confirm('등록하시겠습니까?');
         if (check) {
             const sid = shortid.generate();
@@ -86,7 +91,7 @@ const New = props => {
                         title, content, imgName, link, imgPath: downloadURL, imgSaveName: sid
                     };
 
-                    await axios.post(`http://13.209.55.219/api/board/create`, reqData, {
+                    await axios.post(`http://myxd.co.kr/api/board/create`, reqData, {
                             headers: {
                                 'Accept': 'application/json',
                                 'Headers': 'content-type',
@@ -191,7 +196,6 @@ const New = props => {
                                             <input type="file" id="fileUploader" name={"img"} className="form-control-file"
                                                    ref={inputFileEl}
                                                    onChange={onFileUpload}/>
-                                            {/*<input type="file" id="fileUploader" className="form-control-file" onChange={this.onChange}/>*/}
                                         </div>
                                     </div>
                                     <div className={"form-group"}>
@@ -275,6 +279,7 @@ const New = props => {
                 .file-label .added {
                     width: 100%;
                     margin: auto;
+                    overflow: hidden;
                 }
                 .file-label .added img {
                     width: 100%;
@@ -314,7 +319,7 @@ New.getInitialProps = async (ctx) => {
     }
 
     const page = ctx.query.page || '1';
-    const res = await fetch(`http://13.209.55.219/api/board/list/5?page=${page}`);
+    const res = await fetch(`http://myxd.co.kr/api/board/list/5?page=${page}`);
     const result = await res.json();
 
     return {

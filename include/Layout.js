@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import Header from './Header';
+import HeaderAdmin from './HeaderAdmin';
 import Footer from './Footer';
 import { useRouter } from "next/router";
 
@@ -8,6 +9,7 @@ const Layout = props => {
     const router = useRouter();
     const path = router.pathname.split('/');
     const isAdmin = path[1] === 'admin';
+
     let isAdminLogin = false;
     if(isAdmin){
         isAdminLogin =  path[2] === 'login' || path[2] === '';
@@ -37,7 +39,15 @@ const Layout = props => {
                 <script src="/js/common.js"/>
             </Head>
 
-            <Header isResponsive={isResponsive}/>
+            { isAdmin
+                ? (
+                    <HeaderAdmin/>
+                )
+                : (
+                    <Header isResponsive={isResponsive}/>
+                )
+            }
+            {/*<Header isResponsive={isResponsive}/>*/}
 
             <div className={containerClass}>
                 {props.children}

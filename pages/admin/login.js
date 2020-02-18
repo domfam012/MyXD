@@ -10,15 +10,20 @@ import cookie from 'js-cookie'
 const Login  = props => {
     const router = useRouter();
 
-    const handleEmailChange = (e) => {
-        setEmail(e.target.value)
-    };
-    const handlePasswordChange = (e) => {
-        setPassword(e.target.value)
-    };
-
     const [ email, setEmail ] = useState('');
     const [ password, setPassword ] = useState('');
+
+    const [ emailTipShow, setEmailTipShow ] = useState(false);
+    const [ pwdTipShow, setPwdTipShow ] = useState(false);
+
+    const handleEmailChange = (e) => {
+        setEmail(e.target.value);
+        e.target.value === '' ? setEmailTipShow(true) : setEmailTipShow(false);
+    };
+    const handlePasswordChange = (e) => {
+        setPassword(e.target.value);
+        e.target.value === '' ? setPwdTipShow(true) : setPwdTipShow(false);
+    };
 
     //이메일 검증 함수
     const chkEmail = () => {
@@ -28,10 +33,12 @@ const Login  = props => {
 
     const reqLogin = () => {
         if(!chkEmail(email)){
-            alert('정확한 Email을 입력하세요');
+            setEmailTipShow(true);
             return;
-        }
-        else{
+        } else if(!password){
+            setPwdTipShow(true);
+            return;
+        } else {
             fetch(`http://myxd.co.kr/api/user/login`, {
                 method: 'POST',
                 headers: {
@@ -69,12 +76,7 @@ const Login  = props => {
             });
         }
 
-        if(!password){
-            alert('Password를 입력하세요');
-            return;
-        }
-
-    }
+    };
 
 
     return (
@@ -91,12 +93,20 @@ const Login  = props => {
                     </div>
 
                     <form name={"login-form"}>
-                        <input name={"login-email"} onChange={handleEmailChange} type="text" placeholder={"E-mail을 입력해주세요."} maxLength="30"
-                               data-toggle="tooltip" data-placement="bottom" title="E-mail을 입력해주세요."
-                        />
-                        <input name={"login-password"} onChange={handlePasswordChange} type="password" placeholder={"비밀번호를 입력해주세요."} maxLength="30"
-                               data-toggle="tooltip" data-placement="bottom" title="비밀번호를 입력해주세요."
-                        />
+                        <div className={"input-wrap"}>
+                            <input name={"login-email"} onChange={handleEmailChange} type="text" placeholder={"E-mail을 입력해주세요."} maxLength="30"
+                                   id="email" title="E-mail을 입력해주세요."
+                            />
+                            <span id="tooltip_email" className="help-text" style={{"display": emailTipShow ? "inline-block" : "none"}}>
+                                {email ? '정확한 Email을 입력하세요.' : 'E-mail을 입력해주세요.'}
+                            </span>
+                        </div>
+                        <div className={"input-wrap"}>
+                            <input name={"login-password"} onChange={handlePasswordChange} type="password" placeholder={"비밀번호를 입력해주세요."} maxLength="30"
+                                   id="pwd" title="비밀번호를 입력해주세요."
+                            />
+                            <span id="tooltip_pwd" className="help-text" style={{"display": pwdTipShow ? "inline-block" : "none"}}>비밀번호를 입력해주세요.</span>
+                        </div>
                     </form>
 
                     <div className="text-center">
@@ -137,6 +147,10 @@ const Login  = props => {
                     height: 1px;
                     background-color: #2e001f;
                 }
+                
+                .input-wrap {
+                    position: relative;
+                }
                 input {
                     width: 100%;
                     height: 40px;
@@ -147,7 +161,7 @@ const Login  = props => {
                     color: #333;
                 }
                 input[type="password"] {
-                    letter-spacing: -5.5px;
+                    letter-spacing: -2px;
                 }
                 input::placeholder {
                     letter-spacing: normal;
@@ -155,6 +169,34 @@ const Login  = props => {
                 }
                 a.btn {
                     margin-top: 50px;
+                }
+                .help-text {
+                    display: none;
+                    position: absolute;
+                    width: 100%;
+                    background-color: #116edd;
+                    color: #ffffff;
+                    font-size: 12px;
+                    line-height: 16px;
+                    padding: 3px 5px;
+                    border-radius: 3px;
+                    z-index: 111;
+                    top: 117%;
+                    right: auto;
+                    bottom: auto;
+                    left: 0;
+                }
+                .help-text::after {
+                    content: "";
+                    position: absolute;
+                    bottom: 96%;
+                    top: auto;
+                    left: 50%;
+                    right: auto;
+                    margin-left: -10px;
+                    border-width: 5px;
+                    border-style: solid;
+                    border-color: transparent transparent #116edd transparent;
                 }
                 
                 @media (max-width: 1200px) {
