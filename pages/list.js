@@ -44,8 +44,12 @@ const Temp = props => {
               }
               .li-img, .li-text, .inner {
                 display: block;
-                width: auto;
                 padding: 0;
+              }
+              .li-img {
+                width: 100%;
+                height: 209px;
+                background: #d3d3d3;
               }
               .li-img img {
                 width: 100%;
@@ -82,6 +86,9 @@ const Temp = props => {
                   }
                   li:nth-child(2n) {
                     margin-right: 0;
+                  }
+                  .li-img {
+                    height: 100%;
                   }
                   .li-img img{
                       width: 100%;
