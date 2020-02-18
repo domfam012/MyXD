@@ -21,7 +21,7 @@ const HeaderAdmin = props => {
         if (check) {
             console.log(`logout check true`);
 
-            const res = await fetch(`http://localhost:3000/api/user/logout`);
+            const res = await fetch(`http://myxd.co.kr/api/user/logout`);
             if (res.status === 200) {
                 console.log('logout success');
                 cookie.remove('token');
@@ -44,22 +44,22 @@ const HeaderAdmin = props => {
                     <div className={"menu"}>
                         <ul>
                             <li className="item">
-                                <Link href="/list">
-                                    <a className="link" href="/">UI KITS</a>
+                                <Link href="/list?cat=uikits">
+                                    <a className="link">UI KITS</a>
                                 </Link>
                             </li>
                             <li className="item">
-                                <Link href="/list">
-                                    <a className="link" href="/list">Website</a>
+                                <Link href="/list?cat=website">
+                                    <a className="link">Website</a>
                                 </Link>
                             </li>
                             <li className="item">
-                                <Link href="/admin">
-                                    <a className="link" href="/detail">Mobile</a>
+                                <Link href="/list?cat=mobile">
+                                    <a className="link">Mobile</a>
                                 </Link>
                             </li>
                             <li className="item">
-                                <Link href="/detail">
+                                <Link href="/list?cat=plugin">
                                     <a className="link">Plug-in</a>
                                 </Link>
                             </li>
@@ -68,7 +68,7 @@ const HeaderAdmin = props => {
                     <div className={"icon-menu"}>
                         <ul>
                             <li className="item">
-                                <Link href="/admin/login">
+                                <Link href="/admin/logout">
                                     <a onClick={logout} className="link" href="#"><img src="/img/common/login.png" alt="login"/></a>
                                 </Link>
                             </li>

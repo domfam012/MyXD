@@ -244,8 +244,8 @@ const Update = props => {
 
                                     <div className={"row form-btn"}>
                                         <div className={"col col-sm-12 text-center"}>
-                                            <button href="#" className={"btn btn-lg btn-outline-lightgray"} onClick={cancelSubmit}>취소</button>
-                                            <button href="#" type={"submit"} className={"btn btn-lg btn-primary ml-3"}>저장</button>
+                                            <button className={"btn btn-lg btn-outline-lightgray"} onClick={cancelSubmit}>취소</button>
+                                            <button type={"submit"} className={"btn btn-lg btn-primary ml-3"}>저장</button>
                                         </div>
                                     </div>
                                 </form>

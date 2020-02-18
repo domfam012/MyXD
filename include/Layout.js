@@ -16,7 +16,7 @@ const Layout = props => {
     }
     const isResponsive = (isAdmin && !isAdminLogin) ? false : true;
 
-    const { page } = props;
+    const { page, activeMenu } = props;
 
     let containerClass = '';
     containerClass = page === 'list' ? 'list-container' : '';
@@ -45,7 +45,7 @@ const Layout = props => {
                     <HeaderAdmin/>
                 )
                 : (
-                    <Header isResponsive={isResponsive}/>
+                    <Header isResponsive={isResponsive} activeMenu={activeMenu}/>
                 )
             }
             {/*<Header isResponsive={isResponsive}/>*/}

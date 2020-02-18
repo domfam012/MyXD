@@ -120,7 +120,7 @@ const Index = props => {
     };
 
     return (
-        <Layout page={"list"}>
+        <Layout page={"list"} activeMenu={props.activeMenu}>
             <div id="_list" className={"clearfix"}>
                 <ul className="list img-list">
                     {
@@ -177,13 +177,17 @@ const Index = props => {
 Index.getInitialProps = async function (ctx) {
 
     const page = ctx.query.page || '1';
-    const res = await fetch(`http://myxd.co.kr/api/board/list/15?page=${page}`);
+    const cat = ctx.query.cat || 'uikits';
+    const res = await fetch(`http://127.0.0.1:3000/api/board/list/15?cat=${cat}&page=${page}`);
     const result = await res.json();
+
+    console.log(`cat: ${cat}`);
 
     return {
         data: result.data,
         activePage: Number(page),
-        total: result.total
+        total: result.total,
+        activeMenu: cat
     }
 };
 export default Index;
