@@ -96,28 +96,31 @@ const HeaderAdmin = props => {
                 font-size: 20px;
                 line-height: 66px;
                 margin-right: 95px;
+                float: left;
               }
               .nav_wrap .menu {
                 position: relative;
-              }
-              .nav_wrap .menu ul {
-                position: absolute;
+                margin: 0 auto;
+                width: fit-content;
               }
               .nav_wrap .menu ul .item {
+                float: left;
                 margin-right: 80px;
-                border-color: var(--pink);
-                border-bottom: 2px solid transparent;
+                line-height: 68px;
               }
-              .nav_wrap .menu ul .item.active,
-              .nav_wrap .menu ul .item:hover {
+              .nav_wrap .menu ul .item.active .link,
+              .nav_wrap .menu ul .item:hover .link{
                 border-bottom: 2px solid var(--pink);
+                border-bottom: 2px solid #e83e8c;
                 color: var(--pink);
+                color: #e83e8c;
               }
               .nav_wrap .menu ul .item .item:last-child {
                 margin-right: 0 !important;
               }
               .nav_wrap .menu ul .item .link {
                 padding: 8.5px 10px !important;
+                font-weight: bold;
               }
               /*
                 icon-menu 
@@ -127,10 +130,14 @@ const HeaderAdmin = props => {
               }
               .nav_wrap .icon-menu ul {
                 position: absolute;
-                right: 0;
+                right: 20px;
               }
               .nav_wrap .icon-menu ul .item {
                 margin-right: 30px;
+                line-height: 62px;
+              }
+              .nav_wrap .icon-menu ul .item .link{
+                padding: 10px;
               }
               .nav_wrap .icon-menu ul .item:nth-child(3) {
                 margin-right: 78px;

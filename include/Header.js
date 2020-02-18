@@ -112,15 +112,20 @@ const Header = props => {
                 padding: 0 30px;
                 color: #fff;
               }
+              .navbar-nav {
+                width: fit-content;
+                margin: 0 auto;
+                }           
               .navbar-brand {
                 font-size: 20px;
                 line-height: 66px;
                 color: #fff;
-                margin-right: 95px;
+                margin-right: 159px;
               }
               .nav-link {
                 padding: 8.5px 10px !important;
                 color: #ffffff;
+                font-weight: bold;
               }
               .active .menu .nav-item, .menu .nav-item:hover {
                 border-bottom: 2px solid var(--pink);

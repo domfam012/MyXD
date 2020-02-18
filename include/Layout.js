@@ -34,6 +34,7 @@ const Layout = props => {
                 <meta name="robots" content="index,nofollow"/>
                 <meta name="description" content="MyXD"/>
                 <meta name="keywords" content="MyXD"/>
+                <meta name="naver-site-verification" content="889f5fc82fdaabf2019b55cf2a3e58a14db3efee"/>
                 <script src="/js/jquery.js"/>
                 <script src="/js/bootstrap.min.js"/>
                 <script src="/js/common.js"/>
