@@ -23,7 +23,7 @@ class MyDocument extends Document {
         return (
             <Html lang="en">
             <Head>
-                 Global Site Tag (gtag.js) - Google Analytics
+                 {/*Global Site Tag (gtag.js) - Google Analytics*/}
                 <script
                     async src={`https://www.googletagmanager.com/gtag/js?id=${option.GA_TRACKING_ID}`}
                 />
@@ -38,7 +38,7 @@ class MyDocument extends Document {
                         });
                     `,}}
                 />
-                 Google adsense
+                 {/*Google adsense*/}
                 <script
                     data-ad-client="ca-pub-1877318530770347"
                     async src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js`}
