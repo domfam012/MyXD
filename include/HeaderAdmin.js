@@ -115,6 +115,7 @@ const HeaderAdmin = props => {
                 float: left;
                 margin-right: 80px;
                 line-height: 68px;
+                
               }
               .nav_wrap .menu ul .item.active .link,
               .nav_wrap .menu ul .item:hover .link{
@@ -143,6 +144,7 @@ const HeaderAdmin = props => {
               }
               .nav_wrap .icon-menu ul .item .link{
                 padding: 10px;
+                color: #ffffff;
               }
               .nav_wrap .icon-menu ul .item:nth-child(3) {
                 margin-right: 78px;
