@@ -44,7 +44,7 @@ const Login  = props => {
             setPwdTipShow(true);
             return;
         } else {
-            fetch(`http://myxd.co.kr/api/user/login`, {
+            fetch(`http://localhost:3000/api/user/login`, {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
