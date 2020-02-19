@@ -4,6 +4,7 @@ import fetch from 'isomorphic-unfetch'
 import Link from "next/link";
 import React from "react";
 
+// 연관 포스트 ('You may also like')
 const Template = props => {
     return (
         <>
@@ -97,24 +98,38 @@ const Detail = props => {
         <Layout>
             <div className={"clearfix"}>
                 <div>
+                    {/* 상세 포스트 */}
                     <div className={"main_card"}>
+                        {/* 이미지 */}
                         <div className={"img"}><img src={props.data.imgPath} alt=""/></div>
                         <div className={"box_text"}>
+                            {/* 제목 */}
                             <div className={"title"}>{props.data.title}</div>
+                            {/* 내용 */}
                             <div className={"text"}>
                                 {props.data.content}
                             </div>
+                            {/* 링크 페이지 */}
                             <div>
                                 <a href={props.data.link} className={"btn btn-primary"}>다운로드</a>
                             </div>
+
+                            <div className={"detail_image"}>
+                                <p><img src={props.data.imgPath} alt=""/></p>
+                                <p><img src={props.data.imgPath} alt=""/></p>
+                                <p><img src={props.data.imgPath} alt=""/></p>
+                            </div>
+
+
                         </div>
+
                         <div>
                             <div className={"detail_title"}>
-                                <span>You may also like</span>
+                                <span>함께보면 좋을것 같아요</span>
                             </div>
                             <div className={"box-list"}>
                                 <ul className="list img-list">
-
+                                    {/* 연관 포스트 */}
                                     {
                                         props.asideData.map(item => (
                                             <Template key={item.pid} title={item.title} category={item.category} pid={item.pid} imgPath={item.imgPath}/>
@@ -125,6 +140,8 @@ const Detail = props => {
                         </div>
                     </div>
                 </div>
+
+                {/* 인기템플릿 */}
                 <Aside asideData={ props.asideData }/>
             </div>
             <style jsx>{`
@@ -134,7 +151,6 @@ const Detail = props => {
                     box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
                     background-color: #ffffff;
                     margin-bottom: 50px;
-                    cursor: pointer;
                 }
                 .main_card:last-child {
                   margin-bottom: 0;
@@ -156,25 +172,14 @@ const Detail = props => {
                     font-size: 30px;
                     line-height: 40px;
                     letter-spacing: -1.5px;
-                    overflow: hidden;
-                    white-space: nowrap;
-                    text-overflow: ellipsis;
-                    color: #116edd;
+                    color: #333;
                 }
                 .box_text .text{
                     font-size: 16px;
                     line-height: 25px;
                     color: #666666;
                     margin: 23px 0 40px;
-                    display: -webkit-box;
-                    white-space: normal;
-                    height: 73px;
-                    word-wrap: break-word;
-                    -webkit-line-clamp: 3;
-                    -webkit-box-orient: vertical;
-                    text-overflow: ellipsis;
-                    overflow: hidden;
-                    }
+                }
                 .btn {
                   color: #ffffff;
                   line-height: 33px;
@@ -188,15 +193,24 @@ const Detail = props => {
                 .nav {
                   float: left;
                 }
+                .detail_image {
+                    padding-top:30px;
+                }
+                .detail_image img {
+                    width:auto;
+                    max-width:100%;
+                }
+                
              //You may also like
                 .detail_title {
                     position: relative;
-                    width: 180px;
+                    width: 100%;
                     height: 23px;
                     color: #666666;
                     font-size: 20px;
                     font-weight: bold;
                     margin: 0 auto 18px;
+                    text-align:center;
                 }
                 .detail_title:after {
                     position: absolute;
@@ -205,7 +219,8 @@ const Detail = props => {
                     height: 1px;
                     border-bottom: 1px solid #96959a;
                     bottom: -17px;
-                    left: 32px;
+                    left:50%;
+                    margin-left:-50px;
                 }
             // 더보기
                   .box-list {
@@ -227,9 +242,6 @@ const Detail = props => {
                 .main_card .img img {
                     width: 100%;
                     height: 100%
-                }
-                .main_card .text {
-                    height: 70px;
                 }
             }
             //모바일

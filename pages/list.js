@@ -126,18 +126,18 @@ const Temp = props => {
 
 //리스트 페이지
 const Index = props => {
-    console.log(`${process.env.ASSET_PREFIX}`);
-
+    // 현재 페이지
     let activePage = props.activePage;
     const router = useRouter();
 
+    // 페이지네이션 페이지 이동시
     const handlePageChange = (pageNumber) => {
         window.scrollTo(0, 0);
         router.push(`/list/?page=${pageNumber}`);
     };
 
     return (
-        <Layout page={"list"}>
+        <Layout page={"list"} activeMenu={props.activeMenu}>
             <div id="_list" className={"clearfix"}>
                 <ul className="list img-list">
                     {
@@ -192,15 +192,25 @@ const Index = props => {
 };
 
 Index.getInitialProps = async function (ctx) {
-
+    // 선택된 페이지 default: 1
     const page = ctx.query.page || '1';
-    const res = await fetch(`http://myxd.co.kr/api/board/list/15?page=${page}`);
+
+    // 선택된 카테고리 default: 'uikits'
+    const cat = ctx.query.cat || 'uikits';
+
+    // /api/board/list/{limit(불러올 데이터 개수)}?cat={category}&page={page_number}
+    const res = await fetch(`http://myxd.co.kr/api/board/list/15?cat=${cat}&page=${page}`);
     const result = await res.json();
 
+    // data : 글 data
+    // activePage : 현재 page number
+    // total : 전체 글 개수
+    // activeMenu : 현재 카테고리
     return {
         data: result.data,
         activePage: Number(page),
-        total: result.total
+        total: result.total,
+        activeMenu: cat
     }
 };
 export default Index;

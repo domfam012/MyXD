@@ -4,6 +4,7 @@ import Link from "next/link";
 import fetch from "isomorphic-unfetch";
 import cookie from "js-cookie";
 
+// 관리자 페이지 Header
 const HeaderAdmin = props => {
     const router = useRouter();
     /**
@@ -21,7 +22,7 @@ const HeaderAdmin = props => {
         if (check) {
             console.log(`logout check true`);
 
-            const res = await fetch(`http://localhost:3000/api/user/logout`);
+            const res = await fetch(`http://myxd.co.kr/api/user/logout`);
             if (res.status === 200) {
                 console.log('logout success');
                 cookie.remove('token');
@@ -44,22 +45,22 @@ const HeaderAdmin = props => {
                     <div className={"menu"}>
                         <ul>
                             <li className="item">
-                                <Link href="/list">
-                                    <a className="link" href="/">UI KITS</a>
+                                <Link href="/list?cat=uikits">
+                                    <a className="link">UI KITS</a>
                                 </Link>
                             </li>
                             <li className="item">
-                                <Link href="/list">
-                                    <a className="link" href="/list">Website</a>
+                                <Link href="/list?cat=website">
+                                    <a className="link">Website</a>
                                 </Link>
                             </li>
                             <li className="item">
-                                <Link href="/admin">
-                                    <a className="link" href="/detail">Mobile</a>
+                                <Link href="/list?cat=mobile">
+                                    <a className="link">Mobile</a>
                                 </Link>
                             </li>
                             <li className="item">
-                                <Link href="/detail">
+                                <Link href="/list?cat=plugin">
                                     <a className="link">Plug-in</a>
                                 </Link>
                             </li>
@@ -67,8 +68,9 @@ const HeaderAdmin = props => {
                     </div>
                     <div className={"icon-menu"}>
                         <ul>
+                            {/* 관리자 로그인 / 로그아웃 */}
                             <li className="item">
-                                <Link href="/admin/login">
+                                <Link href="/admin/logout">
                                     <a onClick={logout} className="link" href="#"><img src="/img/common/login.png" alt="login"/></a>
                                 </Link>
                             </li>
@@ -113,6 +115,7 @@ const HeaderAdmin = props => {
                 float: left;
                 margin-right: 80px;
                 line-height: 68px;
+                
               }
               .nav_wrap .menu ul .item.active .link,
               .nav_wrap .menu ul .item:hover .link{
@@ -127,6 +130,7 @@ const HeaderAdmin = props => {
               .nav_wrap .menu ul .item .link {
                 padding: 8.5px 10px !important;
                 font-weight: bold;
+                color: #fff;
               }
               /*
                 icon-menu 
@@ -141,6 +145,7 @@ const HeaderAdmin = props => {
               }
               .nav_wrap .icon-menu ul .item .link{
                 padding: 10px;
+                color: #ffffff;
               }
               .nav_wrap .icon-menu ul .item:nth-child(3) {
                 margin-right: 78px;

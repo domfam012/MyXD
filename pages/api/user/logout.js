@@ -8,6 +8,7 @@ export default async (req,res) => {
     res.setHeader('Access-Control-Allow-Headers', 'content-type');
     res.setHeader('Content-Type', 'application/json');
 
+    // firebase logout 요청
     if (req.method === 'GET'){
         firebase.auth().signOut().then(() => {
             res.status(200).end();

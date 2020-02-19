@@ -6,6 +6,8 @@ const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
 const handle = app.getRequestHandler();
 
+console.log(`process.env.NODE_ENV: ${process.env.NODE_ENV}`);
+
 const express = require('express')();
 const helmet = require('helmet');
 const bodyParser = require('body-parser');
