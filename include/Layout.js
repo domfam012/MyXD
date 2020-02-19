@@ -6,25 +6,26 @@ import { useRouter } from "next/router";
 import React from "react";
 
 const Layout = props => {
+    const { page, activeMenu } = props;
+
     // 관리자 페이지 접속인지 확인
     const router = useRouter();
     const path = router.pathname.split('/');
-    const isAdmin = path[1] === 'admin';
 
+    // 페이지에 따른 반응형 처리
+    const isAdmin = path[1] === 'admin';
     let isAdminLogin = false;
     if(isAdmin){
         isAdminLogin =  path[2] === 'login' || path[2] === '';
     }
     const isResponsive = (isAdmin && !isAdminLogin) ? false : true;
-
-    const { page, activeMenu } = props;
-
     let containerClass = '';
     containerClass = page === 'list' ? 'list-container' : '';
     containerClass += isResponsive ? " container" : " container-xl";
 
     return (
         <>
+            {/* 공통 head 영역 */}
             <Head>
                 <title>MyXD</title>
                 <meta name="viewport" content="initial-scale=1.0, width=device-width" key="viewport"/>
@@ -56,7 +57,6 @@ const Layout = props => {
                     <Header isResponsive={isResponsive} activeMenu={activeMenu}/>
                 )
             }
-            {/*<Header isResponsive={isResponsive}/>*/}
 
             <div className={containerClass}>
                 {props.children}

@@ -10,32 +10,37 @@ import cookie from 'js-cookie'
 const Login  = props => {
     const router = useRouter();
 
+    // email, password state
     const [ email, setEmail ] = useState('');
     const [ password, setPassword ] = useState('');
 
+    // tooltip show 상태
     const [ emailTipShow, setEmailTipShow ] = useState(false);
     const [ pwdTipShow, setPwdTipShow ] = useState(false);
 
+    // email 입력
     const handleEmailChange = (e) => {
         setEmail(e.target.value);
         e.target.value === '' ? setEmailTipShow(true) : setEmailTipShow(false);
     };
+    // password 입력
     const handlePasswordChange = (e) => {
         setPassword(e.target.value);
         e.target.value === '' ? setPwdTipShow(true) : setPwdTipShow(false);
     };
 
-    //이메일 검증 함수
+    // 이메일 검증 함수
     const chkEmail = () => {
         const emailrule = /^(([^<>()\[\].,;:\s@"]+(\.[^<>()\[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
         return emailrule.test(email);
     };
 
+    // 로그인 요청
     const reqLogin = () => {
-        if(!chkEmail(email)){
+        if (!chkEmail(email)) { // 이메일 검증
             setEmailTipShow(true);
             return;
-        } else if(!password){
+        } else if(!password) { // 비밀번호 공백 확인
             setPwdTipShow(true);
             return;
         } else {
@@ -92,6 +97,7 @@ const Login  = props => {
                         <span className="underline"></span>
                     </div>
 
+                    {/* 로그인 입력 폼 */}
                     <form name={"login-form"}>
                         <div className={"input-wrap"}>
                             <input name={"login-email"} onChange={handleEmailChange} type="text" placeholder={"E-mail을 입력해주세요."} maxLength="30"

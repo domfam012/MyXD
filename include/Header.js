@@ -4,6 +4,7 @@ import Link from "next/link";
 import fetch from "isomorphic-unfetch";
 import cookie from "js-cookie";
 
+// Header
 const Header = props => {
     const router = useRouter();
     /**
@@ -54,7 +55,10 @@ const Header = props => {
                     </button>
                     <div className="collapse navbar-collapse menu" id="navbarText">
                         <ul className="navbar-nav mr-auto">
+
+                            {/* category query 요청 */}
                             <Link href="/list?cat=uikits">
+                                {/* active menu check */}
                                 <li className={`nav-item ${props.activeMenu === 'uikits' ? 'active' : ''}`}>
                                     <a className="nav-link">UI KITS</a>
                                 </li>
@@ -77,6 +81,8 @@ const Header = props => {
 
                         </ul>
                     </div>
+                    
+                    {/* 소셜 연동 예정 */}
                     <div className={"collapse navbar-collapse navbar-icon"}>
                         <ul className="navbar-nav">
                             <li className="nav-item">

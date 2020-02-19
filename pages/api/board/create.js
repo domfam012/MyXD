@@ -1,3 +1,8 @@
+/**
+ *  신규 글 DB 저장
+ *
+ */
+
 import { loadDB, firestore } from './../../../lib/js/db';
 import moment from 'moment';
 
@@ -33,6 +38,7 @@ export default async (req, res) => {
             created: moment().locale('ko').format()
         };
 
+        // 글 collection
         const collection = db.collection('Posts');
         await collection.add(data)
             .then(function(docRef) {
@@ -42,6 +48,7 @@ export default async (req, res) => {
                 console.error("Error adding document: ", error);
             });
 
+        // 전체 글 카운트 +1
         const countDoc = await db.collection('Count').doc('Posts');
         const increment = firestore.FieldValue.increment(1);
         await countDoc.update({ count: increment });

@@ -4,6 +4,7 @@ import Link from "next/link";
 import fetch from "isomorphic-unfetch";
 import cookie from "js-cookie";
 
+// 관리자 페이지 Header
 const HeaderAdmin = props => {
     const router = useRouter();
     /**
@@ -67,6 +68,7 @@ const HeaderAdmin = props => {
                     </div>
                     <div className={"icon-menu"}>
                         <ul>
+                            {/* 관리자 로그인 / 로그아웃 */}
                             <li className="item">
                                 <Link href="/admin/logout">
                                     <a onClick={logout} className="link" href="#"><img src="/img/common/login.png" alt="login"/></a>

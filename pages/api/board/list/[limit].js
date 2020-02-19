@@ -1,3 +1,8 @@
+/**
+ *   개수 제한 글 조회
+ *      -> 넘겨 받은 query 로 limit, page 값 지정해서 조회
+ */
+
 import { loadDB } from './../../../../lib/js/db';
 import moment from 'moment';
 
@@ -22,17 +27,17 @@ export default async (req, res) => {
      *
      */
 
-
-
     const db = await loadDB();
     const collection = await db.collection('Posts');
 
     if (req.method === 'GET') {
         const { query: { limit, page, cat } } = req;
 
+        // 전체 글 개수 조회
         const countRef = await db.collection('Count').doc('Posts').get();
         const total = await countRef.data().count;
 
+        // 카테고리
         let category = '';
         switch (cat) {
             case 'uikits':
@@ -52,6 +57,7 @@ export default async (req, res) => {
                 break;
         }
 
+        // 페이지에 해당하는 글 목록 조회
         let ref;
         if (Number(page) === 1) {
             ref = await collection.where("category", "array-contains", category).orderBy("created", "desc").limit(parseInt(limit)).get();
@@ -62,6 +68,7 @@ export default async (req, res) => {
             ref = await collection.orderBy("created", "desc").startAfter(lastVisible).limit(parseInt(limit)).get();
         }
 
+        // 조회된 글 담을 data
         const data = [];
         ref.forEach(doc => {
             data.push({pid: doc.id, ...doc.data()});

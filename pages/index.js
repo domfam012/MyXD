@@ -1,3 +1,8 @@
+/**
+ *  메인 페이지
+ *
+ */
+
 import React from "react";
 import Layout from '../include/Layout';
 import Aside from '../include/Aside';
@@ -135,6 +140,7 @@ const Index = props => {
     let activePage = props.activePage;
     const router = useRouter();
 
+    // 페이지네이션 페이지 이동시
     const handlePageChange = (pageNumber) => {
         window.scrollTo(0, 0);
         router.push(`/?page=${pageNumber}`);

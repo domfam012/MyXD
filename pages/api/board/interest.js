@@ -1,3 +1,7 @@
+/**
+ *  인기 글 목록 3개 조회
+ */
+
 import { loadDB } from './../../../lib/js/db';
 
 export default async (req, res) => {
@@ -6,8 +10,8 @@ export default async (req, res) => {
     res.setHeader('Access-Control-Allow-Headers', 'content-type');
     res.setHeader('Content-Type', 'application/json');
 
-    console.log(`req.method : ${req.method}`);
-
+    // console.log(`req.method : ${req.method}`);
+    
     const db = await loadDB();
     const collection = await db.collection('Posts');
 
