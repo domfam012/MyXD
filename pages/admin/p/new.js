@@ -159,10 +159,10 @@ const New = props => {
                                     {/* 제목 */}
                                     <div className={"form-group"}>
                                         <div className={"label-area"}>
-                                            <label className="col-form-label">제목</label>
+                                            <label className="col-form-label" for={"title"}>제목</label>
                                         </div>
                                         <div className={"input-area"}>
-                                            <input type="text" name={"title"} className="form-control" placeholder={"제목을 입력하세요."} maxLength="50"
+                                            <input id={"title"} type="text" name={"title"} className="form-control" placeholder={"제목을 입력하세요."} maxLength="50"
                                                    onChange={titleChange}
                                             />
                                         </div>
@@ -171,7 +171,7 @@ const New = props => {
                                     {/* 카테고리 */}
                                     <div className={"form-group"}>
                                         <div className={"label-area"}>
-                                            <label className="col-form-label">카테고리</label>
+                                            <label className="col-form-label bold" for={"category"}>카테고리</label>
                                         </div>
                                         <div className={"input-area"}>
                                             <label className="checkbox checkbox_single">
@@ -196,10 +196,10 @@ const New = props => {
                                     {/* 내용 */}
                                     <div className={"form-group"}>
                                         <div className={"label-area"}>
-                                            <label className="col-form-label" style={{"lineHeight":"20.4"}}>내용</label>
+                                            <label className="col-form-label" style={{"lineHeight":"20.4"}} for={'description'}>내용</label>
                                         </div>
                                         <div className={"input-area"}>
-                                            <textarea className="form-control" name={"content"} placeholder={"내용을 입력하세요."} maxLength={"1000"}
+                                            <textarea id={'description'} className="form-control" name={"content"} placeholder={"내용을 입력하세요."} maxLength={"1000"}
                                                       onChange={contentChange}
                                             />
                                         </div>
@@ -208,7 +208,7 @@ const New = props => {
                                     {/* 이미지 업로드 */}
                                     <div className={"form-group"}>
                                         <div className={"label-area"}>
-                                            <label className="col-form-label" style={{"lineHeight":"9.4"}}>이미지 업로드</label>
+                                            <label className="col-form-label" style={{"lineHeight":"9.4"}}>대표 이미지</label>
                                         </div>
                                         <div className={" input-group input-area"}>
                                             <div className="file-label">
@@ -229,6 +229,33 @@ const New = props => {
                                                    onChange={onFileUpload}/>
                                         </div>
                                     </div>
+                                    
+                                    {/* 이미지 업로드 */}
+                                    <div className={"form-group"}>
+                                        <div className={"label-area"}>
+                                            <label className="col-form-label" style={{"lineHeight":"9.4"}}>상세 이미지</label>
+                                        </div>
+                                        <div className={" input-group input-area"}>
+                                            <div className="file-label">
+                                                { img === ''
+                                                    ? (
+                                                        <label htmlFor={"fileUploader"} className={"add text-center"}>+<br/>이미지</label>
+                                                    )
+                                                    : (
+                                                        <div className={"added"}>
+                                                            <img src={img} alt="업로드 이미지"/>
+                                                            <a href="#" className="btn-close" onClick={fileRemove}></a>
+                                                        </div>
+                                                    )
+                                                }
+                                            </div>
+                                            <input type="file" id="fileUploader" name={"img"} className="form-control-file"
+                                                   ref={inputFileEl}
+                                                   onChange={onFileUpload}/>
+                                        </div>
+                                    </div>
+                                    
+                                    
 
                                     {/* 링크 */}
                                     <div className={"form-group"}>
