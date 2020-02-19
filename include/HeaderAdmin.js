@@ -129,6 +129,7 @@ const HeaderAdmin = props => {
               .nav_wrap .menu ul .item .link {
                 padding: 8.5px 10px !important;
                 font-weight: bold;
+                color: #fff;
               }
               /*
                 icon-menu 
