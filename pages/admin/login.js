@@ -67,6 +67,9 @@ const Login  = props => {
                 if (res.status === 400) {
                     alert('유저정보가 존재하지 않습니다.');
                 }
+                if (res.status === 500) {
+                    alert('서버 오류입니다.');
+                }
 
                 if (res.status === 600) {
                     alert('비밀번호가 일치하지 않습니다.');
