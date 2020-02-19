@@ -48,7 +48,8 @@ const Card = props => {
                     text-align: center;
                 }
                 .main_card .img img {
-                    width: 100%;
+                    width: auto;
+                    max-width: 100%;
                     height: 100%;
                 }
                 .box_text {
