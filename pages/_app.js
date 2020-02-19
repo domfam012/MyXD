@@ -8,9 +8,9 @@ config.autoAddCss = false; // Tell Font Awesome to skip adding the CSS automatic
 import '../lib/css/style.css';
 
 /* ga(google analytics) 연동 */
-// import router from 'next/router';
-// import * as gtag from '../lib/js/gtag'
-// router.events.on('routeChangeComplete', url => gtag.pageview(url));
+import router from 'next/router';
+import * as gtag from '../lib/js/gtag'
+router.events.on('routeChangeComplete', url => gtag.pageview(url));
 
 function MyApp({ Component, pageProps }) {
     return <Component {...pageProps} />;

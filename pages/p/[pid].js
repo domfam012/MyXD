@@ -114,7 +114,6 @@ const Detail = props => {
                             </div>
                             <div className={"box-list"}>
                                 <ul className="list img-list">
-
                                     {
                                         props.asideData.map(item => (
                                             <Template key={item.pid} title={item.title} category={item.category} pid={item.pid} imgPath={item.imgPath}/>
@@ -134,7 +133,6 @@ const Detail = props => {
                     box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
                     background-color: #ffffff;
                     margin-bottom: 50px;
-                    cursor: pointer;
                 }
                 .main_card:last-child {
                   margin-bottom: 0;
@@ -156,25 +154,14 @@ const Detail = props => {
                     font-size: 30px;
                     line-height: 40px;
                     letter-spacing: -1.5px;
-                    overflow: hidden;
-                    white-space: nowrap;
-                    text-overflow: ellipsis;
-                    color: #116edd;
+                    color: #333;
                 }
                 .box_text .text{
                     font-size: 16px;
                     line-height: 25px;
                     color: #666666;
                     margin: 23px 0 40px;
-                    display: -webkit-box;
-                    white-space: normal;
-                    height: 73px;
-                    word-wrap: break-word;
-                    -webkit-line-clamp: 3;
-                    -webkit-box-orient: vertical;
-                    text-overflow: ellipsis;
-                    overflow: hidden;
-                    }
+                }
                 .btn {
                   color: #ffffff;
                   line-height: 33px;
@@ -227,9 +214,6 @@ const Detail = props => {
                 .main_card .img img {
                     width: 100%;
                     height: 100%
-                }
-                .main_card .text {
-                    height: 70px;
                 }
             }
             //모바일

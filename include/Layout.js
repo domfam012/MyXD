@@ -32,10 +32,17 @@ const Layout = props => {
                 <meta httpEquiv="X-UA-Compatible" content="IE=Edge"/>
                 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
                 <meta name="apple-mobile-web-app-title" content="MyXD"/>
-                <meta name="robots" content="index,follow"/>
+                <meta name="robots" content="index,nofollow"/>
                 <meta name="description" content="MyXD"/>
                 <meta name="keywords" content="MyXD"/>
+                <meta property="og:type" content="website"/>
+                <meta property="og:title" content="main"/>
+                <meta property="og:description" content="메인 화면"/>
+                <meta property="og:image" content="https://s.pstatic.net/static/www/mobile/edit/2016/0705/mobile_212852414260.png"/>
+                <meta property="og:url" content="http://www.myxd.co.kr"/>
+
                 <meta name="naver-site-verification" content="889f5fc82fdaabf2019b55cf2a3e58a14db3efee"/>
+
                 <script src="/js/jquery.js"/>
                 <script src="/js/bootstrap.min.js"/>
                 <script src="/js/common.js"/>

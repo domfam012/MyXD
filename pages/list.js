@@ -44,8 +44,12 @@ const Temp = props => {
               }
               .li-img, .li-text, .inner {
                 display: block;
-                width: auto;
                 padding: 0;
+              }
+              .li-img {
+                width: 100%;
+                height: 209px;
+                background: #d3d3d3;
               }
               .li-img img {
                 width: 100%;
@@ -82,6 +86,9 @@ const Temp = props => {
                   }
                   li:nth-child(2n) {
                     margin-right: 0;
+                  }
+                  .li-img {
+                    height: 100%;
                   }
                   .li-img img{
                       width: 100%;
@@ -180,7 +187,7 @@ Index.getInitialProps = async function (ctx) {
 
     const page = ctx.query.page || '1';
     const cat = ctx.query.cat || 'uikits';
-    const res = await fetch(`http://127.0.0.1:3000/api/board/list/15?cat=${cat}&page=${page}`);
+    const res = await fetch(`http://myxd.co.kr/api/board/list/15?cat=${cat}&page=${page}`);
     const result = await res.json();
 
     console.log(`cat: ${cat}`);
