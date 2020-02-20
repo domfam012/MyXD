@@ -14,7 +14,7 @@ import getConfig from 'next/config';
 //리스트 template 컴포넌트
 const Temp = props => {
     return (
-        <div>
+        <>
             <li>
                 <Link href={`/p/${props.pid}`}>
                     <a href="#" className="inner">
@@ -30,10 +30,11 @@ const Temp = props => {
             <style jsx>{`
               li {
                 display: block;
-                width: calc(100% - 827px);
+                width: calc(33.3% - 18px);
                 float: left;
                 box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
                 background-color: var(--white);
+                background-color: #ffffff;
                 margin: 0 27px 30px 0;
               }
               li:nth-child(3n) {
@@ -50,9 +51,11 @@ const Temp = props => {
                 width: 100%;
                 height: 209px;
                 background: #d3d3d3;
+                text-align: center;
               }
               .li-img img {
-                width: 100%;
+                width: auto;
+                max-width: 100%;
                 height: 100%;
               }
               .li-text {
@@ -112,9 +115,12 @@ const Temp = props => {
                       width: 100%;
                       height: 100%;
                     }
+                    .li-text .title {
+                        width: 220px;
+                    }
               }
          `}</style>
-        </div>
+        </>
     );
 };
 

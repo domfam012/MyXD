@@ -460,19 +460,22 @@ const New = props => {
                 }
                 .file-label .add {
                     display: block;
-                    //display: none;
                     margin: 0 auto;
                     padding: 69px 0;
                     color: #96959a;
                 }
                 .file-label .added {
                     width: 100%;
+                    height: 182px;
                     margin: auto;
                     overflow: hidden;
+                    background: #d3d3d3;
+                    text-align: center;
                 }
                 .file-label .added img {
-                    width: 100%;
+                    width: auto;
                     height: 100%;
+                    max-width: 100%;
                 }
                 .file-label .added .btn-close {
                     position: absolute;

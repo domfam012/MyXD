@@ -37,7 +37,7 @@ const Layout = props => {
                 <meta name="description" content="MyXD"/>
                 <meta name="keywords" content="MyXD"/>
                 <meta property="og:type" content="website"/>
-                <meta property="og:title" content="myXD"/>
+                <meta property="og:title" content="MyXD"/>
                 <meta property="og:description" content="무료 XD 템플릿을 만나 보세요"/>
                 <meta property="og:image" content="/img/common/logo_og.png" style="width: 102px;"/>
                 <meta property="og:url" content="http://myxd.co.kr/"/>
