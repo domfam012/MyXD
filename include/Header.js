@@ -39,7 +39,7 @@ const Header = props => {
             <div className={"nav_wrap"}>
                 <nav className={props.isResponsive ? "navbar navbar-expand-xl" : "navbar navbar-expand-xl admin"}>
                     <Link href="/">
-                        <a className="navbar-brand"><span className="pink"><img src="/img/common/logo.png" alt="myXD"/></span></a>
+                        <a className="navbar-brand"><span className="pink"><img src="/img/common/logo.png" alt="myXD"  style={{width: 102 + 'px'}}/></span></a>
                     </Link>
                     {/* tab,mobile 메뉴 버튼 */}
                     <button className={`navbar-toggle ${menuActive ? 'active' : ''}`} type="button"
