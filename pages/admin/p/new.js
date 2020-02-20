@@ -153,7 +153,7 @@ const New = props => {
             if (detailImg3 !== '') selectedImages.push(detailFileEl3.current.files[0]);
             console.log(selectedImages.length);
 
-            const downloadURLs = [];
+            const downloadURLs = {};
             const uploading = new Promise((resolve, reject) => {
                 selectedImages.forEach((img, idx) => {
                     console.log(`img uploading.. ${idx}`);
@@ -183,12 +183,9 @@ const New = props => {
                             // 업로드된 이미지 url
                             uploadTask.snapshot.ref.getDownloadURL().then(url => {
                                 console.log(`img uploading finished.. ${idx}: ${url}`);
-                                downloadURLs.push(url);
+                                downloadURLs[''+idx] = url;
                                 if( idx === 2 ) {console.log(JSON.stringify(downloadURLs)); resolve();}
                             });
-                            // console.log(`img uploading finished.. ${idx}: ${downloadURL}`);
-                            // downloadURLs.push(downloadURL);
-
                         }
                     );
                 });
