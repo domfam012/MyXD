@@ -52,21 +52,33 @@ export default async (req, res) => {
             case 'plugin':
                 category = 'Plug-in';
                 break;
-            default:
-                category = 'UI KITS';
-                break;
         }
 
         // 페이지에 해당하는 글 목록 조회
         let ref;
-        if (Number(page) === 1) {
-            ref = await collection.where("category", "array-contains", category).orderBy("created", "desc").limit(parseInt(limit)).get();
+
+        if(category === '') {
+            if (Number(page) === 1) {
+                ref = await collection.orderBy("created", "desc").limit(parseInt(limit)).get();
+            }
+            else {
+                const prev = await collection.orderBy('created', 'desc').limit(parseInt(limit)*(parseInt(page)-1)).get();
+                const lastVisible = prev.docs[prev.docs.length-1];
+                ref = await collection.orderBy("created", "desc").startAfter(lastVisible).limit(parseInt(limit)).get();
+            }
         }
         else {
-            const prev = await collection.where("category", "array-contains", category).orderBy('created', 'desc').limit(parseInt(limit)*(parseInt(page)-1)).get();
-            const lastVisible = prev.docs[prev.docs.length-1];
-            ref = await collection.orderBy("created", "desc").startAfter(lastVisible).limit(parseInt(limit)).get();
+            if (Number(page) === 1) {
+                ref = await collection.where("category", "array-contains", category).orderBy("created", "desc").limit(parseInt(limit)).get();
+            }
+            else {
+                const prev = await collection.where("category", "array-contains", category).orderBy('created', 'desc').limit(parseInt(limit)*(parseInt(page)-1)).get();
+                const lastVisible = prev.docs[prev.docs.length-1];
+                ref = await collection.orderBy("created", "desc").startAfter(lastVisible).limit(parseInt(limit)).get();
+            }
         }
+
+
 
         // 조회된 글 담을 data
         const data = [];
