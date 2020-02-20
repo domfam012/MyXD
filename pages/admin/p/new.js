@@ -60,8 +60,6 @@ const New = props => {
         setImg(preview);
         setImgName(e.target.files[0].name);
 
-        console.log(`inputFileEl: ${JSON.stringify(inputFileEl)}`);
-
         inputFileEl.current.focus();
     };
     // 업로드 이미지 제거
@@ -77,8 +75,6 @@ const New = props => {
         const preview = URL.createObjectURL(e.target.files[0]);
         setDetailImg1(preview);
         setDetailImgName1(e.target.files[0].name);
-
-        console.log(`detailFileEl1: ${JSON.stringify(detailFileEl1)}`);
 
         detailFileEl1.current.focus();
     };
@@ -96,8 +92,6 @@ const New = props => {
         setDetailImg2(preview);
         setDetailImgName2(e.target.files[0].name);
 
-        console.log(`detailFileEl2: ${JSON.stringify(detailFileEl2)}`);
-
         detailFileEl2.current.focus();
     };
     // 상세 업로드 이미지 제거2
@@ -113,8 +107,6 @@ const New = props => {
         const preview = URL.createObjectURL(e.target.files[0]);
         setDetailImg3(preview);
         setDetailImgName3(e.target.files[0].name);
-
-        console.log(`detailFileEl3: ${JSON.stringify(detailFileEl3)}`);
 
         detailFileEl3.current.focus();
     };
@@ -151,60 +143,61 @@ const New = props => {
         const check = confirm('등록하시겠습니까?');
         if (check) {
             // firestore storage 에 업로드
-            // imgSaveName 용도 sid
-            const sid = shortid.generate();
             const storage = await loadStorage();
-            const storageRef = storage.ref(`post/${sid}`);
-            const uploadTask = storageRef.put(inputFileEl.current.files[0]);
-            uploadTask.on('state_changed',
-                snapshot => {
-                    const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                },
-                err => {
-                    switch (err.code) {
-                        case 'storage/unauthorized':
-                             alert("User doesn't have permission to access the object");
-                            break;
-                        case 'storage/canceled':
-                             alert("User canceled the upload");
-                            break;
-                        case 'storage/unknown':
-                             alert("Unknown error occurred, inspect error.serverResponse");
-                            break;
-                    }
-                },
-                async () => {
-                    // 업로드된 이미지 url
-                    const downloadURL = await uploadTask.snapshot.ref.getDownloadURL()
-                        .then(downloadURL => {
-                            // console.log(`file uploaded..\n${downloadURL}`);
-                            return downloadURL;
-                        });
 
-                    const reqData = {
-                        title, content, category, imgName, link, imgPath: downloadURL, imgSaveName: sid
-                    };
+            /* Start of img upload task */
+            console.log('start uploading..');
+            const selectedImages = [inputFileEl.current.files[0]];
+            if (detailImg1 !== '') selectedImages.push(detailFileEl1.current.files[0]);
+            if (detailImg2 !== '') selectedImages.push(detailFileEl2.current.files[0]);
+            if (detailImg3 !== '') selectedImages.push(detailFileEl3.current.files[0]);
+            console.log(selectedImages.length);
 
-                    // DB create
-                    await axios.post(`http://localhost:3000/api/board/create`, reqData, {
-                            headers: {
-                                'Accept': 'application/json',
-                                'Headers': 'content-type',
-                                'Content-Type': 'application/json'
+            const downloadURLs = [];
+            const uploading = new Promise((resolve, reject) => {
+                selectedImages.forEach((img, idx) => {
+                    console.log(`img uploading.. ${idx}`);
+
+                    const sid = shortid.generate(); // sid => imgSaveName
+                    const storageRef = storage.ref(`post/${sid}`);
+                    const uploadTask = storageRef.put(img);
+                    uploadTask.on('state_changed',
+                        snapshot => {
+                            const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                        },
+                        err => {
+                            switch (err.code) {
+                                case 'storage/unauthorized':
+                                    alert("User doesn't have permission to access the object");
+                                    break;
+                                case 'storage/canceled':
+                                    alert("User canceled the upload");
+                                    break;
+                                case 'storage/unknown':
+                                    alert("Unknown error occurred, inspect error.serverResponse");
+                                    break;
                             }
-                        })
-                        .then(() => {
-                            // console.log(`post uploaded..\n`);
-                            alert('업로드 되었습니다.');
-                            router.push('/admin/p/list');
-                        })
-                        .catch(err => {
-                            console.log(err);
-                            alert('uncaught error occured');
-                            router.push('/admin/p/list');
-                        });
-                }
-            );
+                            reject();
+                        },
+                        () => {
+                            // 업로드된 이미지 url
+                            uploadTask.snapshot.ref.getDownloadURL().then(url => {
+                                console.log(`img uploading finished.. ${idx}: ${url}`);
+                                downloadURLs.push(url);
+                                if( idx === 2 ) {console.log(JSON.stringify(downloadURLs)); resolve();}
+                            });
+                            // console.log(`img uploading finished.. ${idx}: ${downloadURL}`);
+                            // downloadURLs.push(downloadURL);
+
+                        }
+                    );
+                });
+            });
+
+            uploading.then(() => {
+                console.log(`upload finished.. ${downloadURLs}`);
+            });
+            /* End of img upload task */
 
         }
     };
@@ -299,81 +292,71 @@ const New = props => {
                                         </div>
                                     </div>
 
-                                    {/* 상세 이미지1 업로드 */}
+                                    {/* 상세 이미지 업로드 */}
                                     <div className={"form-group"}>
                                         <div className={"label-area"}>
-                                            <label className="col-form-label" style={{"lineHeight":"9.4"}}>대표 이미지</label>
+                                            <label className="col-form-label" style={{"lineHeight":"9.4"}}>상세 이미지</label>
                                         </div>
+                                        {/* 상세 이미지 1 업로드 */}
                                         <div className={" input-group input-area"}>
                                             <div className="file-label">
-                                                { img === ''
+                                                { detailImg1 === ''
                                                     ? (
-                                                        <label htmlFor={"fileUploader"} className={"add text-center"}>+<br/>이미지</label>
+                                                        <label htmlFor={"detailUploader1"} className={"add text-center"}>+<br/>이미지</label>
                                                     )
                                                     : (
                                                         <div className={"added"}>
-                                                            <img src={img} alt="업로드 이미지"/>
-                                                            <a href="#" className="btn-close" onClick={fileRemove}></a>
+                                                            <img src={detailImg1} alt="업로드 이미지"/>
+                                                            <a href="#" className="btn-close" onClick={detailRemove1}/>
                                                         </div>
                                                     )
                                                 }
                                             </div>
-                                            <input type="file" id="fileUploader" name={"img"} className="form-control-file"
-                                                   ref={inputFileEl}
-                                                   onChange={onFileUpload}/>
+                                            <input type="file" id="detailUploader1" name={"img"} className="form-control-file"
+                                                   ref={detailFileEl1}
+                                                   onChange={onDetailUpload1}/>
                                         </div>
-                                    </div>
 
-                                    {/* 상세 이미지2 업로드 */}
-                                    <div className={"form-group"}>
-                                        <div className={"label-area"}>
-                                            <label className="col-form-label" style={{"lineHeight":"9.4"}}>대표 이미지</label>
-                                        </div>
+                                        {/* 상세 이미지 2 업로드 */}
                                         <div className={" input-group input-area"}>
                                             <div className="file-label">
-                                                { img === ''
+                                                { detailImg2 === ''
                                                     ? (
-                                                        <label htmlFor={"fileUploader"} className={"add text-center"}>+<br/>이미지</label>
+                                                        <label htmlFor={"detailUploader2"} className={"add text-center"}>+<br/>이미지</label>
                                                     )
                                                     : (
                                                         <div className={"added"}>
-                                                            <img src={img} alt="업로드 이미지"/>
-                                                            <a href="#" className="btn-close" onClick={fileRemove}></a>
+                                                            <img src={detailImg2} alt="업로드 이미지"/>
+                                                            <a href="#" className="btn-close" onClick={detailRemove2}/>
                                                         </div>
                                                     )
                                                 }
                                             </div>
-                                            <input type="file" id="fileUploader" name={"img"} className="form-control-file"
-                                                   ref={inputFileEl}
-                                                   onChange={onFileUpload}/>
+                                            <input type="file" id="detailUploader2" name={"img"} className="form-control-file"
+                                                   ref={detailFileEl2}
+                                                   onChange={onDetailUpload2}/>
                                         </div>
-                                    </div>
 
-                                    {/* 상세 이미지3 업로드 */}
-                                    <div className={"form-group"}>
-                                        <div className={"label-area"}>
-                                            <label className="col-form-label" style={{"lineHeight":"9.4"}}>대표 이미지</label>
-                                        </div>
+                                        {/* 상세 이미지 3 업로드 */}
                                         <div className={" input-group input-area"}>
                                             <div className="file-label">
                                                 { detailImg3 === ''
                                                     ? (
-                                                        <label htmlFor={"fileUploader"} className={"add text-center"}>+<br/>이미지</label>
+                                                        <label htmlFor={"detailUploader3"} className={"add text-center"}>+<br/>이미지</label>
                                                     )
                                                     : (
                                                         <div className={"added"}>
                                                             <img src={detailImg3} alt="업로드 이미지"/>
-                                                            <a href="#" className="btn-close" onClick={detailFileRemove3}></a>
+                                                            <a href="#" className="btn-close" onClick={detailRemove3}/>
                                                         </div>
                                                     )
                                                 }
                                             </div>
-                                            <input type="file" id="fileUploader" name={"img"} className="form-control-file"
+                                            <input type="file" id="detailUploader3" name={"img"} className="form-control-file"
                                                    ref={detailFileEl3}
-                                                   onChange={onFileUpload}/>
+                                                   onChange={onDetailUpload3}/>
                                         </div>
                                     </div>
-
 
 
                                     {/* 링크 */}
