@@ -50,11 +50,19 @@ export default async (req, res) => {
             const link = req.body.link || '';
             const title= req.body.title || '';
 
+            /**
+             *
+             * @type {{link: (*|string), category: *, title: (*|string), updated: string, content: (*|string)}}
+             *  TODO: detail img 추가 임시로 해뒀음
+             *
+             */
+            // detail img path 추가!
             let newData = {
                 category: category,
                 content: content,
                 link: link,
                 title: title,
+                detailImg: [''],
                 updated: moment().locale('ko').format()
             };
 
