@@ -114,11 +114,11 @@ const Detail = props => {
                                 <a href={props.data.link} className={"btn btn-primary"}>다운로드</a>
                             </div>
 
-                            <div className={"detail_image"}>
-                                <p><img src={props.data.imgPath} alt=""/></p>
-                                <p><img src={props.data.imgPath} alt=""/></p>
-                                <p><img src={props.data.imgPath} alt=""/></p>
-                            </div>
+                            {/*<div className={"detail_image"}>*/}
+                            {/*    <p><img src={props.data.imgPath} alt=""/></p>*/}
+                            {/*    <p><img src={props.data.imgPath} alt=""/></p>*/}
+                            {/*    <p><img src={props.data.imgPath} alt=""/></p>*/}
+                            {/*</div>*/}
 
 
                         </div>
