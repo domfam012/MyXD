@@ -17,22 +17,10 @@ const New = props => {
     const [ img, setImg ] = useState('');
     const [ imgName, setImgName ] = useState('');
 
-    const [ detailImg1, setDetailImg1 ] = useState('');
-    const [ detailImgName1, setDetailImgName1 ] = useState('');
-    const [ detailImg2, setDetailImg2 ] = useState('');
-    const [ detailImgName2, setDetailImgName2 ] = useState('');
-    const [ detailImg3, setDetailImg3 ] = useState('');
-    const [ detailImgName3, setDetailImgName3 ] = useState('');
-
     const [ link, setLink ] = useState('');
 
     // input file element
     const inputFileEl = useRef(null);
-    // detail input file elemenet
-    const detailFileEl1 = useRef(null);
-    const detailFileEl2 = useRef(null);
-    const detailFileEl3 = useRef(null);
-
     const router = useRouter();
 
     // 제목 입력
@@ -60,8 +48,6 @@ const New = props => {
         setImg(preview);
         setImgName(e.target.files[0].name);
 
-        console.log(`inputFileEl: ${JSON.stringify(inputFileEl)}`);
-
         inputFileEl.current.focus();
     };
     // 업로드 이미지 제거
@@ -71,61 +57,6 @@ const New = props => {
         setImgName('');
         inputFileEl.current.value = null;
     };
-
-    // 상세 이미지 업로드1
-    const onDetailUpload1 = e => {
-        const preview = URL.createObjectURL(e.target.files[0]);
-        setDetailImg1(preview);
-        setDetailImgName1(e.target.files[0].name);
-
-        console.log(`detailFileEl1: ${JSON.stringify(detailFileEl1)}`);
-
-        detailFileEl1.current.focus();
-    };
-    // 상세 업로드 이미지 제거1
-    const detailRemove1 = e => {
-        e.preventDefault();
-        setDetailImg1('');
-        setDetailImgName1('');
-        detailFileEl1.current.value = null;
-    };
-
-    // 상세 이미지 업로드2
-    const onDetailUpload2 = e => {
-        const preview = URL.createObjectURL(e.target.files[0]);
-        setDetailImg2(preview);
-        setDetailImgName2(e.target.files[0].name);
-
-        console.log(`detailFileEl2: ${JSON.stringify(detailFileEl2)}`);
-
-        detailFileEl2.current.focus();
-    };
-    // 상세 업로드 이미지 제거2
-    const detailRemove2 = e => {
-        e.preventDefault();
-        setDetailImg2('');
-        setDetailImgName2('');
-        detailFileEl2.current.value = null;
-    };
-
-    // 상세 이미지 업로드3
-    const onDetailUpload3 = e => {
-        const preview = URL.createObjectURL(e.target.files[0]);
-        setDetailImg3(preview);
-        setDetailImgName3(e.target.files[0].name);
-
-        console.log(`detailFileEl3: ${JSON.stringify(detailFileEl3)}`);
-
-        detailFileEl3.current.focus();
-    };
-    // 상세 업로드 이미지 제거3
-    const detailRemove3 = e => {
-        e.preventDefault();
-        setDetailImg3('');
-        setDetailImgName3('');
-        detailFileEl3.current.value = null;
-    };
-
 
     // 링크 입력
     const linkChange = e => {
@@ -186,7 +117,7 @@ const New = props => {
                     };
 
                     // DB create
-                    await axios.post(`http://localhost:3000/api/board/create`, reqData, {
+                    await axios.post(`http://myxd.co.kr/api/board/create`, reqData, {
                             headers: {
                                 'Accept': 'application/json',
                                 'Headers': 'content-type',
@@ -295,81 +226,6 @@ const New = props => {
                                             </div>
                                             <input type="file" id="fileUploader" name={"img"} className="form-control-file"
                                                    ref={inputFileEl}
-                                                   onChange={onFileUpload}/>
-                                        </div>
-                                    </div>
-
-                                    {/* 상세 이미지1 업로드 */}
-                                    <div className={"form-group"}>
-                                        <div className={"label-area"}>
-                                            <label className="col-form-label" style={{"lineHeight":"9.4"}}>대표 이미지</label>
-                                        </div>
-                                        <div className={" input-group input-area"}>
-                                            <div className="file-label">
-                                                { img === ''
-                                                    ? (
-                                                        <label htmlFor={"fileUploader"} className={"add text-center"}>+<br/>이미지</label>
-                                                    )
-                                                    : (
-                                                        <div className={"added"}>
-                                                            <img src={img} alt="업로드 이미지"/>
-                                                            <a href="#" className="btn-close" onClick={fileRemove}></a>
-                                                        </div>
-                                                    )
-                                                }
-                                            </div>
-                                            <input type="file" id="fileUploader" name={"img"} className="form-control-file"
-                                                   ref={inputFileEl}
-                                                   onChange={onFileUpload}/>
-                                        </div>
-                                    </div>
-
-                                    {/* 상세 이미지2 업로드 */}
-                                    <div className={"form-group"}>
-                                        <div className={"label-area"}>
-                                            <label className="col-form-label" style={{"lineHeight":"9.4"}}>대표 이미지</label>
-                                        </div>
-                                        <div className={" input-group input-area"}>
-                                            <div className="file-label">
-                                                { img === ''
-                                                    ? (
-                                                        <label htmlFor={"fileUploader"} className={"add text-center"}>+<br/>이미지</label>
-                                                    )
-                                                    : (
-                                                        <div className={"added"}>
-                                                            <img src={img} alt="업로드 이미지"/>
-                                                            <a href="#" className="btn-close" onClick={fileRemove}></a>
-                                                        </div>
-                                                    )
-                                                }
-                                            </div>
-                                            <input type="file" id="fileUploader" name={"img"} className="form-control-file"
-                                                   ref={inputFileEl}
-                                                   onChange={onFileUpload}/>
-                                        </div>
-                                    </div>
-
-                                    {/* 상세 이미지3 업로드 */}
-                                    <div className={"form-group"}>
-                                        <div className={"label-area"}>
-                                            <label className="col-form-label" style={{"lineHeight":"9.4"}}>대표 이미지</label>
-                                        </div>
-                                        <div className={" input-group input-area"}>
-                                            <div className="file-label">
-                                                { detailImg3 === ''
-                                                    ? (
-                                                        <label htmlFor={"fileUploader"} className={"add text-center"}>+<br/>이미지</label>
-                                                    )
-                                                    : (
-                                                        <div className={"added"}>
-                                                            <img src={detailImg3} alt="업로드 이미지"/>
-                                                            <a href="#" className="btn-close" onClick={detailFileRemove3}></a>
-                                                        </div>
-                                                    )
-                                                }
-                                            </div>
-                                            <input type="file" id="fileUploader" name={"img"} className="form-control-file"
-                                                   ref={detailFileEl3}
                                                    onChange={onFileUpload}/>
                                         </div>
                                     </div>
@@ -511,7 +367,7 @@ New.getInitialProps = async (ctx) => {
     }
 
     const page = ctx.query.page || '1';
-    const res = await fetch(`http://localhost:3000/api/board/list/5?page=${page}`);
+    const res = await fetch(`http://myxd.co.kr/api/board/list/5?page=${page}`);
     const result = await res.json();
 
     return {
