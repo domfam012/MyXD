@@ -39,7 +39,7 @@ const HeaderAdmin = props => {
             <div className={"nav_wrap"}>
                 <nav className={"gnb"}>
                     <Link href="/">
-                        <a className="logo"><span className="pink"><img src="/img/common/logo.png" alt="myXD"/></span></a>
+                        <a className="logo"><span className="pink"><img src="/img/common/logo.png" alt="myXD"  style={{width: 102 + 'px'}}/></span></a>
                     </Link>
                     {/* tab,mobile 메뉴 버튼 */}
                     <div className={"menu"}>

@@ -39,7 +39,7 @@ const Layout = props => {
                 <meta property="og:type" content="website"/>
                 <meta property="og:title" content="MyXD"/>
                 <meta property="og:description" content="무료 XD 템플릿을 만나 보세요"/>
-                <meta property="og:image" content="/img/common/logo_og.png" style="width: 102px;"/>
+                <meta property="og:image" content="/img/common/logo_og.png"/>
                 <meta property="og:url" content="http://myxd.co.kr/"/>
 
                 {/* app 파비콘 설정 */}
