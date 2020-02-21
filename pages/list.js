@@ -36,41 +36,41 @@ const Temp = props => {
                 background-color: var(--white);
                 background-color: #ffffff;
                 margin: 0 27px 30px 0;
-              }
-              li:nth-child(3n) {
-                margin-right: 0;
-              }
-              .inner {
-                display: block;
-              }
-              .li-img, .li-text, .inner {
-                display: block;
-                padding: 0;
-              }
-              .li-img {
-                width: 100%;
-                height: 209px;
-                background: #d3d3d3;
-                text-align: center;
-              }
-              .li-img img {
-                width: auto;
-                max-width: 100%;
-                height: 100%;
-              }
-              .li-text {
-                height: 84px;
-                padding: 28px 30px;
-                background: #ffffff;
-              }
-              .li-text .title {
-                color: #333333;
-                line-height: 26px;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                white-space: nowrap;
-                width: 313px;
-                display: block; 
+                  :nth-child(3n) {
+                    margin-right: 0;
+                  }
+                .inner {
+                    display: block;
+                    .li-img, .li-text, .inner {
+                        display: block;
+                        padding: 0;
+                      }
+                    .li-img {
+                        width: 100%;
+                        height: 209px;
+                        background: #d3d3d3;
+                        text-align: center;
+                          img {
+                            width: auto;
+                            max-width: 100%;
+                            height: 100%;
+                          }
+                      }
+                    .li-text {
+                        height: 84px;
+                        padding: 28px 30px;
+                        background: #ffffff;
+                        .title {
+                            color: #333333;
+                            line-height: 26px;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            white-space: nowrap;
+                            width: 313px;
+                            display: block; 
+                          }
+                      }
+                  }
               }
               @media (max-width: 1200px) {
                   li {
@@ -80,43 +80,41 @@ const Temp = props => {
                     background: none;
                     border: 0;
                     margin: 30px 27px 0 0;
-                  }
-                  li:nth-child(3n) {
-                    margin-right: 27px;
-                  }
-                  .mt-0 {
-                    margin-top: 30px !important;
-                  }
-                  li:nth-child(2n) {
-                    margin-right: 0;
-                  }
-                  .li-img {
-                    height: 100%;
-                  }
-                  .li-img img{
-                      width: 100%;
-                      height: 100%;
-                    }
-                  .inner {
-                    display: block;
-                  }
-                  .li-text {
-                    height: 78px;
-                    padding: 28px 30px;
+                      .inner {
+                        display: block;
+                        :nth-child(3n) {
+                          margin-right: 27px;
+                        }
+                        :nth-child(2n) {
+                          margin-right: 0;
+                        }
+                      .li-img {
+                        height: 100%;
+                        img {
+                          width: 100%;
+                          height: 100%;
+                        }
+                      }
+                      .li-text {
+                        height: 78px;
+                        padding: 28px 30px;
+                      }
+                      }
                   }
               }
-                
               @media (max-width: 760px){
                     li {
                       width: 100%;
                       margin-right: 0;
-                    }
-                    li .li-img img{
-                      width: 100%;
-                      height: 100%;
-                    }
-                    .li-text .title {
-                        width: 220px;
+                      .li-img {
+                        img{
+                          width: 100%;
+                          height: 100%;
+                        }
+                      }
+                      .li-text .title {
+                          width: 220px;
+                        }
                     }
               }
          `}</style>
