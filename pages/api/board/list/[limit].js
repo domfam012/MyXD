@@ -21,7 +21,8 @@ export default async (req, res) => {
      *
      *  currently using the first
      *
-     *  TODO: -> 3rd (DONE)
+     *  TODO: -> 3rd .. 확인 필요
+     *  TODO: -> 카테고리 조회 등의 경우에 따로 만들 필요 있음
      *
      *  TODO: check the firestore update rule!!
      *
@@ -35,7 +36,7 @@ export default async (req, res) => {
 
         // 전체 글 개수 조회
         const countRef = await db.collection('Count').doc('Posts').get();
-        const total = await countRef.data().count;
+        let total = await countRef.data().count;
 
         // 카테고리
         let category = '';
@@ -57,7 +58,7 @@ export default async (req, res) => {
         // 페이지에 해당하는 글 목록 조회
         let ref;
 
-        if(category === '') {
+        if(category === '') { // 리스트 전체 조회하는 경우
             if (Number(page) === 1) {
                 ref = await collection.orderBy("created", "desc").limit(parseInt(limit)).get();
             }
@@ -67,7 +68,11 @@ export default async (req, res) => {
                 ref = await collection.orderBy("created", "desc").startAfter(lastVisible).limit(parseInt(limit)).get();
             }
         }
-        else {
+        else { // 카테고리로 조회하는 경우
+            total = await collection.where("category", "array-contains", category).orderBy("created", "desc").get().then(
+                snap => snap.size
+            );
+
             if (Number(page) === 1) {
                 ref = await collection.where("category", "array-contains", category).orderBy("created", "desc").limit(parseInt(limit)).get();
             }
@@ -77,8 +82,6 @@ export default async (req, res) => {
                 ref = await collection.orderBy("created", "desc").startAfter(lastVisible).limit(parseInt(limit)).get();
             }
         }
-
-
 
         // 조회된 글 담을 data
         const data = [];
