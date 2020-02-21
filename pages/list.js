@@ -36,7 +36,8 @@ const Temp = props => {
                 background-color: var(--white);
                 background-color: #ffffff;
                 margin: 0 27px 30px 0;
-                  :nth-child(3n) {
+                
+                :nth-child(3n) {
                     margin-right: 0;
                   }
                 .inner {
