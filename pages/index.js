@@ -8,7 +8,6 @@ import Layout from '../components/Layout';
 import Aside from '../components/Aside';
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
 import Pagination from "react-js-pagination";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDoubleRight } from '@fortawesome/pro-light-svg-icons';
