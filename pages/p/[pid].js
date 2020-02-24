@@ -26,34 +26,37 @@ const Template = props => {
                     width: calc(33% - 31px);
                     float: left;
                     margin-right: 20px;
+                    :first-child {
+                        margin-left: 30px;
+                    }
+                    :last-child {
+                        margin-right: 30px;
+                    }
+                    img {
+                        width: 100%;
+                        height: 143px;
+                    }
                 }
-                li:first-child {
-                    margin-left: 30px;
-                }
-                li:last-child {
-                    margin-right: 30px;
-                }
-                li img {
-                    width: 100%;
-                    height: 143px;
-                }
+                
                 .inner {
                     display: block;
                 }
+                
                 .li-img, .li-text, .inner {
                     display: block;
                     width: auto;
                 }
+                
                 .li-text {
                     padding: 20px 0 40px;
                     color: #666666;
-                }
-                .li-text .title {
-                    font-size: 20px;
-                    overflow: hidden;
-                    white-space: nowrap;
-                    text-overflow: ellipsis;
-                    
+                    .title {
+                        font-size: 20px;
+                        overflow: hidden;
+                        white-space: nowrap;
+                        text-overflow: ellipsis;
+                        
+                    }
                 }
                 .sub-title {
                     font-size: 20px;
@@ -64,28 +67,28 @@ const Template = props => {
                     li {
                         margin: 20px 20px 0 0;
                         width: calc(50% - 40px);
+                        :nth-child(3) {
+                            margin-left: 30px;
+                        }
+                        img {
+                            width: 100%;
+                            height: 100%;
+                        }
                     }
-                    li:nth-child(3) {
-                        margin-left: 30px;
-                    }
-                    li img {
-                    width: 100%;
-                    height: 100%;
-                }
                 }
                 //모바일
                 @media (max-width: 760px) {
-                     li {
+                    li {
                         width: 100%;
                         margin-left: 0;
                         margin-right: 0;
-                      }
-                      li:nth-child(1) {
-                        margin-left: 0;
-                      }
-                      li:nth-child(3) {
-                        margin-left: 0;
-                      }
+                        :nth-child(1) {
+                            margin-left: 0;
+                        }
+                        :nth-child(3) {
+                            margin-left: 0;
+                        }
+                    }
                 }            
            `}</style>
         </>

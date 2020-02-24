@@ -189,10 +189,10 @@ const Index = props => {
                     padding-right: 332px;
                 }
                 @media (max-width: 1200px) {
-                .nav {
-                      padding-right : 0;
+                    .nav {
+                          padding-right : 0;
+                    }
                 }
-            }
             `}</style>
         </Layout>
     );
