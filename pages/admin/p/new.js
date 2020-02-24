@@ -117,7 +117,7 @@ const New = props => {
                     };
 
                     // DB create
-                    await axios.post(`http://myxd.co.kr/api/board/create`, reqData, {
+                    await axios.post(`http://localhost:3000/api/board/create`, reqData, {
                             headers: {
                                 'Accept': 'application/json',
                                 'Headers': 'content-type',
@@ -313,37 +313,37 @@ const New = props => {
                     width: 321px;
                     height: 182px;
                     border: 1px solid #eaeaea;
-                }
-                .file-label .add {
-                    display: block;
-                    margin: 0 auto;
-                    padding: 69px 0;
-                    color: #96959a;
-                }
-                .file-label .added {
-                    width: 100%;
-                    height: 182px;
-                    margin: auto;
-                    overflow: hidden;
-                    background: #d3d3d3;
-                    text-align: center;
-                }
-                .file-label .added img {
-                    width: auto;
-                    height: 100%;
-                    max-width: 100%;
-                }
-                .file-label .added .btn-close {
-                    position: absolute;
-                    top: 0;
-                    right: 0;
-                    background-color: #000;
-                    width: 30px;
-                    height: 30px;
-                    background-image: url("/img/common/btn-close.png");
-                    background-repeat: no-repeat;
-                    background-size: 71%;
-                    background-position: center;
+                    .add {
+                        display: block;
+                        margin: 0 auto;
+                        padding: 69px 0;
+                        color: #96959a;
+                    }
+                    .added {
+                        width: 100%;
+                        height: 182px;
+                        margin: auto;
+                        overflow: hidden;
+                        background: #d3d3d3;
+                        text-align: center;
+                        img {
+                            width: auto;
+                            height: 100%;
+                            max-width: 100%;
+                        }
+                        .btn-close {
+                            position: absolute;
+                            top: 0;
+                            right: 0;
+                            background-color: #000;
+                            width: 30px;
+                            height: 30px;
+                            background-image: url("/img/common/btn-close.png");
+                            background-repeat: no-repeat;
+                            background-size: 71%;
+                            background-position: center;
+                        }
+                    }
                 }
                 input[type="file"] {
                     display: none;
@@ -367,7 +367,7 @@ New.getInitialProps = async (ctx) => {
     }
 
     const page = ctx.query.page || '1';
-    const res = await fetch(`http://myxd.co.kr/api/board/list/5?page=${page}`);
+    const res = await fetch(`http://localhost:3000/api/board/list/5?page=${page}`);
     const result = await res.json();
 
     return {

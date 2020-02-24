@@ -197,7 +197,7 @@ Index.getInitialProps = async function (ctx) {
     const cat = ctx.query.cat || 'uikits';
 
     // /api/board/list/{limit(불러올 데이터 개수)}?cat={category}&page={page_number}
-    const res = await fetch(`http://myxd.co.kr/api/board/list/15?cat=${cat}&page=${page}`);
+    const res = await fetch(`http://localhost:3000/api/board/list/15?cat=${cat}&page=${page}`);
     const result = await res.json();
 
     // data : 글 data

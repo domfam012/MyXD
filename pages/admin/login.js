@@ -44,7 +44,7 @@ const Login  = props => {
             setPwdTipShow(true);
             return;
         } else {
-            fetch(`http://myxd.co.kr/api/user/login`, {
+            fetch(`http://localhost:3000/api/user/login`, {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
@@ -166,13 +166,13 @@ const Login  = props => {
                     border-bottom: 1px solid #707070;
                     padding: 10px;
                     color: #333;
+                    ::placeholder {
+                        letter-spacing: normal;
+                        color: #999;
+                    }
                 }
                 input[type="password"] {
                     letter-spacing: -2px;
-                }
-                input::placeholder {
-                    letter-spacing: normal;
-                    color: #999;
                 }
                 a.btn {
                     margin-top: 50px;
@@ -192,18 +192,18 @@ const Login  = props => {
                     right: auto;
                     bottom: auto;
                     left: 0;
-                }
-                .help-text::after {
-                    content: "";
-                    position: absolute;
-                    bottom: 96%;
-                    top: auto;
-                    left: 50%;
-                    right: auto;
-                    margin-left: -10px;
-                    border-width: 5px;
-                    border-style: solid;
-                    border-color: transparent transparent #116edd transparent;
+                    ::after {
+                        content: "";
+                        position: absolute;
+                        bottom: 96%;
+                        top: auto;
+                        left: 50%;
+                        right: auto;
+                        margin-left: -10px;
+                        border-width: 5px;
+                        border-style: solid;
+                        border-color: transparent transparent #116edd transparent;
+                    }
                 }
                 
                 @media (max-width: 1200px) {

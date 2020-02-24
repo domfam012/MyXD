@@ -1,5 +1,5 @@
-import Layout from '../../include/Layout';
-import Aside from '../../include/Aside';
+import Layout from '../../components/Layout';
+import Aside from '../../components/Aside';
 import fetch from 'isomorphic-unfetch'
 import Link from "next/link";
 import React from "react";
@@ -275,7 +275,7 @@ Detail.getInitialProps = async ctx => {
     const res = await fetch(`http://13.209.55.219/api/board/post/${pid}`);
     const result = await res.json();
 
-    const asideRes = await fetch(`http://myxd.co.kr/api/board/interest`);
+    const asideRes = await fetch(`http://localhost:3000/api/board/interest`);
     const asideResult = await asideRes.json();
 
     switch(result.status){

@@ -24,7 +24,7 @@ const BoxList = props => {
     const deleteItem = () => {
         const check = confirm('해당 글을 삭제하시겠습니까?');
         if (check) {
-            fetch(`http://myxd.co.kr/api/board/post/${pid}`, {
+            fetch(`http://localhost:3000/api/board/post/${pid}`, {
                 method: 'DELETE',
                 headers: {
                     'Accept': 'application/json',
@@ -138,13 +138,15 @@ const BoxList = props => {
                     padding-bottom: 39px;
                     height: 238px;
                     border: 0 solid transparent;
+                    :hover {
+                        box-shadow: 3px 3px 12px 0 rgba(0, 0, 0, 0.24);
+                        background-color: var(--white);
+                        .box-bottom-line {
+                            width: 0;
+                        }
+                    }
                 }
                 
-                .box-list:hover {
-                    box-shadow: 3px 3px 12px 0 rgba(0, 0, 0, 0.24);
-                    background-color: var(--white);
-                }
-
                 .img-list {
                     width: 278px;
                     height: 162px;
@@ -154,10 +156,6 @@ const BoxList = props => {
                     margin-top: 41px;
                     width:1060px;
                     color:#fcfcfc;
-                }
-                
-                .box-list:hover .box-bottom-line {
-                    width: 0;
                 }
             `}</style>
         </div>
@@ -287,7 +285,7 @@ List.getInitialProps = async (ctx) => {
     const page = ctx.query.page || '1';
 
     // /api/board/list/{limit(불러올 데이터 개수)}?page={page_number}
-    const res = await fetch(`http://myxd.co.kr/api/board/list/5?page=${page}`);
+    const res = await fetch(`http://localhost:3000/api/board/list/5?page=${page}`);
     const result = await res.json();
 
     // data : fetch data

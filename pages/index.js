@@ -200,10 +200,10 @@ const Index = props => {
 
 Index.getInitialProps = async function (ctx) {
     const page = ctx.query.page || '1'; // default page index
-    const res = await fetch(`http://myxd.co.kr/api/board/list/15?page=${page}`); // get /api/board/lsit/[limit]?page={page}
+    const res = await fetch(`http://localhost:3000/api/board/list/15?page=${page}`); // get /api/board/lsit/[limit]?page={page}
     const result = await res.json();
 
-    const asideRes = await fetch(`http://myxd.co.kr/api/board/interest`);
+    const asideRes = await fetch(`http://localhost:3000/api/board/interest`);
     const asideResult = await asideRes.json();
 
     return {

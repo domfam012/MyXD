@@ -149,7 +149,7 @@ const Update = props => {
 
     // DB update
     const uploadPost = (reqData) => {
-        axios.patch(`http://myxd.co.kr/api/board/post/${pid}`, reqData, {
+        axios.patch(`http://localhost:3000/api/board/post/${pid}`, reqData, {
                 headers: {
                     'Accept': 'application/json',
                     'Headers': 'content-type',
@@ -332,40 +332,52 @@ const Update = props => {
                     height: 182px;
                     border: 1px solid #eaeaea;
                     overflow: hidden;
-                }
-                .file-label .add {
-                    display: block;
-                    //display: none;
-                    margin: 0 auto;
-                    padding: 69px 0;
-                    color: #96959a;
-                }
-                .file-label .added {
-                    position: relative;
-                    width: 319px;
-                    height: 180px;
-                    overflow: hidden;
-                }
-                .file-label .added img {
-                    position: absolute;
-                    left: 0;
-                    top: 0;
-                    max-width: 100%;
-                    max-height: 100%;
-                    width: auto;
-                    height: auto;
-                }
-                .file-label .added .btn-close {
-                    position: absolute;
-                    top: 0;
-                    right: 0;
-                    background-color: #000;
-                    width: 30px;
-                    height: 30px;
-                    background-image: url("/img/common/btn-close.png");
-                    background-repeat: no-repeat;
-                    background-size: 71%;
-                    background-position: center;
+                    .add {
+                        display: block;
+                        //display: none;
+                        margin: 0 auto;
+                        padding: 69px 0;
+                        color: #96959a;
+                    }
+                    .added {
+                        position: relative;
+                        width: 319px;
+                        height: 180px;
+                        overflow: hidden;
+                        img {
+                            position: absolute;
+                            left: 0;
+                            top: 0;
+                            max-width: 100%;
+                            max-height: 100%;
+                            width: auto;
+                            height: auto;
+                        }
+                        .btn-close {
+                            position: absolute;
+                            top: 0;
+                            right: 0;
+                            background-color: #000;
+                            width: 30px;
+                            height: 30px;
+                            background-image: url("/img/common/btn-close.png");
+                            background-repeat: no-repeat;
+                            background-size: 71%;
+                            background-position: center;
+                        }
+                        .btn-close {
+                            position: absolute;
+                            top: 0;
+                            right: 0;
+                            background-color: #000;
+                            width: 30px;
+                            height: 30px;
+                            background-image: url("/img/common/btn-close.png");
+                            background-repeat: no-repeat;
+                            background-size: 71%;
+                            background-position: center;
+                        }
+                    }
                 }
                 input[type="file"] {
                     display: none;
@@ -389,7 +401,7 @@ Update.getInitialProps = async function (ctx) {
     }
 
     const pid = ctx.query.pid;
-    const res = await fetch(`http://myxd.co.kr/api/board/post/${pid}`);
+    const res = await fetch(`http://localhost:3000/api/board/post/${pid}`);
     const result = await res.json();
 
     return {
