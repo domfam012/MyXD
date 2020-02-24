@@ -3,7 +3,7 @@
  *      -> 넘겨 받은 query 로 limit, page 값 지정해서 조회
  */
 
-import { loadDB } from './../../../../lib/js/db';
+import { loadDB } from '../../../../public/js/db';
 import moment from 'moment';
 
 export default async (req, res) => {

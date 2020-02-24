@@ -1,11 +1,11 @@
 import Head from "next/head";
-import Layout from '../../../../include/Layout';
+import Layout from '../../../../components/Layout';
 import { useState, useRef } from 'react';
 import { useRouter } from 'next/router';
 import fetch from 'isomorphic-unfetch';
 import axios from 'axios';
 import nextCookie from "next-cookies";
-import { loadStorage, storage } from './../../../../lib/js/db';
+import { loadStorage, storage } from '../../../../public/js/db';
 import shortid from 'shortid';
 
 const Update = props => {
@@ -332,40 +332,52 @@ const Update = props => {
                     height: 182px;
                     border: 1px solid #eaeaea;
                     overflow: hidden;
-                }
-                .file-label .add {
-                    display: block;
-                    //display: none;
-                    margin: 0 auto;
-                    padding: 69px 0;
-                    color: #96959a;
-                }
-                .file-label .added {
-                    position: relative;
-                    width: 319px;
-                    height: 180px;
-                    overflow: hidden;
-                }
-                .file-label .added img {
-                    position: absolute;
-                    left: 0;
-                    top: 0;
-                    max-width: 100%;
-                    max-height: 100%;
-                    width: auto;
-                    height: auto;
-                }
-                .file-label .added .btn-close {
-                    position: absolute;
-                    top: 0;
-                    right: 0;
-                    background-color: #000;
-                    width: 30px;
-                    height: 30px;
-                    background-image: url("/img/common/btn-close.png");
-                    background-repeat: no-repeat;
-                    background-size: 71%;
-                    background-position: center;
+                    .add {
+                        display: block;
+                        //display: none;
+                        margin: 0 auto;
+                        padding: 69px 0;
+                        color: #96959a;
+                    }
+                    .added {
+                        position: relative;
+                        width: 319px;
+                        height: 180px;
+                        overflow: hidden;
+                        img {
+                            position: absolute;
+                            left: 0;
+                            top: 0;
+                            max-width: 100%;
+                            max-height: 100%;
+                            width: auto;
+                            height: auto;
+                        }
+                        .btn-close {
+                            position: absolute;
+                            top: 0;
+                            right: 0;
+                            background-color: #000;
+                            width: 30px;
+                            height: 30px;
+                            background-image: url("/img/common/btn-close.png");
+                            background-repeat: no-repeat;
+                            background-size: 71%;
+                            background-position: center;
+                        }
+                        .btn-close {
+                            position: absolute;
+                            top: 0;
+                            right: 0;
+                            background-color: #000;
+                            width: 30px;
+                            height: 30px;
+                            background-image: url("/img/common/btn-close.png");
+                            background-repeat: no-repeat;
+                            background-size: 71%;
+                            background-position: center;
+                        }
+                    }
                 }
                 input[type="file"] {
                     display: none;

@@ -4,8 +4,8 @@
  */
 
 import React from "react";
-import Layout from '../include/Layout';
-import Aside from '../include/Aside';
+import Layout from '../components/Layout';
+import Aside from '../components/Aside';
 import Link from "next/link";
 import {useRouter} from "next/router";
 import Pagination from "react-js-pagination";
@@ -189,10 +189,10 @@ const Index = props => {
                     padding-right: 332px;
                 }
                 @media (max-width: 1200px) {
-                .nav {
-                      padding-right : 0;
+                    .nav {
+                          padding-right : 0;
+                    }
                 }
-            }
             `}</style>
         </Layout>
     );

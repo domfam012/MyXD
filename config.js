@@ -28,11 +28,6 @@ const option = {
         messagingSenderId: "575641093519",
         appId: "1:575641093519:web:56035054fbaa244dfe37fa"
     },
-    cookie: {
-        name: 'MyXD',
-        keys: ['MyXD12!#', 'DomFAM3$'],
-        maxAge: 1000 * 60 * 60 * 10 // 10 hours
-    },
     assetPrefix: {
         dev: 'http://localhost:3000',
         aws: 'http://myxd.co.kr',

@@ -1,5 +1,5 @@
 import React from "react";
-import Layout from '../include/Layout';
+import Layout from '../components/Layout';
 import Link from "next/link";
 import {useRouter} from "next/router";
 import Pagination from "react-js-pagination";
@@ -28,7 +28,7 @@ const Temp = props => {
                 </Link>
             </li>
             <style jsx>{`
-              li {
+                li {
                 display: block;
                 width: calc(33.3% - 18px);
                 float: left;
@@ -36,88 +36,88 @@ const Temp = props => {
                 background-color: var(--white);
                 background-color: #ffffff;
                 margin: 0 27px 30px 0;
-                  :nth-child(3n) {
-                    margin-right: 0;
-                  }
-                .inner {
-                    display: block;
-                    .li-img, .li-text, .inner {
+                    :nth-child(3n) {
+                        margin-right: 0;
+                    }
+                    .inner {
                         display: block;
-                        padding: 0;
-                      }
-                    .li-img {
-                        width: 100%;
-                        height: 209px;
-                        background: #d3d3d3;
-                        text-align: center;
-                          img {
-                            width: auto;
-                            max-width: 100%;
-                            height: 100%;
-                          }
-                      }
-                    .li-text {
-                        height: 84px;
-                        padding: 28px 30px;
-                        background: #ffffff;
-                        .title {
-                            color: #333333;
-                            line-height: 26px;
-                            overflow: hidden;
-                            text-overflow: ellipsis;
-                            white-space: nowrap;
-                            width: 313px;
-                            display: block; 
-                          }
-                      }
-                  }
-              }
-              @media (max-width: 1200px) {
-                  li {
-                    display: block;
-                    width: calc(50% - 27px);
-                    float: left;
-                    background: none;
-                    border: 0;
-                    margin: 30px 27px 0 0;
-                      .inner {
-                        display: block;
-                        :nth-child(3n) {
-                          margin-right: 27px;
+                        .li-img, .li-text, .inner {
+                            display: block;
+                            padding: 0;
                         }
-                        :nth-child(2n) {
-                          margin-right: 0;
+                        .li-img {
+                            width: 100%;
+                            height: 209px;
+                            background: #d3d3d3;
+                            text-align: center;
+                            img {
+                                width: auto;
+                                max-width: 100%;
+                                height: 100%;
+                            }
                         }
-                      .li-img {
-                        height: 100%;
-                        img {
-                          width: 100%;
-                          height: 100%;
-                        }
-                      }
-                      .li-text {
-                        height: 78px;
-                        padding: 28px 30px;
-                      }
-                      }
-                  }
-              }
-              @media (max-width: 760px){
-                    li {
-                      width: 100%;
-                      margin-right: 0;
-                      .li-img {
-                        img{
-                          width: 100%;
-                          height: 100%;
-                        }
-                      }
-                      .li-text .title {
-                          width: 220px;
+                        .li-text {
+                            height: 84px;
+                            padding: 28px 30px;
+                            background: #ffffff;
+                            .title {
+                                color: #333333;
+                                line-height: 26px;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                                white-space: nowrap;
+                                width: 313px;
+                                display: block; 
+                            }
                         }
                     }
-              }
-         `}</style>
+                }
+                @media (max-width: 1200px) {
+                    li {
+                        display: block;
+                        width: calc(50% - 27px);
+                        float: left;
+                        background: none;
+                        border: 0;
+                        margin: 30px 27px 0 0;
+                        .inner {
+                            display: block;
+                            :nth-child(3n) {
+                                margin-right: 27px;
+                            }
+                            :nth-child(2n) {
+                                margin-right: 0;
+                            }
+                            .li-img {
+                                height: 100%;
+                                img {
+                                    width: 100%;
+                                    height: 100%;
+                                }
+                            }
+                            .li-text {
+                                height: 78px;
+                                padding: 28px 30px;
+                            }
+                        }
+                    }
+                }
+                @media (max-width: 760px){
+                    li {
+                    width: 100%;
+                    margin-right: 0;
+                        .li-img {
+                            img{
+                                width: 100%;
+                                height: 100%;
+                            }
+                        }
+                        .li-text .title {
+                            width: 220px;
+                        }
+                    }
+                }
+            `}</style>
         </>
     );
 };
@@ -168,23 +168,23 @@ const Index = props => {
                 />
             </div>
             <style jsx>{`
-              .list {
-                margin: 0 auto;
-                overflow: hidden;
-                padding-bottom: 5px;
-              }
-              .nav {
+                .list {
+                    margin: 0 auto;
+                    overflow: hidden;
+                    padding-bottom: 5px;
+                }
+                .nav {
                     width: 100%;
                     margin-top: 30px;
                     margin-bottom: 70px;
                 }
-              @media (max-width: 1200px) {
-                  .list {
-                    margin: 0 auto;
-                    overflow: hidden;
-                  }
-              }
-         `}</style>
+                @media (max-width: 1200px) {
+                    .list {
+                        margin: 0 auto;
+                        overflow: hidden;
+                    }
+                }
+            `}</style>
         </Layout>
     );
 };
