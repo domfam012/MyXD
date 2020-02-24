@@ -13,7 +13,6 @@ const helmet = require('helmet');
 const bodyParser = require('body-parser');
 
 const { option } = require('./config.js');
-const cookieSession = require('cookie-session');
 
 const port = dev ? option.port.dev : option.port.production;
 const ip = dev ? option.ip.dev : option.ip.production;
@@ -28,7 +27,6 @@ app.prepare().then(() => {
         express.set('trust proxy', 1);
         express.use(
             helmet(),
-            cookieSession(option.cookie),
             bodyParser.urlencoded({extended: true}),
             bodyParser.json()
         );

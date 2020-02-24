@@ -139,7 +139,6 @@ const Detail = props => {
                     box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
                     background-color: #ffffff;
                     margin-bottom: 50px;
-                    cursor: pointer;
                     :last-child {
                         margin-bottom: 0;
                     }
