@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+{/* 템플릿 카드 */}
 const Card = props => {
     return(
         <Link href={`/p/${props.pid}`}>
@@ -13,10 +14,15 @@ const Card = props => {
                     </div>
                     <style jsx>{`
                     .temp .img {
-                        width: 248px;
+                        width: 100%;
+                        height: 140px;
+                        background: #d3d3d3;
+                        text-align: center;
                     }
                     .temp .img img {
-                        width: 100%;
+                        width: auto;
+                        max-width: 100%;
+                        height: 100%;
                     }
                     .temp .title {
                         font-size: 14px;
@@ -35,11 +41,9 @@ const Card = props => {
 
 
 
+// 우측 인기템플릿 aside
 const Aside = props => (
     <aside>
-        {/*{*/}
-        {/*    console.log(props.asideData)*/}
-        {/*}*/}
         <div>
             <div className="aside">
                 <a href="#">
@@ -49,7 +53,7 @@ const Aside = props => (
                 </a>
                 <div className={"box_temp"}>
                     <div className={"title"}>인기 템플릿</div>
-
+                    {/* 템플릿 카드 */}
                     {
                         props.asideData.map(item => (
                             <Card key={item.pid} title={item.title} pid={item.pid} imgPath={item.imgPath}/>

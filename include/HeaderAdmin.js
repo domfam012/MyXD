@@ -4,6 +4,7 @@ import Link from "next/link";
 import fetch from "isomorphic-unfetch";
 import cookie from "js-cookie";
 
+// 관리자 페이지 Header
 const HeaderAdmin = props => {
     const router = useRouter();
     /**
@@ -38,7 +39,7 @@ const HeaderAdmin = props => {
             <div className={"nav_wrap"}>
                 <nav className={"gnb"}>
                     <Link href="/">
-                        <a className="logo"><span className="pink">MyXD</span></a>
+                        <a className="logo"><span className="pink"><img src="/img/common/logo.png" alt="myXD"  style={{width: 102 + 'px'}}/></span></a>
                     </Link>
                     {/* tab,mobile 메뉴 버튼 */}
                     <div className={"menu"}>
@@ -67,6 +68,7 @@ const HeaderAdmin = props => {
                     </div>
                     <div className={"icon-menu"}>
                         <ul>
+                            {/* 관리자 로그인 / 로그아웃 */}
                             <li className="item">
                                 <Link href="/admin/logout">
                                     <a onClick={logout} className="link" href="#"><img src="/img/common/login.png" alt="login"/></a>
@@ -113,6 +115,7 @@ const HeaderAdmin = props => {
                 float: left;
                 margin-right: 80px;
                 line-height: 68px;
+                
               }
               .nav_wrap .menu ul .item.active .link,
               .nav_wrap .menu ul .item:hover .link{
@@ -127,6 +130,7 @@ const HeaderAdmin = props => {
               .nav_wrap .menu ul .item .link {
                 padding: 8.5px 10px !important;
                 font-weight: bold;
+                color: #fff;
               }
               /*
                 icon-menu 
@@ -141,6 +145,7 @@ const HeaderAdmin = props => {
               }
               .nav_wrap .icon-menu ul .item .link{
                 padding: 10px;
+                color: #ffffff;
               }
               .nav_wrap .icon-menu ul .item:nth-child(3) {
                 margin-right: 78px;

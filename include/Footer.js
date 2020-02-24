@@ -1,3 +1,4 @@
+// Footer
 const Footer = props => (
     <footer>
         <div className={ props.isResponsive ? "footer" : "footer footer-xl" }>

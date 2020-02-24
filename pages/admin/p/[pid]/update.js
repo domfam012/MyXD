@@ -9,7 +9,10 @@ import { loadStorage, storage } from './../../../../lib/js/db';
 import shortid from 'shortid';
 
 const Update = props => {
+    // 해당 글의 기존 데이터
     const [ data, setData ] = useState(props.data);
+
+    // 입력 값
     const [ title, setTitle ] = useState(data.title);
     const [ content, setContent ] = useState(data.content);
     const [ category, setCategory ] = useState(data.category);
@@ -17,18 +20,22 @@ const Update = props => {
     const [ imgName, setImgName ] = useState('');
     const [ imgChanged, setImgChanged ] = useState(false);
     const [ link, setLink ] = useState(data.link);
+
+    // input file element
     const inputFileEl = useRef(null);
+
     const router = useRouter();
     const pid = router.query.pid;
 
-    console.log(content);
-
+    // 제목 입력
     const titleChange = e => {
         setTitle(e.target.value);
     };
+    // 내용 입력
     const contentChange = e => {
         setContent(e.target.value);
     };
+    // 카테고리 선택 / 해제
     const categoryChange = e => {
         const val = e.target.value;
         if (e.target.checked) { // 배열에 추가
@@ -38,6 +45,7 @@ const Update = props => {
             setCategory(category.filter(item => item !== val));
         }
     };
+    // 이미지 업로드
     const onFileUpload = e => {
         const preview = URL.createObjectURL(e.target.files[0]);
         setImg(preview);
@@ -45,16 +53,19 @@ const Update = props => {
         setImgChanged(true);
         inputFileEl.current.focus();
     };
+    // 업로드 이미지 제거
     const fileRemove = e => {
         e.preventDefault();
         setImg('');
         setImgName('');
         inputFileEl.current.value = null;
     };
+    // 링크 입력
     const linkChange = e => {
         setLink(e.target.value);
     };
 
+    // 취소 클릭
     const cancelSubmit = (e) => {
         e.preventDefault();
         const check = confirm('작성을 취소하시겠습니까?');
@@ -62,6 +73,8 @@ const Update = props => {
             router.push('/admin/p/list');
         }
     };
+
+    // 저장
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -78,11 +91,17 @@ const Update = props => {
         const check = confirm('등록하시겠습니까?');
         if (check) {
             let reqData = { title, content, link, category };
+
+            // 이미지 firestore storage 에 저장
             uploadFile(reqData, uploadPost);
         }
     };
 
+    // 이미지 firestore storage 에 저장
     const uploadFile = async (reqData, cb) => {
+
+        // 이미지 변경된 경우
+        // firestore storage 에 업로드
         if (imgChanged) {
             const sid = shortid.generate();
             const storage = await loadStorage();
@@ -90,7 +109,7 @@ const Update = props => {
             const uploadTask = storageRef.put(inputFileEl.current.files[0]);
             uploadTask.on('state_changed',
                 snapshot => {
-                    const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+
                 },
                 err => {
                     switch (err.code) {
@@ -106,9 +125,10 @@ const Update = props => {
                     }
                 },
                 async () => {
+                    // 업로드된 이미지 url
                     const downloadURL = await uploadTask.snapshot.ref.getDownloadURL()
                         .then(downloadURL => {
-                            console.log(`file uploaded..\n${downloadURL}`);
+                            // console.log(`file uploaded..\n${downloadURL}`);
                             return downloadURL;
                         });
 
@@ -116,17 +136,19 @@ const Update = props => {
                         ...reqData, imgName: imgName, imgPath: downloadURL, imgSaveName: sid
                     };
 
-                    cb(newData);
+                    cb(newData); // uploadPost
                 }
             );
         }
+
+        // 이미지 변경되지 않은 경우
         else {
-            cb(reqData);
+            cb(reqData); // uploadPost
         }
     };
 
+    // DB update
     const uploadPost = (reqData) => {
-
         axios.patch(`http://myxd.co.kr/api/board/post/${pid}`, reqData, {
                 headers: {
                     'Accept': 'application/json',
@@ -135,7 +157,7 @@ const Update = props => {
                 }
             })
             .then(() => {
-                console.log(`post uploaded..\n`);
+                // console.log(`post uploaded..\n`);
                 alert('업로드 되었습니다.');
                 router.push('/admin/p/list');
             })
@@ -162,6 +184,7 @@ const Update = props => {
                             <div className={"col col-sm-12"}>
                                 <form encType={"multipart/form-data"} onSubmit={handleSubmit}>
 
+                                    {/* 제목 */}
                                     <div className={"form-group"}>
                                         <div className={"label-area"}>
                                             <label className="col-form-label">제목</label>
@@ -174,6 +197,7 @@ const Update = props => {
                                         </div>
                                     </div>
 
+                                    {/* 카테고리 */}
                                     <div className={"form-group"}>
                                         <div className={"label-area"}>
                                             <label className="col-form-label">카테고리</label>
@@ -198,6 +222,7 @@ const Update = props => {
                                         </div>
                                     </div>
 
+                                    {/* 내용 */}
                                     <div className={"form-group"}>
                                         <div className={"label-area"}>
                                             <label className="col-form-label" style={{"lineHeight":"20.4"}}>내용</label>
@@ -209,6 +234,8 @@ const Update = props => {
                                             />
                                         </div>
                                     </div>
+
+                                    {/* 이미지 업로드 */}
                                     <div className={"form-group"}>
                                         <div className={"label-area"}>
                                             <label className="col-form-label" style={{"lineHeight":"9.4"}}>이미지 업로드</label>
@@ -232,6 +259,8 @@ const Update = props => {
                                                    onChange={onFileUpload}/>
                                         </div>
                                     </div>
+
+                                    {/* 링크 */}
                                     <div className={"form-group"}>
                                         <div className={"label-area"}>
                                             <label className="col-form-label">링크</label>
@@ -244,6 +273,7 @@ const Update = props => {
                                         </div>
                                     </div>
 
+                                    {/* 버튼 영역 */}
                                     <div className={"row form-btn"}>
                                         <div className={"col col-sm-12 text-center"}>
                                             <button className={"btn btn-lg btn-outline-lightgray"} onClick={cancelSubmit}>취소</button>

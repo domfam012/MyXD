@@ -4,6 +4,7 @@ import Link from "next/link";
 import fetch from "isomorphic-unfetch";
 import cookie from "js-cookie";
 
+// Header
 const Header = props => {
     const router = useRouter();
     /**
@@ -21,7 +22,7 @@ const Header = props => {
         if (check) {
             // console.log(`logout check true`);
 
-            const res = await fetch(`http://13.209.55.219/api/user/logout`);
+            const res = await fetch(`http://myxd.co.kr/api/user/logout`);
             if (res.status === 200) {
                 // console.log('logout success');
                 cookie.remove('token');
@@ -38,7 +39,7 @@ const Header = props => {
             <div className={"nav_wrap"}>
                 <nav className={props.isResponsive ? "navbar navbar-expand-xl" : "navbar navbar-expand-xl admin"}>
                     <Link href="/">
-                        <a className="navbar-brand"><span className="pink">MyXD</span></a>
+                        <a className="navbar-brand"><span className="pink"><img src="/img/common/logo.png" alt="myXD"  style={{width: 102 + 'px'}}/></span></a>
                     </Link>
                     {/* tab,mobile 메뉴 버튼 */}
                     <button className={`navbar-toggle ${menuActive ? 'active' : ''}`} type="button"
@@ -54,7 +55,10 @@ const Header = props => {
                     </button>
                     <div className="collapse navbar-collapse menu" id="navbarText">
                         <ul className="navbar-nav mr-auto">
+
+                            {/* category query 요청 */}
                             <Link href="/list?cat=uikits">
+                                {/* active menu check */}
                                 <li className={`nav-item ${props.activeMenu === 'uikits' ? 'active' : ''}`}>
                                     <a className="nav-link">UI KITS</a>
                                 </li>
@@ -77,6 +81,8 @@ const Header = props => {
 
                         </ul>
                     </div>
+
+                    {/* 소셜 연동 예정 */}
                     <div className={"collapse navbar-collapse navbar-icon"}>
                         <ul className="navbar-nav">
                             <li className="nav-item">

@@ -4,6 +4,7 @@ import fetch from 'isomorphic-unfetch'
 import Link from "next/link";
 import React from "react";
 
+// 연관 포스트 ('You may also like')
 const Template = props => {
     return (
         <>
@@ -97,23 +98,38 @@ const Detail = props => {
         <Layout>
             <div className={"clearfix"}>
                 <div>
+                    {/* 상세 포스트 */}
                     <div className={"main_card"}>
+                        {/* 이미지 */}
                         <div className={"img"}><img src={props.data.imgPath} alt=""/></div>
                         <div className={"box_text"}>
+                            {/* 제목 */}
                             <div className={"title"}>{props.data.title}</div>
+                            {/* 내용 */}
                             <div className={"text"}>
                                 {props.data.content}
                             </div>
+                            {/* 링크 페이지 */}
                             <div>
                                 <a href={props.data.link} className={"btn btn-primary"}>다운로드</a>
                             </div>
+
+                            {/*<div className={"detail_image"}>*/}
+                            {/*    <p><img src={props.data.imgPath} alt=""/></p>*/}
+                            {/*    <p><img src={props.data.imgPath} alt=""/></p>*/}
+                            {/*    <p><img src={props.data.imgPath} alt=""/></p>*/}
+                            {/*</div>*/}
+
+
                         </div>
+
                         <div>
                             <div className={"detail_title"}>
-                                <span>You may also like</span>
+                                <span>함께보면 좋을것 같아요</span>
                             </div>
                             <div className={"box-list"}>
                                 <ul className="list img-list">
+                                    {/* 연관 포스트 */}
                                     {
                                         props.asideData.map(item => (
                                             <Template key={item.pid} title={item.title} category={item.category} pid={item.pid} imgPath={item.imgPath}/>
@@ -124,6 +140,8 @@ const Detail = props => {
                         </div>
                     </div>
                 </div>
+
+                {/* 인기템플릿 */}
                 <Aside asideData={ props.asideData }/>
             </div>
             <style jsx>{`
@@ -175,15 +193,24 @@ const Detail = props => {
                 .nav {
                   float: left;
                 }
+                .detail_image {
+                    padding-top:30px;
+                }
+                .detail_image img {
+                    width:auto;
+                    max-width:100%;
+                }
+                
              //You may also like
                 .detail_title {
                     position: relative;
-                    width: 180px;
+                    width: 100%;
                     height: 23px;
                     color: #666666;
                     font-size: 20px;
                     font-weight: bold;
                     margin: 0 auto 18px;
+                    text-align:center;
                 }
                 .detail_title:after {
                     position: absolute;
@@ -192,7 +219,8 @@ const Detail = props => {
                     height: 1px;
                     border-bottom: 1px solid #96959a;
                     bottom: -17px;
-                    left: 32px;
+                    left:50%;
+                    margin-left:-50px;
                 }
             // 더보기
                   .box-list {

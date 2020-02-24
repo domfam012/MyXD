@@ -1,3 +1,7 @@
+/**
+ *  특정 포스트 (pid) 에 대한 CRUD
+ */
+
 import { loadDB, firestore } from '../../../../lib/js/db';
 import moment from 'moment';
 
@@ -9,15 +13,18 @@ export default async (req, res) => {
 
     const { query: { pid } } = req;
 
+    // load firestore database
     const db = await loadDB();
     const doc = await db.collection('Posts').doc(pid);
 
     let resData;
     switch ( req.method) {
+
+        // 글 조회
         case "GET" :
             const ref = await doc.get();
 
-            if (ref._document === null) {
+            if (ref._document === null) { // 없는 글일 경우
                 resData = JSON.stringify({
                     status: 404, msg: 'not found'
                 });
@@ -35,6 +42,7 @@ export default async (req, res) => {
             res.status(200).json(resData);
             break;
 
+        // 글 업데이트
         case "PATCH" :
             // Update
             const category = req.body.category;
@@ -42,14 +50,23 @@ export default async (req, res) => {
             const link = req.body.link || '';
             const title= req.body.title || '';
 
+            /**
+             *
+             * @type {{link: (*|string), category: *, title: (*|string), updated: string, content: (*|string)}}
+             *  TODO: detail img 추가 임시로 해뒀음
+             *
+             */
+            // detail img path 추가!
             let newData = {
                 category: category,
                 content: content,
                 link: link,
                 title: title,
+                detailImg: [''],
                 updated: moment().locale('ko').format()
             };
 
+            // img 변경된 경우
             if (req.body.imgName) {
                 const imgData = {
                     imgOriginName: req.body.imgName,
@@ -65,10 +82,13 @@ export default async (req, res) => {
             res.status(200).end();
             break;
 
+        // 글 삭제
         case "DELETE" :
             doc.delete();
             const countDoc = await db.collection('Count').doc('Posts');
             const decrement = firestore.FieldValue.increment(-1);
+
+            // 전체 글 개수 -1
             await countDoc.update({ count: decrement });
 
             resData = JSON.stringify({

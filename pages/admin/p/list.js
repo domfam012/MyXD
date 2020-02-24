@@ -12,12 +12,15 @@ import { faChevronRight } from '@fortawesome/pro-light-svg-icons';
 import Pagination from "react-js-pagination";
 import nextCookie from "next-cookies";
 
+// 포스트 목록
 const BoxList = props => {
     const { router, item, onDelete } = props;
     const pid = item.pid;
 
+    // 확인창 - bootstrap modal 사용 예정
     const [ show, setShow ] = useState(false);
 
+    // firestore db 삭제
     const deleteItem = () => {
         const check = confirm('해당 글을 삭제하시겠습니까?');
         if (check) {
@@ -37,6 +40,7 @@ const BoxList = props => {
         }
     };
 
+    // 글 편집 화면으로 이동
     const updateItem = () => {
         const check = confirm('해당 글을 수정하시겠습니까?');
         if (check) {
@@ -54,11 +58,9 @@ const BoxList = props => {
                     <div className={"list-title"}>
                         { item.title }
                     </div>
-
                     <p className={"list-content"}>
                         { item.content }
                     </p>
-
                 </div>
                 <div className={"col item-box-3"}>
                     {/*<button className={"btn-sm btn-gray-7 mr-3"} onClick={setShow(!show)}>삭제</button>*/}
@@ -164,6 +166,8 @@ const BoxList = props => {
 
 const List = props => {
     const router = useRouter();
+
+    // 페이지네이션 페이지 이동시
     const handlePageChange = (pageNumber) => {
         window.scrollTo(0, 0);
         router.push(`/admin/p/list?page=${pageNumber}`);
@@ -183,7 +187,7 @@ const List = props => {
 
                         <div className={"row pl-0 pr-0"}>
                             <div className={"col pl-0 pr-0"}>
-
+                                {/* 포스트 목록 */}
                                 {
                                     props.data.map(item => (
                                         <BoxList
@@ -193,16 +197,17 @@ const List = props => {
                                         />
                                     ))
                                 }
-
                             </div>
                         </div>
 
+                        {/* 글쓰기 화면으로 이동 */}
                         <div className={"bottom-btn-area"}>
                             <Link href={"/admin/p/new"}>
                                 <button className={"btn-sm btn-primary"}>글쓰기</button>
                             </Link>
                         </div>
 
+                        {/* 페이지네이션 */}
                         <div className={"paging"}>
                             <Pagination
                                 activePage={props.page}
@@ -278,10 +283,16 @@ List.getInitialProps = async (ctx) => {
         ctx.res.end();
     }
 
+    // 현재 페이지 (default: 1)
     const page = ctx.query.page || '1';
+
+    // /api/board/list/{limit(불러올 데이터 개수)}?page={page_number}
     const res = await fetch(`http://myxd.co.kr/api/board/list/5?page=${page}`);
     const result = await res.json();
 
+    // data : fetch data
+    // page : 현재 page
+    // total : 전체 데이터 개수
     return {
         data: result.data,
         page: Number(page),
