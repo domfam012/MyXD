@@ -117,7 +117,7 @@ const New = props => {
                     };
 
                     // DB create
-                    await axios.post(`http://localhost:3000/api/board/create`, reqData, {
+                    await axios.post(`http://myxd.co.kr/api/board/create`, reqData, {
                             headers: {
                                 'Accept': 'application/json',
                                 'Headers': 'content-type',
@@ -367,7 +367,7 @@ New.getInitialProps = async (ctx) => {
     }
 
     const page = ctx.query.page || '1';
-    const res = await fetch(`http://localhost:3000/api/board/list/5?page=${page}`);
+    const res = await fetch(`http://myxd.co.kr/api/board/list/5?page=${page}`);
     const result = await res.json();
 
     return {

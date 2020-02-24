@@ -149,7 +149,7 @@ const Update = props => {
 
     // DB update
     const uploadPost = (reqData) => {
-        axios.patch(`http://localhost:3000/api/board/post/${pid}`, reqData, {
+        axios.patch(`http://myxd.co.kr/api/board/post/${pid}`, reqData, {
                 headers: {
                     'Accept': 'application/json',
                     'Headers': 'content-type',
@@ -401,7 +401,7 @@ Update.getInitialProps = async function (ctx) {
     }
 
     const pid = ctx.query.pid;
-    const res = await fetch(`http://localhost:3000/api/board/post/${pid}`);
+    const res = await fetch(`http://myxd.co.kr/api/board/post/${pid}`);
     const result = await res.json();
 
     return {

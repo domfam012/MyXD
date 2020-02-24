@@ -24,7 +24,7 @@ const BoxList = props => {
     const deleteItem = () => {
         const check = confirm('해당 글을 삭제하시겠습니까?');
         if (check) {
-            fetch(`http://localhost:3000/api/board/post/${pid}`, {
+            fetch(`http://myxd.co.kr/api/board/post/${pid}`, {
                 method: 'DELETE',
                 headers: {
                     'Accept': 'application/json',
@@ -285,7 +285,7 @@ List.getInitialProps = async (ctx) => {
     const page = ctx.query.page || '1';
 
     // /api/board/list/{limit(불러올 데이터 개수)}?page={page_number}
-    const res = await fetch(`http://localhost:3000/api/board/list/5?page=${page}`);
+    const res = await fetch(`http://myxd.co.kr/api/board/list/5?page=${page}`);
     const result = await res.json();
 
     // data : fetch data
