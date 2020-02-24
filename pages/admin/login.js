@@ -130,33 +130,31 @@ const Login  = props => {
                     min-height: 420px;
                     margin: 0 0 70px;
                     position: relative;
+                    .login-box {
+                        position: absolute;
+                        width: 360px;
+                        height: 385px;
+                        top: calc((35px + 50% - 30px - 192.5px) * 0.96);
+                        left: calc(50% - 180px);
+                        background-color: #fff;
+                        box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+                        padding: 52px 40px 50px;
+                        h1 {
+                            font-size: 3rem;
+                            font-weight: 800;
+                            line-height: 3rem;
+                            text-align: center;
+                            margin-bottom: 7px;
+                            color: #2e001f;
+                        }
+                        .underline {
+                            display: inline-block;
+                            width: 30px;
+                            height: 1px;
+                            background-color: #2e001f;
+                        }
+                    }
                 }
-                .login-box {
-                    position: absolute;
-                    width: 360px;
-                    height: 385px;
-                    top: calc((35px + 50% - 30px - 192.5px) * 0.96);
-                    left: calc(50% - 180px);
-                    background-color: #fff;
-                    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
-                    padding: 52px 40px 50px;
-                }
-                
-                h1 {
-                    font-size: 3rem;
-                    font-weight: 800;
-                    line-height: 3rem;
-                    text-align: center;
-                    margin-bottom: 7px;
-                    color: #2e001f;
-                }
-                .underline {
-                    display: inline-block;
-                    width: 30px;
-                    height: 1px;
-                    background-color: #2e001f;
-                }
-                
                 .input-wrap {
                     position: relative;
                 }

@@ -1,5 +1,5 @@
-import Layout from '../../components/Layout';
-import Aside from '../../components/Aside';
+import Layout from '../../include/Layout';
+import Aside from '../../include/Aside';
 import fetch from 'isomorphic-unfetch'
 import Link from "next/link";
 import React from "react";
@@ -26,52 +26,48 @@ const Template = props => {
                     width: calc(33% - 31px);
                     float: left;
                     margin-right: 20px;
+                    :first-child {
+                        margin-left: 30px;
+                    }
+                    :last-child {
+                        margin-right: 30px;
+                    }
+                    .inner {
+                        display: block;
+                        .li-img, .li-text, .inner {
+                            display: block;
+                            width: auto;
+                        }
+                        .li-img {
+                            img {
+                                width: 100%;
+                                height: 143px;
+                            }
+                        }
+                        .li-text {
+                            padding: 20px 0 40px;
+                            color: #666666;
+                            .title {
+                                font-size: 20px;
+                                overflow: hidden;
+                                white-space: nowrap;
+                                text-overflow: ellipsis;
+                            }
+                        }
+                    }
                 }
-                li:first-child {
-                    margin-left: 30px;
-                }
-                li:last-child {
-                    margin-right: 30px;
-                }
-                li img {
-                    width: 100%;
-                    height: 143px;
-                }
-                .inner {
-                    display: block;
-                }
-                .li-img, .li-text, .inner {
-                    display: block;
-                    width: auto;
-                }
-                .li-text {
-                    padding: 20px 0 40px;
-                    color: #666666;
-                }
-                .li-text .title {
-                    font-size: 20px;
-                    overflow: hidden;
-                    white-space: nowrap;
-                    text-overflow: ellipsis;
-                    
-                }
-                .sub-title {
-                    font-size: 20px;
-                    padding-top: 10px;
-                }
-                
                 @media (max-width: 1200px) {
                     li {
                         margin: 20px 20px 0 0;
                         width: calc(50% - 40px);
+                        :nth-child(3) {
+                            margin-left: 30px;
+                        }
+                        img {
+                            width: 100%;
+                            height: 100%;
+                        }
                     }
-                    li:nth-child(3) {
-                        margin-left: 30px;
-                    }
-                    li img {
-                    width: 100%;
-                    height: 100%;
-                }
                 }
                 //모바일
                 @media (max-width: 760px) {
@@ -79,12 +75,12 @@ const Template = props => {
                         width: 100%;
                         margin-left: 0;
                         margin-right: 0;
-                      }
-                      li:nth-child(1) {
-                        margin-left: 0;
-                      }
-                      li:nth-child(3) {
-                        margin-left: 0;
+                          :nth-child(1) {
+                            margin-left: 0;
+                          }
+                          :nth-child(3) {
+                            margin-left: 0;
+                          }
                       }
                 }            
            `}</style>
@@ -113,13 +109,6 @@ const Detail = props => {
                             <div>
                                 <a href={props.data.link} className={"btn btn-primary"}>다운로드</a>
                             </div>
-
-                            {/*<div className={"detail_image"}>*/}
-                            {/*    <p><img src={props.data.imgPath} alt=""/></p>*/}
-                            {/*    <p><img src={props.data.imgPath} alt=""/></p>*/}
-                            {/*    <p><img src={props.data.imgPath} alt=""/></p>*/}
-                            {/*</div>*/}
-
                         </div>
 
                         <div>
@@ -150,44 +139,54 @@ const Detail = props => {
                     box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
                     background-color: #ffffff;
                     margin-bottom: 50px;
-                }
-                .main_card:last-child {
-                  margin-bottom: 0;
-                }
-                .main_card .img {
-                    width: 100%;
-                    height: 506px;
-                    background: #d3d3d3;
-                    text-align: center;
-                }
-                .main_card .img img {
-                    width: 100%;
-                    height: 100%;
-                }
-                .box_text {
-                    padding: 33px 30px 30px 30px;
-                }
-                .box_text .title{
-                    font-size: 30px;
-                    line-height: 40px;
-                    letter-spacing: -1.5px;
-                    color: #333;
-                }
-                .box_text .text{
-                    font-size: 16px;
-                    line-height: 25px;
-                    color: #666666;
-                    margin: 23px 0 40px;
-                }
-                .btn {
-                  color: #ffffff;
-                  line-height: 33px;
-                }
-                .btn:hover {
-                  line-height: 33px;
-                }
-                .btn:active{
-                  line-height: 33px;
+                    cursor: pointer;
+                    :last-child {
+                        margin-bottom: 0;
+                    }
+                    .img {
+                        width: 100%;
+                        height: 506px;
+                        background: #d3d3d3;
+                        text-align: center;
+                        img {
+                            width: auto;
+                            max-width: 100%;
+                            height: 100%;
+                        }
+                    }
+                    .box_text {
+                            padding: 33px 30px 30px 30px;
+                        .title  {
+                            font-size: 30px;
+                            line-height: 40px;
+                            letter-spacing: -1.5px;
+                            overflow: hidden;
+                            white-space: nowrap;
+                            text-overflow: ellipsis;
+                            color: #333333;
+                        }
+                        .text{
+                            font-size: 16px;
+                            line-height: 25px;
+                            color: #666666;
+                            margin: 23px 0 40px;
+                            display: -webkit-box;
+                            white-space: normal;
+                            height: 73px;
+                            word-wrap: break-word;
+                            -webkit-line-clamp: 3;
+                            -webkit-box-orient: vertical;
+                            text-overflow: ellipsis;
+                            overflow: hidden;
+                        }
+                        .btn {
+                          color: #ffffff;
+                          line-height: 33px;
+                            :hover,:active {
+                              line-height: 33px;
+                            }
+                        }
+                    }
                 }
                 .nav {
                   float: left;
@@ -233,30 +232,30 @@ const Detail = props => {
                 .main_card {
                     width: 100%;
                     margin-right: 0;
-                }
-                .main_card .img {
-                    width: 100%;
-                    height: 100%
-                }
-                .main_card .img img {
-                    width: 100%;
-                    height: 100%
+                    .img {
+                        width: 100%;
+                        height: 100%;
+                        img {
+                            width: 100%;
+                            height: 100%;
+                        }
+                    }
                 }
             }
             //모바일
             @media (max-width: 760px) {
                 .box_text {
                     padding: 30px 40px;
-                }
-                .box_text .title{
-                    line-height: 48px;
-                    letter-spacing: -0.5px;
-                }
-                .box_text .text{
-                    font-size: 16px;
-                    line-height: 25px;
-                    letter-spacing: -0.5px;
-                    margin: 10px 0 40px;
+                    .title{
+                        line-height: 48px;
+                        letter-spacing: -0.5px;
+                    }
+                    .text{
+                        font-size: 16px;
+                        line-height: 25px;
+                        letter-spacing: -0.5px;
+                        margin: 10px 0 40px;
+                    }
                 }
                 .btn {
                     width: 100%;
@@ -273,7 +272,7 @@ const Detail = props => {
 // API설정
 Detail.getInitialProps = async ctx => {
     const { pid } = ctx.query;
-    const res = await fetch(`http://myxd.co.kr/api/board/post/${pid}`);
+    const res = await fetch(`http://13.209.55.219/api/board/post/${pid}`);
     const result = await res.json();
 
     const asideRes = await fetch(`http://myxd.co.kr/api/board/interest`);
