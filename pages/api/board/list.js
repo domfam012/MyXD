@@ -1,4 +1,4 @@
-import { loadDB } from './../../../lib/js/db';
+import { loadDB } from '../../../public/js/db';
 
 export default async (req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*');

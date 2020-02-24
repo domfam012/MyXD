@@ -1,4 +1,4 @@
-import { loadDB, firestore } from './../../../lib/js/db';
+import { loadDB, firestore } from '../../../public/js/db';
 import 'firebase/auth';
 import 'firebase/database';
 import * as firebase from "firebase";

@@ -1,5 +1,5 @@
-import Layout from '../../include/Layout';
-import Aside from '../../include/Aside';
+import Layout from '../../components/Layout';
+import Aside from '../../components/Aside';
 import fetch from 'isomorphic-unfetch'
 import Link from "next/link";
 import React from "react";

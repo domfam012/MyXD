@@ -2,7 +2,7 @@
  *  특정 포스트 (pid) 에 대한 CRUD
  */
 
-import { loadDB, firestore } from '../../../../lib/js/db';
+import { loadDB, firestore } from '../../../../public/js/db';
 import moment from 'moment';
 
 export default async (req, res) => {

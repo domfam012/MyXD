@@ -1,11 +1,11 @@
 import Head from "next/head";
-import Layout from '../../../include/Layout';
+import Layout from '../../../components/Layout';
 import { useState, useRef  } from 'react';
 import { useRouter } from 'next/router';
 import fetch from 'isomorphic-unfetch';
 import axios from 'axios';
 import nextCookie from 'next-cookies';
-import { loadStorage, storage } from './../../../lib/js/db';
+import { loadStorage, storage } from '../../../public/js/db';
 import shortid from 'shortid';
 
 const New = props => {

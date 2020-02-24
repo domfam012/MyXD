@@ -1,5 +1,5 @@
 import React from "react";
-import Layout from '../include/Layout';
+import Layout from '../components/Layout';
 import Link from "next/link";
 import {useRouter} from "next/router";
 import Pagination from "react-js-pagination";
