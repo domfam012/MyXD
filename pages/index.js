@@ -4,8 +4,8 @@
  */
 
 import React from "react";
-import Layout from '../include/Layout';
-import Aside from '../include/Aside';
+import Layout from '../components/Layout';
+import Aside from '../components/Aside';
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
