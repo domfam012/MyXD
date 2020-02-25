@@ -27,18 +27,18 @@ const Layout = props => {
         <>
             {/* 공통 head 영역 */}
             <Head>
-                <title>MyXD</title>
+                <title>MyXD - Free Adobe XD templates</title>
                 <meta name="viewport" content="initial-scale=1.0, width=device-width" key="viewport"/>
                 <meta name="Referrer" content="origin"/>
                 <meta httpEquiv="X-UA-Compatible" content="IE=Edge"/>
                 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
                 <meta name="apple-mobile-web-app-title" content="MyXD"/>
                 <meta name="robots" content="index,follow"/>
-                <meta name="description" content="MyXD"/>
-                <meta name="keywords" content="MyXD"/>
+                <meta name="description" content="MyXD 에서 다양한 무료 Adobe XD 템플릿을 만나 보세요"/>
+                <meta name="keywords" content="Adobe XD"/>
                 <meta property="og:type" content="website"/>
-                <meta property="og:title" content="MyXD"/>
-                <meta property="og:description" content="무료 XD 템플릿을 만나 보세요"/>
+                <meta property="og:title" content="My Adobe XD"/>
+                <meta property="og:description" content="무료 Adobe XD 템플릿을 만나 보세요"/>
                 <meta property="og:image" content="/img/common/logo_og.png"/>
                 <meta property="og:url" content="http://myxd.co.kr/"/>
 
