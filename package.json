@@ -1,7 +1,7 @@
 {
-  "name": "server",
-  "version": "1.0.0",
-  "description": "",
+  "name": "myxd-npmtest",
+  "version": "0.0.6",
+  "description": "Boilerplate with NextJS, Express, Bootstrap",
   "main": "index.js",
   "scripts": {
     "dev": "node server.js",
@@ -9,9 +9,30 @@
     "export": "next export",
     "deploy": "next build && next export && touch out/.nojekyll && git add out/ && git commit -m 'deploy to gh-pages' && git subtree push --prefix out origin gh-pages"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "nextjs",
+    "react",
+    "express",
+    "bootstrap"
+  ],
+  "author": {
+    "name": "Domfam",
+    "email": "domfam012@gmail.com",
+    "url": "http://www.domfam.com/domfam_homepage_v2019/dist/html/index.html"
+  },
   "license": "ISC",
+  "homepage": "https://github.com/domfam012/MyXD",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/domfam012/MyXD.git"
+  },
+  "bugs": {
+    "url": "https://github.com/domfam012/MyXD/issues"
+  },
+  "engines": {
+    "node": ">=12.14.0",
+    "npm": ">=6.13.4"
+  },
   "dependencies": {
     "@firebase/auth": "^0.13.5",
     "@fortawesome/fontawesome-pro": "^5.12.1",

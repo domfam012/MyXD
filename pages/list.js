@@ -10,6 +10,7 @@ import {faChevronLeft} from '@fortawesome/pro-light-svg-icons';
 import {faChevronRight} from '@fortawesome/pro-light-svg-icons';
 import fetch from 'isomorphic-unfetch';
 import getConfig from 'next/config';
+import Head from "next/head";
 
 //리스트 template 컴포넌트
 const Temp = props => {
@@ -124,22 +125,51 @@ const Temp = props => {
 
 //리스트 페이지
 const Index = props => {
-    // 현재 페이지
-    let activePage = props.activePage;
-    const router = useRouter();
+    const { data, activePage, total, activeMenu } = props;
 
     // 페이지네이션 페이지 이동시
+    const router = useRouter();
     const handlePageChange = (pageNumber) => {
         window.scrollTo(0, 0);
         router.push(`/list/?page=${pageNumber}`);
     };
 
+    let category = "UI KITS";
+    switch (activeMenu) {
+        case 'uikits': {
+            category = "UI KITS";
+            break;
+        }
+        case 'website': {
+            category = "웹사이트";
+            break;
+        }
+        case 'mobile': {
+            category = "모바일";
+            break;
+        }
+        case 'plugin': {
+            category = "플러그인";
+            break;
+        }
+    }
+
     return (
-        <Layout page={"list"} activeMenu={props.activeMenu}>
+        <Layout page={"list"} activeMenu={activeMenu}>
+
+            <Head>
+                <title>Adobe XD {category} 템플릿 - MyXD</title>
+                <meta name="apple-mobile-web-app-title" content={`어도비 XD - My Adobe XD ${category}`}/>
+                <meta name="description" content={`Adobe XD ${category} 템플릿 - MyXD`}/>
+                <meta name="keywords" content={`어도비 Adobe XD ${category} ${activeMenu}`}/>
+                <meta property="og:title" content={`어도비 XD - ${category}`}/>
+                <meta property="og:description" content={`Adobe XD ${category} 템플릿 - MyXD`}/>
+            </Head>
+
             <div id="_list" className={"clearfix"}>
                 <ul className="list img-list">
                     {
-                        props.data.map(item => (
+                        data.map(item => (
                             <Temp key={item.pid} title={item.title} imgPath={item.imgPath} pid={item.pid}/>
                         ))
                     }
@@ -150,7 +180,7 @@ const Index = props => {
                 <Pagination
                     activePage={activePage}
                     itemsCountPerPage={15}
-                    totalItemsCount={props.total}
+                    totalItemsCount={total}
                     pageRangeDisplayed={4}
                     onChange={handlePageChange}
                     linkClass="page-link"

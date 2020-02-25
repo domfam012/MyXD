@@ -15,6 +15,7 @@ import {faChevronDoubleLeft} from '@fortawesome/pro-light-svg-icons';
 import {faChevronLeft} from '@fortawesome/pro-light-svg-icons';
 import {faChevronRight} from '@fortawesome/pro-light-svg-icons';
 import fetch from "isomorphic-unfetch";
+import Head from "next/head";
 
 // card 컴포넌트
 const Card = props => {
@@ -146,6 +147,15 @@ const Index = props => {
     return (
 
         <Layout page={"index"}>
+            <Head>
+                <title>Adobe XD 무료 템플릿을 만나보세요 - My XD</title>
+                <meta name="apple-mobile-web-app-title" content="MyXD"/>
+                <meta name="description" content="Adobe XD 무료 템플릿을 만나보세요 - My XD"/>
+                <meta name="keywords" content="어도비 Adobe XD"/>
+                <meta property="og:title" content="Adobe XD 무료 템플릿을 만나보세요 - My XD"/>
+                <meta property="og:description" content="Adobe XD 무료 템플릿을 만나보세요 - My XD"/>
+            </Head>
+
             <div>
                 <div>
                     {

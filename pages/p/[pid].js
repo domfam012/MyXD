@@ -3,6 +3,7 @@ import Aside from '../../components/Aside';
 import fetch from 'isomorphic-unfetch'
 import Link from "next/link";
 import React from "react";
+import Head from "next/head";
 
 // 연관 포스트 ('You may also like')
 const Template = props => {
@@ -90,24 +91,37 @@ const Template = props => {
 
 //상세페이지
 const Detail = props => {
+    const { data, asideData } = props;
+
+
     return (
         <Layout>
+
+            <Head>
+                <title>Adobe XD 템플릿 - {data.title}</title>
+                <meta name="apple-mobile-web-app-title" content={`Adobe XD 템플릿 - ${data.title}`}/>
+                <meta name="description" content={`Adobe XD 템플릿 - ${data.title}`}/>
+                <meta name="keywords" content={`${data.category} 어도비 Adobe XD`}/>
+                <meta property="og:title" content={`Adobe XD 템플릿 - ${data.title}`}/>
+                <meta property="og:description" content={`${data.title}. Adobe XD 무료 템플릿을 받아보세요.`}/>
+            </Head>
+
             <div className={"clearfix"}>
                 <div>
                     {/* 상세 포스트 */}
                     <div className={"main_card"}>
                         {/* 이미지 */}
-                        <div className={"img"}><img src={props.data.imgPath} alt=""/></div>
+                        <div className={"img"}><img src={data.imgPath} alt=""/></div>
                         <div className={"box_text"}>
                             {/* 제목 */}
-                            <div className={"title"}>{props.data.title}</div>
+                            <div className={"title"}>{data.title}</div>
                             {/* 내용 */}
                             <div className={"text"}>
-                                {props.data.content}
+                                {data.content}
                             </div>
                             {/* 링크 페이지 */}
                             <div>
-                                <a href={props.data.link} className={"btn btn-primary"}>다운로드</a>
+                                <a href={data.link} className={"btn btn-primary"}>다운로드</a>
                             </div>
                         </div>
 
@@ -119,7 +133,7 @@ const Detail = props => {
                                 <ul className="list img-list">
                                     {/* 연관 포스트 */}
                                     {
-                                        props.asideData.map(item => (
+                                        asideData.map(item => (
                                             <Template key={item.pid} title={item.title} category={item.category} pid={item.pid} imgPath={item.imgPath}/>
                                         ))
                                     }
@@ -130,7 +144,7 @@ const Detail = props => {
                 </div>
 
                 {/* 인기템플릿 */}
-                <Aside asideData={ props.asideData }/>
+                <Aside asideData={ asideData }/>
             </div>
             <style jsx>{`
                 .main_card {
@@ -170,13 +184,8 @@ const Detail = props => {
                             color: #666666;
                             margin: 23px 0 40px;
                             display: -webkit-box;
-                            white-space: normal;
-                            height: 73px;
+                            white-space: pre-line;
                             word-wrap: break-word;
-                            -webkit-line-clamp: 3;
-                            -webkit-box-orient: vertical;
-                            text-overflow: ellipsis;
-                            overflow: hidden;
                         }
                         .btn {
                           color: #ffffff;
@@ -271,7 +280,7 @@ const Detail = props => {
 // API설정
 Detail.getInitialProps = async ctx => {
     const { pid } = ctx.query;
-    const res = await fetch(`http://13.209.55.219/api/board/post/${pid}`);
+    const res = await fetch(`http://myxd.co.kr/api/board/post/${pid}`);
     const result = await res.json();
 
     const asideRes = await fetch(`http://myxd.co.kr/api/board/interest`);

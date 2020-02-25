@@ -24,6 +24,8 @@ app.prepare().then(() => {
         const parsedUrl = parse(req.url, true);
         const {pathname, query} = parsedUrl;
 
+        // test commit
+
         express.set('trust proxy', 1);
         express.use(
             helmet(),
@@ -44,6 +46,6 @@ app.prepare().then(() => {
         console.log(`> NODE_ENV: ${process.env.NODE_ENV}`);
         console.log(`> Ready on http://${ip}:${port}`);
         console.log(`>>> __IP: [${ip}] __PORT: [${port}]`);
-        console.log(`\n\n\n`);
+        console.log(`\n\n`);
     });
 });
