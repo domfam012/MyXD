@@ -1,6 +1,6 @@
 {
-  "name": "myxd",
-  "version": "0.2.0",
+  "name": "myxd-npmtest",
+  "version": "0.0.3",
   "description": "Boilerplate with NextJS, Express, Bootstrap",
   "main": "index.js",
   "scripts": {
@@ -13,6 +13,10 @@
     "components",
     "pages",
     "public",
+    "config.js",
+    "ecosystem.config.js",
+    "next.config.js",
+    "server.js",
     "!node_modues",
     "!.next"
   ],
