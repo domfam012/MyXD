@@ -1,6 +1,6 @@
 {
   "name": "myxd-npmtest",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Boilerplate with NextJS, Express, Bootstrap",
   "main": "index.js",
   "scripts": {
@@ -9,6 +9,17 @@
     "export": "next export",
     "deploy": "next build && next export && touch out/.nojekyll && git add out/ && git commit -m 'deploy to gh-pages' && git subtree push --prefix out origin gh-pages"
   },
+  "files": [
+    "components",
+    "pages",
+    "public",
+    "config.js",
+    "ecosystem.config.js",
+    "next.config.js",
+    "server.js",
+    "!node_modues",
+    "!.next"
+  ],
   "keywords": [
     "nextjs",
     "react",
