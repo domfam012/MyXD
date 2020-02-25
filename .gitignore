@@ -5,3 +5,5 @@ node_modules/
 .env.build
 
 .gitattributes
+public/naver1dbebb195ff2e35ec3df5ac51ab1f278.html
+/.npmignore
