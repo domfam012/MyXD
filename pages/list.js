@@ -158,12 +158,12 @@ const Index = props => {
         <Layout page={"list"} activeMenu={activeMenu}>
 
             <Head>
-                <title>무료 어도비 XD - {category} 템플릿</title>
+                <title>Adobe XD {category} 템플릿 - MyXD</title>
                 <meta name="apple-mobile-web-app-title" content={`어도비 XD - My Adobe XD ${category}`}/>
-                <meta name="description" content={`MyXD 에서 다양한 무료 어도비 XD ${category} 템플릿을 만나 보세요`}/>
+                <meta name="description" content={`Adobe XD ${category} 템플릿 - MyXD`}/>
                 <meta name="keywords" content={`어도비 Adobe XD ${category} ${activeMenu}`}/>
                 <meta property="og:title" content={`어도비 XD - ${category}`}/>
-                <meta property="og:description" content={`무료 어도비 XD ${category} 템플릿을 만나 보세요`}/>
+                <meta property="og:description" content={`Adobe XD ${category} 템플릿 - MyXD`}/>
             </Head>
 
             <div id="_list" className={"clearfix"}>

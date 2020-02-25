@@ -98,12 +98,12 @@ const Detail = props => {
         <Layout>
 
             <Head>
-                <title>어도비 XD 템플릿 - {data.title}</title>
-                <meta name="apple-mobile-web-app-title" content={`어도비 XD 템플릿 - ${data.title}`}/>
-                <meta name="description" content={`${data.title}. 무료 어도비 XD 템플릿을 만나 보세요.`}/>
+                <title>Adobe XD 템플릿 - {data.title}</title>
+                <meta name="apple-mobile-web-app-title" content={`Adobe XD 템플릿 - ${data.title}`}/>
+                <meta name="description" content={`Adobe XD 템플릿 - ${data.title}`}/>
                 <meta name="keywords" content={`${data.category} 어도비 Adobe XD`}/>
-                <meta property="og:title" content={`어도비 XD 템플릿 - ${data.title}`}/>
-                <meta property="og:description" content={`${data.title}. 무료 어도비 XD 템플릿을 만나 보세요.`}/>
+                <meta property="og:title" content={`Adobe XD 템플릿 - ${data.title}`}/>
+                <meta property="og:description" content={`${data.title}. Adobe XD 무료 템플릿을 받아보세요.`}/>
             </Head>
 
             <div className={"clearfix"}>

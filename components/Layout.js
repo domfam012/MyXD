@@ -27,7 +27,7 @@ const Layout = props => {
         <>
             {/* 공통 head 영역 */}
             <Head>
-                <title>MyXD - 무료 어도비 XD 템플릿</title>
+                <title>Adobe XD 무료 템플릿을 만나보세요 - My XD</title>
                 <meta name="viewport" content="initial-scale=1.0, width=device-width" key="viewport"/>
                 <meta name="Referrer" content="origin"/>
                 <meta httpEquiv="X-UA-Compatible" content="IE=Edge"/>

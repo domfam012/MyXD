@@ -148,12 +148,12 @@ const Index = props => {
 
         <Layout page={"index"}>
             <Head>
-                <title>MyXD - 무료 어도비 XD 템플릿</title>
+                <title>Adobe XD 무료 템플릿을 만나보세요 - My XD</title>
                 <meta name="apple-mobile-web-app-title" content="MyXD"/>
-                <meta name="description" content="MyXD 에서 다양한 무료 어도비 XD 템플릿을 만나 보세요"/>
+                <meta name="description" content="Adobe XD 무료 템플릿을 만나보세요 - My XD"/>
                 <meta name="keywords" content="어도비 Adobe XD"/>
-                <meta property="og:title" content="어도비 XD - My Adobe XD"/>
-                <meta property="og:description" content="무료 어도비 XD 템플릿을 만나 보세요"/>
+                <meta property="og:title" content="Adobe XD 무료 템플릿을 만나보세요 - My XD"/>
+                <meta property="og:description" content="Adobe XD 무료 템플릿을 만나보세요 - My XD"/>
             </Head>
 
             <div>
