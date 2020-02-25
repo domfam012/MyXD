@@ -184,13 +184,8 @@ const Detail = props => {
                             color: #666666;
                             margin: 23px 0 40px;
                             display: -webkit-box;
-                            white-space: normal;
-                            height: 73px;
+                            white-space: pre-line;
                             word-wrap: break-word;
-                            -webkit-line-clamp: 3;
-                            -webkit-box-orient: vertical;
-                            text-overflow: ellipsis;
-                            overflow: hidden;
                         }
                         .btn {
                           color: #ffffff;
