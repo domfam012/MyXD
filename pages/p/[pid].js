@@ -280,10 +280,12 @@ const Detail = props => {
 // API설정
 Detail.getInitialProps = async ctx => {
     const { pid } = ctx.query;
-    const res = await fetch(`http://myxd.co.kr/api/board/post/${pid}`);
+    const res = await fetch(`http://localhost:3000/api/board/post/${pid}`);
     const result = await res.json();
 
-    const asideRes = await fetch(`http://myxd.co.kr/api/board/interest`);
+    const { category } = result.data;
+
+    const asideRes = await fetch(`http://localhost:3000/api/board/related?pid=${pid}&category=${category}`);
     const asideResult = await asideRes.json();
 
     switch(result.status){
