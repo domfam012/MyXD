@@ -32,13 +32,8 @@ const Layout = props => {
                 <meta name="Referrer" content="origin"/>
                 <meta httpEquiv="X-UA-Compatible" content="IE=Edge"/>
                 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-                <meta name="apple-mobile-web-app-title" content="MyXD"/>
                 <meta name="robots" content="index,follow"/>
-                <meta name="description" content="MyXD 에서 다양한 무료 어도비 XD 템플릿을 만나 보세요"/>
-                <meta name="keywords" content="어도비 Adobe XD"/>
                 <meta property="og:type" content="website"/>
-                <meta property="og:title" content="어도비 XD - My Adobe XD"/>
-                <meta property="og:description" content="무료 어도비 XD 템플릿을 만나 보세요"/>
                 <meta property="og:image" content="/img/common/logo_og.png"/>
                 <meta property="og:url" content="http://myxd.co.kr/"/>
 
