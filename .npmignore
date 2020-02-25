@@ -1,0 +1,8 @@
+node_modules/
+.idea
+.next
+.env
+.env.build
+.gitattributes
+.gitignore
+public/naver1dbebb195ff2e35ec3df5ac51ab1f278.html
