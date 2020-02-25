@@ -1,6 +1,6 @@
 {
   "name": "myxd",
-  "version": "0.1.2",
+  "version": "0.0.1",
   "description": "Boilerplate with NextJS, Express, Bootstrap",
   "main": "index.js",
   "scripts": {
@@ -16,7 +16,12 @@
     "!node_modues",
     "!.next"
   ],
-  "keywords": ["nextjs", "react", "express", "bootstrap"],
+  "keywords": [
+    "nextjs",
+    "react",
+    "express",
+    "bootstrap"
+  ],
   "author": {
     "name": "Domfam",
     "email": "domfam012@gmail.com",
