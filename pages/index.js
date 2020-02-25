@@ -15,6 +15,7 @@ import {faChevronDoubleLeft} from '@fortawesome/pro-light-svg-icons';
 import {faChevronLeft} from '@fortawesome/pro-light-svg-icons';
 import {faChevronRight} from '@fortawesome/pro-light-svg-icons';
 import fetch from "isomorphic-unfetch";
+import Head from "next/head";
 
 // card 컴포넌트
 const Card = props => {
