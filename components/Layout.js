@@ -65,7 +65,7 @@ const Layout = props => {
                 {props.children}
             </div>
 
-            <Footer isResponsive={isResponsive}/>
+            <Footer isResponsive={isResponsive && !isAdminLogin}/>
         </>
     )
 };
