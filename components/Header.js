@@ -22,7 +22,7 @@ const Header = props => {
         if (check) {
             // console.log(`logout check true`);
 
-            const res = await fetch(`http://13.209.55.219/api/user/logout`);
+            const res = await fetch(`http://myxd.co.kr/api/user/logout`);
             if (res.status === 200) {
                 // console.log('logout success');
                 cookie.remove('token');
@@ -39,7 +39,7 @@ const Header = props => {
             <div className={"nav_wrap"}>
                 <nav className={props.isResponsive ? "navbar navbar-expand-xl" : "navbar navbar-expand-xl admin"}>
                     <Link href="/">
-                        <a className="navbar-brand"><span className="pink"><img src="/img/common/logo.png" alt="myXD"/></span></a>
+                        <a className="navbar-brand"><span className="pink"><img src="/img/common/logo.png" alt="myXD"  style={{width: 102 + 'px'}}/></span></a>
                     </Link>
                     {/* tab,mobile 메뉴 버튼 */}
                     <button className={`navbar-toggle ${menuActive ? 'active' : ''}`} type="button"

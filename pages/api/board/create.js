@@ -3,7 +3,7 @@
  *
  */
 
-import { loadDB, firestore } from './../../../lib/js/db';
+import { loadDB, firestore } from '../../../public/js/db';
 import moment from 'moment';
 
 export default async (req, res) => {
@@ -25,6 +25,7 @@ export default async (req, res) => {
         const imgPath = req.body.imgPath || '';
         const link = req.body.link || '';
         const title= req.body.title || '';
+        // const detailImg = req.body.detailImg || [''];
 
         const data = {
             category: category,
@@ -32,6 +33,7 @@ export default async (req, res) => {
             imgOriginName: imgOriginName,
             imgPath: imgPath,
             imgSaveName: imgSaveName,
+            detailImg: [''],
             link: link,
             title: title,
             viewCount: 0,

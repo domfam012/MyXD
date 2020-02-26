@@ -2,7 +2,7 @@
  *  특정 포스트 (pid) 에 대한 CRUD
  */
 
-import { loadDB, firestore } from '../../../../lib/js/db';
+import { loadDB, firestore } from '../../../../public/js/db';
 import moment from 'moment';
 
 export default async (req, res) => {
@@ -50,11 +50,19 @@ export default async (req, res) => {
             const link = req.body.link || '';
             const title= req.body.title || '';
 
+            /**
+             *
+             * @type {{link: (*|string), category: *, title: (*|string), updated: string, content: (*|string)}}
+             *  TODO: detail img 추가 임시로 해뒀음
+             *
+             */
+            // detail img path 추가!
             let newData = {
                 category: category,
                 content: content,
                 link: link,
                 title: title,
+                detailImg: [''],
                 updated: moment().locale('ko').format()
             };
 

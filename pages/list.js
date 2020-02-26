@@ -1,5 +1,5 @@
 import React from "react";
-import Layout from '../include/Layout';
+import Layout from '../components/Layout';
 import Link from "next/link";
 import {useRouter} from "next/router";
 import Pagination from "react-js-pagination";
@@ -10,6 +10,7 @@ import {faChevronLeft} from '@fortawesome/pro-light-svg-icons';
 import {faChevronRight} from '@fortawesome/pro-light-svg-icons';
 import fetch from 'isomorphic-unfetch';
 import getConfig from 'next/config';
+import Head from "next/head";
 
 //리스트 template 컴포넌트
 const Temp = props => {
@@ -28,7 +29,7 @@ const Temp = props => {
                 </Link>
             </li>
             <style jsx>{`
-              li {
+                li {
                 display: block;
                 width: calc(33.3% - 18px);
                 float: left;
@@ -36,112 +37,139 @@ const Temp = props => {
                 background-color: var(--white);
                 background-color: #ffffff;
                 margin: 0 27px 30px 0;
-              }
-              li:nth-child(3n) {
-                margin-right: 0;
-              }
-              .inner {
-                display: block;
-              }
-              .li-img, .li-text, .inner {
-                display: block;
-                padding: 0;
-              }
-              .li-img {
-                width: 100%;
-                height: 209px;
-                background: #d3d3d3;
-                text-align: center;
-              }
-              .li-img img {
-                width: auto;
-                max-width: 100%;
-                height: 100%;
-              }
-              .li-text {
-                height: 84px;
-                padding: 28px 30px;
-                background: #ffffff;
-              }
-              .li-text .title {
-                color: #333333;
-                line-height: 26px;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                white-space: nowrap;
-                width: 313px;
-                display: block; 
-              }
-              @media (max-width: 1200px) {
-                  li {
-                    display: block;
-                    width: calc(50% - 27px);
-                    float: left;
-                    background: none;
-                    border: 0;
-                    margin: 30px 27px 0 0;
-                  }
-                  li:nth-child(3n) {
-                    margin-right: 27px;
-                  }
-                  .mt-0 {
-                    margin-top: 30px !important;
-                  }
-                  li:nth-child(2n) {
-                    margin-right: 0;
-                  }
-                  .li-img {
-                    height: 100%;
-                  }
-                  .li-img img{
-                      width: 100%;
-                      height: 100%;
+                    :nth-child(3n) {
+                        margin-right: 0;
                     }
-                  .inner {
-                    display: block;
-                  }
-                  .li-text {
-                    height: 78px;
-                    padding: 28px 30px;
-                  }
-              }
-                
-              @media (max-width: 760px){
+                    .inner {
+                        display: block;
+                        .li-img, .li-text, .inner {
+                            display: block;
+                            padding: 0;
+                        }
+                        .li-img {
+                            width: 100%;
+                            height: 209px;
+                            background: #d3d3d3;
+                            text-align: center;
+                            img {
+                                width: auto;
+                                max-width: 100%;
+                                height: 100%;
+                            }
+                        }
+                        .li-text {
+                            height: 84px;
+                            padding: 28px 30px;
+                            background: #ffffff;
+                            .title {
+                                color: #333333;
+                                line-height: 26px;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                                white-space: nowrap;
+                                width: 313px;
+                                display: block; 
+                            }
+                        }
+                    }
+                }
+                @media (max-width: 1200px) {
                     li {
-                      width: 100%;
-                      margin-right: 0;
+                        display: block;
+                        width: calc(50% - 27px);
+                        float: left;
+                        background: none;
+                        border: 0;
+                        margin: 30px 27px 0 0;
+                        .inner {
+                            display: block;
+                            :nth-child(3n) {
+                                margin-right: 27px;
+                            }
+                            :nth-child(2n) {
+                                margin-right: 0;
+                            }
+                            .li-img {
+                                height: 100%;
+                                img {
+                                    width: 100%;
+                                    height: 100%;
+                                }
+                            }
+                            .li-text {
+                                height: 78px;
+                                padding: 28px 30px;
+                            }
+                        }
                     }
-                    li .li-img img{
-                      width: 100%;
-                      height: 100%;
+                }
+                @media (max-width: 760px){
+                    li {
+                    width: 100%;
+                    margin-right: 0;
+                        .li-img {
+                            img{
+                                width: 100%;
+                                height: 100%;
+                            }
+                        }
+                        .li-text .title {
+                            width: 220px;
+                        }
                     }
-                    .li-text .title {
-                        width: 220px;
-                    }
-              }
-         `}</style>
+                }
+            `}</style>
         </>
     );
 };
 
 //리스트 페이지
 const Index = props => {
-    // 현재 페이지
-    let activePage = props.activePage;
-    const router = useRouter();
+    const { data, activePage, total, activeMenu } = props;
 
     // 페이지네이션 페이지 이동시
+    const router = useRouter();
     const handlePageChange = (pageNumber) => {
         window.scrollTo(0, 0);
         router.push(`/list/?page=${pageNumber}`);
     };
 
+    let category = "UI KITS";
+    switch (activeMenu) {
+        case 'uikits': {
+            category = "UI KITS";
+            break;
+        }
+        case 'website': {
+            category = "웹사이트";
+            break;
+        }
+        case 'mobile': {
+            category = "모바일";
+            break;
+        }
+        case 'plugin': {
+            category = "플러그인";
+            break;
+        }
+    }
+
     return (
-        <Layout page={"list"} activeMenu={props.activeMenu}>
+        <Layout page={"list"} activeMenu={activeMenu}>
+
+            <Head>
+                <title>Adobe XD {category} 템플릿 - MyXD</title>
+                <meta name="apple-mobile-web-app-title" content={`어도비 XD - My Adobe XD ${category}`}/>
+                <meta name="description" content={`Adobe XD ${category} 템플릿 - MyXD`}/>
+                <meta name="keywords" content={`어도비 Adobe XD ${category} ${activeMenu}`}/>
+                <meta property="og:title" content={`어도비 XD - ${category}`}/>
+                <meta property="og:description" content={`Adobe XD ${category} 템플릿 - MyXD`}/>
+            </Head>
+
             <div id="_list" className={"clearfix"}>
                 <ul className="list img-list">
                     {
-                        props.data.map(item => (
+                        data.map(item => (
                             <Temp key={item.pid} title={item.title} imgPath={item.imgPath} pid={item.pid}/>
                         ))
                     }
@@ -152,7 +180,7 @@ const Index = props => {
                 <Pagination
                     activePage={activePage}
                     itemsCountPerPage={15}
-                    totalItemsCount={props.total}
+                    totalItemsCount={total}
                     pageRangeDisplayed={4}
                     onChange={handlePageChange}
                     linkClass="page-link"
@@ -170,23 +198,23 @@ const Index = props => {
                 />
             </div>
             <style jsx>{`
-              .list {
-                margin: 0 auto;
-                overflow: hidden;
-                padding-bottom: 5px;
-              }
-              .nav {
+                .list {
+                    margin: 0 auto;
+                    overflow: hidden;
+                    padding-bottom: 5px;
+                }
+                .nav {
                     width: 100%;
                     margin-top: 30px;
                     margin-bottom: 70px;
                 }
-              @media (max-width: 1200px) {
-                  .list {
-                    margin: 0 auto;
-                    overflow: hidden;
-                  }
-              }
-         `}</style>
+                @media (max-width: 1200px) {
+                    .list {
+                        margin: 0 auto;
+                        overflow: hidden;
+                    }
+                }
+            `}</style>
         </Layout>
     );
 };

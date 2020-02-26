@@ -1,5 +1,5 @@
 import Head from "next/head";
-import Layout from '../../../include/Layout';
+import Layout from '../../../components/Layout';
 import Link from 'next/link';
 import { useRouter } from "next/router";
 import { useState } from "react";
@@ -138,13 +138,15 @@ const BoxList = props => {
                     padding-bottom: 39px;
                     height: 238px;
                     border: 0 solid transparent;
+                    :hover {
+                        box-shadow: 3px 3px 12px 0 rgba(0, 0, 0, 0.24);
+                        background-color: var(--white);
+                        .box-bottom-line {
+                            width: 0;
+                        }
+                    }
                 }
                 
-                .box-list:hover {
-                    box-shadow: 3px 3px 12px 0 rgba(0, 0, 0, 0.24);
-                    background-color: var(--white);
-                }
-
                 .img-list {
                     width: 278px;
                     height: 162px;
@@ -154,10 +156,6 @@ const BoxList = props => {
                     margin-top: 41px;
                     width:1060px;
                     color:#fcfcfc;
-                }
-                
-                .box-list:hover .box-bottom-line {
-                    width: 0;
                 }
             `}</style>
         </div>

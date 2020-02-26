@@ -1,19 +1,38 @@
 {
-  "name": "server",
-  "version": "1.0.0",
-  "description": "",
+  "name": "myxd-npmtest",
+  "version": "0.0.6",
+  "description": "Boilerplate with NextJS, Express, Bootstrap",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "node server.js",
     "build": "next build",
-    "start": "NODE_ENV=production node server.js",
     "export": "next export",
     "deploy": "next build && next export && touch out/.nojekyll && git add out/ && git commit -m 'deploy to gh-pages' && git subtree push --prefix out origin gh-pages"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "nextjs",
+    "react",
+    "express",
+    "bootstrap"
+  ],
+  "author": {
+    "name": "Domfam",
+    "email": "domfam012@gmail.com",
+    "url": "http://www.domfam.com/domfam_homepage_v2019/dist/html/index.html"
+  },
   "license": "ISC",
+  "homepage": "https://github.com/domfam012/MyXD",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/domfam012/MyXD.git"
+  },
+  "bugs": {
+    "url": "https://github.com/domfam012/MyXD/issues"
+  },
+  "engines": {
+    "node": ">=12.14.0",
+    "npm": ">=6.13.4"
+  },
   "dependencies": {
     "@firebase/auth": "^0.13.5",
     "@fortawesome/fontawesome-pro": "^5.12.1",
@@ -26,25 +45,23 @@
     "axios": "^0.19.2",
     "body-parser": "^1.19.0",
     "bootstrap": "^4.4.1",
-    "cookie-session": "^1.4.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "firebase": "^7.8.0",
-    "form-serialize": "^0.7.2",
     "helmet": "^3.21.2",
-    "isomorphic-fetch": "^2.2.1",
     "isomorphic-unfetch": "^3.0.0",
     "js-cookie": "^2.2.1",
     "moment": "^2.24.0",
     "next": "^9.2.1",
     "next-cookies": "^2.0.3",
-    "next-session": "^2.2.0",
     "react": "^16.12.0",
     "react-bootstrap": "^1.0.0-beta.16",
     "react-dom": "^16.12.0",
     "react-js-pagination": "^3.0.2",
-    "react-modal": "^3.11.1",
-    "react-preview-file": "^0.1.3",
     "shortid": "^2.2.15"
+  },
+  "devDependencies": {
+    "node-sass": "^4.13.1",
+    "styled-jsx-plugin-sass": "^1.0.0"
   }
 }

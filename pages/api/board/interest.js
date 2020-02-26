@@ -2,7 +2,7 @@
  *  인기 글 목록 3개 조회
  */
 
-import { loadDB } from './../../../lib/js/db';
+import { loadDB } from '../../../public/js/db';
 
 export default async (req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -11,7 +11,7 @@ export default async (req, res) => {
     res.setHeader('Content-Type', 'application/json');
 
     // console.log(`req.method : ${req.method}`);
-    
+
     const db = await loadDB();
     const collection = await db.collection('Posts');
 
