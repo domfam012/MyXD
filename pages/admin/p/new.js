@@ -118,7 +118,6 @@ const New = props => {
         detailFileEl3.current.value = null;
     };
 
-
     // 링크 입력
     const linkChange = e => {
         setLink(e.target.value);
@@ -128,6 +127,7 @@ const New = props => {
     const cancelSubmit = (e) => {
         e.preventDefault();
     };
+
     // 저장
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -142,21 +142,74 @@ const New = props => {
 
         const check = confirm('등록하시겠습니까?');
         if (check) {
+            const reqData = {
+                title,
+                content,
+                category,
+                imgName,
+                link,
+                imgPath: '',
+                imgSaveName: '',
+                detailImg: []
+            }; // db insert data
+
             // firestore storage 에 업로드
             const storage = await loadStorage();
 
             /* Start of img upload task */
-            console.log('start uploading..');
-            const selectedImages = [inputFileEl.current.files[0]];
+            // console.log('[start] uploading..');
+
+            // main image upload
+            // const uploadMainImg = () => {
+
+            // console.log(`(start) main img uploading..`);
+            const img = inputFileEl.current.files[0];
+            const sid = shortid.generate(); // sid => imgSaveName
+            const storageRef = storage.ref(`post/${sid}`);
+            const uploadTask = storageRef.put(img);
+
+            reqData.imgSaveName = sid;
+
+            const selectedImages = [];
             if (detailImg1 !== '') selectedImages.push(detailFileEl1.current.files[0]);
             if (detailImg2 !== '') selectedImages.push(detailFileEl2.current.files[0]);
             if (detailImg3 !== '') selectedImages.push(detailFileEl3.current.files[0]);
-            console.log(selectedImages.length);
 
-            const downloadURLs = {};
-            const uploading = new Promise((resolve, reject) => {
+            uploadTask.on('state_changed',
+                snapshot => {
+                    const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                },
+                err => {
+                    switch (err.code) {
+                        case 'storage/unauthorized':
+                            alert("User doesn't have permission to access the object");
+                            break;
+                        case 'storage/canceled':
+                            alert("User canceled the upload");
+                            break;
+                        case 'storage/unknown':
+                            alert("Unknown error occurred, inspect error.serverResponse");
+                            break;
+                    }
+                    // reject();
+                },
+                () => {
+                    // 업로드된 이미지 url
+                    uploadTask.snapshot.ref.getDownloadURL().then(url => {
+                        // console.log(`(end) main img uploading finished.. ${url}`);
+                        reqData.imgPath = url;
+
+                        /* detail image upload */
+                        uploadDetailImg(selectedImages);
+                        // resolve();
+                    });
+                }
+            );
+            /* End of main img upload task */
+
+            const uploadDetailImg = () => {
                 selectedImages.forEach((img, idx) => {
-                    console.log(`img uploading.. ${idx}`);
+                    // console.log(`(start) detail img(${idx}) uploading..${idx}`);
 
                     const sid = shortid.generate(); // sid => imgSaveName
                     const storageRef = storage.ref(`post/${sid}`);
@@ -177,24 +230,49 @@ const New = props => {
                                     alert("Unknown error occurred, inspect error.serverResponse");
                                     break;
                             }
-                            reject();
+                            // reject();
                         },
                         () => {
                             // 업로드된 이미지 url
                             uploadTask.snapshot.ref.getDownloadURL().then(url => {
-                                console.log(`img uploading finished.. ${idx}: ${url}`);
-                                downloadURLs[''+idx] = url;
-                                if( idx === 2 ) {console.log(JSON.stringify(downloadURLs)); resolve();}
+                                // console.log(`(end) detail img(${idx}) uploading finished.. ${url}`);
+                                reqData.detailImg.push(url);
+                                if ( idx === selectedImages.length-1 ) {
+                                    // console.log(`[end] upload finished..`);
+                                    // console.log(reqData);
+                                    dbInsert()
+                                }
                             });
                         }
                     );
                 });
-            });
+            };
+            /* End of detail img upload task */
+            // await uploadMainImg();
+            // await uploadDetailImg();
 
-            uploading.then(() => {
-                console.log(`upload finished.. ${downloadURLs}`);
-            });
-            /* End of img upload task */
+            // console.log(`[end] upload finished..`);
+            // console.log(reqData);
+
+            const dbInsert = () => {
+                axios.post(`http://localhost:3000/api/board/create`, reqData, {
+                    headers: {
+                        'Accept': 'application/json',
+                        'Headers': 'content-type',
+                        'Content-Type': 'application/json'
+                    }
+                })
+                    .then(() => {
+                        // console.log(`post uploaded..\n`);
+                        alert('업로드 되었습니다.');
+                        router.push('/admin/p/list');
+                    })
+                    .catch(err => {
+                        console.log(err);
+                        alert('uncaught error occured');
+                        router.push('/admin/p/list');
+                    });
+            }
 
         }
     };
@@ -218,7 +296,7 @@ const New = props => {
                                     {/* 제목 */}
                                     <div className={"form-group"}>
                                         <div className={"label-area"}>
-                                            <label className="col-form-label" for={"title"}>제목</label>
+                                            <label className="col-form-label" htmlFor={"title"}>제목</label>
                                         </div>
                                         <div className={"input-area"}>
                                             <input id={"title"} type="text" name={"title"} className="form-control" placeholder={"제목을 입력하세요."} maxLength="50"
@@ -230,7 +308,7 @@ const New = props => {
                                     {/* 카테고리 */}
                                     <div className={"form-group"}>
                                         <div className={"label-area"}>
-                                            <label className="col-form-label bold" for={"category"}>카테고리</label>
+                                            <label className="col-form-label bold" htmlFor={"category"}>카테고리</label>
                                         </div>
                                         <div className={"input-area"}>
                                             <label className="checkbox checkbox_single">
@@ -255,7 +333,7 @@ const New = props => {
                                     {/* 내용 */}
                                     <div className={"form-group"}>
                                         <div className={"label-area"}>
-                                            <label className="col-form-label" style={{"lineHeight":"20.4"}} for={'description'}>내용</label>
+                                            <label className="col-form-label" style={{"lineHeight":"20.4"}} htmlFor={'description'}>내용</label>
                                         </div>
                                         <div className={"input-area"}>
                                             <textarea id={'description'} className="form-control" name={"content"} placeholder={"내용을 입력하세요."} maxLength={"1000"}
@@ -278,7 +356,7 @@ const New = props => {
                                                     : (
                                                         <div className={"added"}>
                                                             <img src={img} alt="업로드 이미지"/>
-                                                            <a href="#" className="btn-close" onClick={fileRemove}></a>
+                                                            <a href="#" className="btn-close" onClick={fileRemove}/>
                                                         </div>
                                                     )
                                                 }

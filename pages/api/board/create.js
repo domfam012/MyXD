@@ -23,6 +23,7 @@ export default async (req, res) => {
         const imgOriginName = req.body.imgName || '';
         const imgSaveName = req.body.imgSaveName || '';
         const imgPath = req.body.imgPath || '';
+        const detailImg = req.body.detailImg || [];
         const link = req.body.link || '';
         const title= req.body.title || '';
         // const detailImg = req.body.detailImg || [''];
@@ -31,9 +32,9 @@ export default async (req, res) => {
             category: category,
             content: content,
             imgOriginName: imgOriginName,
-            imgPath: imgPath,
             imgSaveName: imgSaveName,
-            detailImg: [''],
+            imgPath: imgPath,
+            detailImg: detailImg,
             link: link,
             title: title,
             viewCount: 0,
