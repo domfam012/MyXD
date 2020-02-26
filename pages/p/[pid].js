@@ -91,8 +91,7 @@ const Template = props => {
 
 //상세페이지
 const Detail = props => {
-    const { data, asideData } = props;
-
+    const { data, asideData, relatedData } = props;
 
     return (
         <Layout>
@@ -133,7 +132,7 @@ const Detail = props => {
                                 <ul className="list img-list">
                                     {/* 연관 포스트 */}
                                     {
-                                        asideData.map(item => (
+                                        relatedData.map(item => (
                                             <Template key={item.pid} title={item.title} category={item.category} pid={item.pid} imgPath={item.imgPath}/>
                                         ))
                                     }
@@ -207,7 +206,7 @@ const Detail = props => {
                     max-width:100%;
                 }
                 
-             //You may also like
+                //You may also like
                 .detail_title {
                     position: relative;
                     width: 100%;
@@ -228,13 +227,13 @@ const Detail = props => {
                     left:50%;
                     margin-left:-50px;
                 }
-            // 더보기
-                  .box-list {
+                // 더보기
+                .box-list {
                     padding-top: 19px;
-                  }
-                  .list {
+                }
+                .list {
                     overflow: hidden;
-                  }
+                }
             //탭      
             @media (max-width: 1200px) {
                 .main_card {
@@ -280,13 +279,16 @@ const Detail = props => {
 // API설정
 Detail.getInitialProps = async ctx => {
     const { pid } = ctx.query;
-    const res = await fetch(`http://localhost:3000/api/board/post/${pid}`);
+    const res = await fetch(`http://myxd.co.kr/api/board/post/${pid}`);
     const result = await res.json();
 
     const { category } = result.data;
 
-    const asideRes = await fetch(`http://localhost:3000/api/board/related?pid=${pid}&category=${category}`);
+    const asideRes = await fetch(`http://myxd.co.kr/api/board/interest`);
     const asideResult = await asideRes.json();
+
+    const relatedRes = await fetch(`http://myxd.co.kr/api/board/related?pid=${pid}&category=${category}`);
+    const relatedResult = await relatedRes.json();
 
     switch(result.status){
         case 404 :
@@ -297,6 +299,7 @@ Detail.getInitialProps = async ctx => {
     return{
         data: result.data,
         asideData: asideResult.data,
+        relatedData: relatedResult.data
     }
 
 
