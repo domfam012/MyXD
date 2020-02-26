@@ -282,12 +282,15 @@ Detail.getInitialProps = async ctx => {
     const res = await fetch(`http://myxd.co.kr/api/board/post/${pid}`);
     const result = await res.json();
 
+    // 연관 포스트 불러올 때,
+    // category 여러 개일 경우 임의로 카테고리 하나 선택
     const { category } = result.data;
+    const cat = category[Math.floor(Math.random()*category.length)];
 
     const asideRes = await fetch(`http://myxd.co.kr/api/board/interest`);
     const asideResult = await asideRes.json();
 
-    const relatedRes = await fetch(`http://myxd.co.kr/api/board/related?pid=${pid}&category=${category}`);
+    const relatedRes = await fetch(`http://myxd.co.kr/api/board/related?pid=${pid}&category=${cat}`);
     const relatedResult = await relatedRes.json();
 
     switch(result.status){
