@@ -21,7 +21,7 @@ import Head from "next/head";
 // card 컴포넌트
 const Card = props => {
     const {pid, imgPath, title, content, link} = props;
-    console.log(content);
+    // console.log(content);
     return (
         <Link href={`/p/${pid}`}>
             <div className={"main_card"}>
@@ -214,8 +214,8 @@ const Index = props => {
 Index.getInitialProps = async function (ctx) {
     const page = ctx.query.page || '1'; // default page index
     const res = await fetch(`http://myxd.co.kr/api/board/list/15?page=${page}`); // get /api/board/lsit/[limit]?page={page}
-    const result = await res.json();
 
+    const result = await res.json();
     // console.log(result);
 
     const asideRes = await fetch(`http://myxd.co.kr/api/board/interest`);

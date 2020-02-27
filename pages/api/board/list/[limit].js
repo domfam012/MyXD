@@ -61,8 +61,7 @@ export default async (req, res) => {
         if(category === '') { // 리스트 전체 조회하는 경우
             if (Number(page) === 1) {
                 ref = await collection.orderBy("created", "desc").limit(parseInt(limit)).get();
-            }
-            else {
+            }else {
                 const prev = await collection.orderBy('created', 'desc').limit(parseInt(limit)*(parseInt(page)-1)).get();
                 const lastVisible = prev.docs[prev.docs.length-1];
                 ref = await collection.orderBy("created", "desc").startAfter(lastVisible).limit(parseInt(limit)).get();
