@@ -18,7 +18,7 @@ jobs:
       - name: fortawesome authToken
         run:  npm config set "//npm.fontawesome.com/:_authToken" 805BDB06-0B0E-48D6-A761-61C314D95F29]
       - name: Install Dependencies
-        run:  npm install
+        run:  npm ci
       - name: Install Dependencies (cross-env)
         run : npm install cross-env
       - name: Build
