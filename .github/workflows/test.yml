@@ -11,9 +11,14 @@ jobs:
 
     runs-on: ubuntu-latest
     steps:
-      - name: checkout source code    # 레포지토리 체크아웃
+      - - uses: actions/setup-node@v1
+            with:
+              node-version: 12.x
+      - name: checkout source code
         uses: actions/checkout@master
-      - name: Build                   # React Build
+      - name: Install Dependencies
+        run:  npm install
+      - name: Build
         run:  npm run build:prod
 
 
