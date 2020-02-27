@@ -22,6 +22,7 @@ export default async (req, res) => {
         const title = req.body.title || '';
         const content = req.body.content || '';
         const movUrl = req.body.movUrl || '';
+        const playList = req.body.playList || [];
 
         const movID = movUrl.split('v=')[1].split('&')[0];
         const thumbnail = "https://img.youtube.com/vi/"+ movID +"/maxresdefault.jpg";
@@ -33,6 +34,7 @@ export default async (req, res) => {
             movUrl,
             movID,
             thumbnail,
+            playList,
             viewCount: 0,
             created: moment().locale('ko').format()
         };
