@@ -10,6 +10,11 @@ import cookie from 'js-cookie'
 const Login  = props => {
     const router = useRouter();
 
+    console.log(router);
+
+    const { auth } = props;
+    if (auth) Router.push('/admin/p/list');
+
     // email, password state
     const [ email, setEmail ] = useState('');
     const [ password, setPassword ] = useState('');
@@ -236,10 +241,10 @@ Login.getInitialProps = async (ctx) => {
     const { token } = nextCookie(ctx);
 
     const auth = !!token;
-    if (auth) {
-        ctx.res.writeHead(302, { Location: '/admin/p/list' });
-        ctx.res.end();
-    }
+    // if (auth) {
+    //     ctx.res.writeHead(302, { Location: '/admin/p/list' });
+    //     ctx.res.end();
+    // }
 
     return {
         auth: auth

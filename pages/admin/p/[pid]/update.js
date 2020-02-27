@@ -544,10 +544,10 @@ const Update = props => {
 Update.getInitialProps = async function (ctx) {
     const { token } = nextCookie(ctx);
     const auth = !!token;
-    if (!auth) {
-        ctx.res.writeHead(302, { Location: '/admin/login' });
-        ctx.res.end();
-    }
+    // if (!auth) {
+    //     ctx.res.writeHead(302, { Location: '/admin/login' });
+    //     ctx.res.end();
+    // }
 
     const pid = ctx.query.pid;
     const res = await fetch(`http://myxd.co.kr/api/board/post/${pid}`);
