@@ -24,6 +24,7 @@ export default async (req, res) => {
         const imgSaveName = req.body.imgSaveName || '';
         const imgPath = req.body.imgPath || '';
         const detailImg = req.body.detailImg || [];
+        // const detailImgName = req.body.detailImgName || [];
         const link = req.body.link || '';
         const title= req.body.title || '';
         // const detailImg = req.body.detailImg || [''];
@@ -35,11 +36,16 @@ export default async (req, res) => {
             imgSaveName: imgSaveName,
             imgPath: imgPath,
             detailImg: detailImg,
+            // detailImgName: detailImgName,
             link: link,
             title: title,
             viewCount: 0,
             created: moment().locale('ko').format()
         };
+
+        // console.log('[api/create.js]');
+        // console.log(data);
+        // console.log('\n');
 
         // 글 collection
         const collection = db.collection('Posts');

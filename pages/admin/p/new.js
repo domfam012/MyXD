@@ -21,8 +21,6 @@ const New = props => {
     const [ detailImgName1, setDetailImgName1 ] = useState('');
     const [ detailImg2, setDetailImg2 ] = useState('');
     const [ detailImgName2, setDetailImgName2 ] = useState('');
-    const [ detailImg3, setDetailImg3 ] = useState('');
-    const [ detailImgName3, setDetailImgName3 ] = useState('');
 
     const [ link, setLink ] = useState('');
 
@@ -31,7 +29,6 @@ const New = props => {
     // detail input file elemenet
     const detailFileEl1 = useRef(null);
     const detailFileEl2 = useRef(null);
-    const detailFileEl3 = useRef(null);
 
     const router = useRouter();
 
@@ -75,7 +72,6 @@ const New = props => {
         const preview = URL.createObjectURL(e.target.files[0]);
         setDetailImg1(preview);
         setDetailImgName1(e.target.files[0].name);
-
         detailFileEl1.current.focus();
     };
     // 상세 업로드 이미지 제거1
@@ -91,7 +87,6 @@ const New = props => {
         const preview = URL.createObjectURL(e.target.files[0]);
         setDetailImg2(preview);
         setDetailImgName2(e.target.files[0].name);
-
         detailFileEl2.current.focus();
     };
     // 상세 업로드 이미지 제거2
@@ -100,22 +95,6 @@ const New = props => {
         setDetailImg2('');
         setDetailImgName2('');
         detailFileEl2.current.value = null;
-    };
-
-    // 상세 이미지 업로드3
-    const onDetailUpload3 = e => {
-        const preview = URL.createObjectURL(e.target.files[0]);
-        setDetailImg3(preview);
-        setDetailImgName3(e.target.files[0].name);
-
-        detailFileEl3.current.focus();
-    };
-    // 상세 업로드 이미지 제거3
-    const detailRemove3 = e => {
-        e.preventDefault();
-        setDetailImg3('');
-        setDetailImgName3('');
-        detailFileEl3.current.value = null;
     };
 
     // 링크 입력
@@ -150,19 +129,13 @@ const New = props => {
                 link,
                 imgPath: '',
                 imgSaveName: '',
-                detailImg: []
+                detailImg: [],
+                // detailImgName: []
             }; // db insert data
 
             // firestore storage 에 업로드
             const storage = await loadStorage();
 
-            /* Start of img upload task */
-            // console.log('[start] uploading..');
-
-            // main image upload
-            // const uploadMainImg = () => {
-
-            // console.log(`(start) main img uploading..`);
             const img = inputFileEl.current.files[0];
             const sid = shortid.generate(); // sid => imgSaveName
             const storageRef = storage.ref(`post/${sid}`);
@@ -173,7 +146,6 @@ const New = props => {
             const selectedImages = [];
             if (detailImg1 !== '') selectedImages.push(detailFileEl1.current.files[0]);
             if (detailImg2 !== '') selectedImages.push(detailFileEl2.current.files[0]);
-            if (detailImg3 !== '') selectedImages.push(detailFileEl3.current.files[0]);
 
             uploadTask.on('state_changed',
                 snapshot => {
@@ -196,66 +168,51 @@ const New = props => {
                 () => {
                     // 업로드된 이미지 url
                     uploadTask.snapshot.ref.getDownloadURL().then(url => {
-                        // console.log(`(end) main img uploading finished.. ${url}`);
                         reqData.imgPath = url;
 
-                        /* detail image upload */
-                        uploadDetailImg(selectedImages);
-                        // resolve();
+                        // detail image upload
+                        uploadDetailImg();
                     });
                 }
             );
             /* End of main img upload task */
 
-            const uploadDetailImg = () => {
-                selectedImages.forEach((img, idx) => {
-                    // console.log(`(start) detail img(${idx}) uploading..${idx}`);
+            const uploadDetailImg = async () => {
+                const process = (item, i) => {
+                    return new Promise((resolve, reject) => {
+                        const sid = shortid.generate(); // sid => imgSaveName
+                        const storageRef = storage.ref(`post/${sid}`);
 
-                    const sid = shortid.generate(); // sid => imgSaveName
-                    const storageRef = storage.ref(`post/${sid}`);
-                    const uploadTask = storageRef.put(img);
-                    uploadTask.on('state_changed',
-                        snapshot => {
-                            const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                        },
-                        err => {
-                            switch (err.code) {
-                                case 'storage/unauthorized':
-                                    alert("User doesn't have permission to access the object");
-                                    break;
-                                case 'storage/canceled':
-                                    alert("User canceled the upload");
-                                    break;
-                                case 'storage/unknown':
-                                    alert("Unknown error occurred, inspect error.serverResponse");
-                                    break;
-                            }
-                            // reject();
-                        },
-                        () => {
-                            // 업로드된 이미지 url
-                            uploadTask.snapshot.ref.getDownloadURL().then(url => {
-                                // console.log(`(end) detail img(${idx}) uploading finished.. ${url}`);
+                        // upload file
+                        const uploadTask = storageRef.put(item);
+
+                        //Update progress bar
+                        uploadTask.on('state_changed',
+                            () => {},
+                            err => {
+                                console.log(err)
+                                reject();
+                            },
+                            async _ => {
+                                const url = await uploadTask.snapshot.ref.getDownloadURL().then(url => url);
                                 reqData.detailImg.push(url);
-                                if ( idx === selectedImages.length-1 ) {
-                                    // console.log(`[end] upload finished..`);
-                                    // console.log(reqData);
-                                    dbInsert()
-                                }
-                            });
-                        }
-                    );
-                });
-            };
-            /* End of detail img upload task */
-            // await uploadMainImg();
-            // await uploadDetailImg();
+                                resolve();
+                            }
+                        );
+                    });
+                };
 
-            // console.log(`[end] upload finished..`);
-            // console.log(reqData);
+                for (let i=0; i<selectedImages.length; i++) {
+                    const item = selectedImages[i];
+                    await process(item, i);
+                }
+
+                dbInsert();
+
+            };
 
             const dbInsert = () => {
-                axios.post(`http://localhost:3000/api/board/create`, reqData, {
+                axios.post(`http://myxd.co.kr/api/board/create`, reqData, {
                     headers: {
                         'Accept': 'application/json',
                         'Headers': 'content-type',
@@ -263,7 +220,6 @@ const New = props => {
                     }
                 })
                     .then(() => {
-                        // console.log(`post uploaded..\n`);
                         alert('업로드 되었습니다.');
                         router.push('/admin/p/list');
                     })
@@ -412,25 +368,6 @@ const New = props => {
                                                    onChange={onDetailUpload2}/>
                                         </div>
 
-                                        {/* 상세 이미지 3 업로드 */}
-                                        <div className={" input-group input-area"}>
-                                            <div className="file-label">
-                                                { detailImg3 === ''
-                                                    ? (
-                                                        <label htmlFor={"detailUploader3"} className={"add text-center"}>+<br/>이미지</label>
-                                                    )
-                                                    : (
-                                                        <div className={"added"}>
-                                                            <img src={detailImg3} alt="업로드 이미지"/>
-                                                            <a href="#" className="btn-close" onClick={detailRemove3}/>
-                                                        </div>
-                                                    )
-                                                }
-                                            </div>
-                                            <input type="file" id="detailUploader3" name={"img"} className="form-control-file"
-                                                   ref={detailFileEl3}
-                                                   onChange={onDetailUpload3}/>
-                                        </div>
                                     </div>
 
 
@@ -569,7 +506,7 @@ New.getInitialProps = async (ctx) => {
     }
 
     const page = ctx.query.page || '1';
-    const res = await fetch(`http://localhost:3000/api/board/list/5?page=${page}`);
+    const res = await fetch(`http://myxd.co.kr/api/board/list/5?page=${page}`);
     const result = await res.json();
 
     return {
