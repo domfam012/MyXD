@@ -1,21 +1,22 @@
 name: MYXD
 
 on:
-  pull_request:
   push:
     branches:
       - master
-      - releases/*
       - MYXD-141
 
 jobs:
   build:
-    name : MYXD action
+
     runs-on: ubuntu-latest
     steps:
-      - name: checkout source code
+      - name: checkout source code    # 레포지토리 체크아웃
         uses: actions/checkout@master
-      - name: echo Hello
-        run: echo "Hello"
+      - name: Install Dependencies    # 의존 파일 설치
+        run:  npm install
+      - name: Build                   # React Build
+        run:  npm run build:prod
+
 
 
