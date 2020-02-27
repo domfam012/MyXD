@@ -180,7 +180,7 @@ const List = props => {
             <div className={"content"}>
                 <div className={"row box"}>
                     <div className={"col col-sm-12"}>
-                        <h1 className={"header"}>목록</h1>
+                        <h1 className={"header"}>XD 관리</h1>
                         <div className={"damper"}></div>
 
                         <div className={"row pl-0 pr-0"}>
