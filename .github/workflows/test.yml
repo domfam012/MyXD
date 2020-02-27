@@ -44,7 +44,7 @@ jobs:
           sudo aws s3 cp \
             --recursive \
             --region ap-northeast-2 \
-            _next s3://myxd-github-action
+            out s3://myxd-github-action
 
 
 
