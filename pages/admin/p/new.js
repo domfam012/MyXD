@@ -301,7 +301,7 @@ const New = props => {
                                     {/* 이미지 업로드 */}
                                     <div className={"form-group"}>
                                         <div className={"label-area"}>
-                                            <label className="col-form-label" style={{"lineHeight":"9.4"}}>대표 이미지</label>
+                                            <label className="col-form-label" style={{"lineHeight":"9.4"}}>썸네일 이미지</label>
                                         </div>
                                         <div className={" input-group input-area"}>
                                             <div className="file-label">
@@ -329,7 +329,7 @@ const New = props => {
                                             <label className="col-form-label" style={{"lineHeight":"9.4"}}>상세 이미지</label>
                                         </div>
                                         {/* 상세 이미지 1 업로드 */}
-                                        <div className={" input-group input-area"}>
+                                        <div className={"input-group input-area detail-img-group"} style={{"margin-left":"17%"}}>
                                             <div className="file-label">
                                                 { detailImg1 === ''
                                                     ? (
@@ -349,7 +349,7 @@ const New = props => {
                                         </div>
 
                                         {/* 상세 이미지 2 업로드 */}
-                                        <div className={" input-group input-area"}>
+                                        <div className={"input-group input-area detail-img-group"}>
                                             <div className="file-label">
                                                 { detailImg2 === ''
                                                     ? (
@@ -438,10 +438,13 @@ const New = props => {
                     width: calc(27.6% - 1px);
                     margin-left: 0;
                 }
-                .detail-img-group:first-child {
-                    margin-left: 17%;
+                
+                .detail-img-group {
+                    width: auto;
+                    display: inline-block;
+                    margin-left: 10px;
                 }
-
+                
                 textarea {
                     height: 381px;
                     line-height: 30px;
