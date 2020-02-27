@@ -18,29 +18,29 @@ export default async (req, res) => {
         const db = await loadDB();
 
         // 받아온 값 타입 && null 체크
-        const category = req.body.category || [];
+        const hash = req.body.hash || [];
+        const title = req.body.title || '';
         const content = req.body.content || '';
-        const imgOriginName = req.body.imgName || '';
-        const imgSaveName = req.body.imgSaveName || '';
-        const imgPath = req.body.imgPath || '';
-        const link = req.body.link || '';
-        const title= req.body.title || '';
-        // const detailImg = req.body.detailImg || [''];
+        const movUrl = req.body.movUrl || '';
+        const playList = req.body.playList || [];
+
+        const movID = movUrl.split('v=')[1].split('&')[0];
+        const thumbnail = "https://img.youtube.com/vi/"+ movID +"/maxresdefault.jpg";
+
         const data = {
-            category: category,
-            content: content,
-            imgOriginName: imgOriginName,
-            imgPath: imgPath,
-            imgSaveName: imgSaveName,
-            detailImg: [''],
-            link: link,
-            title: title,
+            hash,
+            title,
+            content,
+            movUrl,
+            movID,
+            thumbnail,
+            playList,
             viewCount: 0,
             created: moment().locale('ko').format()
         };
 
         // 글 collection
-        const collection = db.collection('Posts');
+        const collection = db.collection('Lecture');
         await collection.add(data)
             .then(function(docRef) {
                 return docRef.id;
@@ -50,7 +50,7 @@ export default async (req, res) => {
             });
 
         // 전체 글 카운트 +1
-        const countDoc = await db.collection('Count').doc('Posts');
+        const countDoc = await db.collection('Count').doc('Lecture');
         const increment = firestore.FieldValue.increment(1);
         await countDoc.update({ count: increment });
         return res.status(200).end();
