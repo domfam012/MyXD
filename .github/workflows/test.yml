@@ -12,8 +12,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/setup-node@v1
-            with:
-              node-version: 12.x
       - name: checkout source code
         uses: actions/checkout@master
       - name: Install Dependencies
