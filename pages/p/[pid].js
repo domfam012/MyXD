@@ -124,9 +124,14 @@ const Detail = props => {
                             </div>
                         </div>
 
+                        {/* 추가 이미지 */}
+                        {data.detailImg.map(detailImgPath => (
+                            <div className={"img detail"}><img src={detailImgPath} alt=""/></div>
+                        ))}
+
                         <div>
                             <div className={"detail_title"}>
-                                <span>함께보면 좋을것 같아요</span>
+                                <span>함께보면 좋을 것 같아요</span>
                             </div>
                             <div className={"box-list"}>
                                 <ul className="list img-list">
@@ -165,6 +170,9 @@ const Detail = props => {
                             max-width: 100%;
                             height: 100%;
                         }
+                    }
+                    .img.detail {
+                        margin-bottom: 18px;
                     }
                     .box_text {
                             padding: 33px 30px 30px 30px;
