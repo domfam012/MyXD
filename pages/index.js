@@ -213,14 +213,11 @@ const Index = props => {
 
 Index.getInitialProps = async function (ctx) {
     const page = ctx.query.page || '1'; // default page index
-    const res = await fetch(`http://myxd.co.kr/api/board/list/15?page=${page}`); // get /api/board/lsit/[limit]?page={page}
-
+    const res = await fetch(`${process.env.ASSET_PREFIX}/api/board/list/15?page=${page}`); // get /api/board/lsit/[limit]?page={page}
     const result = await res.json();
-    // console.log(result);
-
-    const asideRes = await fetch(`http://myxd.co.kr/api/board/interest`);
+    const asideRes = await fetch(`${process.env.ASSET_PREFIX}/api/board/interest`);
     const asideResult = await asideRes.json();
-    // console.log(asideResult);
+
     return {
         data: result.data,
         activePage: Number(page),
