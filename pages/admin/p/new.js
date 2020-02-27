@@ -503,10 +503,10 @@ const New = props => {
 New.getInitialProps = async (ctx) => {
     const { token } = nextCookie(ctx);
     const auth = !!token;
-    if (!auth) {
-        ctx.res.writeHead(302, { Location: '/admin/login' });
-        ctx.res.end();
-    }
+    // if (!auth) {
+    //     ctx.res.writeHead(302, { Location: '/admin/login' });
+    //     ctx.res.end();
+    // }
 
     const page = ctx.query.page || '1';
     const res = await fetch(`http://myxd.co.kr/api/board/list/5?page=${page}`);

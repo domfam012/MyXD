@@ -21,8 +21,8 @@ export default async (req, res) => {
         const hash = req.body.hash || [];
         const title = req.body.title || '';
         const content = req.body.content || '';
-        const movUrl = req.body.movUrl || '';
-        const playList = req.body.playList || [];
+        const movUrl = req.body.link || '';
+        const playList = req.body.playlist || [];
 
         const movID = movUrl.split('v=')[1].split('&')[0];
         const thumbnail = "https://img.youtube.com/vi/"+ movID +"/maxresdefault.jpg";
