@@ -1,17 +1,17 @@
-#name: MYXD S3
-#
-#on:
-#  push:
-#    branches:
-#      - MYXD-141
-#jobs:
-#  build:
-#
-#    runs-on: ubuntu-latest
-#    steps:
-#      - name: checkout source code
-#        uses: actions/checkout@master
-#
+name: MYXD S3
+
+on:
+  push:
+    branches:
+      - MYXD-141
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout source code
+        uses: actions/checkout@master
+
 #      - name: fortawesome
 #        run : npm config set "@fortawesome:registry" https://npm.fontawesome.com/
 #
@@ -42,6 +42,6 @@
 #            --recursive \
 #            --region ap-northeast-2 \
 #            out s3://myxd-github-action
-#
-#
-#
+
+
+
