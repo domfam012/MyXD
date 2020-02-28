@@ -12,9 +12,6 @@ jobs:
       - name: checkout source code
         uses: actions/checkout@master
 
-      - name: fortawesome
-        run : npm config set "@fortawesome:registry" https://npm.fontawesome.com/
-
       - name: fortawesome authToken
         run:  npm config set "//npm.fontawesome.com/:_authToken" 805BDB06-0B0E-48D6-A761-61C314D95F29
 
