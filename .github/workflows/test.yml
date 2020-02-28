@@ -3,7 +3,7 @@ name: MYXD
 on:
   push:
     branches:
-      - MYXD-141
+      - master
 jobs:
   build:
 
