@@ -15,7 +15,7 @@ export default async (req, res) => {
 
     // load firestore database
     const db = await loadDB();
-    const doc = await db.collection('Posts').doc(pid);
+    const doc = await db.collection('Lecture').doc(pid);
 
     let resData;
     switch ( req.method) {
@@ -50,11 +50,19 @@ export default async (req, res) => {
             const link = req.body.link || '';
             const title= req.body.title || '';
 
+            /**
+             *
+             * @type {{link: (*|string), category: *, title: (*|string), updated: string, content: (*|string)}}
+             *  TODO: detail img 추가 임시로 해뒀음
+             *
+             */
+            // detail img path 추가!
             let newData = {
                 category: category,
                 content: content,
                 link: link,
                 title: title,
+                detailImg: [''],
                 updated: moment().locale('ko').format()
             };
 
@@ -69,13 +77,6 @@ export default async (req, res) => {
                 newData = { ...newData, ...imgData };
             }
 
-            // detail img 변경된 경우
-            if (req.body.detailImg) {
-                const detailImg = req.body.detailImg;
-
-                newData = { ...newData, detailImg };
-            }
-
             await doc.update(newData);
 
             res.status(200).end();
@@ -83,8 +84,9 @@ export default async (req, res) => {
 
         // 글 삭제
         case "DELETE" :
+            console.log(doc);
             doc.delete();
-            const countDoc = await db.collection('Count').doc('Posts');
+            const countDoc = await db.collection('Count').doc('Lecture');
             const decrement = firestore.FieldValue.increment(-1);
 
             // 전체 글 개수 -1

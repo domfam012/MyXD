@@ -276,10 +276,10 @@ const List = props => {
 List.getInitialProps = async (ctx) => {
     const { token } = nextCookie(ctx);
     const auth = !!token;
-    if (!auth) {
-        ctx.res.writeHead(302, { Location: '/admin/login' });
-        ctx.res.end();
-    }
+    // if (!auth) {
+    //     ctx.res.writeHead(302, { Location: '/admin/login' });
+    //     ctx.res.end();
+    // }
 
     // 현재 페이지 (default: 1)
     const page = ctx.query.page || '1';

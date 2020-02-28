@@ -17,19 +17,22 @@ import {faChevronRight} from '@fortawesome/pro-light-svg-icons';
 import fetch from "isomorphic-unfetch";
 import Head from "next/head";
 
+
 // card 컴포넌트
 const Card = props => {
+    const {pid, imgPath, title, content, link} = props;
+    // console.log(content);
     return (
-        <Link href={`/p/${props.pid}`}>
+        <Link href={`/p/${pid}`}>
             <div className={"main_card"}>
-                <div className={"img"}><img src={props.imgPath} alt="temp"/></div>
+                <div className={"img"}><img src={imgPath} alt={title}/></div>
                 <div className={"box_text"}>
-                    <div className={"title"}>{props.title}</div>
+                    <div className={"title"}>{title}</div>
                     <div className={"text"}>
-                        {props.content}
+                        {content}
                     </div>
                     <div>
-                        <Link href={`${props.link}`}>
+                        <Link href={`${link}`}>
                             <a className={"btn btn-primary"}>더 보기</a>
                         </Link>
                     </div>
@@ -73,7 +76,7 @@ const Card = props => {
                             color: #666666;
                             margin: 23px 0 40px;
                             display: -webkit-box;
-                            white-space: normal;
+                            white-space: pre-line;
                             height: 73px;
                             word-wrap: break-word;
                             -webkit-line-clamp: 3;
@@ -210,10 +213,9 @@ const Index = props => {
 
 Index.getInitialProps = async function (ctx) {
     const page = ctx.query.page || '1'; // default page index
-    const res = await fetch(`http://myxd.co.kr/api/board/list/15?page=${page}`); // get /api/board/lsit/[limit]?page={page}
+    const res = await fetch(`${process.env.ASSET_PREFIX}/api/board/list/15?page=${page}`); // get /api/board/lsit/[limit]?page={page}
     const result = await res.json();
-
-    const asideRes = await fetch(`http://myxd.co.kr/api/board/interest`);
+    const asideRes = await fetch(`${process.env.ASSET_PREFIX}/api/board/interest`);
     const asideResult = await asideRes.json();
 
     return {

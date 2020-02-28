@@ -91,8 +91,7 @@ const Template = props => {
 
 //상세페이지
 const Detail = props => {
-    const { data, asideData } = props;
-
+    const { data, asideData, relatedData } = props;
 
     return (
         <Layout>
@@ -125,15 +124,20 @@ const Detail = props => {
                             </div>
                         </div>
 
+                        {/* 추가 이미지 */}
+                        {data.detailImg.map(detailImgPath => (
+                            <div className={"img detail"}><img src={detailImgPath} alt=""/></div>
+                        ))}
+
                         <div>
                             <div className={"detail_title"}>
-                                <span>함께보면 좋을것 같아요</span>
+                                <span>함께보면 좋을 것 같아요</span>
                             </div>
                             <div className={"box-list"}>
                                 <ul className="list img-list">
                                     {/* 연관 포스트 */}
                                     {
-                                        asideData.map(item => (
+                                        relatedData.map(item => (
                                             <Template key={item.pid} title={item.title} category={item.category} pid={item.pid} imgPath={item.imgPath}/>
                                         ))
                                     }
@@ -166,6 +170,9 @@ const Detail = props => {
                             max-width: 100%;
                             height: 100%;
                         }
+                    }
+                    .img.detail {
+                        margin-bottom: 18px;
                     }
                     .box_text {
                             padding: 33px 30px 30px 30px;
@@ -207,7 +214,7 @@ const Detail = props => {
                     max-width:100%;
                 }
                 
-             //You may also like
+                //You may also like
                 .detail_title {
                     position: relative;
                     width: 100%;
@@ -228,13 +235,13 @@ const Detail = props => {
                     left:50%;
                     margin-left:-50px;
                 }
-            // 더보기
-                  .box-list {
+                // 더보기
+                .box-list {
                     padding-top: 19px;
-                  }
-                  .list {
+                }
+                .list {
                     overflow: hidden;
-                  }
+                }
             //탭      
             @media (max-width: 1200px) {
                 .main_card {
@@ -283,8 +290,16 @@ Detail.getInitialProps = async ctx => {
     const res = await fetch(`http://myxd.co.kr/api/board/post/${pid}`);
     const result = await res.json();
 
+    // 연관 포스트 불러올 때,
+    // category 여러 개일 경우 임의로 카테고리 하나 선택
+    const { category } = result.data;
+    const cat = category[Math.floor(Math.random()*category.length)];
+
     const asideRes = await fetch(`http://myxd.co.kr/api/board/interest`);
     const asideResult = await asideRes.json();
+
+    const relatedRes = await fetch(`http://myxd.co.kr/api/board/related?pid=${pid}&category=${cat}`);
+    const relatedResult = await relatedRes.json();
 
     switch(result.status){
         case 404 :
@@ -295,6 +310,7 @@ Detail.getInitialProps = async ctx => {
     return{
         data: result.data,
         asideData: asideResult.data,
+        relatedData: relatedResult.data
     }
 
 

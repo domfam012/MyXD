@@ -4,10 +4,13 @@
   "description": "Boilerplate with NextJS, Express, Bootstrap",
   "main": "index.js",
   "scripts": {
-    "dev": "node server.js",
-    "build": "next build",
+    "serve:dev": "cross-env NODE_ENV=development node server.js",
+    "serve:prod": "cross-env NODE_ENV=production node server.js",
+    "build:dev": "cross-env NODE_ENV=development next build",
+    "build:prod": "cross-env NODE_ENV=production next build",
     "export": "next export",
-    "deploy": "next build && next export && touch out/.nojekyll && git add out/ && git commit -m 'deploy to gh-pages' && git subtree push --prefix out origin gh-pages"
+    "deploy": "next build && next export && touch out/.nojekyll && git add out/ && git commit -m 'deploy to gh-pages' && git subtree push --prefix out origin gh-pages",
+    "start": "node server.js"
   },
   "keywords": [
     "nextjs",
@@ -15,16 +18,12 @@
     "express",
     "bootstrap"
   ],
-  "author": {
-    "name": "Domfam",
-    "email": "domfam012@gmail.com",
-    "url": "http://www.domfam.com/domfam_homepage_v2019/dist/html/index.html"
-  },
+  "author": "Domfam <domfam012@gmail.com> (http://www.domfam.com/domfam_homepage_v2019/dist/html/index.html)",
   "license": "ISC",
   "homepage": "https://github.com/domfam012/MyXD",
   "repository": {
     "type": "git",
-    "url": "https://github.com/domfam012/MyXD.git"
+    "url": "git+https://github.com/domfam012/MyXD.git"
   },
   "bugs": {
     "url": "https://github.com/domfam012/MyXD/issues"
@@ -45,6 +44,7 @@
     "axios": "^0.19.2",
     "body-parser": "^1.19.0",
     "bootstrap": "^4.4.1",
+    "cross-env": "^7.0.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "firebase": "^7.8.0",

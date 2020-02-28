@@ -16,13 +16,21 @@ const Update = props => {
     const [ title, setTitle ] = useState(data.title);
     const [ content, setContent ] = useState(data.content);
     const [ category, setCategory ] = useState(data.category);
+
     const [ img, setImg ] = useState(data.imgPath);
     const [ imgName, setImgName ] = useState('');
     const [ imgChanged, setImgChanged ] = useState(false);
+
+    const [ detailImg1, setDetailImg1 ] = useState(data.detailImg[0]);
+    const [ detailImg2, setDetailImg2 ] = useState(data.detailImg[1]);
+
     const [ link, setLink ] = useState(data.link);
 
     // input file element
     const inputFileEl = useRef(null);
+    // detail input file elemenet
+    const detailFileEl1 = useRef(null);
+    const detailFileEl2 = useRef(null);
 
     const router = useRouter();
     const pid = router.query.pid;
@@ -45,6 +53,7 @@ const Update = props => {
             setCategory(category.filter(item => item !== val));
         }
     };
+
     // 이미지 업로드
     const onFileUpload = e => {
         const preview = URL.createObjectURL(e.target.files[0]);
@@ -52,6 +61,7 @@ const Update = props => {
         setImgName(e.target.files[0].name);
         setImgChanged(true);
         inputFileEl.current.focus();
+        console.log(inputFileEl.current.files)
     };
     // 업로드 이미지 제거
     const fileRemove = e => {
@@ -60,6 +70,36 @@ const Update = props => {
         setImgName('');
         inputFileEl.current.value = null;
     };
+
+    const detailImg = data.detailImg;
+    // 상세 이미지 업로드1
+    const onDetailUpload1 = e => {
+        const preview = URL.createObjectURL(e.target.files[0]);
+        setDetailImg1(preview);
+        detailFileEl1.current.focus();
+    };
+    // 상세 업로드 이미지 제거1
+    const detailRemove1 = e => {
+        e.preventDefault();
+        setDetailImg1('');
+        detailImg[0] = '';
+        detailFileEl1.current.value = null;
+    };
+
+    // 상세 이미지 업로드2
+    const onDetailUpload2 = e => {
+        const preview = URL.createObjectURL(e.target.files[0]);
+        setDetailImg2(preview);
+        detailFileEl2.current.focus();
+    };
+    // 상세 업로드 이미지 제거2
+    const detailRemove2 = e => {
+        e.preventDefault();
+        setDetailImg2('');
+        detailImg[1] = '';
+        detailFileEl2.current.value = null;
+    };
+
     // 링크 입력
     const linkChange = e => {
         setLink(e.target.value);
@@ -93,24 +133,27 @@ const Update = props => {
             let reqData = { title, content, link, category };
 
             // 이미지 firestore storage 에 저장
-            uploadFile(reqData, uploadPost);
+            uploadImg(reqData, uploadDetailImg);
+
+            // -> 위에거 함수 호출 순서 변경 -> uploadPost 로 감싸고 그 안에서 await 로 uploadImg, uploadDetailImg
+
         }
     };
 
     // 이미지 firestore storage 에 저장
-    const uploadFile = async (reqData, cb) => {
+    const uploadImg = async (reqData, cb) => {
+        const storage = await loadStorage();
 
         // 이미지 변경된 경우
         // firestore storage 에 업로드
         if (imgChanged) {
+            console.log(inputFileEl);
+
             const sid = shortid.generate();
-            const storage = await loadStorage();
             const storageRef = storage.ref(`post/${sid}`);
             const uploadTask = storageRef.put(inputFileEl.current.files[0]);
             uploadTask.on('state_changed',
-                snapshot => {
-
-                },
+                snapshot => {},
                 err => {
                     switch (err.code) {
                         case 'storage/unauthorized':
@@ -136,19 +179,71 @@ const Update = props => {
                         ...reqData, imgName: imgName, imgPath: downloadURL, imgSaveName: sid
                     };
 
-                    cb(newData); // uploadPost
+                    cb(newData, uploadPost, storage); // uploadDetailImg
                 }
             );
         }
 
         // 이미지 변경되지 않은 경우
         else {
+            cb(reqData, uploadPost, storage); // uploadDetailImg
+        }
+    };
+
+    const uploadDetailImg = async (reqData, cb, storage) => {
+        const selectedImages = [];
+
+        if (detailImg1 !== '' && (detailImg[0] === '' || detailImg[0] === undefined)) selectedImages.push(detailFileEl1.current.files[0]);
+        if (detailImg2 !== '' && (detailImg[1] === '' || detailImg[1] === undefined)) selectedImages.push(detailFileEl2.current.files[0]);
+
+        // detail img path 정리
+        // add prev detailImg to reqData
+        reqData.detailImg = detailImg.filter(path => path !== '');
+
+        // detail image 변경 사항 있을 경우
+        if (selectedImages.length) {
+            const process = (item, i) => {
+                return new Promise((resolve, reject) => {
+                    const sid = shortid.generate(); // sid => imgSaveName
+                    const storageRef = storage.ref(`post/${sid}`);
+
+                    // upload file
+                    const uploadTask = storageRef.put(item);
+
+                    //Update progress bar
+                    uploadTask.on('state_changed',
+                        () => {},
+                        err => {
+                            console.log(err)
+                            reject();
+                        },
+                        async _ => {
+                            const url = await uploadTask.snapshot.ref.getDownloadURL().then(url => url);
+                            reqData.detailImg.push(url);
+                            resolve();
+                        }
+                    );
+                });
+            };
+
+            for (let i=0; i<selectedImages.length; i++) {
+                const item = selectedImages[i];
+                await process(item, i);
+            }
+
+            cb(reqData);
+        }
+        else {
             cb(reqData); // uploadPost
         }
     };
 
     // DB update
-    const uploadPost = (reqData) => {
+    const uploadPost = reqData => {
+
+        console.log(reqData);
+        return;
+
         axios.patch(`http://myxd.co.kr/api/board/post/${pid}`, reqData, {
                 headers: {
                     'Accept': 'application/json',
@@ -238,7 +333,7 @@ const Update = props => {
                                     {/* 이미지 업로드 */}
                                     <div className={"form-group"}>
                                         <div className={"label-area"}>
-                                            <label className="col-form-label" style={{"lineHeight":"9.4"}}>이미지 업로드</label>
+                                            <label className="col-form-label" style={{"lineHeight":"9.4"}}>썸네일 이미지</label>
                                         </div>
                                         <div className={" input-group input-area"}>
                                             <div className="file-label">
@@ -249,7 +344,7 @@ const Update = props => {
                                                     : (
                                                         <div className={"added"}>
                                                             <img src={img} alt="업로드 이미지"/>
-                                                            <a href="#" className="btn-close" onClick={fileRemove}></a>
+                                                            <a href="#" className="btn-close" onClick={fileRemove}/>
                                                         </div>
                                                     )
                                                 }
@@ -258,6 +353,53 @@ const Update = props => {
                                                    ref={inputFileEl}
                                                    onChange={onFileUpload}/>
                                         </div>
+                                    </div>
+
+                                    {/* 상세 이미지 업로드 */}
+                                    <div className={"form-group"}>
+                                        <div className={"label-area"}>
+                                            <label className="col-form-label" style={{"lineHeight":"9.4"}}>상세 이미지</label>
+                                        </div>
+                                        {/* 상세 이미지 1 업로드 */}
+                                        <div className={" input-group input-area detail-img-group"} style={{"margin-left":"17%"}}>
+                                            <div className="file-label">
+                                                { detailImg1 === '' || !detailImg1
+                                                    ? (
+                                                        <label htmlFor={"detailUploader1"} className={"add text-center"}>+<br/>이미지</label>
+                                                    )
+                                                    : (
+                                                        <div className={"added"}>
+                                                            <img src={detailImg1} alt="업로드 이미지"/>
+                                                            <a href="#" className="btn-close" onClick={detailRemove1}/>
+                                                        </div>
+                                                    )
+                                                }
+                                            </div>
+                                            <input type="file" id="detailUploader1" name={"img"} className="form-control-file"
+                                                   ref={detailFileEl1}
+                                                   onChange={onDetailUpload1}/>
+                                        </div>
+
+                                        {/* 상세 이미지 2 업로드 */}
+                                        <div className={" input-group input-area detail-img-group"}>
+                                            <div className="file-label">
+                                                { detailImg2 === '' || !detailImg2
+                                                    ? (
+                                                        <label htmlFor={"detailUploader2"} className={"add text-center"}>+<br/>이미지</label>
+                                                    )
+                                                    : (
+                                                        <div className={"added"}>
+                                                            <img src={detailImg2} alt="업로드 이미지"/>
+                                                            <a href="#" className="btn-close" onClick={detailRemove2}/>
+                                                        </div>
+                                                    )
+                                                }
+                                            </div>
+                                            <input type="file" id="detailUploader2" name={"img"} className="form-control-file"
+                                                   ref={detailFileEl2}
+                                                   onChange={onDetailUpload2}/>
+                                        </div>
+
                                     </div>
 
                                     {/* 링크 */}
@@ -321,6 +463,13 @@ const Update = props => {
                     margin-left: 17%;
                     padding-right: 10px;
                 }
+                
+                .detail-img-group {
+                    width: auto;
+                    display: inline-block;
+                    margin-left: 10px;
+                }
+                
                 textarea {
                     height: 381px;
                     line-height: 30px;
@@ -395,10 +544,10 @@ const Update = props => {
 Update.getInitialProps = async function (ctx) {
     const { token } = nextCookie(ctx);
     const auth = !!token;
-    if (!auth) {
-        ctx.res.writeHead(302, { Location: '/admin/login' });
-        ctx.res.end();
-    }
+    // if (!auth) {
+    //     ctx.res.writeHead(302, { Location: '/admin/login' });
+    //     ctx.res.end();
+    // }
 
     const pid = ctx.query.pid;
     const res = await fetch(`http://myxd.co.kr/api/board/post/${pid}`);
