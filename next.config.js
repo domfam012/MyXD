@@ -17,5 +17,10 @@ module.exports = withCSS({
     assetPrefix: assetPrefix,
     env: {
         ASSET_PREFIX: assetPrefix
+    },
+    exportPathMap: function() {
+        return {
+            '/': { page: '/' },
+        };
     }
 });
