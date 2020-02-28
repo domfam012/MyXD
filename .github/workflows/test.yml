@@ -1,4 +1,4 @@
-name: Checkout > Cache > Install > Build > Export > Deploy (S3)
+name: MYXD S3
 
 on:
   push:
