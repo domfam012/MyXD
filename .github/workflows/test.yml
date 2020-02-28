@@ -30,12 +30,9 @@ jobs:
       - name: Install Dependencies
         run:  npm install
 
-      - name: cross-env
-        run : npm install cross-env
-
       - name: Build & Export
         run:  npm run deploy
-        
+
       - name: Deploy
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
