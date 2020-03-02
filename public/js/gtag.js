@@ -1,8 +1,9 @@
 // GA tag
+import { option } from "../../config";
 
 // https://developers.google.com/analytics/devguides/collection/gtagjs/pages
 export const pageview = url => {
-    window.gtag('config', GA_TRACKING_ID, {
+    window.gtag('config', option.GA_TRACKING_ID, {
         page_path: url,
     });
 };
