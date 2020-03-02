@@ -20,7 +20,7 @@ phases:
 artifacts:
   files:
     - appspec.yml
-    - _next
+    - pwd/_next/
   discard-paths: yes
 
 cache:
