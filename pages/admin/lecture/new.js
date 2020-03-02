@@ -62,11 +62,13 @@ const New = props => {
     setLink(e.target.value);
   };
 
+  // 플레이리스트 입력창 추가
   const addPlaylist = e => {
     e.preventDefault();
     setPlaylist(playlist => [...playlist, ""]);
   };
 
+  // 플레이리스트 입력
   const handlePlaylistChange = (val, idx) => {
     setPlaylist(playlist.map((item, i) => (idx === i ? val : item)));
   };
