@@ -40,10 +40,7 @@ const Update = props => {
 
   // hash connected with comma
   const [hash, setHash] = useState(
-    data.hash.reduce(
-      (acc, cur, idx) => (idx === 0 ? cur : acc + "," + cur),
-      ""
-    )
+    data.hash.reduce((acc, cur, idx) => (idx === 0 ? cur : acc + "," + cur), "")
   );
   const [playList, setPlayList] = useState(data.playList);
   const [content, setContent] = useState(data.content);
