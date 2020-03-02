@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import axios from "axios";
 import nextCookie from "next-cookies";
 
-const playList = props => {
+const PlayList = props => {
   const { idx, link, onChange } = props;
   const playListChange = e => {
     onChange(e.target.value, idx);
@@ -148,7 +148,6 @@ const New = props => {
                         name={"title"}
                         className="form-control"
                         placeholder={"제목을 입력해 주세요"}
-                        maxLength="50"
                         onChange={titleChange}
                       />
                     </div>
@@ -168,7 +167,6 @@ const New = props => {
                         name={"hash"}
                         className="form-control"
                         placeholder={"태그를 ','로 입력해 주세요"}
-                        maxLength="50"
                         onChange={hashChange}
                       />
                     </div>
@@ -226,7 +224,7 @@ const New = props => {
                     </div>
                     <div className={"input-area"}>
                       {playList.map((item, idx) => (
-                        <playList
+                        <PlayList
                           key={idx}
                           idx={idx}
                           link={item}

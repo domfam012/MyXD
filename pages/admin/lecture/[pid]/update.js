@@ -40,10 +40,7 @@ const Update = props => {
 
   // hash connected with comma
   const [hash, setHash] = useState(
-    data.hash.reduce(
-      (acc, cur, idx) => (idx === 0 ? cur : acc + ", " + cur),
-      ""
-    )
+    data.hash.reduce((acc, cur, idx) => (idx === 0 ? cur : acc + "," + cur), "")
   );
   const [playList, setPlayList] = useState(data.playList);
   const [content, setContent] = useState(data.content);
@@ -162,7 +159,6 @@ const Update = props => {
                         name={"title"}
                         className="form-control"
                         placeholder={"제목을 입력해 주세요"}
-                        maxLength="50"
                         onChange={titleChange}
                         value={title}
                       />
@@ -183,7 +179,6 @@ const Update = props => {
                         name={"hash"}
                         className="form-control"
                         placeholder={"태그를 ','로 입력해 주세요"}
-                        maxLength="50"
                         onChange={hashChange}
                         value={hash}
                       />
