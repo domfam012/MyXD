@@ -29,6 +29,10 @@ const Login = props => {
     e.target.value === "" ? setPwdTipShow(true) : setPwdTipShow(false);
   };
 
+  const onKeyPressed = e => {
+    if (e.keyCode === 13) reqLogin();
+  };
+
   // 이메일 검증 함수
   const chkEmail = () => {
     const emailrule = /^(([^<>()\[\].,;:\s@"]+(\.[^<>()\[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
@@ -106,6 +110,7 @@ const Login = props => {
               <input
                 name={"login-email"}
                 onChange={handleEmailChange}
+                onKeyDown={onKeyPressed}
                 type="text"
                 placeholder={"E-mail을 입력해주세요."}
                 maxLength="30"
@@ -126,6 +131,7 @@ const Login = props => {
               <input
                 name={"login-password"}
                 onChange={handlePasswordChange}
+                onKeyDown={onKeyPressed}
                 type="password"
                 placeholder={"비밀번호를 입력해주세요."}
                 maxLength="30"
