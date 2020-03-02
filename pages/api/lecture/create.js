@@ -26,7 +26,8 @@ export default async (req, res) => {
 
     const movID = movUrl.split("v=")[1].split("&")[0];
     const thumbnail =
-      "https://img.youtube.com/vi/" + movID + "/maxresdefault.jpg";
+      "https://img.youtube.com/vi/" + movID + "/mqdefault.jpg";
+    // "https://img.youtube.com/vi/" + movID + "/maxresdefault.jpg";
 
     const data = {
       hash,
