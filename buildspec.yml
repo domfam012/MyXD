@@ -14,15 +14,14 @@ phases:
       - npm run build:prod
   post_build:
     commands:
-      - echo $(basename ./_next)
+      - echo Build completed on `date`
+      - mvn package
       - pwd
 
 artifacts:
   files:
     - appspec.yml
-    - ./_next
     - _next
-    - /_next
   discard-paths: yes
 
 cache:
