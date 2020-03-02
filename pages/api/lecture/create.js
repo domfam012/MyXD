@@ -22,7 +22,7 @@ export default async (req, res) => {
         const title = req.body.title || '';
         const content = req.body.content || '';
         const movUrl = req.body.link || '';
-        const playList = req.body.playlist || [];
+        const playList = req.body.playList || [];
 
         const movID = movUrl.split('v=')[1].split('&')[0];
         const thumbnail = "https://img.youtube.com/vi/"+ movID +"/maxresdefault.jpg";
