@@ -18,7 +18,7 @@ export default async (req, res) => {
     const doc = await db.collection('Lecture').doc(pid);
 
     let resData;
-    switch ( req.method) {
+    switch (req.method) {
 
         // 글 조회
         case "GET" :
@@ -45,37 +45,25 @@ export default async (req, res) => {
         // 글 업데이트
         case "PATCH" :
             // Update
-            const category = req.body.category;
-            const content = req.body.content || '';
-            const link = req.body.link || '';
-            const title= req.body.title || '';
+            const hash = req.body.hash;
+            const title = req.body.title;
+            const content = req.body.content;
+            const movUrl = req.body.link;
+            const playList = req.body.playList;
 
-            /**
-             *
-             * @type {{link: (*|string), category: *, title: (*|string), updated: string, content: (*|string)}}
-             *  TODO: detail img 추가 임시로 해뒀음
-             *
-             */
-            // detail img path 추가!
-            let newData = {
-                category: category,
-                content: content,
-                link: link,
-                title: title,
-                detailImg: [''],
+            const movID = movUrl.split('v=')[1].split('&')[0];
+            const thumbnail = "https://img.youtube.com/vi/"+ movID +"/maxresdefault.jpg";
+
+            const newData = {
+                hash,
+                title,
+                content,
+                movUrl,
+                movID,
+                thumbnail,
+                playList,
                 updated: moment().locale('ko').format()
             };
-
-            // img 변경된 경우
-            if (req.body.imgName) {
-                const imgData = {
-                    imgOriginName: req.body.imgName,
-                    imgPath: req.body.imgPath,
-                    imgSaveName: req.body.imgSaveName
-                };
-
-                newData = { ...newData, ...imgData };
-            }
 
             await doc.update(newData);
 
@@ -84,7 +72,7 @@ export default async (req, res) => {
 
         // 글 삭제
         case "DELETE" :
-            console.log(doc);
+            // console.log(doc);
             doc.delete();
             const countDoc = await db.collection('Count').doc('Lecture');
             const decrement = firestore.FieldValue.increment(-1);

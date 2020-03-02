@@ -38,14 +38,14 @@ export default async (req, res) => {
         // 전체 글 개수 조회
         const countRef = await db.collection('Count').doc('Lecture').get();
         let total = await countRef.data().count;
-        console.log(total);
+        // console.log(total);
         // 페이지에 해당하는 글 목록 조회
         let ref;
-        console.log(Number(page));
+        // console.log(Number(page));
         if (Number(page) === 1) {
-            console.log('ref');
+            // console.log('ref');
             ref = await collection.orderBy('created', 'desc').limit(parseInt(limit)).get();
-            console.log(ref);
+            // console.log(ref);
         } else {
             const prev = await collection.orderBy('created', 'desc').limit(parseInt(limit) * (parseInt(page) - 1)).get();
             const lastVisible = prev.docs[prev.docs.length - 1];

@@ -1,16 +1,13 @@
 import Head from "next/head";
 import Layout from "../../../components/Layout";
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { useRouter } from "next/router";
-import fetch from "isomorphic-unfetch";
 import axios from "axios";
 import nextCookie from "next-cookies";
-import { loadStorage, storage } from "../../../public/js/db";
-import shortid from "shortid";
 
-const Playlist = props => {
+const playList = props => {
   const { idx, link, onChange } = props;
-  const playlistChange = e => {
+  const playListChange = e => {
     onChange(e.target.value, idx);
   };
 
@@ -18,12 +15,12 @@ const Playlist = props => {
     <>
       <input
         type="text"
-        name={"playlist"}
+        name={"playList"}
         value={link}
         className="form-control"
         placeholder={"https://www.youtube.com/watch?v=Ljw1Hcn15C"}
         maxLength="250"
-        onChange={playlistChange}
+        onChange={playListChange}
       />
       <style jsx>{`
         input {
@@ -38,7 +35,7 @@ const New = props => {
   // 입력값
   const [title, setTitle] = useState("");
   const [hash, setHash] = useState("");
-  const [playlist, setPlaylist] = useState(["", "", ""]);
+  const [playList, setPlayList] = useState(["", "", ""]);
   const [content, setContent] = useState("");
   const [link, setLink] = useState("");
 
@@ -62,13 +59,15 @@ const New = props => {
     setLink(e.target.value);
   };
 
-  const addPlaylist = e => {
+  // 플레이리스트 입력창 추가
+  const addPlayList = e => {
     e.preventDefault();
-    setPlaylist(playlist => [...playlist, ""]);
+    setPlayList(playList => [...playList, ""]);
   };
 
-  const handlePlaylistChange = (val, idx) => {
-    setPlaylist(playlist.map((item, i) => (idx === i ? val : item)));
+  // 플레이리스트 입력
+  const handlePlayListChange = (val, idx) => {
+    setPlayList(playList.map((item, i) => (idx === i ? val : item)));
   };
 
   // 취소 클릭
@@ -97,9 +96,9 @@ const New = props => {
         link
       }; // db insert data
 
-      // playlist 있는 경우에만 추가
-      const play = playlist.filter(item => item !== "");
-      if (play.length) reqData.playlist = play;
+      // playList 있는 경우에만 추가
+      const play = playList.filter(item => item !== "");
+      if (play.length) reqData.playList = play;
 
       axios
         .post(`${process.env.ASSET_PREFIX}/api/lecture/create`, reqData, {
@@ -226,17 +225,17 @@ const New = props => {
                       <label className="col-form-label">플레이 리스트</label>
                     </div>
                     <div className={"input-area"}>
-                      {playlist.map((item, idx) => (
-                        <Playlist
+                      {playList.map((item, idx) => (
+                        <playList
                           key={idx}
                           idx={idx}
                           link={item}
-                          onChange={handlePlaylistChange}
+                          onChange={handlePlayListChange}
                         />
                       ))}
 
                       <button
-                        onClick={addPlaylist}
+                        onClick={addPlayList}
                         className={"btn-sm btn-gray-7"}
                       >
                         + 추가

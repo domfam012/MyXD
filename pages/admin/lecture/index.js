@@ -54,20 +54,15 @@ const BoxList = props => {
     <div className={"box-list"}>
       <div className={"item row"}>
         <div className={"col item-box-1"}>
-          <img
-            className={"img-list"}
-            src={thumbnail}
-          />
+          <img className={"img-list"} src={thumbnail} />
         </div>
         <div className={"col item-box-2"}>
           <div className={"list-title"}>{title}</div>
           <p className={"list-content"}>{content}</p>
           <div className={"list-hash"}>
-            {
-              hash.map(hashtag => (
-                  <span>#{hashtag}</span>
-              ))
-            }
+            {hash.map(hashtag => (
+              <span>#{hashtag}</span>
+            ))}
           </div>
         </div>
         <div className={"col item-box-3"}>
@@ -144,7 +139,7 @@ const BoxList = props => {
           display: -webkit-box;
           padding-left: 38px;
         }
-        
+
         .list-hash {
           width: 498px;
           line-height: 1.33;
