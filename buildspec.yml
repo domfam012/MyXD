@@ -4,16 +4,11 @@ phases:
   build:
     commands:
       - echo Build Starting on `date`
-      - chmod +x gradlew
-      - gradlew build
+      - sudo npm run build:prod
   post_build:
     commands:
       - echo $(basename ./build/libs/*.jar)
       - pwd
-      -
-artifacts:
-  files:
-    - '*'
 cache:
   paths:
     - '/root/.gradle/caches/**/*'
