@@ -40,10 +40,7 @@ const Update = props => {
 
   // hash connected with comma
   const [hash, setHash] = useState(
-    data.hash.reduce(
-      (acc, cur, idx) => (idx === 0 ? cur : acc + "," + cur),
-      ""
-    )
+    data.hash.reduce((acc, cur, idx) => (idx === 0 ? cur : acc + "," + cur), "")
   );
   const [playList, setPlayList] = useState(data.playList);
   const [content, setContent] = useState(data.content);
@@ -84,6 +81,10 @@ const Update = props => {
   // 취소 클릭
   const cancelSubmit = e => {
     e.preventDefault();
+    const check = confirm("작성을 취소하시겠습니까?");
+    if (check) {
+      router.push("/admin/lecture");
+    }
   };
 
   // 저장

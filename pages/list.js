@@ -83,14 +83,14 @@ const Temp = props => {
             background: none;
             border: 0;
             margin: 30px 27px 0 0;
+            :nth-child(3n) {
+              margin-right: 27px;
+            }
+            :nth-child(2n) {
+              margin-right: 0;
+            }
             .inner {
               display: block;
-              :nth-child(3n) {
-                margin-right: 27px;
-              }
-              :nth-child(2n) {
-                margin-right: 0;
-              }
               .li-img {
                 height: 100%;
                 img {

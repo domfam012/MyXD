@@ -166,6 +166,9 @@ const Update = props => {
               alert("Unknown error occurred, inspect error.serverResponse");
               break;
           }
+
+          console.log('error occured: 170;');
+          console.log(err);
         },
         async () => {
           // 업로드된 이미지 url
@@ -197,15 +200,9 @@ const Update = props => {
   const uploadDetailImg = async (reqData, cb, storage) => {
     const selectedImages = [];
 
-    if (
-      detailImg1 !== "" &&
-      (detailImg[0] === "" || detailImg[0] === undefined)
-    )
+    if (detailFileEl1.current.files[0] !== undefined)
       selectedImages.push(detailFileEl1.current.files[0]);
-    if (
-      detailImg2 !== "" &&
-      (detailImg[1] === "" || detailImg[1] === undefined)
-    )
+    if (detailFileEl2.current.files[0] !== undefined)
       selectedImages.push(detailFileEl2.current.files[0]);
 
     // detail img path 정리
