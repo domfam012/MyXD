@@ -241,8 +241,8 @@ const Update = props => {
     // DB update
     const uploadPost = reqData => {
 
-        console.log(reqData);
-        return;
+        // console.log(reqData);
+        // return;
 
         axios.patch(`http://myxd.co.kr/api/board/post/${pid}`, reqData, {
                 headers: {
