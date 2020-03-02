@@ -106,6 +106,10 @@ const New = props => {
   // 취소 클릭
   const cancelSubmit = e => {
     e.preventDefault();
+    const check = confirm("작성을 취소하시겠습니까?");
+    if (check) {
+      router.push("/admin/p/list");
+    }
   };
 
   // 저장
