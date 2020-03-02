@@ -21,6 +21,8 @@ artifacts:
   files:
     - appspec.yml
     - ./_next
+    - _next
+    - /_next
   discard-paths: yes
 
 cache:
