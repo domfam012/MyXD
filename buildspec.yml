@@ -1,14 +1,30 @@
 version: 0.2
 
 phases:
+  install:
+    commands:
+      - echo Installing NPM Packages and fontawesome authToken
+      - npm config set "@fortawesome:registry" https://npm.fontawesome.com/
+      - npm config set "//npm.fontawesome.com/:_authToken" 805BDB06-0B0E-48D6-A761-61C314D95F29
+      - npm install
+      -
   build:
     commands:
       - echo Build Starting on `date`
-      - sudo npm run build:prod
+      - npm run build:prod
+
   post_build:
     commands:
-      - echo $(basename ./build/libs/*.jar)
+      - echo Build completed on `date`
       - pwd
+
+artifacts:
+  files:
+    - "**/*"
+    - ../appspec.yml
+  discard-paths: yes
+  base-directory: _next
+
 cache:
   paths:
     - '/root/.gradle/caches/**/*'
