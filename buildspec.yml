@@ -21,9 +21,9 @@ phases:
 artifacts:
   files:
     - "**/*"
-    - ../appspec.yml
   base-directory: _next
 
 cache:
   paths:
     - "node_modules/**/*"
+    - "_next/cache"
