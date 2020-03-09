@@ -27,4 +27,5 @@ artifacts:
 
 cache:
   paths:
-    - '/root/.gradle/caches/**/*'
+    - "node_modules/**/*"
+    - "_next/cache"
