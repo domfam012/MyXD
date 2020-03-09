@@ -20,8 +20,7 @@ phases:
 
 artifacts:
   files:
-    - target
-    - 'ROOT'
+    - "**"
     - ../appspec.yml
   discard-paths: yes
   base-directory: _next
