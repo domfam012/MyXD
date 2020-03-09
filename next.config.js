@@ -2,9 +2,10 @@ const withCSS = require("@zeit/next-css");
 const { option } = require("./config.js");
 
 const assetPrefix =
-  process.env.NODE_ENV === `production`
-    ? option.assetPrefix.aws
-    : option.assetPrefix.dev;
+    process.env.NODE_ENV === `production`
+        ? option.assetPrefix.aws
+        : option.assetPrefix.dev;
+
 module.exports = withCSS({
   distDir: "_next",
   pageExtensions: ["jsx", "js"],
@@ -25,5 +26,5 @@ module.exports = withCSS({
     return {
       "/": { page: "/" }
     };
-  }
+  },
 });
