@@ -20,11 +20,11 @@ phases:
 
 artifacts:
   files:
-    - "**/*"
+    - './**/*'
     - ../appspec.yml
   discard-paths: yes
   base-directory: _next
 
-cache:
-  paths:
-    - '/root/.gradle/caches/**/*'
+#cache:
+#  paths:
+#    - '/root/.gradle/caches/**/*'
