@@ -21,6 +21,7 @@ phases:
 artifacts:
   files:
     - "**"
+    - "**/cache"
     - ../appspec.yml
   discard-paths: yes
   base-directory: _next
