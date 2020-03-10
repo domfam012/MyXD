@@ -1,16 +1,14 @@
 {
-  "name": "myxd-npmtest",
+  "name": "MyXD",
   "version": "0.0.6",
   "description": "Boilerplate with NextJS, Express, Bootstrap",
   "main": "index.js",
   "scripts": {
-    "serve:dev": "cross-env NODE_ENV=development node server.js",
+    "serve:dev":  "node server.js",
     "serve:prod": "cross-env NODE_ENV=production node server.js",
-    "build:dev": "cross-env NODE_ENV=development next build",
-    "build:prod": "cross-env NODE_ENV=production next build && node zipper.js",
-    "export": "next export",
-    "deploy": "next build && next export",
-    "start": "node server.js"
+    "build:dev":  "next build",
+    "build:prod": "cross-env NODE_ENV=production next build",
+    "build:zip":  "cross-env NODE_ENV=production next build && node zipper.js"
   },
   "keywords": [
     "nextjs",
@@ -51,6 +49,7 @@
     "firebase": "^7.8.0",
     "helmet": "^3.21.2",
     "isomorphic-unfetch": "^3.0.0",
+    "jquery": "^1.9.1",
     "js-cookie": "^2.2.1",
     "moment": "^2.24.0",
     "mvn": "^3.5.0",
