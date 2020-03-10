@@ -6,11 +6,11 @@ const fileName = `${require('./package.json').name}.zip`;
 if(fs.existsSync(fileName)){
     fs.unlink(fileName, (err) => {
         if (err) throw err;
-        zipper.sync.zip("./_next/").compress().save(fileName);
         console.log("update");
+        zipper.sync.zip("./").compress().save(fileName);
     });
 }else{
-    zipper.sync.zip("./_next/").compress().save(fileName);
     console.log("create");
+    zipper.sync.zip("./").compress().save(fileName);
 }
 

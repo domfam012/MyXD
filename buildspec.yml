@@ -21,11 +21,6 @@ phases:
 artifacts:
   files:
     - MyXD.zip
-    - appspec.yml
-    - deploy.sh
-    - ecosystem.config.js
-    - package.json
-    - "node_modules/**"
 
 cache:
   paths:
