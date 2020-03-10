@@ -12,3 +12,4 @@ cd ../MyXD
 echo "> MyXD.zip 파일 압출 풀기"
 unzip MyXD.zip
 rm -rf MyXD.zip
+npm rebuild
