@@ -11,7 +11,7 @@ phases:
   build:
     commands:
       - echo Build Starting on `date`
-      - npm run build:prod
+      - npm run build:zip
 
   post_build:
     commands:
@@ -20,8 +20,10 @@ phases:
 
 artifacts:
   files:
-    - pack.zip
     - appspec.yml
+    - MyXD.zip
+    - scripts/**
+    discard-paths: yes
 
 cache:
   paths:
