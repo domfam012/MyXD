@@ -6,9 +6,9 @@ rm -rf *
 
 echo "> MyXD.zip 파일 이동"
 cd ../../zip
-mv MyXD.zip ../MyXD/_next/
+mv MyXD.zip scripts appspec.yml ../MyXD/_next/
 cd ../MyXD/_next/
 
 echo "> MyXD.zip 파일 압출 풀기"
 unzip MyXD.zip
-rm -rf MyXD.zip
+rm -rf MyXD.zip scripts appspec.yml
