@@ -22,7 +22,7 @@ artifacts:
   files:
     - MyXD.zip
     - appspec.yml
-    - "scripts/**"
+    - scripts/deploy.sh
 
 cache:
   paths:
