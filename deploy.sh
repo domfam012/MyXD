@@ -5,7 +5,7 @@ cd MyXD
 rm -rf *
 
 echo "> MyXD.zip 파일 이동"
-cd ../../zip
+cd ../zip
 mv * ../MyXD
 cd ../MyXD
 
