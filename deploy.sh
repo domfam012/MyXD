@@ -6,10 +6,8 @@ rm -rf *
 
 echo "> MyXD.zip 파일 이동"
 cd ../../zip
-mv * ../MyXD/
+mv * ../MyXD
 cd ../MyXD
-mv MyXD.zip _next/
-cd ../MyXD/_next/
 
 echo "> MyXD.zip 파일 압출 풀기"
 unzip MyXD.zip
