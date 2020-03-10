@@ -9,7 +9,6 @@ const handle = app.getRequestHandler();
 console.log(`process.env.NODE_ENV: ${process.env.NODE_ENV}`);
 
 const express = require("express")();
-const compression = require('compression');
 const helmet = require("helmet");
 const bodyParser = require("body-parser");
 
@@ -29,7 +28,6 @@ app.prepare().then(() => {
 
     express.set("trust proxy", 1);
     express.use(
-      compression(),
       helmet(),
       bodyParser.urlencoded({ extended: true }),
       bodyParser.json()
