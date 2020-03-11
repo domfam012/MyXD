@@ -4,11 +4,11 @@
   "description": "Boilerplate with NextJS, Express, Bootstrap",
   "main": "index.js",
   "scripts": {
-    "serve:dev":  "node server.js",
+    "serve:dev": "node server.js",
     "serve:prod": "cross-env NODE_ENV=production node server.js",
-    "build:dev":  "next build",
+    "build:dev": "next build",
     "build:prod": "cross-env NODE_ENV=production next build",
-    "build:zip":  "cross-env NODE_ENV=production next build && node zipper.js"
+    "build:zip": "cross-env NODE_ENV=production next build && node zipper.js"
   },
   "keywords": [
     "nextjs",
