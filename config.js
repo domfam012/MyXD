@@ -39,7 +39,7 @@ const option = {
   },
   port: {
     dev: 3000,
-    production: 80
+    production: 8080
   },
   GA_TRACKING_ID: "UA-158587547-1"
 };

@@ -11,7 +11,7 @@ module.exports = {
                 "NODE_ENV": "development" // 개발환경시 적용될 설정 지정
             },
             env_production: {
-                "PORT": 80,
+                "PORT": 8080,
                 "NODE_ENV": "production" // 배포환경시 적용될 설정 지정
             }
         }
