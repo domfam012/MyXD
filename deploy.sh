@@ -17,3 +17,4 @@ rm -rf MyXD.zip
 
 echo "> npm rebuild"
 npm rebuild
+
