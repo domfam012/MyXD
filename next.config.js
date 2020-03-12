@@ -7,7 +7,6 @@ const assetPrefix =
         : option.assetPrefix.dev;
 
 module.exports = withCSS({
-  distDir: "_next",
   pageExtensions: ["jsx", "js"],
   generateBuildId: async () => {
     // When process.env.MY_BUILD_ID is undefined we fall back to the default
