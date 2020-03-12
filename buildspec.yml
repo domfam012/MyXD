@@ -1,6 +1,13 @@
 version: 0.2
 
 phases:
+  install:
+    commands:
+      - echo Installing NPM Packages and fontawesome authToken
+      - npm config set "@fortawesome:registry" https://npm.fontawesome.com/
+      - npm config set "//npm.fontawesome.com/:_authToken" 805BDB06-0B0E-48D6-A761-61C314D95F29
+      - npm install
+
   build:
     commands:
       - echo Build Starting on `date`
