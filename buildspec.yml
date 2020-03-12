@@ -26,5 +26,4 @@ artifacts:
 
 cache:
   paths:
-    - "node_modules/**/*"
-    - "_next/cache"
+    - 'node_modules/**/*'
