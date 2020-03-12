@@ -15,3 +15,5 @@ unzip MyXD.zip
 echo "> MyXD.zip 파일 제거"
 rm -rf MyXD.zip
 
+echo "> npm rebuild"
+npm rebuild
