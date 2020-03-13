@@ -6,18 +6,16 @@ phases:
       - npm config set "@fortawesome:registry" https://npm.fontawesome.com/
       - npm config set "//npm.fontawesome.com/:_authToken" 805BDB06-0B0E-48D6-A761-61C314D95F29
       - npm install
-      - pwd
     run-as: root
 
   build:
     commands:
-      - echo Build Starting on `date`
+      - echo Build Starting !
       - npm run build:zip
 
   post_build:
     commands:
-      - echo Build completed on `date`
-      - pwd
+      - echo Build completed !
 
 artifacts:
   files:
