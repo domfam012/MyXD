@@ -8,7 +8,9 @@
     "serve:prod": "cross-env NODE_ENV=production node server.js",
     "build:dev": "next build",
     "build:prod": "cross-env NODE_ENV=production next build",
-    "build:zip": "cross-env NODE_ENV=production next build && node zipper.js"
+    "build:zip": "cross-env NODE_ENV=production next build && node zipper.js",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "keywords": [
     "nextjs",
@@ -63,6 +65,12 @@
     "zip-local": "^0.3.4"
   },
   "devDependencies": {
+    "@babel/core": "^7.8.7",
+    "@storybook/addon-actions": "^5.3.14",
+    "@storybook/addon-links": "^5.3.14",
+    "@storybook/addons": "^5.3.14",
+    "@storybook/react": "^5.3.14",
+    "babel-loader": "^8.0.6",
     "node-sass": "^4.13.1",
     "styled-jsx-plugin-sass": "^1.0.0",
     "zip-webpack-plugin": "^3.0.0"
