@@ -1,8 +1,8 @@
 #!/bin/bash
-echo "> MyXD 디렉토리 기존 파일 제거"
+echo "> MyXD 디렉토리 기존 파일 제거 (node_modules 제외)"
 cd ~
 cd MyXD
-rm -rf *
+rm -rf `ls | find . -name node_modules -prune -o -print`
 
 echo "> MyXD.zip 파일 이동 : zip → MyXD "
 cd ../zip
