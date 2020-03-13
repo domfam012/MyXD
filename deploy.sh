@@ -1,15 +1,21 @@
 #!/bin/bash
-echo "> MyXD/_next 디렉토리 파일 제거"
+echo "> MyXD 하위 기존 디렉터리 제거"
 cd ~
 cd MyXD
-rm -rf *
+find . -name _next -type d -exec rm -rf {} \;
+find . -name components -type d -exec rm -rf {} \;
+find . -name pages -type d -exec rm -rf {} \;
+find . -name public -type d -exec rm -rf {} \;
 
-echo "> MyXD.zip 파일 이동"
+echo "> MyXD.zip 파일 이동 : zip → MyXD "
 cd ../zip
 mv * ../MyXD
 cd ../MyXD
 
 echo "> MyXD.zip 파일 압출 풀기"
 unzip MyXD.zip
+
+echo "> MyXD.zip 파일 제거"
 rm -rf MyXD.zip
-npm rebuild
+
+
