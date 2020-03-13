@@ -13,10 +13,6 @@ phases:
       - echo Build Starting !
       - npm run build:zip
 
-  post_build:
-    commands:
-      - echo Build completed !
-
 artifacts:
   files:
     - MyXD.zip
