@@ -16,12 +16,6 @@ phases:
 artifacts:
   files:
     - MyXD.zip
-    - config.js
-    - ecosystem.config.js
-    - LICENSE
-    - next.config.js
-    - server.js
-    - package.json
     - appspec.yml
     - deploy.sh
 
