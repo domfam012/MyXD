@@ -1,6 +1,14 @@
 version: 0.2
 
 phases:
+  install:
+    runtime-versions:
+      nodejs: 12
+    commands:
+      - npm install
+      - pwd
+    run-as: root
+
   build:
     commands:
       - echo Build Starting on `date`
@@ -13,9 +21,7 @@ phases:
 
 artifacts:
   files:
-    - MyXD.zip
-    - appspec.yml
-    - deploy.sh
+    - "**/*"
 
 cache:
   paths:

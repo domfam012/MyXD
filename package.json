@@ -8,7 +8,7 @@
     "serve:prod": "cross-env NODE_ENV=production node server.js",
     "build:dev": "next build",
     "build:prod": "cross-env NODE_ENV=production next build",
-    "build:zip": "cross-env NODE_ENV=production next build && node zipper.js"
+    "build:zip": "next build && node zipper.js"
   },
   "keywords": [
     "nextjs",
