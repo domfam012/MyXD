@@ -1,8 +1,11 @@
 #!/bin/bash
-echo "> MyXD 디렉토리 기존 파일 제거 (node_modules 제외)"
+echo "> MyXD 하위 기존 디렉터리 제거"
 cd ~
 cd MyXD
-rm -rf `ls | find . -name node_modules -prune -o -print`
+find . -name _next -type d -exec rm -rf {} \;
+find . -name components -type d -exec rm -rf {} \;
+find . -name pages -type d -exec rm -rf {} \;
+find . -name public -type d -exec rm -rf {} \;
 
 echo "> MyXD.zip 파일 이동 : zip → MyXD "
 cd ../zip
@@ -15,6 +18,4 @@ unzip MyXD.zip
 echo "> MyXD.zip 파일 제거"
 rm -rf MyXD.zip
 
-echo "> npm rebuild"
-npm rebuild
 
